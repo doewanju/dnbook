@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'bookmap.apps.BookmapConfig',
     'others.apps.OthersConfig',
     'bootstrap4',
-    'rest_framework'
 ]
 
 MIDDLEWARE = [
