@@ -38,7 +38,7 @@ def parse_addr():
                 tmp=j.find('a','weblink')
                 hp.append(tmp.get('href'))
             else:
-                hp.append('홈페이지없음')
+                hp.append('')
     result.append(name)
     result.append(addr)
     result.append(phone)
