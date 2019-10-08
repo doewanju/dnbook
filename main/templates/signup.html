@@ -1,0 +1,14 @@
+<h1>회원가입 페이지</h1>
+{% extends 'base.html' %}
+{% block content %}
+{% if error %}
+{{ error }}
+<br>
+<br>
+{% endif %}
+<br>
+<br>
+<a href="{% url 'boss' %}">책방 주인으로 가입하기</a><br>
+<a href="{% url 'normal' %}">일반 회원으로 가입하기</a><br>
+
+{% endblock %}

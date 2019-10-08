@@ -1,0 +1,34 @@
+<h1>일반회원 회원가입 페이지</h1>
+{% extends 'base.html' %}
+{% block content %}
+{% if error %}
+{{ error }}
+<br>
+<br>
+{% endif %}
+
+<form method="POST" action="{% url 'normal' %}">
+
+    {% csrf_token %}
+    ID : 
+    <input name="username" type="text" value="">
+    <br>
+    Password:
+    <input name="password1" type="password" value="">
+    <br>
+    Confirm Password:
+    <input name="password2" type="password" value="">
+    <br>
+    닉네임:
+    <input name="nickname" type="text" value="">
+    <br>
+    Email:
+    <input name="email" type="email" value="">
+    <br>
+    
+    <input class="btn btn-primary" type="submit" value="회원가입하기">
+
+</form>
+
+
+{% endblock %}

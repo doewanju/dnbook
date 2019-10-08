@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>책방지도</title>
+</head>
+<h1>지도 API</h1>
+<h5>지도에 책방 위치가 찍혀있고, 책방 위치 아이콘을 누르면 화면 하단에 한줄소개가 나온다. 
+    <br> 만약에 한줄소개 띄우기 어려우면 바로 bookstore.html로 넘어간다.</h5>
+
+{% extends 'base.html' %}
+{% block content %}
+
+<body>
+<div id="map" style="width:100%;height:600px;"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
+<script type="text/javascript">
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
+        level: 8 // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
+    };  
+ 
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+var zoomControl = new kakao.maps.ZoomControl();
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+var geocoder = new kakao.maps.services.Geocoder();
+
+let addrArr = {{ bsaddr | safe }};
+let nameArr = {{ bsname | safe }};
+
+function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
+    geocoder.addressSearch(address,function(result, status){
+        if (status === kakao.maps.services.Status.OK){
+            let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+            let marker = new kakao.maps.Marker({
+                map: map,
+                position: coords,
+                clickable: true,
+                title: title
+            });
+            let content = '<div class="content">' + 
+                    title + '<br>' + 
+                    address + '<br>'+
+                    '<a href="http://127.0.0.1:8000'+'/bookmap/store/'+(i+1)+'">더보기</a>'
+                    '</div>';
+            let ifw = new kakao.maps.InfoWindow({
+                content: content,
+                removable: true
+            });
+            kakao.maps.event.addListener(marker, 'click', function(){
+                ifw.open(map,marker);
+            });
+        };
+    });
+}
+for(let i=0; i< addrArr.length;i++){
+    addrStoN(addrArr[i],nameArr[i],i);
+};
+</script>
+</html>
+    
+    
+{% endblock %}

@@ -1,0 +1,24 @@
+<h1>책방 정보 각각 보이는 페이지</h1>
+<h5>템플릿 변수 사용해서 각 책방을 지도에서 눌렀을때 책방 정보 저장해둔거 불러오는 식으로..?</h5>
+{% extends 'base.html' %}
+{% block content %}
+
+<table>
+    <thead>
+        <tr>
+            <th>이름</th>
+            <th>주소</th>
+            <th>더보기</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for store in bookstores.all %}
+        <tr>
+            <td>{{store.name}}</td>
+            <td>{{store.addr}}</td>
+            <td><a href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

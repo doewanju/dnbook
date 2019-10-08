@@ -1,0 +1,33 @@
+<h1>사장님 회원가입시 책방 검색하는 페이지</h1>
+{% extends 'base.html' %}
+{% block content %}
+
+
+<table>
+    <thead>
+    <tr>
+        <td><B>책방이름</B></td>
+        <td><B>주소</B></td>
+        <td><B>휴대폰번호</B></td>
+        <td><B>사이트</B></td>
+        <td><B>선택</B></td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for bookstore in bookstores.all %}
+    <tr>
+    <form method="GET" action="{% url 'boss' %}">  
+        <td><input name="bsname" value="{{bookstore.name}}" readonly /></td>
+        <td>{{bookstore.addr}}</td>
+        <td>{{bookstore.phone_number}}</td>
+        <td>{{bookstore.site}}</td>
+        <td>
+            <input type="submit" value="선택하기">
+        </td>
+    </form>
+    </tr>
+    {% endfor %}
+    <tbody>
+</table>
+
+{% endblock %}

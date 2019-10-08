@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load staticfiles %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+<body>
+   {% if error %}
+   {{ error }}
+   <br>
+   <br>
+   {% endif %}
+
+   <h1>• 로그인</h1>
+       <form action="{% url 'login' %}" method='POST'>
+        {% csrf_token %}
+        <div class="loginbox">
+            <label for="inp" class="inp">
+            <input name="username" type="text" id="inp">
+            <span class="label">아이디</span>
+            <span class="border"></span>
+            </label>
+
+            <label for="inp" class="inp">
+            <input name="password" type="password" id="inp">
+            <span class="label">비밀번호</span>
+            <span class="border"></span>
+            </label>
+        </div>
+        {% if error %}
+            <div class="alert alert-danger account-alert" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+        <div class="d-flex justify-content-center">
+            <button type="submit" class='btn confirm-btn'>로그인</button>
+        </div>
+   {% comment %} <div class="loginbox">
+      <form method="POST" action="{% url 'login'%}">
+         {% csrf_token %}
+         Username:
+         <br>
+         <input name="username" type="text" value="">
+         <br>
+         Password:
+         <br>
+         <input name="password" type="password" value="">
+         <br>
+         <br>
+         <input class="btn btn-primary" type="submit" value="Login">
+      </form>
+   </div> {% endcomment %}
+</body>
+
+{% endblock %}
