@@ -29,6 +29,7 @@ var geocoder = new kakao.maps.services.Geocoder();
 
 let addrArr = {{ bsaddr | safe }};
 let nameArr = {{ bsname | safe }};
+let pkArr = {{ pklist | safe }};
 
 function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
     geocoder.addressSearch(address,function(result, status){
@@ -43,7 +44,7 @@ function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
             let content = '<div class="content">' + 
                     title + '<br>' + 
                     address + '<br>'+
-                    '<a href="http://127.0.0.1:8000'+'/bookmap/store/'+(i+1)+'">더보기</a>'
+                    '<a href="http://127.0.0.1:8000'+'/bookmap/store/'+i+'">더보기</a>'
                     '</div>';
             let ifw = new kakao.maps.InfoWindow({
                 content: content,
@@ -56,7 +57,7 @@ function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
     });
 }
 for(let i=0; i< addrArr.length;i++){
-    addrStoN(addrArr[i],nameArr[i],i);
+    addrStoN(addrArr[i],nameArr[i],pkArr[i]);
 };
 </script>
 </html>

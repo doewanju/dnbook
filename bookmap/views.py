@@ -17,9 +17,16 @@ def realmap(request):
     bookstores = BookStore.objects.all()
     addr = []
     name = []
+    storepk = []
     for a in bookstores:
         addr.append(a.addr)
         name.append(a.name)
+        storepk.append(a.bookstore_id)
     addrlist = simplejson.dumps(addr)
     namelist = simplejson.dumps(name)
-    return render(request, 'realmap.html', {'bs':bookstores, 'bsaddr' : addrlist, 'bsname' : namelist})
+    pklist = simplejson.dumps(storepk)
+    return render(request, 'realmap.html', {
+        'bs':bookstores, 
+        'bsaddr' : addrlist, 
+        'bsname' : namelist,
+        'pklist' : pklist})
