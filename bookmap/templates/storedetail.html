@@ -1,7 +1,49 @@
-<h1>책방 디테일 페이지</h1>
+<html>
+<!-- 사이트 없는 경우 사이트 없다는 레이어팝업 띄우기 위해 레이어팝업소스 구글링해서 복붙했어요...
+그래서 style 정의되어있는데 수정해도 됩니당
+소스 가져온곳: https://stackoverflow.com/questions/19064987/html-css-popup-div-on-text-click -->
+<head>
+    <style>
+    .black_overlay{
+        display: none;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index:1001;
+        -moz-opacity: 0.8;
+        opacity:.80;
+        filter: alpha(opacity=80);
+    }
+    .white_content {
+        display: none;
+        position: absolute;
+        top: 33%;
+        left: 33%;
+        width: 33%;
+        height: 33%;
+        padding: 16px;
+        background-color: white;
+        z-index:1002;
+        overflow: auto;
+    }
+</style>
+</head>
+<body>
+    <h1>책방 디테일 페이지</h1>
 
-<br>
-<h1>책방 이름 : {{store.name}}</h1>
-<p>주소 : {{store.addr}}</p>
-<p>전화번호 : {{store.phone_number}}</p>
-<p><a href={{store.site}}>사이트</a></p>
+    <br>
+    <h1>책방 이름 : {{store.name}}</h1>
+    <p>주소 : {{store.addr}}</p>
+    <p>전화번호 : {{store.phone_number}}</p>
+    {% if store.site %}
+    <p><a href={{store.site}}>사이트</a></p>
+    {% else %}
+    <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">사이트</a></p>
+    <div id="light" class="white_content">사이트가 존재하지 않습니다. <br><br>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">닫기</a></div>
+    <div id="fade" class="black_overlay"></div>
+    {% endif %}
+</body>
