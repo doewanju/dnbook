@@ -1,0 +1,76 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+
+body{
+    background-image: url("../images/background_login.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 850px 1400px;
+}
+.loginbox{
+    position: fixed;
+    width: 450px;
+    top: 1080px;
+    left: 320px;
+}
+.inp {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.inp .label {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    font-family: 'BBTreeGL';
+    font-size: 40px;
+    color: #DED2C0;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+.inp .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    background: #615136;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+.inp input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    height: 48px;
+    font-family: 'YiSunShinDotumM';
+    font-size: 40px;
+    border-bottom: 2px solid #BAA687;
+    background: none;
+    border-radius: 0;
+    color: #615136;
+    transition: all 0.15s ease;
+}
+
+.inp input:not(:placeholder-shown) + span {
+    color: #BAA687;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp input:focus {
+    background: none;
+    outline: none;
+}
+.inp input:focus + span {
+    color: #615136;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp input:focus + span + .border {
+    transform: scaleX(1);
+}
+
