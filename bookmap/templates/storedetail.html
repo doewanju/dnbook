@@ -46,4 +46,14 @@
     <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">닫기</a></div>
     <div id="fade" class="black_overlay"></div>
     {% endif %}
+
+    <p>리뷰 보기</p>
+    {%for review in rev%}
+    <a href={{review.link}}>{{review.title}}</a>
+    <br>
+    {{review.content}}
+    <br><br>
+    {%endfor%}
+    
+    
 </body>
