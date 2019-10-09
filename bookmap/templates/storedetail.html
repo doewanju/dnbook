@@ -53,5 +53,12 @@
     <div id="fade" class="black_overlay"></div>
     {% endif %}
 
-    <h1>리뷰</h1>
+    <h1>리뷰 보기</h1>
+    {%for review in rev%}
+    <a href={{review.link}}>{{review.title}}</a>
+    <br>
+    {{review.content}}
+    <br><br>
+    {%endfor%}
+    
 </body>

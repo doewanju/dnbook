@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from .models import BookStore, Scrap
 from django.core import serializers
+from .review import reviewFuc
 import simplejson
 
 # Create your views here.
@@ -11,10 +12,10 @@ def bookstore(request):
 
 def detail(request, bookstore_id):
     store_detail = get_object_or_404(BookStore, pk = bookstore_id)
+    rev=reviewFuc(store_detail.name,store_detail.addr)
     scrap = Scrap.objects.filter(user=request.user, store=store_detail)
-    
-    return render(request, 'storedetail.html', {'store' : store_detail, 'scrap' : scrap})
-
+    return render(request, 'storedetail.html', {'store' : store_detail, 'rev':rev, 'scrap' : scrap})
+  
 def realmap(request):
     bookstores = BookStore.objects.all()
     addr = []
