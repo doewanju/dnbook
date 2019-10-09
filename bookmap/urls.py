@@ -5,4 +5,5 @@ urlpatterns = [
     path('bookstore/', views.bookstore, name='bookstore'),
     path('realmap/', views.realmap, name='realmap'),
     path('store/<int:bookstore_id>', views.detail, name='storedetail'),    
+    path('scrap/<int:bookstore_id>', views.scrap, name='scrap'),
 ]
