@@ -16,7 +16,6 @@ class Bossprofile(models.Model): #책방 사장님 모델
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=10)
     email = models.EmailField()
-    #mystore = models.ForeignKey(BookStore, on_delete=models.CASCADE, null=True)
     introduce = models.TextField(max_length=200)
     # stamp = models
 

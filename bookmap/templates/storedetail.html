@@ -36,8 +36,14 @@
 
     <br>
     <h1>책방 이름 : {{store.name}}</h1>
+    {% if scrap %}
+        <a href="{% url 'scrap' store.bookstore_id %}">스크랩취소</a>
+    {% else %}
+        <a href="{% url 'scrap' store.bookstore_id %}">스크랩</a>
+    {% endif %}
     <p>주소 : {{store.addr}}</p>
     <p>전화번호 : {{store.phone_number}}</p>
+    
     {% if store.site %}
     <p><a href={{store.site}}>사이트</a></p>
     {% else %}
@@ -47,13 +53,12 @@
     <div id="fade" class="black_overlay"></div>
     {% endif %}
 
-    <p>리뷰 보기</p>
+    <h1>리뷰 보기</h1>
     {%for review in rev%}
     <a href={{review.link}}>{{review.title}}</a>
     <br>
     {{review.content}}
     <br><br>
     {%endfor%}
-    
     
 </body>

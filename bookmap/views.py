@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from .models import BookStore
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+from .models import BookStore, Scrap
 from django.core import serializers
 from .review import reviewFuc
 import simplejson
@@ -13,8 +13,9 @@ def bookstore(request):
 def detail(request, bookstore_id):
     store_detail = get_object_or_404(BookStore, pk = bookstore_id)
     rev=reviewFuc(store_detail.name,store_detail.addr)
-    return render(request, 'storedetail.html', {'store' : store_detail, 'rev':rev})
-
+    scrap = Scrap.objects.filter(user=request.user, store=store_detail)
+    return render(request, 'storedetail.html', {'store' : store_detail, 'rev':rev, 'scrap' : scrap})
+  
 def realmap(request):
     bookstores = BookStore.objects.all()
     addr = []
@@ -32,3 +33,12 @@ def realmap(request):
         'bsaddr' : addrlist, 
         'bsname' : namelist,
         'pklist' : pklist})
+
+def scrap(request, bookstore_id):
+    store = get_object_or_404(BookStore, pk=bookstore_id)
+    scrapped = Scrap.objects.filter(user=request.user, store=store)
+    if not scrapped:
+        Scrap.objects.create(user=request.user, store=store)
+    else:
+        scrapped.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
