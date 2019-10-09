@@ -1,8 +1,7 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import requests
-import os;
-os.environ["PATH"] += os.pathsep + 'bookmap';
+from webdrivermanager import ChromeDriverManager as ch
 '''
 만약 네이버에 등록된 곳이면 그 곳 블로그리뷰 클릭해서 리뷰가져오고
 등록안된곳이면 지금 하는거처럼 블로그 상단 세건 가져오도록
@@ -13,10 +12,14 @@ def reviewFuc(name, addr):
     find_name = name
     find_addr = addr
     f=find_name+" "+find_addr.split(" ")[0]
-
+    path=ch().get_download_path()+'\chromedriver_'+ch().os_name
+    if ch().os_name == 'win':
+        path+='32\chromedriver.exe'
+    else:
+        path+='64\chromedriver'
     options=webdriver.ChromeOptions()
     options.add_argument('headless')
-    driver = webdriver.Chrome('chromedriver.exe',chrome_options=options)
+    driver = webdriver.Chrome(path,chrome_options=options)
     driver.implicitly_wait(3)
 
     naver_url="https://www.naver.com"
