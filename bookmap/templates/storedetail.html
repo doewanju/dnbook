@@ -38,6 +38,11 @@
     <h1>책방 이름 : {{store.name}}</h1>
     <p>주소 : {{store.addr}}</p>
     <p>전화번호 : {{store.phone_number}}</p>
+    {% if scrap %}
+        <a href="{% url 'scrap' store.bookstore_id %}">스크랩취소</a>
+    {% else %}
+        <a href="{% url 'scrap' store.bookstore_id %}">스크랩</a>
+    {% endif %}
     {% if store.site %}
     <p><a href={{store.site}}>사이트</a></p>
     {% else %}
