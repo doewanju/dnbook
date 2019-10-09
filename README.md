@@ -20,5 +20,3 @@
 
 ## 관리자계정 만들기
 - $python manage.py createsuperuser
-
-gkdkgk
