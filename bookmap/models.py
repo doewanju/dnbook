@@ -29,3 +29,14 @@ class Scrap(models.Model):
 
     def __str__(self):
         return '%s, %s' %(self.user,self.store)
+
+class Review(models.Model):
+    store = models.ForeignKey(BookStore, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
+    content = models.CharField(max_length=200)
+    star = models.PositiveIntegerField(default=5)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '%s, %s' %(self.store, self.content[:30])

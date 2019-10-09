@@ -17,7 +17,7 @@
     {% for bookstore in bookstores.all %}
     <tr>
     <form method="GET" action="{% url 'boss' %}">  
-        <td><input name="bsname" value="{{bookstore.name}}" readonly /></td>
+        <td><input name="bsname" value="{{bookstore.name}}" readonly class="form-control-plaintext"/></td>
         <td>{{bookstore.addr}}</td>
         <td>{{bookstore.phone_number}}</td>
         <td>{{bookstore.site}}</td>
