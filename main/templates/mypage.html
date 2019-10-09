@@ -2,6 +2,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
+<h3>스크랩 한 책방</h3>
+{% for scrap in scraps %}
+{{scrap.store}}
+{% endfor %}
 
 {% endblock %}

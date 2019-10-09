@@ -12,6 +12,7 @@ def bookstore(request):
 def detail(request, bookstore_id):
     store_detail = get_object_or_404(BookStore, pk = bookstore_id)
     scrap = Scrap.objects.filter(user=request.user, store=store_detail)
+    
     return render(request, 'storedetail.html', {'store' : store_detail, 'scrap' : scrap})
 
 def realmap(request):

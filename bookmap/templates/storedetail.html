@@ -36,13 +36,14 @@
 
     <br>
     <h1>책방 이름 : {{store.name}}</h1>
-    <p>주소 : {{store.addr}}</p>
-    <p>전화번호 : {{store.phone_number}}</p>
     {% if scrap %}
         <a href="{% url 'scrap' store.bookstore_id %}">스크랩취소</a>
     {% else %}
         <a href="{% url 'scrap' store.bookstore_id %}">스크랩</a>
     {% endif %}
+    <p>주소 : {{store.addr}}</p>
+    <p>전화번호 : {{store.phone_number}}</p>
+    
     {% if store.site %}
     <p><a href={{store.site}}>사이트</a></p>
     {% else %}
@@ -51,4 +52,6 @@
     <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">닫기</a></div>
     <div id="fade" class="black_overlay"></div>
     {% endif %}
+
+    <h1>리뷰</h1>
 </body>
