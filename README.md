@@ -11,6 +11,7 @@
 - django-bootstrap4
 - pillow
 - requests
+- selenium
 
 ## 모델 불러오기
 - $python manage.py migrate

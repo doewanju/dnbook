@@ -71,7 +71,7 @@
     <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">닫기</a></div>
     <div id="fade" class="black_overlay"></div>
     {% endif %}
-
+  
     리뷰 | 별점평균: {{star_avg}}
     {% if user.is_authenticated %}
     <form method="POST" action="{% url 'reviewcreate' store.bookstore_id %}">
@@ -99,6 +99,14 @@
         <p><strong>{{review.user}}</strong> | {{ review.content }} | ★{{ review.star }}</p>
         {% if review.user == user %}<a href="{% url 'reviewdelete' review.id %}">삭제</a>{% endif %}
     {% endfor %}
+
+    <h1>크롤링 리뷰 보기</h1>
+    {%for review in rev%}
+    <a href={{review.link}}>{{review.title}}</a>
+    <br>
+    {{review.content}}
+    <br><br>
+    {%endfor%}
 
 </body>
 {% endblock %}

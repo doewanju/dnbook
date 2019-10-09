@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
 from .models import BookStore, Scrap, Review
 from django.core import serializers
+from .review import reviewFuc
 import simplejson
 from .forms import ReviewForm
 
@@ -12,6 +13,7 @@ def bookstore(request):
 
 def detail(request, bookstore_id):
     store_detail = get_object_or_404(BookStore, pk = bookstore_id)
+    rev=reviewFuc(store_detail.name,store_detail.addr)
     scrap = Scrap.objects.filter(store=store_detail)
     scrap_count = scrap.count()
 
@@ -26,10 +28,10 @@ def detail(request, bookstore_id):
     if request.user.is_authenticated:
         store_scrap = scrap.filter(user=request.user)
         form = ReviewForm()
-        return render(request, 'storedetail.html', {'store' : store_detail, 'scrap' : store_scrap, 'count':scrap_count, 'form':form, 'star_avg':star_avg})
+        return render(request, 'storedetail.html', {'rev':rev, 'store' : store_detail, 'scrap' : store_scrap, 'count':scrap_count, 'form':form, 'star_avg':star_avg})
     else:
-        return render(request, 'storedetail.html', {'store' : store_detail, 'count' : scrap_count, 'star_avg':star_avg})
-
+        return render(request, 'storedetail.html', {'rev':rev, 'store' : store_detail, 'count' : scrap_count, 'star_avg':star_avg})
+      
 def realmap(request):
     bookstores = BookStore.objects.all()
     addr = []

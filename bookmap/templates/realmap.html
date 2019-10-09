@@ -30,6 +30,7 @@ var geocoder = new kakao.maps.services.Geocoder();
 let addrArr = {{ bsaddr | safe }};
 let nameArr = {{ bsname | safe }};
 let pkArr = {{ pklist | safe }};
+var selectedifw=null;
 
 function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
     geocoder.addressSearch(address,function(result, status){
@@ -51,7 +52,14 @@ function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
                 removable: true
             });
             kakao.maps.event.addListener(marker, 'click', function(){
-                ifw.open(map,marker);
+                if (!selectedifw || selectedifw !== ifw){
+                    ifw.open(map,marker);
+                }
+                if (selectedifw){
+                    selectedifw.close();
+                }
+                selectedifw=ifw;
+                
             });
         };
     });
