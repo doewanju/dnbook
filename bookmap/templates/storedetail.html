@@ -29,23 +29,42 @@
         z-index:1002;
         overflow: auto;
     }
+    .starR{
+        background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+        background-size: auto 100%;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        text-indent: -9999px;
+        cursor: pointer;
+    }
+    .starR.on{
+        background-position:0 0;
+    }
 </style>
 </head>
+<h1>책방 디테일 페이지</h1>
+{% extends 'base.html' %}
+{% block content %}
 <body>
-    <h1>책방 디테일 페이지</h1>
-
     <br>
     <h1>책방 이름 : {{store.name}}</h1>
-    {% if scrap %}
-        <a href="{% url 'scrap' store.bookstore_id %}">스크랩취소</a>
-    {% else %}
-        <a href="{% url 'scrap' store.bookstore_id %}">스크랩</a>
+    <p>스크랩 <span class="badge badge-secondary">{{count}}</span></p>
+
+    {% if user.is_authenticated %}
+        {% if scrap %}
+            <a href="{% url 'scrap' store.bookstore_id %}">스크랩취소</a>
+        {% else %}
+            <a href="{% url 'scrap' store.bookstore_id %}">스크랩</a>
+        {% endif %}
     {% endif %}
+    <br><br>
+    
     <p>주소 : {{store.addr}}</p>
     <p>전화번호 : {{store.phone_number}}</p>
     
     {% if store.site %}
-    <p><a href={{store.site}}>사이트</a></p>
+    <p><a href={{store.site}}>{{store.site}}</a></p>
     {% else %}
     <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">사이트</a></p>
     <div id="light" class="white_content">사이트가 존재하지 않습니다. <br><br>
@@ -53,5 +72,33 @@
     <div id="fade" class="black_overlay"></div>
     {% endif %}
 
-    <h1>리뷰</h1>
+    리뷰 | 별점평균: {{star_avg}}
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'reviewcreate' store.bookstore_id %}">
+        {% csrf_token %}
+        <span class="starRev form-group">
+            <input name="star" value="1" type='radio'>
+            <input name="star" value="2" type='radio'>
+            <input name="star" value="3" type='radio'>
+            <input name="star" value="4" type='radio'>
+            <input name="star" value="5" type='radio'>
+        </span>
+        <script>
+        $('.starRev span').click(function(){
+            $(this).parent().children('span').removeClass('on');
+            $(this).addClass('on').prevAll('span').addClass('on');
+            return false;
+          });
+        </script>
+        {{form}}
+        <button type='submit'>등록!</button>
+    </form>
+    {% endif %}
+
+    {% for review in store.review_set.all %}
+        <p><strong>{{review.user}}</strong> | {{ review.content }} | ★{{ review.star }}</p>
+        {% if review.user == user %}<a href="{% url 'reviewdelete' review.id %}">삭제</a>{% endif %}
+    {% endfor %}
+
 </body>
+{% endblock %}

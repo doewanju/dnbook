@@ -2,9 +2,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 <h3>스크랩 한 책방</h3>
 {% for scrap in scraps %}
-{{scrap.store}}
+>> <a href="{%url 'storedetail' scrap.store.bookstore_id%}">{{scrap.store}}</a><br>
 {% endfor %}
-
+<br>
 {% endblock %}
