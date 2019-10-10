@@ -2,7 +2,22 @@
 <br>
 <h1>제목: {{culture.title}} </h1>
 <img src="{{culture.picture.url}}" alt="">
+<br>
+책방: <a href="{% url 'storedetail' culture.store.bookstore_id %}">{{culture.store.name}}</a>
 <p> 시작 날짜: {{culture.start_time}}</p>
 <p> 종료 날짜: {{culture.finish_time}}</p>
 <p> 작성한 날짜: {{culture.write_date}}</p>
 <p> 내용: {{culture.content}}</p>
+
+{% if user.is_authenticated %}
+<form method="POST" action="{% url 'commentcreate' culture.id %}">
+    {% csrf_token %}
+    {{form}}
+    <button type='submit'>등록!</button>
+</form>
+{% endif %}
+
+{% for comment in comments %}
+    <p><strong>{{comment.user}}</strong> | {{ comment.content }} | {{ comment.created_at }}</p>
+    {% if comment.user == user %}<a href="{% url 'commentdelete' comment.id %}">삭제</a>{% endif %}
+{% endfor %}

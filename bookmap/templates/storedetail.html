@@ -126,7 +126,7 @@
     </form>
     {% endif %}
 
-    {% for review in store.review_set.all %}
+    {% for review in reviews %}
         <p><strong>{{review.user}}</strong> | {{ review.content }} | ★{{ review.star }}</p>
         {% if review.user == user %}<a href="{% url 'reviewdelete' review.id %}">삭제</a>{% endif %}
     {% endfor %}
