@@ -49,7 +49,7 @@ def reviewFuc(name, addr):
         for i in range(5):
             title=li[i].find('a','name').get_text()
             content=li[i].find('div','ellp2').get_text()
-            link=li[i].find('a','name').get_text()
+            link=li[i].find('a','name').get('href')
             inf={'title':title, 'content':content, 'link':link}
             res.append(inf)
 
