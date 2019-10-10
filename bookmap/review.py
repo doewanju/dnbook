@@ -36,9 +36,11 @@ def reviewFuc(name, addr):
     res=[]
     page=requests.get(url)
     soup=BeautifulSoup(page.content,'html.parser')
+    ran=5
     if (tf==True):
         li=soup.find_all('li','sh_blog_top')
-        for i in range(3):
+        if len(li)<5: ran=len(li)
+        for i in range(ran):
             title=li[i].find('a','sh_blog_title').get_text()
             content=li[i].find('dd','sh_blog_passage').get_text()
             link=li[i].find('a','sh_blog_title').get('href')
@@ -46,7 +48,8 @@ def reviewFuc(name, addr):
             res.append(inf)
     else:
         li=soup.find_all('li','type_review')
-        for i in range(5):
+        if len(li)<5: ran=len(li)
+        for i in range(ran):
             title=li[i].find('a','name').get_text()
             content=li[i].find('div','ellp2').get_text()
             link=li[i].find('a','name').get('href')
