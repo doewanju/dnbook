@@ -45,7 +45,7 @@
 {% block content %}
 <body>
     <br>
-    <h1>책방 이름 : {{store.name}}</h1>
+    <h1>책방 이름 : <span id='name'>{{store.name}}</span></h1>
     <p>스크랩 <span class="badge badge-secondary">{{count}}</span></p>
 
     {% if user.is_authenticated %}
@@ -57,7 +57,7 @@
     {% endif %}
     <br><br>
     
-    <p>주소 : {{store.addr}}</p>
+    <p>주소 : <span id='addr'>{{store.addr}}</span></p>
     <p>전화번호 : {{store.phone_number}}</p>
     
     {% if store.site %}
@@ -68,7 +68,41 @@
     <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">닫기</a></div>
     <div id="fade" class="black_overlay"></div>
     {% endif %}
-  
+  <!--해당서점 지도 표시-->
+    <div id="map" style="width:50%;height:300px;"></div>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
+    <script type="text/javascript">
+    
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = {
+            center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
+            level: 4 // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
+        };  
+     
+    var map = new kakao.maps.Map(mapContainer, mapOption); 
+    var geocoder = new kakao.maps.services.Geocoder();
+    
+    let addr = document.getElementById('addr').innerHTML;
+    let name = document.getElementById('name').innerHTML;
+
+    function addrStoN(address,title){ //주소를 위도경도로 변환후 마킹
+        geocoder.addressSearch(address,function(result, status){
+            if (status === kakao.maps.services.Status.OK){
+                let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+                let marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords,
+                    clickable: false,
+                    title: title
+                });
+                map.setCenter(coords);
+            };
+        });
+    }
+    addrStoN(addr,name);
+    </script>
+    
+
     리뷰 | 별점평균: {{star_avg}}
     {% if user.is_authenticated %}
     <form method="POST" action="{% url 'reviewcreate' store.bookstore_id %}">
