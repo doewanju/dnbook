@@ -13,10 +13,9 @@ def bookstore(request):
 
 def detail(request, bookstore_id):
     store_detail = get_object_or_404(BookStore, pk = bookstore_id)
-    rev=reviewFuc(store_detail.name,store_detail.addr)
     scrap = Scrap.objects.filter(store=store_detail)
     scrap_count = scrap.count()
-
+    rev = " "
     tot = 0
     for i in store_detail.review_set.all():
         tot += i.star
@@ -28,9 +27,9 @@ def detail(request, bookstore_id):
     if request.user.is_authenticated:
         store_scrap = scrap.filter(user=request.user)
         form = ReviewForm()
-        return render(request, 'storedetail.html', {'rev':rev, 'store' : store_detail, 'scrap' : store_scrap, 'count':scrap_count, 'form':form, 'star_avg':star_avg})
+        return render(request, 'storedetail.html', {'rev' : rev, 'store' : store_detail, 'scrap' : store_scrap, 'count':scrap_count, 'form':form, 'star_avg':star_avg})
     else:
-        return render(request, 'storedetail.html', {'rev':rev, 'store' : store_detail, 'count' : scrap_count, 'star_avg':star_avg})
+        return render(request, 'storedetail.html', {'rev' : rev, 'store' : store_detail, 'count' : scrap_count, 'star_avg':star_avg})
       
 def realmap(request):
     bookstores = BookStore.objects.all()
@@ -57,7 +56,8 @@ def scrap(request, bookstore_id):
         Scrap.objects.create(user=request.user, store=store)
     else:
         scrapped.delete()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    #return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    return redirect('storedetail', bookstore_id=bookstore_id)
 
 def reviewcreate(request, bookstore_id):
     store = get_object_or_404(BookStore, pk=bookstore_id)
@@ -80,3 +80,24 @@ def reviewdelete(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
     review.delete()
     return redirect('storedetail', bookstore_id=review.store.pk)
+
+def crawling(request, bookstore_id):
+    store_detail = get_object_or_404(BookStore, pk = bookstore_id)
+    rev=reviewFuc(store_detail.name,store_detail.addr)
+    scrap = Scrap.objects.filter(store=store_detail)
+    scrap_count = scrap.count()
+
+    tot = 0
+    for i in store_detail.review_set.all():
+        tot += i.star
+    if store_detail.review_set.all().count():
+        star_avg = '%.1f' %(tot/(store_detail.review_set.all().count()))
+    else:
+        star_avg = 0
+    
+    if request.user.is_authenticated:
+        store_scrap = scrap.filter(user=request.user)
+        form = ReviewForm()
+        return render(request, 'storedetail.html', {'rev' : rev, 'store' : store_detail, 'scrap' : store_scrap, 'count':scrap_count, 'form':form, 'star_avg':star_avg})
+    else:
+        return render(request, 'storedetail.html', {'rev' : rev, 'store' : store_detail, 'count' : scrap_count, 'star_avg':star_avg})
