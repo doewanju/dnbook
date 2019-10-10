@@ -1,4 +1,6 @@
 from django.db import models
+from bookmap.models import BookStore
+from django.contrib.auth.models import User
 
 #제목, 사진, 기간, 작성날짜, 내용
 # Create your models here.
@@ -26,3 +28,13 @@ class Culture(models.Model):
         choices = GROUP,
         default = ETC,
     )
+    store = models.ForeignKey(BookStore, null=True, on_delete=models.CASCADE)
+
+class Comment(models.Model):
+    culture = models.ForeignKey(Culture, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s, %s' %(self.culture, self.content[:30])
