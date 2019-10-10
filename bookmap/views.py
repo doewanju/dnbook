@@ -101,3 +101,15 @@ def crawling(request, bookstore_id):
         return render(request, 'storedetail.html', {'rev' : rev, 'store' : store_detail, 'scrap' : store_scrap, 'count':scrap_count, 'form':form, 'star_avg':star_avg})
     else:
         return render(request, 'storedetail.html', {'rev' : rev, 'store' : store_detail, 'count' : scrap_count, 'star_avg':star_avg})
+
+def listsearch(request):
+    bookstores = BookStore.objects
+    query = request.GET.get('query','')
+    if query:
+        stype = request.GET['searchtype']
+        if stype == 'searchname':
+            bookstores = bookstores.filter(name__contains=query)
+            return render(request,'bookstore.html', {'bookstores' : bookstores})
+        else:
+            bookstores = bookstores.filter(addr__contains=query)
+            return render(request,'bookstore.html', {'bookstores' : bookstores})
