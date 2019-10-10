@@ -8,6 +8,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE","DNbookproject.settings")
 import django
 django.setup()
 from bookmap.models import BookStore
+from webdrivermanager import ChromeDriverManager
+ChromeDriverManager().download_and_install()
 
 def parse_addr():
     result=[]

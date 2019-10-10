@@ -64,7 +64,7 @@
     <p>전화번호 : {{store.phone_number}}</p>
     
     {% if store.site %}
-    <p><a href={{store.site}}>{{store.site}}</a></p>
+    <p>홈페이지 : <a href={{store.site}}>{{store.site}}</a></p>
     {% else %}
     <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">사이트</a></p>
     <div id="light" class="white_content">사이트가 존재하지 않습니다. <br><br>
