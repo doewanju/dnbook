@@ -6,12 +6,15 @@
           {% bootstrap_css %}
           {% bootstrap_javascript jquery='full' %}
           <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-
+          <script src="{% static 'js/base.js' %}" type="text/javascript"></script>
      </head>
 
      <body>
      <nav>
           <ul>
+          <!-- button here -->
+          <button> 🞬 </button>
+          <div>
           <li><a href="{% url 'home' %}">홈</a></li>
           <li>About Us</li>
           <li><a href="{% url 'realmap' %}">책방 지도</a></li>
@@ -19,10 +22,11 @@
           <li><a href="{% url 'guide' %}">출판물 제작 가이드</a></li>
           <li>랭킹</li>
      
+     
      {% if user.is_authenticated %}
           <li><a href="{% url 'mypage' %}">마이페이지</a> </li>
      </ul> 
-          <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+          <a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
           <form id="logout" method="POST" action="{% url 'logout' %}">
           
           {% csrf_token %} <input type="hidden" />
@@ -31,9 +35,9 @@
           <a href="{% url 'signup' %}">회원가입</a>
           <a href="{% url 'login' %}">로그인</a>
      {% endif %}
-
+     </div>
      </nav>
-     <p>스태틱 왜 안먹냐구 ㅡㅡ</p>
+     
 
      {% block content %}
      <!--다른 템플릿에 글을 쓰면 이 사이로 들어옵니다~!-->
