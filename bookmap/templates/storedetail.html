@@ -48,12 +48,13 @@
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
         mapOption = {
             center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
-            level: 4 // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
+            level: 4, // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
+            draggable: false
         };  
      
     var map = new kakao.maps.Map(mapContainer, mapOption); 
     var geocoder = new kakao.maps.services.Geocoder();
-    
+    map.setZoomable(true);
     let addr = document.getElementById('addr').innerHTML;
     let name = document.getElementById('name').innerHTML;
 
