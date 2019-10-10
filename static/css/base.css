@@ -1,77 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 
-li{
+header nav {
+  background-color: #DED2C0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+header nav div.menuprofile {
+    font-family: 'Montserrat';
+    /* font-family: 'NanumGothic', 'serif'; */
+    font-weight: lighter;
+}
+
+header nav ul {
+    font-family: 'BBTreeGL';
+    font-size: 48px;
+    color: #402719;
     list-style-type: none;
-    /*when I specify 2 values to margin, the first one is for the top and bottom side, the second for the left and right side*/
-    margin: 0 2vw;
-    /* our font-size will be 3% of the height of the viewport */
-    font-size: 3vh;
+    position: absolute;
+    left: 40%;
+    transition: all 0.5s ease-in-out;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 
-a{
-    text-decoration: none;
-    /*below I changed the color*/
-    color: black;
-    /*I added some padding*/
-    /*padding: 2vw;*/
-    
+header nav ul li {
+  -webkit-transform: translateY(50px);
+          transform: translateY(50px);
+  opacity: 0;
 }
-a:hover{
-    background-color: #C6E9FF;
+header nav ul li a {
+  display: block;
+  font-size: 48px;
+  text-decoration: none;
+  padding: 15px 0;
+  color: #402719;
+  transition: all 0.2s ease-in-out;
+}
+.signbox{
+    list-style-type: none;
+    position: absolute;
+    left: 40%;
+}
+.signbox a{
+    font-family: 'BBTreeGL';
+    font-size: 30px;
+    color: #402719;
+}
+/* header nav ul li a:hover {
+  text-decoration: none;
+  color: white;
+} */
+.toggle-btn {
+  display: block;
+  position: fixed;
+  z-index: 10;
+  right: 50px;
+  top: 28px;
+  cursor: pointer;
+}
+.toggle-btn .bar {
+  width: 70px;
+  height: 5px;
+  margin: 15px auto;
+  background-color: #402719;
+  transition: all 0.3s ease-in-out;
+}
+.toggle-btn .bar:nth-child(2) {
+  width: 70px;
+}
+#toggle:checked ~ nav {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+#toggle:checked ~ nav ul.items {
+    top: 350px;
+}
+#toggle:checked ~ nav ul li {
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+  opacity: 1;
+  font-size: 1.7rem;
+  margin-bottom: 3rem;
+  width: 550px;
+  padding-left:3rem;
+}
+/* #toggle:checked ~ nav ul li:hover {
+    width: 550px;
+    background-color: white;
+    border-radius: 100px;
+} */
+#toggle:checked ~ nav ul li:nth-child(1) {
+  transition: all 0.3s cubic-bezier(0.6, 0, 0.8, 1.5) 0.1s;
+}
+#toggle:checked ~ nav ul li:nth-child(2) {
+  transition: all 0.3s cubic-bezier(0.6, 0, 0.8, 1.5) 0.2s;
+}
+#toggle:checked ~ nav ul li:nth-child(3) {
+  transition: all 0.3s cubic-bezier(0.6, 0, 0.8, 1.5) 0.3s;
+}
+#toggle:checked ~ nav ul li:nth-child(4) {
+  transition: all 0.3s cubic-bezier(0.6, 0, 0.8, 1.5) 0.4s;
+}
+#toggle:checked ~ nav ul li:nth-child(5) {
+    transition: all 0.3s cubic-bezier(0.6, 0, 0.8, 1.5) 0.5s;
+}
+#toggle:checked ~ nav ul li:nth-child(6) {
+    transition: all 0.3s cubic-bezier(0.6, 0, 0.8, 1.5) 0.6s;
+}
+#toggle:checked ~ nav ul li:nth-child(7) {
+    transition: all 0.3s cubic-bezier(0.6, 0, 0.8, 1.5) 0.7s;
+}
+#toggle:checked + label.toggle-btn .bar { 
+  background-color: #402719;
+}
+#toggle:checked + label.toggle-btn .bar:nth-child(2) {
+  -webkit-transform: translateX(50px);
+          transform: translateX(50px);
+  opacity: 0;
+}
+#toggle:checked + label.toggle-btn .bar:nth-child(1) {
+  -webkit-transform: translateY(10px) rotate(45deg);
+          transform: translateY(30px) rotate(45deg);
+}
+#toggle:checked + label.toggle-btn .bar:nth-child(3) {
+  -webkit-transform: translateY(-8px) rotate(-45deg);
+          transform: translateY(-10px) rotate(-45deg);
 }
 
-nav{
-    width: 100vw;
-    background-color: #D6EFFF;
+
+
+.nav.top-nav {
+    height: 150px;
+    background-color: #DED2C0;
 }
-
-ul{
-    margin: 0;
-    padding: 0;
-
-    /*this option by default dispose the elements in a row (flex-direction: row)*/
-    display: flex;
-    flex-direction: column;
+.nav.top-nav li{
+    font-size: 2rem;
+    padding: 2rem;
+    color: white;
 }
-  
-body{
-    margin: 0;
+.nav.top-nav li.current-page{
+    font-size: 3rem;
+    padding: 2rem 0rem;
+    color: white;
 }
-
-/*button{
-    display: none;
-  }
-*/
-/*change the layout of the navigation bar for all the screens 
-that have a width less or equal than 500px*/
-
-@media only screen and (max-width: 500px) {
-    /*shows elements in a column*/
-    ul{
-      flex-direction: column;
-    }
-    
-    /* deletes margin on top or bottom of the a tag*/
-    li{
-      margin: 0;
-    }
-   /* makes sure that the a tag will take the entire screen*/
-    a{
-      display: block;
-    }
-
-    button{
-        /*makes the button visible*/
-        display: block;
-        
-        /*since we are here, we can style it a little bit!*/
-        padding: 2vw;
-        font-size: 3vh;
-        background-color: #AFE0FF;
-        border: none;
-        
-        /*outline none removes the default blue border that appears anytime you click on the button*/
-        outline: none;
-        
-        cursor: pointer;
-      }
+.nav.top-nav li img.arrow-icon-styling {
+    width: 70px;
+    height: 60px;
 }

@@ -114,3 +114,28 @@ def listsearch(request):
         else:
             bookstores = bookstores.filter(addr__contains=query)
             return render(request,'bookstore.html', {'bookstores' : bookstores})
+
+def mapsearch(request):
+    bookstores = BookStore.objects
+    query = request.GET.get('query','')
+    if query:
+        stype = request.GET['searchtype']
+        if stype == 'searchname':
+            bookstores = bookstores.filter(name__contains=query)
+        else:
+            bookstores = bookstores.filter(addr__contains=query)
+        addr = []
+        name = []
+        storepk = []
+        for a in bookstores:
+            addr.append(a.addr)
+            name.append(a.name)
+            storepk.append(a.bookstore_id)
+        addrlist = simplejson.dumps(addr)
+        namelist = simplejson.dumps(name)
+        pklist = simplejson.dumps(storepk)
+        return render(request, 'realmap.html', {
+            'bs':bookstores, 
+            'bsaddr' : addrlist, 
+            'bsname' : namelist,
+            'pklist' : pklist})

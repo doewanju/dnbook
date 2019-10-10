@@ -8,40 +8,52 @@
           <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
           <script src="{% static 'js/base.js' %}" type="text/javascript"></script>
      </head>
-
      <body>
-     <nav>
-          <ul>
+          <ul class="nav top-nav">
+               <li class="nav-item current-page">
+                    {% comment %} js완성 후 추가 {% endcomment %}
+               </li>
+          </ul>
+
+          <header>
+               <input type='checkbox' id='toggle' style='display:none;'>
+               <label class='toggle-btn toggle-btn__cross' for='toggle'>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+               </label>
+               <nav>
+                    <ul class='items'>
+                         <li><a href="{% url 'home' %}">홈</a></li>
+                         <li>About Us</li>
+                         <li><a href="{% url 'realmap' %}">책방 지도</a></li>
+                         <li><a href="{% url 'board' %}">문화 프로그램</a></li>
+                         <li><a href="{% url 'guide' %}">출판물 제작 가이드</a></li>
+                         <li>랭킹</li>
+                         {% if user.is_authenticated %}
+                              <li><a href="{% url 'mypage' %}">마이페이지</a></li>
+                              <a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+                              <form id="logout" method="POST" action="{% url 'logout' %}">
+                              {% csrf_token %} <input type="hidden" />
+                              </form>
+                         {% else %}
+                              <div class="signbox">
+                                   <br><br>
+                                   <a href="{% url 'signup' %}">회원가입</a>
+                                   &nbsp; &nbsp; &nbsp;
+                                   <a href="{% url 'login' %}">로그인</a>
+                              </div>
+                         {% endif %}
+                    </ul>
+               </nav>
+          </header>
           <!-- button here -->
-          <button> 🞬 </button>
-          <div>
-          <li><a href="{% url 'home' %}">홈</a></li>
-          <li>About Us</li>
-          <li><a href="{% url 'realmap' %}">책방 지도</a></li>
-          <li><a href="{% url 'board' %}">문화 프로그램</a></li>
-          <li><a href="{% url 'guide' %}">출판물 제작 가이드</a></li>
-          <li>랭킹</li>
-     
-     
-     {% if user.is_authenticated %}
-          <li><a href="{% url 'mypage' %}">마이페이지</a> </li>
-     </ul> 
-          <a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
-          <form id="logout" method="POST" action="{% url 'logout' %}">
-          
-          {% csrf_token %} <input type="hidden" />
-          </form>
-     {% else %}
-          <a href="{% url 'signup' %}">회원가입</a>
-          <a href="{% url 'login' %}">로그인</a>
-     {% endif %}
-     </div>
-     </nav>
+          {% comment %} <button> 🞬 </button> {% endcomment %}
      
 
      {% block content %}
      <!--다른 템플릿에 글을 쓰면 이 사이로 들어옵니다~!-->
-     {% endblock %}
+     {% endblock content%}
      </body>
 
 
