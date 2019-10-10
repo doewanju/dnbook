@@ -12,8 +12,35 @@
 {% block content %}
 
 <body>
-<a href="{% url 'bookstore' %}">리스트로 보기</a>
-<div id="map" style="width:100%;height:600px;"></div>
+<div id="search-map">
+<div id="question"> <form action="{% url 'mapsearch' %}" method ="get">
+    <input type='radio' name='searchtype' value='searchname' checked>이름검색
+    <input type='radio' name='searchtype' value='searchaddr'>주소검색
+    <input type="search" name="query">
+    <input type="submit" name="" value="검색!">
+    <a href="{%url 'realmap'%}">전체보기</a>
+</form></div>
+<div id="list" style="overflow:auto;width:100%;height:200px;"><table>
+    <thead>
+        <tr>
+            <th>이름</th>
+            <th>주소</th>
+            <th style="white-space:nowrap;">더보기</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for store in bs.all %}
+        <tr>
+            <td id="listname">{{store.name}}</td>
+            <td id="listaddr">{{store.addr}}</td>
+            <td><a href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table></div>
+<div id="map" style="width:100%;height:550px;"></div>
+</div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
 <script type="text/javascript">
 
@@ -32,6 +59,27 @@ let addrArr = {{ bsaddr | safe }};
 let nameArr = {{ bsname | safe }};
 let pkArr = {{ pklist | safe }};
 var selectedifw=null;
+let bounds = new kakao.maps.LatLngBounds();
+
+//내위치 받아와서 이미지마커로 표시하기
+var imageSrc = 'https://myrealdomain.com/images/my-icon-5.png', // 마커이미지의 주소입니다    
+    imageSize = new kakao.maps.Size(35, 37); // 마커이미지의 크기입니다
+
+var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(function(position){
+        lat=position.coords.latitude;
+        lon=position.coords.longitude;
+        var locPosition=new kakao.maps.LatLng(lat,lon);
+        let marker = new kakao.maps.Marker({
+                map: map,
+                position: locPosition,
+                clickable: false,
+                title: '현재위치',
+                image: markerImage
+        });
+    });
+};
 
 function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
     geocoder.addressSearch(address,function(result, status){
@@ -43,7 +91,9 @@ function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
                 clickable: true,
                 title: title
             });
-            let content = '<div class="content">' + 
+            bounds.extend(coords);
+            map.setBounds(bounds);
+            let content = '<div class="content" style="white-space:nowrap;">' + 
                     title + '<br>' + 
                     address + '<br>'+
                     '<a href="http://127.0.0.1:8000'+'/bookmap/store/'+i+'">더보기</a>'
@@ -68,7 +118,10 @@ function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
 for(let i=0; i< addrArr.length;i++){
     addrStoN(addrArr[i],nameArr[i],pkArr[i]);
 };
+
 </script>
+<br>
+</body>
 </html>
     
     
