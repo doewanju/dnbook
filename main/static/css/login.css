@@ -5,8 +5,13 @@
 body{
     background-image: url("../images/background_login.png");
     background-repeat: no-repeat;
-    background-position: center;
     background-size: 850px 1400px;
+    background-position: center;
+    background-position-y: 180px;
+}
+h2{
+    font-family: 'YiSunShinDotumM';
+    letter-spacing: 0.5rem;
 }
 .loginbox{
     position: fixed;
@@ -73,4 +78,26 @@ body{
 .inp input:focus + span + .border {
     transform: scaleX(1);
 }
-
+.btn_login{
+    background-image: url("../images/btn_login.png");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+    border: none;
+    position:absolute; 
+    top:50%; left:98%;
+    margin-top:-100px; margin-left:-100px; 
+}
+.gotosignup{
+    font-family: 'BBTreeGL';
+    font-size: 30px;
+    color: #615136;
+    position: absolute;
+    top: 83%; left:33%;
+}
+.gotosignup a{
+    font-family: 'BBTreeGL';
+    font-size: 30px;
+    color: #402719;
+}
