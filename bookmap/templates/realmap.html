@@ -95,7 +95,7 @@ function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
             bounds.extend(coords);
             map.setBounds(bounds);
             let det_url='"{%url "storedetail" 123%}"'.replace('123',i);
-            let content = '<div class="content" style="white-space:nowrap;">' + 
+            let content = '<div id="content" style="white-space:nowrap;">' + 
                     title + '<br>' + 
                     address + '<br>'+
                     '<a href='+det_url+'>더보기</a>'
