@@ -10,4 +10,5 @@ urlpatterns = [
     path('signup/boss', views.boss, name='boss'),
     path('signup/normal', views.normal, name='normal'),
     path('signup/boss/bossbook', views.bossbook, name='bossbook'),
+    path('ranking/', views.ranking, name='ranking'),
 ]

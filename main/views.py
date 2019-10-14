@@ -100,3 +100,6 @@ def bossbook(request):
     if request.method == 'GET':
         storename = request.GET["storename"]
         return storename"""
+
+def ranking(request):
+    return render(request,'ranking.html')
