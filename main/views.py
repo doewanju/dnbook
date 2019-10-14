@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRe
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Normalprofile, Bossprofile
-from bookmap.models import BookStore, Scrap
+from bookmap.models import BookStore, Scrap, Stamp
 # Create your views here.
 
 
@@ -10,8 +10,36 @@ def home(request):
     return render(request,'home.html')
 
 def mypage(request):
+    user = request.user
+    try:
+        profile = Bossprofile.objects.get(user=request.user)
+        who = True
+    except Bossprofile.DoesNotExist:
+        profile = Normalprofile.objects.get(user=request.user)
+        who = False
+
     scraps = Scrap.objects.filter(user=request.user)
-    return render(request,'mypage.html', {'scraps':scraps})
+
+    mystamp = 0
+    for i in request.user.stamp_set.all():
+        mystamp += i.count
+
+    return render(request,'mypage.html', {
+                        'scraps':scraps, 
+                        'stamp':mystamp, 
+                        'user':user, 
+                        'profile':profile, 
+                        'who':who})
+
+def stamppush(request):
+    #if request.method == 'GET':
+    userid = request.GET['userid']
+    user = User.objects.get(username=userid)
+    count = request.GET['count']
+    store = BookStore.objects.get(boss=request.user)
+    stamp = Stamp(user=user, store=store, count=count)
+    stamp.save()
+    return render(request,'mypage.html')
 
 def signup(request):
     return render(request,'signup.html')
@@ -103,3 +131,6 @@ def bossbook(request):
 
 def ranking(request):
     return render(request,'ranking.html')
+
+def info(request):
+    return render(request,'info.html')

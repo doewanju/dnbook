@@ -26,11 +26,11 @@
                <nav class="openmenu">
                     <ul class='items'>
                          <li><a href="{% url 'home' %}">홈</a></li>
-                         <li>About Us</li>
+                         <li><a href="{% url 'info' %}">About Us</a></li>
                          <li><a href="{% url 'realmap' %}">책방 지도</a></li>
                          <li><a href="{% url 'board' %}">문화 프로그램</a></li>
                          <li><a href="{% url 'guide' %}">출판물 제작 가이드</a></li>
-                         <li>랭킹</li>
+                         <li><a href="{% url 'ranking' %}">랭킹</a></li>
                          {% if user.is_authenticated %}
                               <li><a href="{% url 'mypage' %}">마이페이지</a></li>
                               <a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
