@@ -1,129 +1,130 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>책방지도</title>
-</head>
-<h1>지도 API</h1>
-<h5>지도에 책방 위치가 찍혀있고, 책방 위치 아이콘을 누르면 화면 하단에 한줄소개가 나온다. 
-    <br> 만약에 한줄소개 띄우기 어려우면 바로 bookstore.html로 넘어간다.</h5>
+    {% extends 'base.html' %}
+    {% block content %}
+    <head>
+        <meta charset="utf-8">
+        <title>책방지도</title>
+    </head>
+    <h1>지도 API</h1>
+    <h5>지도에 책방 위치가 찍혀있고, 책방 위치 아이콘을 누르면 화면 하단에 한줄소개가 나온다. 
+        <br> 만약에 한줄소개 띄우기 어려우면 바로 bookstore.html로 넘어간다.</h5>
 
-{% extends 'base.html' %}
-{% block content %}
 
-<body>
 
-<a href="{% url 'bookstore' %}">리스트로 보기</a>
-<a href="{% url 'realmap' %}">전체책방보기</a>
-<div id="map" style="width:100%;height:600px;"></div>
+    <body>
 
-<div id="search-map">
-<div id="question"> <form action="{% url 'mapsearch' %}" method ="get">
-    <input type='radio' name='searchtype' value='searchname' checked>이름검색
-    <input type='radio' name='searchtype' value='searchaddr'>주소검색
-    <input type="search" name="query">
-    <input type="submit" name="" value="검색!">
-    <a href="{%url 'realmap'%}">전체보기</a>
-</form></div>
-<div id="list" style="overflow:auto;width:100%;height:200px;"><table>
-    <thead>
-        <tr>
-            <th>이름</th>
-            <th>주소</th>
-            <th style="white-space:nowrap;">더보기</th>
-        </tr>
-    </thead>
+    <a href="{% url 'bookstore' %}">리스트로 보기</a>
+    <a href="{% url 'realmap' %}">전체책방보기</a>
+    <div id="map" style="width:100%;height:600px;position:absolute;z-index:-1;"></div>
+    <div id="search-map" style="position:absolute;top:900px;">
+        <div id="question"> <form action="{% url 'mapsearch' %}" method ="get">
+            <input type='radio' name='searchtype' value='searchname' checked>이름검색
+            <input type='radio' name='searchtype' value='searchaddr'>주소검색
+            <input type="search" name="query">
+            <input type="submit" name="" value="검색!">
+            <a href="{%url 'realmap'%}">전체보기</a>
+        </form></div>
+        <div id="list" style="overflow:auto;width:100%;height:200px;"><table>
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>주소</th>
+                    <th style="white-space:nowrap;">더보기</th>
+                </tr>
+            </thead>
 
-    <tbody>
-        {% for store in bs.all %}
-        <tr>
-            <td id="listname">{{store.name}}</td>
-            <td id="listaddr">{{store.addr}}</td>
-            <td><a href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table></div>
-<div id="map" style="width:100%;height:550px;"></div>
-</div>
+            <tbody>
+                {% for store in bs.all %}
+                <tr>
+                    <td id="listname">{{store.name}}</td>
+                    <td id="listaddr">{{store.addr}}</td>
+                    <td><a href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table></div>
+        <div id="map" style="width:100%;height:550px;"></div>
+    </div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
-<script type="text/javascript">
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
-        level: 8 // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
-    };  
- 
-var map = new kakao.maps.Map(mapContainer, mapOption); 
-var zoomControl = new kakao.maps.ZoomControl();
-map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-var geocoder = new kakao.maps.services.Geocoder();
-let addrArr = {{ bsaddr | safe }};
-let nameArr = {{ bsname | safe }};
-let pkArr = {{ pklist | safe }};
-var selectedifw=null;
-let bounds = new kakao.maps.LatLngBounds();
-//내위치 받아와서 이미지마커로 표시하기
-var imageSrc = 'https://myrealdomain.com/images/my-icon-5.png', // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(35, 37); // 마커이미지의 크기입니다
-var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(function(position){
-        lat=position.coords.latitude;
-        lon=position.coords.longitude;
-        var locPosition=new kakao.maps.LatLng(lat,lon);
-        let marker = new kakao.maps.Marker({
-                map: map,
-                position: locPosition,
-                clickable: false,
-                title: '현재위치',
-                image: markerImage
-        });
-    });
-};
-function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
-    geocoder.addressSearch(address,function(result, status){
-        if (status === kakao.maps.services.Status.OK){
-            let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
+    <script type="text/javascript">
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = {
+            center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
+            level: 8 // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
+        };  
+    
+    var map = new kakao.maps.Map(mapContainer, mapOption); 
+    var zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+    var geocoder = new kakao.maps.services.Geocoder();
+    let addrArr = {{ bsaddr | safe }};
+    let nameArr = {{ bsname | safe }};
+    let pkArr = {{ pklist | safe }};
+    var selectedifw=null;
+    let bounds = new kakao.maps.LatLngBounds();
+    //내위치 받아와서 이미지마커로 표시하기
+    var imageSrc = 'https://myrealdomain.com/images/my-icon-5.png', // 마커이미지의 주소입니다    
+        imageSize = new kakao.maps.Size(35, 37); // 마커이미지의 크기입니다
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(function(position){
+            lat=position.coords.latitude;
+            lon=position.coords.longitude;
+            var locPosition=new kakao.maps.LatLng(lat,lon);
             let marker = new kakao.maps.Marker({
-                map: map,
-                position: coords,
-                clickable: true,
-                title: title
+                    map: map,
+                    position: locPosition,
+                    clickable: false,
+                    title: '현재위치',
+                    image: markerImage
             });
-            bounds.extend(coords);
-            map.setBounds(bounds);
-            let det_url='"{%url "storedetail" 123%}"'.replace('123',i);
-            let content = '<div id="content" style="white-space:nowrap;">' + 
-                    title + '<br>' + 
-                    address + '<br>'+
-                    '<a href='+det_url+'>더보기</a>'
-                    '</div>';
-            let ifw = new kakao.maps.InfoWindow({
-                content: content,
-                removable: true
-            });
-            kakao.maps.event.addListener(marker, 'click', function(){
-                if (!selectedifw || selectedifw !== ifw){
-                    ifw.open(map,marker);
-                }
-                if (selectedifw){
-                    selectedifw.close();
-                }
-                selectedifw=ifw;
-                
-            });
-        };
-    });
-}
-for(let i=0; i< addrArr.length;i++){
-    addrStoN(addrArr[i],nameArr[i],pkArr[i]);
-};
-</script>
-<br>
-</body>
+        });
+    };
+    function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
+        geocoder.addressSearch(address,function(result, status){
+            if (status === kakao.maps.services.Status.OK){
+                let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+                let marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords,
+                    clickable: true,
+                    title: title
+                });
+                bounds.extend(coords);
+                map.setBounds(bounds);
+                let det_url='"{%url "storedetail" 123%}"'.replace('123',i);
+                let content = '<div id="content" style="white-space:nowrap;">' + 
+                        title + '<br>' + 
+                        address + '<br>'+
+                        '<a href='+det_url+'>더보기</a>'
+                        '</div>';
+                let ifw = new kakao.maps.InfoWindow({
+                    content: content,
+                    removable: true
+                });
+                kakao.maps.event.addListener(marker, 'click', function(){
+                    if (!selectedifw || selectedifw !== ifw){
+                        ifw.open(map,marker);
+                    }
+                    if (selectedifw){
+                        selectedifw.close();
+                    }
+                    selectedifw=ifw;
+                    
+                });
+            };
+        });
+    }
+    for(let i=0; i< addrArr.length;i++){
+        addrStoN(addrArr[i],nameArr[i],pkArr[i]);
+    };
+    </script>
+    <br>
+    </body>
+    {% endblock %}
 </html>
+        
+        
     
-    
-{% endblock %}

@@ -6,12 +6,13 @@
           {% bootstrap_css %}
           {% bootstrap_javascript jquery='full' %}
           <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-          <script src="{% static 'js/base.js' %}" type="text/javascript"></script>
+          {% comment %} <script src="{% static 'js/base.js' %}" type="text/javascript"></script> {% endcomment %}
      </head>
      <body>
-          <ul class="nav top-nav">
-               <li class="nav-item current-page">
-                    {% comment %} js완성 후 추가 {% endcomment %}
+     <!--상단바-->
+          <ul class="nav top-nav" >
+               <li class="nav-item current-page" >
+                    <script src="{% static 'js/base.js' %}" type='text/javascript'></script>
                </li>
           </ul>
 
@@ -22,7 +23,7 @@
                     <div class="bar"></div>
                     <div class="bar"></div>
                </label>
-               <nav>
+               <nav class="openmenu">
                     <ul class='items'>
                          <li><a href="{% url 'home' %}">홈</a></li>
                          <li>About Us</li>

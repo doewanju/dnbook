@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'SangSangFlowerRoad'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/SangSangFlowerRoad.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 header nav {
   background-color: #DED2C0;
   position: fixed;
+  z-index:1000;
   top: 0;
   left: 0;
   width: 100%;
@@ -19,13 +21,17 @@ header nav div.menuprofile {
     /* font-family: 'NanumGothic', 'serif'; */
     font-weight: lighter;
 }
-
+.openmenu{
+  position: absolute;
+  z-index: 1001;
+}
 header nav ul {
     font-family: 'BBTreeGL';
     font-size: 48px;
     color: #402719;
     list-style-type: none;
     position: absolute;
+    z-index:999;
     left: 40%;
     transition: all 0.5s ease-in-out;
     -webkit-transform: translateX(-50%);
@@ -140,20 +146,18 @@ header nav ul li a {
 
 
 .nav.top-nav {
-    height: 150px;
+    /* width: 100%; */
+    height: 130px;
     background-color: #DED2C0;
-}
-.nav.top-nav li{
-    font-size: 2rem;
-    padding: 2rem;
-    color: white;
+    color: #402719;
+    text-align:center;
+    margin-bottom: 10px;
 }
 .nav.top-nav li.current-page{
-    font-size: 3rem;
-    padding: 2rem 0rem;
-    color: white;
-}
-.nav.top-nav li img.arrow-icon-styling {
-    width: 70px;
-    height: 60px;
+    padding: 1.3rem;
+    display: inline-block;
+    width:100%;
+    font-family: 'SangSangFlowerRoad';
+    font-size: 4rem;
+    letter-spacing: 0.5rem;
 }
