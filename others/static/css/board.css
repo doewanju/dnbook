@@ -1,0 +1,44 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+.board{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 50px;
+    font-family: 'YiSunShinDotumM'
+}
+table {
+    width: 100%;
+    border-top: 1px solid #615136;
+    border-collapse: collapse;
+}
+
+.table tr{
+    text-align: center;
+    font-size: 30px;
+    color: #615136;
+}
+
+.table td {
+    border-top: 1px solid #615136;
+    border-bottom: 1px solid #615136;
+    padding: 10px;
+}
+.table thead th{
+    border-bottom: 2px solid #615136;
+    border-top: 1px solid #ffffff;
+}
+.ment{
+    margin-left: 40px;
+}
+.square{
+    float: left;
+    width: 10px;
+    height: 60px;
+    background-color: #615136;
+}
+
+
+.table a:link { color:#615136; text-decoration: none;}
+.table a:visited { color: #615136; text-decoration: none;}
+.table a:hover { color: #615136; text-decoration: none;}

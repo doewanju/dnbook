@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load staticfiles %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+</head>
 
-<h1>동 네 북</h1>
-<a href="{%url 'realmap' %}">책방지도보러가기</a>
+<div class="main-btn">
+    <a href="{%url 'realmap' %}">책방지도 보러가기</a>
+</div>
 {% endblock %}

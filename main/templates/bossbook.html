@@ -1,33 +1,35 @@
-<h1>사장님 회원가입시 책방 검색하는 페이지</h1>
 {% extends 'base.html' %}
 {% block content %}
+{% load staticfiles %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bossbook.css' %}">
+</head>
 
+<body>
+    <div class="bossbook"> <div class="square"></div>
+    <h1 class="ment">내 책방 찾기</h1>
+    <p class="ment">내 책방을 찾고 선택하기 버튼을 눌러주세요.</p>
 
-<table>
+<table class="table">
     <thead>
     <tr>
-        <td><B>책방이름</B></td>
-        <td><B>주소</B></td>
-        <td><B>휴대폰번호</B></td>
-        <td><B>사이트</B></td>
-        <td><B>선택</B></td>
+        <th><B>책방이름</B></th>
+        <th><B>주소</B></th>
+        <th><B>선택</B></th>
     </tr>
     </thead>
     <tbody>
     {% for bookstore in bookstores.all %}
     <tr>
     <form method="GET" action="{% url 'boss' %}">  
-        <td><input name="bsname" value="{{bookstore.name}}" readonly class="form-control-plaintext"/></td>
+        <td><input name="bsname" value="{{bookstore.name}}" readonly class="form-control-plaintext"></td>
         <td>{{bookstore.addr}}</td>
-        <td>{{bookstore.phone_number}}</td>
-        <td>{{bookstore.site}}</td>
-        <td>
-            <input type="submit" value="선택하기">
-        </td>
+        <td> <input type="submit" value="선택하기" class="sub-btn"> </td>
     </form>
     </tr>
     {% endfor %}
     <tbody>
 </table>
+</div></body>
 
 {% endblock %}

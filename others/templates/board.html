@@ -1,8 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load staticfiles %}
 
-{% for cul in cultures.all %}
-    <span><a href="{%url 'culturedetail' cul.id%}">{{cul.title}}</a></span>
-    <span>| 행사 날짜: {{cul.start_time}}</span>
-{% endfor %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+</head>
+
+<body>
+<div class="board">
+<div class="square"></div>
+<h1 class="ment">홍보 게시판</h1>
+<p class="ment">북콘서트, 전시회 등 문화행사를 홍보할 수 있는 게시판입니다.</p>
+
+<table class="table">
+    <thead>
+        <tr>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>행사날짜</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for cul in cultures.all %}
+        <tr>
+        <td><a href="{%url 'culturedetail' cul.id%}">{{cul.title}}</a></td>
+        <td>{{cul.store}}</td>
+        <td>{{cul.start_time}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>    
+</div>
+</body>
+
+
 {% endblock %}
