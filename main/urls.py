@@ -11,4 +11,6 @@ urlpatterns = [
     path('signup/normal', views.normal, name='normal'),
     path('signup/boss/bossbook', views.bossbook, name='bossbook'),
     path('ranking/', views.ranking, name='ranking'),
+    path('info/', views.info, name='info'),
+    path('stamppush/', views.stamppush, name='stamppush'),
 ]

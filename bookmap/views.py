@@ -4,6 +4,7 @@ from django.core import serializers
 from .review import reviewFuc
 import simplejson
 from .forms import ReviewForm
+from django.db.models import Avg
 
 # Create your views here.
 
