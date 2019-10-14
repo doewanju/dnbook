@@ -7,10 +7,11 @@ body{
     background-repeat: no-repeat;
     background-size: 850px 1400px;
     background-position: center;
-    background-position-y: 180px;
+    background-position-y: 185px;
 }
 h2{
     font-family: 'YiSunShinDotumM';
+    font-size: 50px;
     letter-spacing: 0.5rem;
 }
 .loginbox{
