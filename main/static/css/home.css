@@ -1,0 +1,26 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+
+.main-btn {
+    width: 600px;
+    height: 180px;
+    font-size: 55px;
+    background: #615136;
+    position: relative;
+    border-radius: 100px;
+    text-align: center;
+    color: white;
+    line-height: 180px;
+    display: block;
+    margin-top: 1000px;
+    margin-left: 190px;
+    font-family: 'YiSunShinDotumM';
+}
+.main-btn a{
+    font-size: 55px;
+}
+
+.main-btn a:link { color:white; text-decoration: none;}
+.main-btn a:visited { color: white; text-decoration: none;}
+.main-btn a:hover { color: #DED2C0; text-decoration: none;}

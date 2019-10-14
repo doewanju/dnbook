@@ -1,0 +1,55 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+.bossbook{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 50px;
+    font-family: 'YiSunShinDotumM'
+}
+table {
+    width: 100%;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+
+.table tr{
+    text-align: center;
+    font-size: 20px;
+    color: black;
+}
+
+.table td {
+    border-top: 1px solid #615136;
+    border-bottom: 1px solid #615136;
+    vertical-align: middle;
+}
+.table td input{
+    text-align: center;
+}
+.table thead th{
+    border-bottom: 2px solid #615136;
+    border-top: 1px solid #ffffff;
+}
+.ment{
+    margin-left: 40px;
+}
+.square{
+    float : left;
+    width: 10px;
+    height: 60px;
+    background-color: #615136;
+}
+.sub-btn{
+    font-family: 'YiSunShinDotumM';
+    background-color: #615136;
+    border: 0px;
+    color:white;
+    border-radius: 100px;
+    width: 90px;
+    height: 40px;
+}
+
+.table a:link { color:#615136; text-decoration: none;}
+.table a:visited { color: #615136; text-decoration: none;}
+.table a:hover { color: #615136; text-decoration: none;}
