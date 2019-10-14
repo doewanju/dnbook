@@ -40,3 +40,12 @@ class Review(models.Model):
 
     def __str__(self):
         return '%s, %s' %(self.store, self.content[:30])
+
+class Stamp(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    store = models.ForeignKey(BookStore, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    count = models.IntegerField(default=1)
+
+    def __str__(self):
+        return '%s, %s' %(self.user,self.store)

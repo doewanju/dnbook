@@ -139,3 +139,6 @@ def mapsearch(request):
             'bsaddr' : addrlist, 
             'bsname' : namelist,
             'pklist' : pklist})
+
+
+
