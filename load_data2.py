@@ -73,7 +73,7 @@ def loading():
                 driver.find_element_by_class_name('ico_search').click()
             driver.implicitly_wait(3)
             try:
-                time.sleep(2)
+                time.sleep(3)
                 driver.find_element_by_class_name('moreview').click()
                 driver.implicitly_wait(3)
             except StaleElementReferenceException:
