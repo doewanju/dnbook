@@ -154,7 +154,7 @@ if __name__=='__main__':
         if temp[0][j] != '':
             b.openhour=temp[0][j]
         if temp[1][j] != '':
-            b.site=temp[1][j]
+            b.phone_number=temp[1][j]
         if temp[2][j] != '':
-            b.phone_number=temp[2][j]
+            b.site=temp[2][j]
         b.save()       
