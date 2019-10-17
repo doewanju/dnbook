@@ -1,20 +1,40 @@
-
 {% extends 'base.html' %}
 {% block content %}
-<h1>TOTAL RANKING</h1>
-<h1>1등: <span>{{first.nickname}}</span>
-{%if first.total_stamp %}
-<span>(스탬프 {{first.total_stamp}}개)</span>
-{%endif%}
-</h1>
-<h1>2등: <span>{{second.nickname}}</span>
-{%if second.total_stamp %}
-<span>(스탬프 {{second.total_stamp}}개)</span>
-{%endif%}
-</h1>
-<h1>3등: <span>{{third.nickname}}</span>
-{%if third.total_stamp %}
-<span>(스탬프 {{third.total_stamp}}개)</span>
-{%endif%}
-</h1>
+{% load staticfiles %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ranking.css' %}">
+</head>
+
+<body>
+    <div class="ranking">
+    <div class="square"></div>
+    <h1 class="ment">랭킹</h1>
+    <p class="ment">스탬프를 모아 칭호를 획득해 랭킹에 올라보세요!</p>
+    <div class="back-square">
+        <div class="middle-ment">
+        이달의 독서왕
+        
+    <h1>전체 기간 랭킹</h1>
+    <h1>1등: <span>{{first.nickname}}</span>
+        {%if first.total_stamp%}
+        <span>(스탬프 {{first.total_stamp}}개)</span>
+        {%endif%}
+    </h1>
+
+    <h1>2등: <span>{{second.nickname}}</span>
+        {%if second.total_stamp%}
+        <span>(스탬프 {{second.total_stamp}}개)</span>
+        {%endif%}
+    </h1>
+
+    <h1>3등: <span>{{third.nickname}}</span>
+        {%if third.total_stamp%}
+        <span>(스탬프 {{third.total_stamp}}개)</span>
+        {%endif%}
+    </h1>
+    
+    </div>
+    </div>
+    </div>
+</body>   
 {% endblock %}
