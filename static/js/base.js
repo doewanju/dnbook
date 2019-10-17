@@ -1,8 +1,6 @@
 var path = document.location.pathname;
 
-if (path.includes('main')) {
-    result = '동네북'
-} else if (path.includes('bookmap')) {
+if (path.includes('bookmap')) {
     result = '책방지도'
 } else if (path.includes('board')) {
     result = '문화프로그램'
@@ -16,6 +14,11 @@ if (path.includes('main')) {
     result = '로그인'
 } else if (path.includes('storedetail')) {
     result = '책방지도'
+} else if (path.includes('ranking')) {
+    result = '랭킹'
+}
+else {
+    result = '동네북'
 }
 
 document.write(result)

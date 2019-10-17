@@ -1,8 +1,25 @@
-
 {% extends 'base.html' %}
 {% block content %}
-<h1>TOTAL RANKING</h1>
-<h1>1등: {{first.nickname}}</h1>
-<h1>2등: {{second.nickname}}</h1>
-<h1>3등: {{third.nickname}}</h1>
+{% load staticfiles %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ranking.css' %}">
+</head>
+
+<body>
+    <div class="ranking">
+    <div class="square"></div>
+    <h1 class="ment">랭킹</h1>
+    <p class="ment">스탬프를 모아 칭호를 획득해 랭킹에 올라보세요!</p>
+    <div class="back-square">
+        <div class="middle-ment">
+        이달의 독서왕
+        
+    <h1>TOTAL RANKING</h1>
+    <h1>1등: {{first.nickname}}</h1>
+    <h1>2등: {{second.nickname}}</h1>
+    <h1>3등: {{third.nickname}}</h1>
+    </div>
+    </div>
+    </div>
+</body>   
 {% endblock %}
