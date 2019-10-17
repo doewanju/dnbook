@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Normalprofile, Bossprofile
 from bookmap.models import BookStore, Scrap, Stamp
+
 # Create your views here.
 
 
@@ -128,8 +129,9 @@ def ranking(request):
     stamp = []
     for i in users:
         name.append(i.nickname)
-        stamp.append(i.stampcount())
-    first = second = third = -1
+        s=i.stampcount()
+        stamp.append(s)
+    first, second, third = -1, -1, -1
     for i in stamp:
         if first <= i:
             third = second
@@ -142,19 +144,26 @@ def ranking(request):
             third = i
     if third != -1:
         idx = stamp.index(third)
-        third = Normalprofile.objects.filter(nickname=name[idx])
+        third = Normalprofile.objects.filter(nickname=name[idx])[0]
         del name[idx]
         del stamp[idx]
+    else:
+        third = {'nickname': '없음'}
+
     if second != -1:
         idx = stamp.index(second)
-        second = Normalprofile.objects.filter(nickname=name[idx])
+        second = Normalprofile.objects.filter(nickname=name[idx])[0]
         del name[idx]
         del stamp[idx]
+    else:
+        second = {'nickname': '없음'}
+        
     if first != -1:
         idx = stamp.index(first)
-        first = Normalprofile.objects.filter(nickname=name[idx])
+        first = Normalprofile.objects.filter(nickname=name[idx])[0]
+    else:
+        first = {'nickname': '없음'}
     
-    #temp2 = reversed(sorted(list(temp.values())))
     return render(request,'ranking.html', {'first':first, 'second':second, 'third':third})
 
 def info(request):
