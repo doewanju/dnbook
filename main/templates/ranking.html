@@ -1,1 +1,22 @@
-<h1>랭킹페이지</h1>
+{% extends 'base.html' %}
+{% block content %}
+{% load staticfiles %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ranking.css' %}">
+</head>
+
+<body>
+    <div class="ranking">
+    <div class="square"></div>
+    <h1 class="ment">랭킹</h1>
+    <p class="ment">스탬프를 모아 칭호를 획득해 랭킹에 올라보세요!</p>
+    <div class="back-square">
+        <div class="middle-ment">
+        이달의 독서왕
+        </div>
+    </div>
+
+    </div>
+</body>   
+{% endblock %}
+
