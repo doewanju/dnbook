@@ -1,0 +1,8 @@
+<form method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+    <h4>책방 이름: <input name="storename" type="text" value="{{storename}}" readonly/></h4>
+    <table>
+        {{form.as_table}}
+    </table>
+    <input type="submit" value="등록">
+</form>
