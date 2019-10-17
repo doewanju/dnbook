@@ -21,7 +21,7 @@
 <body>
     <br>
     <h1>책방 이름 : <span id='name'>{{store.name}}</span></h1>
-    <h3>스크랩 <span class="badge badge-secondary">{{count}}</span></h3>
+    <h3>스크랩 <span class="badge badge-secondary">{{store.like_count}}</span></h3>
 
     {% if user.is_authenticated %}
         {% if scrap %}

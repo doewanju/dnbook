@@ -22,6 +22,13 @@ class BookStore(models.Model):
     def __str__(self):
         return self.name
 
+    def like_count(self):
+        return Scrap.objects.filter(store=self).count()
+
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('storedetail', args=[str(self.pk)])
+
 class Scrap(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     store = models.ForeignKey(BookStore, on_delete=models.CASCADE)
@@ -40,6 +47,8 @@ class Review(models.Model):
 
     def __str__(self):
         return '%s, %s' %(self.store, self.content[:30])
+
+    
 
 class Stamp(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

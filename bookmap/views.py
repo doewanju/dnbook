@@ -15,7 +15,6 @@ def bookstore(request):
 def detail(request, bookstore_id):
     store_detail = get_object_or_404(BookStore, pk = bookstore_id)
     scrap = Scrap.objects.filter(store=store_detail)
-    scrap_count = scrap.count()
     rev = " "
     tot = 0
     reviews = store_detail.review_set.all().order_by('-created_at')
@@ -29,9 +28,9 @@ def detail(request, bookstore_id):
     if request.user.is_authenticated:
         store_scrap = scrap.filter(user=request.user)
         form = ReviewForm()
-        return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'scrap' : store_scrap, 'count':scrap_count, 'form':form, 'star_avg':star_avg})
+        return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'scrap' : store_scrap, 'form':form, 'star_avg':star_avg})
     else:
-        return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'count' : scrap_count, 'star_avg':star_avg})
+        return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'star_avg':star_avg})
       
 def realmap(request):
     bookstores = BookStore.objects.all()
