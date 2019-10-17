@@ -13,9 +13,13 @@ def reviewFuc(name, addr):
         path+='32\chromedriver.exe'
     else:
         path+='64\chromedriver'
-    options=webdriver.ChromeOptions()
-    options.add_argument('headless')
-    driver = webdriver.Chrome(path,chrome_options=options)
+    chromeOptions = webdriver.ChromeOptions()
+    prefs={'profile.managed_default_content_settings.images':2}
+    chromeOptions.add_experimental_option("prefs",prefs)
+    chromeOptions.add_argument("--incognito")
+    chromeOptions.add_argument("--disable-extensions")
+    chromeOptions.add_argument('--headless')
+    driver = webdriver.Chrome(path,chrome_options=chromeOptions)
     driver.implicitly_wait(3)
 
     naver_url="https://www.naver.com"
