@@ -1,0 +1,32 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+.ranking{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 50px;
+    font-family: 'YiSunShinDotumM'
+}
+.ment{
+    margin-left: 40px;
+}
+.square{
+    float: left;
+    width: 10px;
+    height: 60px;
+    background-color: #615136;
+}
+.back-square{
+    background-color: rgb(245, 241, 236);
+    width: 90%;
+    height: 1300px;
+    border-radius: 4rem;
+    margin-top: 50px;
+    margin-left: 45px;
+    
+}
+.middle-ment{
+    color: #615136;
+    font-size: 50px;
+    margin-left: 60px;
+}
