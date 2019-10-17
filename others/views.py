@@ -6,16 +6,17 @@ from .forms import CommentForm, CultureForm
 # Create your views here.
 def board(request):
     cultures=Culture.objects.order_by('-write_date')
+    key = False
     user = request.user
-    if user.is_superuser:
-        key = False
-    else:
+    if user.is_authenticated:
         try:
             profile = Bossprofile.objects.get(user=request.user)
             key = True
         except Bossprofile.DoesNotExist:
             key = False
-    return render(request, 'board.html', {'cultures':cultures, 'key':key})
+        return render(request, 'board.html', {'cultures':cultures, 'key':key})
+    else:
+        return render(request, 'board.html', {'cultures':cultures, 'key':key})
 
 def detail(request, culture_id):
     culture_detail = get_object_or_404(Culture, pk = culture_id)
