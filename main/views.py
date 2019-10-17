@@ -11,25 +11,23 @@ def home(request):
 
 def mypage(request):
     user = request.user
-    try:
-        profile = Bossprofile.objects.get(user=request.user)
-        who = True
-    except Bossprofile.DoesNotExist:
-        profile = Normalprofile.objects.get(user=request.user)
-        who = False
-
+    if user.is_superuser:
+        return render(request, 'home.html', {'error': 'superuser는 mypage가 없습니다!'})
+    else:
+        try:
+            profile = Bossprofile.objects.get(user=request.user)
+            store_name = BookStore.objects.get(boss=request.user).name
+        except Bossprofile.DoesNotExist:
+            profile = Normalprofile.objects.get(user=request.user)
+            store_name = ""
     scraps = Scrap.objects.filter(user=request.user)
-
-    mystamp = 0
-    for i in request.user.stamp_set.all():
-        mystamp += i.count
-
+    mystamp = profile.stampcount
     return render(request,'mypage.html', {
                         'scraps':scraps, 
                         'stamp':mystamp, 
                         'user':user, 
                         'profile':profile, 
-                        'who':who})
+                        'store_name':store_name})
 
 def stamppush(request):
     #if request.method == 'GET':
@@ -39,7 +37,7 @@ def stamppush(request):
     store = BookStore.objects.get(boss=request.user)
     stamp = Stamp(user=user, store=store, count=count)
     stamp.save()
-    return render(request,'mypage.html')
+    return redirect('mypage')
 
 def signup(request):
     return render(request,'signup.html')
@@ -124,13 +122,40 @@ def bossbook(request):
     bookstores = BookStore.objects
     return render(request,'bossbook.html', {'bookstores':bookstores})
 
-"""def find(request):
-    if request.method == 'GET':
-        storename = request.GET["storename"]
-        return storename"""
-
 def ranking(request):
-    return render(request,'ranking.html')
+    users = Normalprofile.objects.all()
+    name = []
+    stamp = []
+    for i in users:
+        name.append(i.nickname)
+        stamp.append(i.stampcount())
+    first = second = third = -1
+    for i in stamp:
+        if first <= i:
+            third = second
+            second = first
+            first = i
+        elif second <= i:
+            third = second
+            second = i
+        elif third <= i:
+            third = i
+    if third != -1:
+        idx = stamp.index(third)
+        third = Normalprofile.objects.filter(nickname=name[idx])
+        del name[idx]
+        del stamp[idx]
+    if second != -1:
+        idx = stamp.index(second)
+        second = Normalprofile.objects.filter(nickname=name[idx])
+        del name[idx]
+        del stamp[idx]
+    if first != -1:
+        idx = stamp.index(first)
+        first = Normalprofile.objects.filter(nickname=name[idx])
+    
+    #temp2 = reversed(sorted(list(temp.values())))
+    return render(request,'ranking.html', {'first':first, 'second':second, 'third':third})
 
 def info(request):
     return render(request,'info.html')

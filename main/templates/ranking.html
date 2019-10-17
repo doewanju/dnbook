@@ -1,1 +1,8 @@
-<h1>랭킹페이지</h1>
+
+{% extends 'base.html' %}
+{% block content %}
+<h1>TOTAL RANKING</h1>
+<h1>1등: {{first.nickname}}</h1>
+<h1>2등: {{second.nickname}}</h1>
+<h1>3등: {{third.nickname}}</h1>
+{% endblock %}
