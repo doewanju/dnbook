@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Culture(models.Model):
     title = models.CharField('제목',max_length=200)
-    picture = models.ImageField('이미지 등록',upload_to='Culture/', null=True)
+    picture = models.ImageField('이미지 등록',upload_to='Culture/', blank=True)
     start_time = models.DateField('시작 날짜')
     finish_time = models.DateField('종료 날짜')
     write_date = models.DateTimeField('작성한 날짜',auto_now=True)
@@ -29,6 +29,8 @@ class Culture(models.Model):
         default = ETC,
     )
     store = models.ForeignKey(BookStore, null=True, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.title
 
 class Comment(models.Model):
     culture = models.ForeignKey(Culture, on_delete=models.CASCADE)

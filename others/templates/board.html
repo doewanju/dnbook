@@ -11,7 +11,9 @@
 <div class="square"></div>
 <h1 class="ment">홍보 게시판</h1>
 <p class="ment">북콘서트, 전시회 등 문화행사를 홍보할 수 있는 게시판입니다.</p>
-
+{% if key %}
+<a href="{% url 'boardcreate' %}">새글작성</a>
+{% endif %}
 <table class="table">
     <thead>
         <tr>

@@ -10,16 +10,18 @@
 <div class="board-detail">
 <div class="square"></div>
 <h1 class="title">{{culture.title}}</h1>
-
-
+  
 <br>
 작성자
 <a href="{% url 'storedetail' culture.store.bookstore_id %}">{{culture.store.name}}</a>
 <p> 시작 날짜: {{culture.start_time}}</p>
 <p> 종료 날짜: {{culture.finish_time}}</p>
 <p> 작성한 날짜: {{culture.write_date}}</p>
+
+{% if culture.picture %}
 <img src="{{culture.picture.url}}" alt="" width="800px">
-<p>{{culture.content}}</p>
+{% endif %}
+<p>{{culture.content|linebreaks}}</p>
 
 {% if user.is_authenticated %}
 <form method="POST" action="{% url 'commentcreate' culture.id %}">
