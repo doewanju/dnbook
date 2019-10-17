@@ -40,6 +40,11 @@
     {% else %}
     <h2>홈페이지 : 없음</h2>
     {% endif %}
+
+    {% if store.openhour %}
+    <h2>{{store.openhour}}</a></h2>
+    {% endif %}
+    <br>
   <!--해당서점 지도 표시-->
 
     <div id="map" style="width:50%;height:300px;position:relative;z-index:-1;"></div>
