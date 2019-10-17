@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Normalprofile, Bossprofile
 from bookmap.models import BookStore, Scrap, Stamp
+
 # Create your views here.
 
 
@@ -129,7 +130,7 @@ def ranking(request):
     for i in users:
         name.append(i.nickname)
         stamp.append(i.stampcount())
-    first = second = third = -1
+    first, second, third = -1, -1, -1
     for i in stamp:
         if first <= i:
             third = second
@@ -142,20 +143,32 @@ def ranking(request):
             third = i
     if third != -1:
         idx = stamp.index(third)
-        third = Normalprofile.objects.filter(nickname=name[idx])
+        nick = Normalprofile.objects.filter(nickname=name[idx])[0].nickname
         del name[idx]
         del stamp[idx]
+    else:
+        nick='없음'
+        third=None
+    res_third = {'nickname': nick, 'total_stamp': third}
+
     if second != -1:
         idx = stamp.index(second)
-        second = Normalprofile.objects.filter(nickname=name[idx])
+        nick = Normalprofile.objects.filter(nickname=name[idx])[0].nickname
         del name[idx]
         del stamp[idx]
+    else:
+        nick='없음'
+        second=None
+    res_second = {'nickname': nick, 'total_stamp':second}
+        
     if first != -1:
         idx = stamp.index(first)
-        first = Normalprofile.objects.filter(nickname=name[idx])
+        nick = Normalprofile.objects.filter(nickname=name[idx])[0].nickname
+    else:
+        nick='없음'
+    res_first = {'nickname': nick, 'total_stamp':first}
     
-    #temp2 = reversed(sorted(list(temp.values())))
-    return render(request,'ranking.html', {'first':first, 'second':second, 'third':third})
+    return render(request,'ranking.html', {'first':res_first, 'second':res_second, 'third':res_third})
 
 def info(request):
     return render(request,'info.html')
