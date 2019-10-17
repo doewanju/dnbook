@@ -1,13 +1,15 @@
 <h1>문화프로그램 리스트에서 제목 누르면 들어오는 페이지</h1>
 <br>
 <h1>제목: {{culture.title}} </h1>
+{% if culture.picture %}
 <img src="{{culture.picture.url}}" alt="">
+{% endif %}
 <br>
 책방: <a href="{% url 'storedetail' culture.store.bookstore_id %}">{{culture.store.name}}</a>
 <p> 시작 날짜: {{culture.start_time}}</p>
 <p> 종료 날짜: {{culture.finish_time}}</p>
 <p> 작성한 날짜: {{culture.write_date}}</p>
-<p> 내용: {{culture.content}}</p>
+<p> 내용: {{culture.content|linebreaks}}</p>
 
 {% if user.is_authenticated %}
 <form method="POST" action="{% url 'commentcreate' culture.id %}">
