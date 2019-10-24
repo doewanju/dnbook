@@ -124,46 +124,43 @@ def bossbook(request):
     bookstores = BookStore.objects
     return render(request,'bossbook.html', {'bookstores':bookstores})
 
-def total_ranking(request):
-    users = Normalprofile.objects.all()
-    result={}
-    for i in users:
-        name=str(i.nickname)
-        count=int(i.stampcount())
-        if name in result:
-            result[name] += count
-        else:
-            result[name] = count
-    return result
-
-def month_ranking(request):
+def get_nc(request,tf):
     stamp = Stamp.objects.all()
     stamp_month=[]
     stamp_nc=[]
-    stamp_ind=[]
+    stamp_idx=[]
     result={}
     for s in stamp:
         d = str(s.created_at)
         d=d.split()[0]
-        day = datetime.strptime(d, "%Y-%m-%d")
-        stamp_month.append(day.month)
+        date = datetime.strptime(d, "%Y-%m-%d")
+        stamp_month.append(date.month)
         stamp_nc.append([str(s.user),int(s.count)])
     today = datetime.today().month
     for i,m in enumerate(stamp_month):
         if m == today:
-            stamp_ind.append(i)
-    for i in stamp_ind:
-        name = stamp_nc[i][0]
-        count = stamp_nc[i][1]
-        if name in result:
-            result[name] += count
-        else:
-            result[name] = count
+            stamp_idx.append(i)
+    if tf == True:
+        for i in stamp_idx:
+            name = stamp_nc[i][0]
+            count = stamp_nc[i][1]
+            if name in result:
+                result[name] += count
+            else:
+                result[name] = count
+    else:
+        for s in stamp_nc:
+            name = s[0]
+            count = s[1]
+            if name in result:
+                result[name] += count
+            else:
+                result[name] = count
     return result
 
 def ranking(request):
-    total = total_ranking(request)
-    month = month_ranking(request)
+    total = get_nc(request,False)
+    month = get_nc(request,True)
     total_n=[]
     total_c=[]
     month_n=[]
@@ -182,27 +179,23 @@ def ranking(request):
             count[idx].append(r.get(i))
 
     for idx,cnt in enumerate(count):
-        first, second, third = -1, -1, -1
-        first_name, second_name, third_name = '없음', '없음', '없음'
+        first, second, third = [-1,'없음'], [-1,'없음'], [-1,'없음']
         for i,c in enumerate(cnt):
-            if first <= c:
+            if first[0] <= c:
                 third = second
                 second = first
-                first = c
-                first_name=name[idx][i]
-            elif second <= c:
+                first = [c,name[idx][i]]
+            elif second[0] <= c:
                 third = second
-                second = c
-                second_name=name[idx][i]
-            elif third <= c:
-                third = c
-                third_name=name[idx][i]
-        res_first[key_arr[idx]]=first_name
-        res_first[key_arr[idx+2]]=first
-        res_second[key_arr[idx]]=second_name
-        res_second[key_arr[idx+2]]=second
-        res_third[key_arr[idx]]=third_name
-        res_third[key_arr[idx+2]]=third
+                second = [c,name[idx][i]]
+            elif third[0] <= c:
+                third = [c,name[idx][i]]
+        res_first[key_arr[idx]]=first[1]
+        res_first[key_arr[idx+2]]=first[0]
+        res_second[key_arr[idx]]=second[1]
+        res_second[key_arr[idx+2]]=second[0]
+        res_third[key_arr[idx]]=third[1]
+        res_third[key_arr[idx+2]]=third[0]
     return render(request,'ranking.html', {'first':res_first, 'second':res_second, 'third':res_third})
 
 def info(request):

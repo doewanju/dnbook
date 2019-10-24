@@ -70,7 +70,7 @@
     function addrStoN(address,title){ //주소를 위도경도로 변환후 마킹
         geocoder.addressSearch(address,function(result, status){
             if (status === kakao.maps.services.Status.OK){
-                var coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+                let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
                 let marker = new kakao.maps.Marker({
                     map: map,
                     position: coords,
