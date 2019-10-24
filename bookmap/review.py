@@ -3,16 +3,16 @@ from selenium import webdriver
 import requests
 from webdrivermanager import ChromeDriverManager as ch
 from selenium.common.exceptions import NoSuchElementException
+import os
 
 def reviewFuc(name, addr):
-    find_name = name
-    find_addr = addr
-    f=find_name+" "+find_addr.split(" ")[0]
     path=ch().get_download_path()+'\chromedriver_'+ch().os_name
     if ch().os_name == 'win':
         path+='32\chromedriver.exe'
     else:
         path+='64\chromedriver'
+    if not os.path.exists(path):
+        ch().download_and_install()
     chromeOptions = webdriver.ChromeOptions()
     prefs={'profile.managed_default_content_settings.images':2}
     chromeOptions.add_experimental_option("prefs",prefs)
@@ -25,6 +25,9 @@ def reviewFuc(name, addr):
     naver_url="https://www.naver.com"
     driver.get(naver_url)
 
+    find_name = name
+    find_addr = addr
+    f=find_name+" "+find_addr.split(" ")[0]
     tf=False
     driver.find_element_by_class_name('input_text').clear()
     driver.find_element_by_class_name('input_text').send_keys(f)
