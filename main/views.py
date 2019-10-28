@@ -26,11 +26,11 @@ def mypage(request):
             level = None
             next_level = None
             more = None
-            culture = Culture.objects.filter(store=store)
+            cultures = Culture.objects.filter(store=store)
         except Bossprofile.DoesNotExist:
             profile = Normalprofile.objects.get(user=request.user)
             store_name = None
-            culture = None
+            cultures = None
             mystamp = profile.stampcount()
             level = profile.level
             if level==3:
@@ -46,7 +46,7 @@ def mypage(request):
                         'level':level,
                         'next':next_level,
                         'more':more,
-                        'culture':culture,
+                        'cultures':cultures,
                         'comments':comments,
                         'user':user,
                         'profile':profile, 

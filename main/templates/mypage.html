@@ -63,7 +63,7 @@
 >> <a href="{%url 'storedetail' scrap.store.bookstore_id%}">{{scrap.store}}</a><br>
 {% endfor %}
 <br>
-{% if culture %}
+{% if cultures %}
 <h3>내가 쓴 글</h3>
 <div style="overflow:auto;width:100%;height:200px;"><table>
         <thead>
@@ -74,11 +74,11 @@
             </tr>
         </thead>
         <tbody>
-            {% for cul in culture %}
-            <tr onClick="location.href='{%url 'culturedetail' cul.id%}'">
-                <td>{{cul.title}}</td>
-                <td>{{cul.start_time}}</td>
-                <td>{{cul.store.name}}</td>
+            {% for culture in cultures %}
+            <tr onClick="location.href='{%url 'culturedetail' culture.id%}'">
+                <td>{{culture.title}}</td>
+                <td>{{culture.start_time}}</td>
+                <td>{{culture.store.name}}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -95,10 +95,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for com in comments %}
-            <tr onClick="location.href='{%url 'culturedetail' com.culture.id%}'">
-                <td>{{com.culture.title}}</td>
-                <td>{{com.content}}</td>
+            {% for comment in comments %}
+            <tr onClick="location.href='{%url 'culturedetail' comment.culture.id%}'">
+                <td>{{comment.culture.title}}</td>
+                <td>{{comment.content}}</td>
             </tr>
             {% endfor %}
         </tbody>
