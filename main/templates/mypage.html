@@ -43,11 +43,18 @@
             <input type="radio" name="count" value="2" id="2"><label for="2">2만원이상</label>
             <input type="radio" name="count" value="3" id="3"><label for="3">3만원이상</label>
             <input type="submit" value="찍어주기!">
-        </form> <br><br>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"></a></h3></div>
+        </form> <br>
+        <h3><i style="color: brown;">※ 주의 ※ 스탬프는 일반 회원에게만 찍어줄 수 있습니다.</i></h3> <br><br>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">닫기</a></h3></div>
     <div id="fade" class="black_overlay"></div> <!--스탬프 찍어주기 눌렀다가 그냥 안찍어줄라고 할 때 바깥쪽 누르면 창 꺼지게 해야할듯-->
 {% else %} <!--그냥 boss도 스탬프 모을 수 있도록 할까..?-->
 <h1>스탬프 수: {{stamp}}</h1>
+<h1>현재 level {{level}} 입니다.</h1>
+    {% if next %}
+    <h1>{{more}}개 더 모으면 level {{next}}!!</h1>
+    {% else %}
+    <h1>축하합니다! 최고 레벨입니다!!</h1>
+    {% endif %}
 {% endif %}
 
 

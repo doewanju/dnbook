@@ -4,6 +4,7 @@ from django.contrib import auth
 from .models import Normalprofile, Bossprofile
 from bookmap.models import BookStore, Scrap, Stamp
 from datetime import datetime
+from django.http import Http404
 
 # Create your views here.
 
@@ -19,26 +20,53 @@ def mypage(request):
         try:
             profile = Bossprofile.objects.get(user=request.user)
             store_name = BookStore.objects.get(boss=request.user).name
+            mystamp = None
+            level = None
+            next_level = None
+            more = None
         except Bossprofile.DoesNotExist:
             profile = Normalprofile.objects.get(user=request.user)
-            store_name = ""
+            store_name = None
+            mystamp = profile.stampcount()
+            level = profile.level
+            if level==3:
+                next_level = None
+            else:
+                next_level = level + 1
+            more = level*10-mystamp
     scraps = Scrap.objects.filter(user=request.user)
-    mystamp = profile.stampcount
     return render(request,'mypage.html', {
                         'scraps':scraps, 
-                        'stamp':mystamp, 
-                        'user':user, 
+                        'stamp':mystamp,
+                        'level':level,
+                        'next':next_level,
+                        'more':more,
+                        'user':user,
                         'profile':profile, 
                         'store_name':store_name})
 
 def stamppush(request):
     #if request.method == 'GET':
     userid = request.GET['userid']
-    user = User.objects.get(username=userid)
+    try:
+        user = User.objects.get(username=userid)
+        profile = Normalprofile.objects.get(user=user)
+    except:
+        return render(request,'error.html')
+        #raise Http404("존재하지 않는 회원이거나 일반회원이 아닙니다.")
     count = request.GET['count']
     store = BookStore.objects.get(boss=request.user)
     stamp = Stamp(user=user, store=store, count=count)
     stamp.save()
+    s_count = profile.stampcount()
+    if s_count >= 20 :
+        level = 3
+    elif s_count >= 10 :
+        level = 2
+    else:
+        level = 1
+    profile.level = level
+    profile.save()
     return redirect('mypage')
 
 def signup(request):
@@ -135,7 +163,8 @@ def get_nc(request,tf):
         d=d.split()[0]
         date = datetime.strptime(d, "%Y-%m-%d")
         stamp_month.append(date.month)
-        stamp_nc.append([str(s.user),int(s.count)])
+        profile = Normalprofile.objects.get(user=s.user)
+        stamp_nc.append([str(profile.nickname),int(s.count)])
     today = datetime.today().month
     for i,m in enumerate(stamp_month):
         if m == today:
