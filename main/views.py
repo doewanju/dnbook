@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Normalprofile, Bossprofile
 from bookmap.models import BookStore, Scrap, Stamp
+from others.models import Comment, Culture
 from datetime import datetime
 #from django.http import Http404
 
@@ -19,14 +20,17 @@ def mypage(request):
     else:
         try:
             profile = Bossprofile.objects.get(user=request.user)
-            store_name = BookStore.objects.get(boss=request.user).name
+            store = BookStore.objects.get(boss=request.user)
+            store_name = store.name
             mystamp = None
             level = None
             next_level = None
             more = None
+            culture = Culture.objects.filter(store=store)
         except Bossprofile.DoesNotExist:
             profile = Normalprofile.objects.get(user=request.user)
             store_name = None
+            culture = None
             mystamp = profile.stampcount()
             level = profile.level
             if level==3:
@@ -35,12 +39,15 @@ def mypage(request):
                 next_level = level + 1
             more = level*10-mystamp
     scraps = Scrap.objects.filter(user=request.user)
+    comments = Comment.objects.filter(user=request.user)
     return render(request,'mypage.html', {
                         'scraps':scraps, 
                         'stamp':mystamp,
                         'level':level,
                         'next':next_level,
                         'more':more,
+                        'culture':culture,
+                        'comments':comments,
                         'user':user,
                         'profile':profile, 
                         'store_name':store_name})

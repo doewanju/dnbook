@@ -57,10 +57,50 @@
     {% endif %}
 {% endif %}
 
-
+<br>
 <h3>스크랩 한 책방</h3>
 {% for scrap in scraps %}
 >> <a href="{%url 'storedetail' scrap.store.bookstore_id%}">{{scrap.store}}</a><br>
 {% endfor %}
 <br>
+{% if culture %}
+<h3>내가 쓴 글</h3>
+<div style="overflow:auto;width:100%;height:200px;"><table>
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>시작 날짜</th>
+                <th>책방 이름</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cul in culture %}
+            <tr onClick="location.href='{%url 'culturedetail' cul.id%}'">
+                <td>{{cul.title}}</td>
+                <td>{{cul.start_time}}</td>
+                <td>{{cul.store.name}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table></div>
+<br>
+{% endif %}
+
+<h3>내가 쓴 댓글</h3>
+<div style="overflow:auto;width:100%;height:200px;"><table>
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>댓글 내용</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for com in comments %}
+            <tr onClick="location.href='{%url 'culturedetail' com.culture.id%}'">
+                <td>{{com.culture.title}}</td>
+                <td>{{com.content}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table></div>
 {% endblock %}
