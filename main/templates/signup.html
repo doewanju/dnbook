@@ -1,13 +1,29 @@
-{% extends 'base.html' %}
-{% block content %}
-{% if error %}
-{{ error }}
-<br>
-<br>
-{% endif %}
-<br>
-<br>
-<a href="{% url 'bossbook' %}">책방 주인으로 가입하기</a><br>
-<a href="{% url 'normal' %}">일반 회원으로 가입하기</a><br>
-
-{% endblock %}
+<!DOCTYPE html>
+<html>
+    {% extends 'base.html' %}
+    {% block content %}
+    {% load staticfiles %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+    </head>
+    <body>
+        {% if error %}
+        {{ error }}
+        {% endif %}
+        <div class="signupbox row">
+            <div class="member col-6 justify-content-center">
+                <a href="{% url 'normal' %}">
+                    <div class="row icons mx-auto"></div>
+                    <div class="text">일반 회원으로<br>가입하기</div>
+                </a>
+            </div>
+            <div class="col-6 boss justify-content-center">
+                <a href="{% url 'bossbook' %}">
+                    <div class="row icons mx-auto"></div>
+                    <div class="text">책방 주인으로<br>가입하기</div>
+                </a>
+            </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>
