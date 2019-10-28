@@ -4,7 +4,7 @@ from django.contrib import auth
 from .models import Normalprofile, Bossprofile
 from bookmap.models import BookStore, Scrap, Stamp
 from datetime import datetime
-from django.http import Http404
+#from django.http import Http404
 
 # Create your views here.
 
