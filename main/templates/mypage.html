@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<head>
-    <style>
+{% load staticfiles %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mypage.css' %}">
+    </head>
+{% comment %}<head>
+     <style>
         .black_overlay{
             display: none;
             position: absolute;
@@ -27,33 +31,91 @@
             z-index:1002;
             overflow: auto;
         }
-    </style>
-</head>
-<h1>USERID: {{user.username}}</h1>
-<h1>NICKNAME: {{profile.nickname}}</h1>
-<h1>E-MAIL: {{profile.email}}</h1>
+    </style> 
+</head>{% endcomment %}
+<div class='mypage-body'>
+    <div class='mypage-header'>• 프로필 편집</div>
+    <div class="row">
+        <div class="col-3">
+            <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
+            {% if store_name %}
+                <div class='mypage-userid'>{{store_name}}</div>
+            {% endif %}
+            <div class='mypage-userid'>{{user.username}}</div>
+        </div>
+        <div class="col">
+            <h2>비밀번호는 변경을 원할 시에만 입력하세요.</h2>
+            <form>
+                <div class='mypage-profile-info'>닉네임 {{profile.nickname}}</div>
+                <div class='mypage-profile-info'>이메일 {{profile.email}}</div>
+                <div class='mypage-profile-info'>
+                    <input class='mypage-profile-input' type='password' name='password1' placeholder='비밀번호 변경'/>
+                </div>
+                <div class='mypage-profile-info'>
+                    <input class='mypage-profile-input' type='password' name='password2' placeholder='비밀번호 확인'/>
+                </div>
+                <input type='submit' class='mypage-submit-btn' value='SAVE' disabled/>
+            </form>
+        </div>
+    </div>
 
-{% if store_name %}
-<h1>STORE: {{store_name}}</h1>
-<h3><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">스탬프 찍어주기!</a></h3>
-    <h3><div id="light" class="white_content">아이디를 입력해주세요 :) <br><br>
-        <form method="GET" action="{% url 'stamppush' %}">  
-            <input name="userid" class="form-control-plaintext"/>
-            <input type="radio" name="count" value="1" id="1"><label for="1">만원이상</label>
-            <input type="radio" name="count" value="2" id="2"><label for="2">2만원이상</label>
-            <input type="radio" name="count" value="3" id="3"><label for="3">3만원이상</label>
-            <input type="submit" value="찍어주기!">
-        </form> <br><br>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"></a></h3></div>
-    <div id="fade" class="black_overlay"></div> <!--스탬프 찍어주기 눌렀다가 그냥 안찍어줄라고 할 때 바깥쪽 누르면 창 꺼지게 해야할듯-->
-{% else %} <!--그냥 boss도 스탬프 모을 수 있도록 할까..?-->
-<h1>스탬프 수: {{stamp}}</h1>
-{% endif %}
+    <div class='mypage-header'>나의 스탬프</div>
+    {% if store_name %}
+    <h3><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">스탬프 찍어주기!</a></h3>
+        <h3><div id="light" class="white_content">아이디를 입력해주세요 :) <br><br>
+            <form method="GET" action="{% url 'stamppush' %}">  
+                <input name="userid" class="form-control-plaintext"/>
+                <input type="radio" name="count" value="1" id="1"><label for="1">만원이상</label>
+                <input type="radio" name="count" value="2" id="2"><label for="2">2만원이상</label>
+                <input type="radio" name="count" value="3" id="3"><label for="3">3만원이상</label>
+                <input type="submit" value="찍어주기!">
+            </form> <br><br>
+        <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"></a></h3></div>
+        <div id="fade" class="black_overlay"></div> <!--스탬프 찍어주기 눌렀다가 그냥 안찍어줄라고 할 때 바깥쪽 누르면 창 꺼지게 해야할듯-->
+    {% else %} <!--그냥 boss도 스탬프 모을 수 있도록 할까..?-->
+    <div class='mypage-stamps'>{{stamp}} 개</div>
+    {% endif %}
 
 
-<h3>스크랩 한 책방</h3>
-{% for scrap in scraps %}
->> <a href="{%url 'storedetail' scrap.store.bookstore_id%}">{{scrap.store}}</a><br>
-{% endfor %}
-<br>
+    <div class='mypage-tab'>
+        <ul class="nav nav-justified nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item nav-item-bookmark">
+            <a class="nav-link active" id="pills-bookmark-tab" data-toggle="pill" href="#pills-bookmark" role="tab" aria-controls="pills-bookmark" aria-selected="true">즐겨찾기</a>
+            </li>
+            {% comment %} {% if store_name %} {% endcomment %}
+                <li class="nav-item nav-item-mypost">
+                    <a class="nav-link" id="pills-mypost-tab" data-toggle="pill" href="#pills-mypost" role="tab" aria-controls="pills-mypost" aria-selected="false">내가 쓴 글</a>
+                </li>
+            {% comment %} {% endif %} {% endcomment %}
+            <li class="nav-item nav-item-mycomment">
+                <a class="nav-link" id="pills-mycomment-tab" data-toggle="pill" href="#pills-mycomment" role="tab" aria-controls="pills-mycomment" aria-selected="false">내가 쓴 댓글</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-bookmark" role="tabpanel" aria-labelledby="pills-bookmark-tab">
+            {% for scrap in scraps %}
+            >> <a href="{%url 'storedetail' scrap.store.bookstore_id%}">{{scrap.store}}</a><br>
+            {% endfor %}
+        </div>
+        <div class="tab-pane fade" id="pills-mypost" role="tabpanel" aria-labelledby="pills-mypost-tab">
+            {% for culture in cultures %}
+                {{culture}}<br/>
+            {% endfor %}
+        </div>
+        <div class="tab-pane fade" id="pills-mycomment" role="tabpanel" aria-labelledby="pills-mycomment-tab">
+            {% for comment in comments %}
+                {{comments}}<br/>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+
+
+
+    {% comment %} <h3>스크랩 한 책방</h3>
+    {% for scrap in scraps %}
+    >> <a href="{%url 'storedetail' scrap.store.bookstore_id%}">{{scrap.store}}</a><br>
+    {% endfor %}
+    <br> {% endcomment %}
+</div>
 {% endblock %}

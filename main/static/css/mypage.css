@@ -1,0 +1,76 @@
+.mypage-body {
+    padding: 0 3rem;
+}
+.mypage-header {
+    font-size: 2.5rem;
+    color: #402719;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+img.mypage-prof-img {
+    border-radius: 50%;
+    width: 200px;
+    margin: 30px 0;
+}
+.mypage-userid {
+    font-size: 2rem;
+    color: #402719;
+    text-align: center;
+}
+.mypage-profile-info {
+    width: 100%;
+    border-bottom: 1px solid #402719;
+    font-size: 2rem;
+    color: #402719;
+    margin-bottom: 1rem;
+}
+.mypage-profile-input {
+    width: 100%;
+}
+.mypage-profile-input {
+    outline: none;
+}
+.mypage-submit-btn {
+    text-align: center;
+    color: white;
+    background-color: #615136;
+    padding: 1.2rem;
+    margin-top: 10px;
+    border-radius: 200px;
+    width: 100%;
+    font-size: 2.5rem;
+    letter-spacing: 1rem;
+    font-weight: lighter;
+}
+.mypage-stamps {
+    text-align: center;
+    font-size: 4rem;
+    margin-bottom: 5rem;
+}
+.mypage-tab {
+    border: 1px solid #615136;
+    border-radius: 40px;
+    height: 40vh;
+    margin: 0 2rem;
+}
+.nav-pills .nav-link{
+    color: #402719;
+}
+.nav-pills .nav-link.active{
+    background-color:#402719;
+}
+.nav-item-bookmark a {
+    font-size: 2rem;
+    border-top-left-radius: 200px !important;
+    border-bottom-left-radius: 200px !important;
+}
+.nav-item-mypost a {
+    font-size: 2rem;
+    border-radius: 0;
+}
+.nav-item-mycomment a {
+    font-size: 2rem;
+    border-top-right-radius: 200px !important;
+    border-bottom-right-radius: 200px !important;
+}
+

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Normalprofile, Bossprofile
 from bookmap.models import BookStore, Scrap, Stamp
+from others.models import Culture, Comment
 from datetime import datetime
 
 # Create your views here.
@@ -24,12 +25,18 @@ def mypage(request):
             store_name = ""
     scraps = Scrap.objects.filter(user=request.user)
     mystamp = profile.stampcount
+    # store = BookStore.objects.get(boss=request.user)
+    # cultures = Culture.objects.filter(store=store)
+    comments = Comment.objects.filter(user=request.user)
     return render(request,'mypage.html', {
                         'scraps':scraps, 
                         'stamp':mystamp, 
                         'user':user, 
                         'profile':profile, 
-                        'store_name':store_name})
+                        'store_name':store_name,
+                        # 'cultures':cultures,
+                        'comments':comments,
+                        })
 
 def stamppush(request):
     #if request.method == 'GET':
