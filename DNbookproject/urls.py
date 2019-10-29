@@ -4,6 +4,7 @@ from django.urls import path, include
 import bookmap.views
 import main.views
 import others.views
+import message.views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -13,4 +14,5 @@ urlpatterns = [
     path('bookmap/', include('bookmap.urls')),
     path('main/', include('main.urls')),
     path('others/', include('others.urls')),
+    path('message/', include('message.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
