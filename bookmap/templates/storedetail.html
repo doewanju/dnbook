@@ -49,7 +49,14 @@
     {% endif %}
 
     {% if store.openhour %}
-        <h2>{{store.openhour}}</a></h2>
+        <h2>{{store.openhour}}</h2>
+    {% endif %}
+
+    {% if introduce %}
+        <h2>책방소개 : {{introduce}}</h2>
+    {% endif %}
+    {% if edit %}
+        <button onClick="location.href='{% url 'edit_intro' store.bookstore_id %}'">수정하기</button>
     {% endif %}
     <br>
   <!--해당서점 지도 표시-->
