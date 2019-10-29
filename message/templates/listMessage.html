@@ -1,28 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-<!--
-    <h3>New Messages: </h3>
-    {% for new in rlist %}
-        {% if not new.isRead %}
-                보낸 이: {{ new.sender }}, 
-                내용: {{ new.content }}
-        {% endif %}
+
+<table class="table">
+    <thead>
+        <tr>
+        <th>보낸이</th>
+        <th>내용</th>
+        <th>날짜</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for new in messages %}
+        <tr>
+        <td><a href="{% url 'chat' new.sender.id %}">{{ new.sender }}</a></td>
+        <td><a href="{%url 'viewMessage' new.id%}">{{ new.summary }}</a></td>
+        <td>{{ new.sentAt}}</td>
+        </tr>
     {% endfor %}
-<br/>
-    <h3>Read Messages: </h3>
-    {% for new in rlist %}
-        {% if new.isRead %}
-        보낸 이: {{ new.sender }},
-        내용: {{ new.content }} <br/>
-        {% endif %}
-    {% endfor %}
-<br/>
-    <h3>Send Messages: </h3>
-    {% for send in slist %}
-        받은 사람: <a href="{%url 'viewMessage' send.id%}">{{send.recipient}}</a>
-        내용: {{ send.content }}<br/>
-    {% endfor %}-->
- 
+    </tbody>
+</table>  
+
 <div class='mypage-tab'>
     <ul class="nav nav-justified nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item nav-item-bookmark">
@@ -37,23 +34,68 @@
     </ul>
     <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-bookmark" role="tabpanel" aria-labelledby="pills-bookmark-tab">
-        {% for new in rlist %}
+        <table class="table">
+            <thead>
+                <tr>
+                <th>보낸이</th>
+                <th>내용</th>
+                <th>날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for new in rlist %}
             {% if not new.isRead %}
-                <h3><a href="{%url 'viewMessage' new.id%}">{{ new.sender }}  |  {{ new.summary }}</a></h3>
+                <tr>
+                <td><a href="{% url 'chat' new.sender.id %}">{{ new.sender }}</a></td>
+                <td><a href="{%url 'viewMessage' new.id%}">{{ new.summary }}</a></td>
+                <td>{{ new.sentAt}}</td>
+                </tr>
             {% endif %}
-        {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>    
     </div>
     <div class="tab-pane fade" id="pills-mypost" role="tabpanel" aria-labelledby="pills-mypost-tab">
-        {% for new in rlist %}
-            {% if new.isRead %}
-                <h3><a href="{%url 'viewMessage' new.id%}">{{ new.sender }}  |  {{ new.summary }}</a></h3>
-            {% endif %}
-        {% endfor %}
+        <table class="table">
+            <thead>
+                <tr>
+                <th>보낸이</th>
+                <th>내용</th>
+                <th>날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for new in rlist %}
+                {% if new.isRead %}
+                    <tr>
+                    <td><a href="{% url 'chat' new.sender.id %}">{{ new.sender }}</a></td>
+                    <td><a href="{%url 'viewMessage' new.id%}">{{ new.summary }}</a></td>
+                    <td>{{ new.sentAt}}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
     <div class="tab-pane fade" id="pills-mycomment" role="tabpanel" aria-labelledby="pills-mycomment-tab">
-        {% for send in slist %}
-            <h3><a href="{%url 'viewMessage' send.id%}">{{ send.recipient }}  |  {{ send.summary }}</a></h3>
-        {% endfor %}
+        <table class="table">
+            <thead>
+                <tr>
+                <th>받는이</th>
+                <th>내용</th>
+                <th>날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for send in slist %}
+                    <tr>
+                    <td>{{ send.recipient }}</td>
+                    <td><a href="{%url 'viewMessage' send.id%}">{{ send.summary }}</a></td>
+                    <td>{{ send.sentAt}}</td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
     </div>
 </div>

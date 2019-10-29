@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>채팅방!</h1>
+
+{% for message in messages %}
+    {% if message.sender != request.user %}
+        <h3>{{ message.sender }}</h3>
+        <h3>{{ message.content }}</h3>
+        <h5>{{ message.sentAt}}</h5>
+    {% else %}
+        <h3 style="text-align:right">{{ message.content|linebreaks }}</h3>
+        <h5 style="text-align:right">{{ message.sentAt}}</h5>
+        {% if message.isRead == False %}
+            <h5 style="text-align:right">*</h5> <!--안읽은것 표시-->
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ form.errors }}
+    {{ form.non_field_errors }}
+    <br/>
+    <input type="submit" value="send"/>
+</form>
+
+{% endblock %}
