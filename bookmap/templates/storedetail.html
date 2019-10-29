@@ -58,7 +58,15 @@
         <h2>책방소개 : {{introduce}}</h2>
     {% endif %}
     {% if edit %}
-        <button onClick="location.href='{% url 'edit_intro' store.bookstore_id %}'">수정하기</button>
+    <div>
+        <details>
+            <summary>책방소개 수정하기</summary>
+            <form action="{% url 'edit_save' store.bookstore_id %}" method="GET">
+                <input name="introduce" type="text" value="">
+                <input type="submit" value="저장하기">
+            </form><br><br>
+        </details>
+    </div>
     {% endif %}
     <br>
   <!--해당서점 지도 표시-->
