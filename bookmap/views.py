@@ -116,7 +116,7 @@ def listsearch(request):
             return render(request,'bookstore.html', {'bookstores' : bookstores})
 
 def mapsearch(request):
-    bookstores = BookStore.objects
+    bookstores = BookStore.objects.all()
     query = request.GET.get('query','')
     if query:
         stype = request.GET['searchtype']
@@ -140,5 +140,5 @@ def mapsearch(request):
             'bsname' : namelist,
             'pklist' : pklist})
 
-
-
+def csstest(request):
+    return render(request,'csstest.html')

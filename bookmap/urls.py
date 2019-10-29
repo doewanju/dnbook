@@ -11,4 +11,5 @@ urlpatterns = [
     path('crawling/<int:bookstore_id>', views.crawling, name='crawling'),
     path('listsearch/', views.listsearch, name='listsearch'),
     path('mapsearch/', views.mapsearch, name='mapsearch'),
+    path('csstest/', views.csstest, name='csstest')
 ]
