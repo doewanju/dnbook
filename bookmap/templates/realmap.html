@@ -20,7 +20,8 @@
             <input type="submit" name="" value="검색!">
             <a href="{%url 'realmap'%}">전체보기</a>
         </form></div>
-        <div id="list" style="overflow:auto;width:100%;height:200px;"><table>
+        <div id="list" style="overflow:auto;width:100%;height:200px;">
+        <table>
             <thead>
                 <tr>
                     <th>이름</th>
@@ -31,9 +32,9 @@
 
             <tbody>
                 {% for store in bs.all %}
-                <tr>
-                    <td id="listname">{{store.name}}</td>
-                    <td id="listaddr">{{store.addr}}</td>
+                <tr onclick="list_click('{{store.addr}}');">
+                    <td>{{store.name}}</td>
+                    <td>{{store.addr}}</td>
                     <td><a href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
                 </tr>
                 {% endfor %}
@@ -112,6 +113,19 @@
             };
         });
     }
+
+    function list_click(addr){
+        map.setMinLevel(4);
+        geocoder.addressSearch(addr,function(result, status){
+            if (status === kakao.maps.services.Status.OK){
+                let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+                let b = new kakao.maps.LatLngBounds();
+                b.extend(coords);
+                map.setBounds(b);
+            };
+        });
+    }
+
     for(let i=0; i< addrArr.length;i++){
         addrStoN(addrArr[i],nameArr[i],pkArr[i]);
     };
