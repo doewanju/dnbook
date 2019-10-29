@@ -1,34 +1,53 @@
-<h1>일반회원 회원가입 페이지</h1>
-{% extends 'base.html' %}
-{% block content %}
-{% if error %}
-{{ error }}
-<br>
-<br>
-{% endif %}
+<!DOCTYPE html>
+<html>
+    {% extends 'base.html' %}
+    {% block content %}
+    {% load staticfiles %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/normal.css' %}">
+    </head>    
+    <body>
+        {% if error %}
+        {{ error }}
+        <br>
+        <br>
+        {% endif %}
+    <div class="normal-all">
+    <h2>• 회원가입 (일반회원)</h2>
 
-<form method="POST" action="{% url 'normal' %}">
-
+    <form method="POST" action="{% url 'normal' %}" class="form">
     {% csrf_token %}
-    ID : 
-    <input name="username" type="text" value="">
-    <br>
-    Password:
-    <input name="password1" type="password" value="">
-    <br>
-    Confirm Password:
-    <input name="password2" type="password" value="">
-    <br>
-    닉네임:
-    <input name="nickname" type="text" value="">
-    <br>
-    Email:
-    <input name="email" type="email" value="">
-    <br>
-    
-    <input class="btn btn-primary" type="submit" value="회원가입하기">
+    <div class="normalbox">
 
+    <label for="inp" class="inp">
+    <input name="username" type="text" id="inp" placeholder="  아이디">
+    </label>
+
+    <label for="inp" class="inp">
+    <input name="password1" type="password" id="inp" placeholder="  비밀번호">
+    </label>
+
+    <label for="inp" class="inp">
+    <input name="password2" type="password" id="inp" placeholder="  비밀번호 확인">
+    </label>
+
+    <label for="inp" class="inp">
+    <input name="nickname" type="text" id="inp" placeholder="  닉네임">
+    </label>
+
+    <label for="inp" class="inp">
+    <input name="email" type="email" id="inp" placeholder="  이메일">
+    </label>
+    
+    </div>
+
+    <div class="s-up">
+    <input class="s-up" type="submit" value="회원가입">
+    </div>
 </form>
 
+</div>
+</body>
 
 {% endblock %}
+</html>
