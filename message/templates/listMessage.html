@@ -1,5 +1,6 @@
-내 쪽지함 
-<br/>
+{% extends 'base.html' %}
+{% block content %}
+<!--
     <h3>New Messages: </h3>
     {% for new in rlist %}
         {% if not new.isRead %}
@@ -20,7 +21,40 @@
     {% for send in slist %}
         받은 사람: <a href="{%url 'viewMessage' send.id%}">{{send.recipient}}</a>
         내용: {{ send.content }}<br/>
-    {% endfor %}
-
-
-   
+    {% endfor %}-->
+ 
+<div class='mypage-tab'>
+    <ul class="nav nav-justified nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item nav-item-bookmark">
+        <a class="nav-link active" id="pills-bookmark-tab" data-toggle="pill" href="#pills-bookmark" role="tab" aria-controls="pills-bookmark" aria-selected="true">안읽은 쪽지</a>
+        </li>
+            <li class="nav-item nav-item-mypost">
+                <a class="nav-link" id="pills-mypost-tab" data-toggle="pill" href="#pills-mypost" role="tab" aria-controls="pills-mypost" aria-selected="false">읽은 쪽지</a>
+            </li>
+        <li class="nav-item nav-item-mycomment">
+            <a class="nav-link" id="pills-mycomment-tab" data-toggle="pill" href="#pills-mycomment" role="tab" aria-controls="pills-mycomment" aria-selected="false">보낸 쪽지</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-bookmark" role="tabpanel" aria-labelledby="pills-bookmark-tab">
+        {% for new in rlist %}
+            {% if not new.isRead %}
+                <h3><a href="{%url 'viewMessage' new.id%}">{{ new.sender }}  |  {{ new.summary }}</a></h3>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="tab-pane fade" id="pills-mypost" role="tabpanel" aria-labelledby="pills-mypost-tab">
+        {% for new in rlist %}
+            {% if new.isRead %}
+                <h3><a href="{%url 'viewMessage' new.id%}">{{ new.sender }}  |  {{ new.summary }}</a></h3>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="tab-pane fade" id="pills-mycomment" role="tabpanel" aria-labelledby="pills-mycomment-tab">
+        {% for send in slist %}
+            <h3><a href="{%url 'viewMessage' send.id%}">{{ send.recipient }}  |  {{ send.summary }}</a></h3>
+        {% endfor %}
+    </div>
+    </div>
+</div>
+{% endblock %}
