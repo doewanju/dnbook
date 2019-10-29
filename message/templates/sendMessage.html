@@ -1,0 +1,8 @@
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ form.errors }}
+    {{ form.non_field_errors }}
+    <br/>
+    <input type="submit" value="send"/>
+</form>

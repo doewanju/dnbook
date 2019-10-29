@@ -1,0 +1,26 @@
+내 쪽지함 
+<br/>
+    <h3>New Messages: </h3>
+    {% for new in rlist %}
+        {% if not new.isRead %}
+                보낸 이: {{ new.sender }}, 
+                내용: {{ new.content }}
+        {% endif %}
+    {% endfor %}
+<br/>
+    <h3>Read Messages: </h3>
+    {% for new in rlist %}
+        {% if new.isRead %}
+        보낸 이: {{ new.sender }},
+        내용: {{ new.content }} <br/>
+        {% endif %}
+    {% endfor %}
+<br/>
+    <h3>Send Messages: </h3>
+    {% for send in slist %}
+        받은 사람: <a href="{%url 'viewMessage' send.id%}">{{send.recipient}}</a>
+        내용: {{ send.content }}<br/>
+    {% endfor %}
+
+
+   
