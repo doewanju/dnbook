@@ -46,7 +46,14 @@
     {% endif %}
 
     {% if store.openhour %}
-        <h2>{{store.openhour}}</a></h2>
+        <h2>{{store.openhour}}</h2>
+    {% endif %}
+
+    {% if introduce %}
+        <h2>책방소개 : {{introduce}}</h2>
+    {% endif %}
+    {% if edit %}
+        <input type="submit" value="수정하기">
     {% endif %}
     <br>
   <!--해당서점 지도 표시-->

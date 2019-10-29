@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
+from django.contrib.auth.models import User
 from .models import BookStore, Scrap, Review
+from main.models import Bossprofile
 from django.core import serializers
 from .review import reviewFuc
 import simplejson
@@ -13,6 +15,7 @@ def bookstore(request):
     return render(request,'bookstore.html', {'bookstores' : bookstores})
 
 def detail(request, bookstore_id):
+    introduce = None
     store_detail = get_object_or_404(BookStore, pk = bookstore_id)
     scrap = Scrap.objects.filter(store=store_detail)
     rev = " "
@@ -24,13 +27,28 @@ def detail(request, bookstore_id):
         star_avg = '%.1f' %(tot/(store_detail.review_set.all().count()))
     else:
         star_avg = 0
-    
+    if store_detail.boss:
+        boss = store_detail.boss
+        introduce = Bossprofile.objects.get(user=boss).introduce
+        if request.user.is_authenticated:
+            try:
+                login_user = Bossprofile.objects.get(user=request.user).user
+                if login_user == boss:
+                    edit = True
+                else:
+                    edit = None
+            except:
+                edit = None
+        else:
+            edit = None
+    else:
+        edit = None
     if request.user.is_authenticated:
         store_scrap = scrap.filter(user=request.user)
         form = ReviewForm()
-        return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'scrap' : store_scrap, 'form':form, 'star_avg':star_avg})
+        return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'scrap' : store_scrap, 'form':form, 'star_avg':star_avg, 'introduce':introduce, 'edit':edit,})
     else:
-        return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'star_avg':star_avg})
+        return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'star_avg':star_avg, 'introduce':introduce, 'edit':edit, })
       
 def realmap(request):
     bookstores = BookStore.objects.all()
