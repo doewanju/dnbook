@@ -12,6 +12,5 @@ urlpatterns = [
     path('listsearch/', views.listsearch, name='listsearch'),
     path('mapsearch/', views.mapsearch, name='mapsearch'),
     path('csstest/', views.csstest, name='csstest'),
-    path('edit_intro/<int:bookstore_id>',views.edit_intro, name='edit_intro'),
     path('edit_save/<int:bookstore_id>',views.edit_save, name='edit_save'),
 ]
