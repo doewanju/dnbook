@@ -1,20 +1,66 @@
-{% extends 'base.html' %}
-{% block content %}
-{% if error %}
-{{ error }}
-<br>
-<br>
-{% endif %}
+<!DOCTYPE html>
+<html>
+    {% extends 'base.html' %}
+    {% block content %}
+    {% load staticfiles %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/boss.css' %}">
+    </head>    
+    <body>
+        {% if error %}
+        {{ error }}
+        <br>
+        <br>
+        {% endif %}
 
-<form method="POST" action="{% url 'boss' %}">
-
+    <div class="boss-all">
+    <h2>• 회원가입 (책방 주인)</h2>
+    <div class="boss-box">
+    <form method="POST" action="{% url 'boss' %}">
     {% csrf_token %}
-    책방 이름:
     {% if bsname %}
-    <input name="storename" type="text" value="{{bsname}}" readonly/>
+    <label for="inp" class="inp">
+    <input name="storename" type="text" value="  {{bsname}}" class="bsname" readonly/>
+    </label>
+    {% else %}
+    <a href="{% url 'bossbook' %}">내 책방 찾기</a>
     {% endif %}
+
+
+    <label for="inp" class="inp">
+    <input name="username" type="text" id="inp" placeholder="  아이디">
+    </label>
+
+    <label for="inp" class="inp">
+    <input name="password1" type="password" id="inp" placeholder="  비밀번호">
+    </label>
+
+    <label for="inp" class="inp">
+    <input name="password2" type="password" id="inp" placeholder="  비밀번호 확인">
+    </label>
+
+    <label for="inp" class="inp">
+    <input name="nickname" type="text" id="inp" placeholder="  닉네임">
+    </label>
+
+    <label for="inp" class="inp">
+    <input name="email" type="email" id="inp" placeholder="  이메일">
+    </label>
     
-    
+    <label for="inp" class="inp">
+    <input name="introduce" type="text" id="inp" placeholder="  책방소개">
+    </label>
+
+    <div class="s-up">
+    <input class="s-up" type="submit" value="회원가입">
+    </div>
+</form>
+</div>
+</div>
+</body>
+
+{% endblock %}
+</html>
     <!--
         <p><script type="text/js">
     <%= request.getParameter("storename1") %>
@@ -23,36 +69,8 @@
     <script>
         $("#bn").html(<h3>dmdkdk</h3>);
     -->
-    
-    <br>
     <!--내 책방을 책방테이블에서 검색하고 내 책방이름을 누르면 그 값이 칸에 저장되도록
     선택하기 누르면 선택하시겠습니까? 검색은 쿼리셋,, input type search GET 
     책방 이름에 a태그를 걸어서 id를 가지고 다시 돌아온다
     검색하는 페이지/ 검색 결과 페이지
     (1)렌더링 해주는 페이지 (2)postid처럼 url설정 필요 (3)새로만든거 redirect  -->
-    ID : 
-    <input name="username" type="text" value="">
-    <br>
-    Password:
-    <input name="password1" type="password" value="">
-    <br>
-    Confirm Password:
-    <input name="password2" type="password" value="">
-    <br>
-    닉네임:
-    <input name="nickname" type="text" value="">
-    <br>
-    Email:
-    <input name="email" type="email" value="">
-    <br>
-    
-    책방소개:
-    <input name="introduce" type="text" value="">
-    <br>
-    
-    <input class="btn btn-primary" type="submit" value="Sign up!">
-
-</form>
-
-
-{% endblock %}

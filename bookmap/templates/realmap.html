@@ -7,6 +7,8 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/realmap.css' %}">
     </head>
     <body>
+
+
         <form action="{% url 'mapsearch' %}" method="get" id="search-act">
             <input type="search" class="search-box" name="query">
             <img src="{% static 'img/search.png' %}" class="search-mark">
@@ -15,13 +17,12 @@
             <label for="f-option">이름검색</label>
             <input type='radio' name="searchtype" value='searchaddr' id="s-option">
             <label for="s-option">주소검색</label>
-            <!--
+            
             <div class="check"><div class="inside"></div></div>
             
             <div class="check"></div>
             </div>
-             <input type="submit" name="" value="검색!"> -->
-
+             <input type="submit" name="" value="검색!"> 
             <a href="{%url 'realmap'%}">전체보기</a>
         </form>
         <script>

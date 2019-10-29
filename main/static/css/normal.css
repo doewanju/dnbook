@@ -1,0 +1,81 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+.s-up{
+    width: 800px;
+    border:none;
+    height: 180px;
+    font-size: 55px;
+    background: #615136;
+    border-radius: 80px;
+    text-align: center;
+    color: white;
+    line-height: 180px;
+    display: block;
+    font-family: 'YiSunShinDotumM';
+}
+.normal-all{
+    width: 90%;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+h2{
+    font-family: 'YiSunShinDotumM';
+    font-size: 40px;
+    letter-spacing: 0.2rem;
+}
+.form{
+    width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 100px;
+}
+.inp {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.inp .label {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    font-family: 'BBTreeGL';
+    font-size: 40px;
+    color: #615136;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+.inp .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    background: #615136;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+.inp input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    /* padding-top: 80px;
+    padding-bottom: 50px; */
+    height: 80px;
+    font-family: 'YiSunShinDotumM';
+    font-size: 50px;
+    border-bottom: 4px solid  #EBDDCA;
+    background: none;
+    border-radius: 0;
+    color: #615136;
+    transition: all 0.15s ease;
+    margin-bottom: 50px;
+    font-weight: 70;
+}
+.inp input::placeholder{
+    color: rgb(224, 202, 171);
+    font-weight: 70;
+}

@@ -1,7 +1,6 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 
-
 body{
     background-image: url("../images/background_login.png");
     background-repeat: no-repeat;
@@ -9,6 +8,7 @@ body{
     background-position: center;
     background-position-y: 185px;
 }
+
 h2{
     font-family: 'YiSunShinDotumM';
     font-size: 50px;
@@ -32,7 +32,7 @@ h2{
     left: 0;
     font-family: 'BBTreeGL';
     font-size: 40px;
-    color: #DED2C0;
+    color:  #EBDDCA;
     transform-origin: 0 0;
     transition: all 0.2s ease;
 }
