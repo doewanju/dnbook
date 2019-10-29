@@ -4,5 +4,5 @@ from . import views
 urlpatterns = [
     path('listmessage/', views.listMessage, name='listMessage'),
     path('detail/<int:message_id>', views.viewMessage, name='viewMessage'),
-    path('send', views.sendMessage, name='sendMessage'),
+    path('send/<int:user_id>', views.sendMessage, name='sendMessage'),
 ]
