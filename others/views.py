@@ -1,10 +1,22 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Culture, Comment
-from .forms import CommentForm
+from bookmap.models import BookStore
+from main.models import Bossprofile, Normalprofile
+from .forms import CommentForm, CultureForm
 # Create your views here.
 def board(request):
-    cultures=Culture.objects
-    return render(request, 'board.html', {'cultures':cultures})
+    cultures=Culture.objects.order_by('-write_date')
+    key = False
+    user = request.user
+    if user.is_authenticated:
+        try:
+            profile = Bossprofile.objects.get(user=request.user)
+            key = True
+        except Bossprofile.DoesNotExist:
+            key = False
+        return render(request, 'board.html', {'cultures':cultures, 'key':key})
+    else:
+        return render(request, 'board.html', {'cultures':cultures, 'key':key})
 
 def detail(request, culture_id):
     culture_detail = get_object_or_404(Culture, pk = culture_id)
@@ -39,3 +51,23 @@ def commentdelete(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()
     return redirect('culturedetail', culture_id=comment.culture.pk)
+
+def new(request):
+    return render(request, 'boardnew.html')
+
+def boardcreate(request):
+    if request.method=='POST':
+        form = CultureForm(request.POST, request.FILES)
+        storename = request.POST['storename']
+        bookstore = BookStore.objects.get(name=storename)
+        if form.is_valid(): 
+            post = form.save(commit=False)
+            post.store = bookstore
+            post.save()
+            return redirect('culturedetail', culture_id=post.pk)
+        else:
+            return redirect('board')
+    else:
+        form = CultureForm()
+        storename = BookStore.objects.get(boss=request.user)
+        return render(request, 'boardnew.html', {'form':form, 'storename':storename})

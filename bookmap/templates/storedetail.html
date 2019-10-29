@@ -36,17 +36,20 @@
     <h2>전화번호 : {{store.phone_number}}</h2>
     
     {% if store.site %}
-    <h2>홈페이지 : <a href={{store.site}}>{{store.site}}</a></h2>
+        {% if 'http' in store.site %}
+            <h2>홈페이지 : <a href="{{store.site}}">{{store.site}}</a></h2>
+        {% else %}
+            <h2>홈페이지 : <a href="http://{{store.site}}">{{store.site}}</a></h2>
+        {% endif %}
     {% else %}
-    <h2>홈페이지 : 없음</h2>
+        <h2>홈페이지 : 없음</h2>
     {% endif %}
 
     {% if store.openhour %}
-    <h2>{{store.openhour}}</a></h2>
+        <h2>{{store.openhour}}</a></h2>
     {% endif %}
     <br>
   <!--해당서점 지도 표시-->
-
     <div id="map" style="width:50%;height:300px;position:relative;z-index:-1;"></div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
     <script type="text/javascript">
@@ -79,6 +82,7 @@
         });
     }
     addrStoN(addr,name);
+    
     </script>
     
 <br>

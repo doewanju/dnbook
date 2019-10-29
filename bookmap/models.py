@@ -13,7 +13,6 @@ class BookStore(models.Model):
     phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=15, null=True)
     site = models.URLField(null=True)
     img = models.ImageField(upload_to='store/', null=True)
-    like_count = models.PositiveIntegerField(default=0)
     email = models.EmailField(null=True)
     openhour = models.TextField(null=True)
     boss = models.ForeignKey(User, null=True, on_delete=models.CASCADE) #보스 프로필 데려와야하지않으까..?

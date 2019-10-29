@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Normalprofile, Bossprofile
 from bookmap.models import BookStore, Scrap, Stamp
+from others.models import Culture, Comment
+from datetime import datetime
+
 # Create your views here.
 
 
@@ -22,12 +25,18 @@ def mypage(request):
             store_name = ""
     scraps = Scrap.objects.filter(user=request.user)
     mystamp = profile.stampcount
+    # store = BookStore.objects.get(boss=request.user)
+    # cultures = Culture.objects.filter(store=store)
+    comments = Comment.objects.filter(user=request.user)
     return render(request,'mypage.html', {
                         'scraps':scraps, 
                         'stamp':mystamp, 
                         'user':user, 
                         'profile':profile, 
-                        'store_name':store_name})
+                        'store_name':store_name,
+                        # 'cultures':cultures,
+                        'comments':comments,
+                        })
 
 def stamppush(request):
     #if request.method == 'GET':
@@ -122,40 +131,79 @@ def bossbook(request):
     bookstores = BookStore.objects
     return render(request,'bossbook.html', {'bookstores':bookstores})
 
+def get_nc(request,tf):
+    stamp = Stamp.objects.all()
+    stamp_month=[]
+    stamp_nc=[]
+    stamp_idx=[]
+    result={}
+    for s in stamp:
+        d = str(s.created_at)
+        d=d.split()[0]
+        date = datetime.strptime(d, "%Y-%m-%d")
+        stamp_month.append(date.month)
+        stamp_nc.append([str(s.user),int(s.count)])
+    today = datetime.today().month
+    for i,m in enumerate(stamp_month):
+        if m == today:
+            stamp_idx.append(i)
+    if tf == True:
+        for i in stamp_idx:
+            name = stamp_nc[i][0]
+            count = stamp_nc[i][1]
+            if name in result:
+                result[name] += count
+            else:
+                result[name] = count
+    else:
+        for s in stamp_nc:
+            name = s[0]
+            count = s[1]
+            if name in result:
+                result[name] += count
+            else:
+                result[name] = count
+    return result
+
 def ranking(request):
-    users = Normalprofile.objects.all()
-    name = []
-    stamp = []
-    for i in users:
-        name.append(i.nickname)
-        stamp.append(i.stampcount())
-    first = second = third = -1
-    for i in stamp:
-        if first <= i:
-            third = second
-            second = first
-            first = i
-        elif second <= i:
-            third = second
-            second = i
-        elif third <= i:
-            third = i
-    if third != -1:
-        idx = stamp.index(third)
-        third = Normalprofile.objects.filter(nickname=name[idx])
-        del name[idx]
-        del stamp[idx]
-    if second != -1:
-        idx = stamp.index(second)
-        second = Normalprofile.objects.filter(nickname=name[idx])
-        del name[idx]
-        del stamp[idx]
-    if first != -1:
-        idx = stamp.index(first)
-        first = Normalprofile.objects.filter(nickname=name[idx])
-    
-    #temp2 = reversed(sorted(list(temp.values())))
-    return render(request,'ranking.html', {'first':first, 'second':second, 'third':third})
+    total = get_nc(request,False)
+    month = get_nc(request,True)
+    total_n=[]
+    total_c=[]
+    month_n=[]
+    month_c=[]
+    rank=[total, month]
+    name=[total_n, month_n]
+    count=[total_c, month_c]
+    res_first={}
+    res_second={}
+    res_third={}
+    key_arr=['total_nickname','month_nickname','total_stamp','month_stamp']
+
+    for idx,r in enumerate(rank):
+        for i in r.keys():
+            name[idx].append(i)
+            count[idx].append(r.get(i))
+
+    for idx,cnt in enumerate(count):
+        first, second, third = [-1,'없음'], [-1,'없음'], [-1,'없음']
+        for i,c in enumerate(cnt):
+            if first[0] <= c:
+                third = second
+                second = first
+                first = [c,name[idx][i]]
+            elif second[0] <= c:
+                third = second
+                second = [c,name[idx][i]]
+            elif third[0] <= c:
+                third = [c,name[idx][i]]
+        res_first[key_arr[idx]]=first[1]
+        res_first[key_arr[idx+2]]=first[0]
+        res_second[key_arr[idx]]=second[1]
+        res_second[key_arr[idx+2]]=second[0]
+        res_third[key_arr[idx]]=third[1]
+        res_third[key_arr[idx+2]]=third[0]
+    return render(request,'ranking.html', {'first':res_first, 'second':res_second, 'third':res_third})
 
 def info(request):
     return render(request,'info.html')
