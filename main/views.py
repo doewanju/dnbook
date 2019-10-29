@@ -19,34 +19,63 @@ def mypage(request):
     else:
         try:
             profile = Bossprofile.objects.get(user=request.user)
-            store_name = BookStore.objects.get(boss=request.user).name
+            store = BookStore.objects.get(boss=request.user)
+            store_name = store.name
+            mystamp = None
+            level = None
+            next_level = None
+            more = None
+            cultures = Culture.objects.filter(store=store)
         except Bossprofile.DoesNotExist:
             profile = Normalprofile.objects.get(user=request.user)
-            store_name = ""
+            store_name = None
+            cultures = None
+            mystamp = profile.stampcount()
+            level = profile.level
+            if level==3:
+                next_level = None
+            else:
+                next_level = level + 1
+            more = level*10-mystamp
     scraps = Scrap.objects.filter(user=request.user)
-    mystamp = profile.stampcount
-    # store = BookStore.objects.get(boss=request.user)
-    # cultures = Culture.objects.filter(store=store)
     comments = Comment.objects.filter(user=request.user)
     return render(request,'mypage.html', {
                         'scraps':scraps, 
-                        'stamp':mystamp, 
-                        'user':user, 
+                        'stamp':mystamp,
+                        'level':level,
+                        'next':next_level,
+                        'more':more,
+                        'cultures':cultures,
+                        'comments':comments,
+                        'user':user,
                         'profile':profile, 
                         'store_name':store_name,
-                        # 'cultures':cultures,
                         'comments':comments,
                         })
 
 def stamppush(request):
-    #if request.method == 'GET':
     userid = request.GET['userid']
-    user = User.objects.get(username=userid)
+    try:
+        user = User.objects.get(username=userid)
+        profile = Normalprofile.objects.get(user=user)
+    except:
+        error=True
+        return render(request,'result.html',{'error':error,})
     count = request.GET['count']
     store = BookStore.objects.get(boss=request.user)
     stamp = Stamp(user=user, store=store, count=count)
     stamp.save()
-    return redirect('mypage')
+    s_count = profile.stampcount()
+    if s_count >= 20 :
+        level = 3
+    elif s_count >= 10 :
+        level = 2
+    else:
+        level = 1
+    profile.level = level
+    profile.save()
+    error=False
+    return render(request,'result.html',{'error':error,})
 
 def signup(request):
     return render(request,'signup.html')
@@ -142,7 +171,8 @@ def get_nc(request,tf):
         d=d.split()[0]
         date = datetime.strptime(d, "%Y-%m-%d")
         stamp_month.append(date.month)
-        stamp_nc.append([str(s.user),int(s.count)])
+        profile = Normalprofile.objects.get(user=s.user)
+        stamp_nc.append([str(profile.nickname),int(s.count)])
     today = datetime.today().month
     for i,m in enumerate(stamp_month):
         if m == today:
