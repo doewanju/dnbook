@@ -30,12 +30,22 @@
     </style>
 </head>
     <div id="light" class="white_content"><br>
-    {% if error %}
-    <h3>존재하지 않는 회원이거나 일반회원이 아닙니다.</h3> <br><br>
+    {% if edit%}
+        <h3>책방소개 수정하기</h3>
+            <form action="{% url 'edit_save' id %}" method="GET">
+                <input name="introduce" type="text" value="">
+                <input type="submit" value="저장하기">
+            </form><br><br>
+        <a href="{% url 'storedetail' id%}">돌아가기</a>
     {% else %}
-    <h3>스탬프가 성공적으로 저장되었습니다.</h3> <br><br>
+        {% if error %}
+        <h3>존재하지 않는 회원이거나 일반회원이 아닙니다.</h3> <br><br>
+        {% else %}
+        <h3>스탬프가 성공적으로 저장되었습니다.</h3> <br><br>
+        {% endif %}
+        <a href="{% url 'mypage' %}">돌아가기</a>
     {% endif %}
-    <a href="{% url 'mypage' %}">돌아가기</a></div>
+    </div>
     <div id="fade" class="black_overlay"></div>
 
 {% endblock %}
