@@ -2,101 +2,20 @@
 {% block content %}
 
 <table class="table">
-    <thead>
-        <tr>
-        <th>보낸이</th>
-        <th>내용</th>
-        <th>날짜</th>
-        </tr>
-    </thead>
     <tbody>
-    {% for new in messages %}
-        <tr>
-        <td><a href="{% url 'chat' new.sender.id %}">{{ new.sender }}</a></td>
-        <td><a href="{%url 'viewMessage' new.id%}">{{ new.summary }}</a></td>
-        <td>{{ new.sentAt}}</td>
-        </tr>
+    {% for message in test %}
+    <tr>
+        {% if message.sender == request.user %}
+            <td><a href="{% url 'chat' message.recipient.id %}">{{ message.recipient.username }}</a></td>
+            <td>{{message.summary}}</td>
+            <td>{{message.sentAt}}</td>
+        {% else %}
+            <td><a href="{% url 'chat' message.sender.id %}">{{ message.sender.username }}</a></td>
+            <td>{% if message.isRead == False %}안읽음{% endif %}{{message.summary}}</td>
+            <td>{{message.sentAt}}</td>
+        {% endif %}
+    </tr>
     {% endfor %}
     </tbody>
 </table>  
-
-<div class='mypage-tab'>
-    <ul class="nav nav-justified nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item nav-item-bookmark">
-        <a class="nav-link active" id="pills-bookmark-tab" data-toggle="pill" href="#pills-bookmark" role="tab" aria-controls="pills-bookmark" aria-selected="true">안읽은 쪽지</a>
-        </li>
-            <li class="nav-item nav-item-mypost">
-                <a class="nav-link" id="pills-mypost-tab" data-toggle="pill" href="#pills-mypost" role="tab" aria-controls="pills-mypost" aria-selected="false">읽은 쪽지</a>
-            </li>
-        <li class="nav-item nav-item-mycomment">
-            <a class="nav-link" id="pills-mycomment-tab" data-toggle="pill" href="#pills-mycomment" role="tab" aria-controls="pills-mycomment" aria-selected="false">보낸 쪽지</a>
-        </li>
-    </ul>
-    <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-bookmark" role="tabpanel" aria-labelledby="pills-bookmark-tab">
-        <table class="table">
-            <thead>
-                <tr>
-                <th>보낸이</th>
-                <th>내용</th>
-                <th>날짜</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for new in rlist %}
-            {% if not new.isRead %}
-                <tr>
-                <td><a href="{% url 'chat' new.sender.id %}">{{ new.sender }}</a></td>
-                <td><a href="{%url 'viewMessage' new.id%}">{{ new.summary }}</a></td>
-                <td>{{ new.sentAt}}</td>
-                </tr>
-            {% endif %}
-            {% endfor %}
-            </tbody>
-        </table>    
-    </div>
-    <div class="tab-pane fade" id="pills-mypost" role="tabpanel" aria-labelledby="pills-mypost-tab">
-        <table class="table">
-            <thead>
-                <tr>
-                <th>보낸이</th>
-                <th>내용</th>
-                <th>날짜</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for new in rlist %}
-                {% if new.isRead %}
-                    <tr>
-                    <td><a href="{% url 'chat' new.sender.id %}">{{ new.sender }}</a></td>
-                    <td><a href="{%url 'viewMessage' new.id%}">{{ new.summary }}</a></td>
-                    <td>{{ new.sentAt}}</td>
-                    </tr>
-                {% endif %}
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <div class="tab-pane fade" id="pills-mycomment" role="tabpanel" aria-labelledby="pills-mycomment-tab">
-        <table class="table">
-            <thead>
-                <tr>
-                <th>받는이</th>
-                <th>내용</th>
-                <th>날짜</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for send in slist %}
-                    <tr>
-                    <td>{{ send.recipient }}</td>
-                    <td><a href="{%url 'viewMessage' send.id%}">{{ send.summary }}</a></td>
-                    <td>{{ send.sentAt}}</td>
-                    </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    </div>
-</div>
 {% endblock %}
