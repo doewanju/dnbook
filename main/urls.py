@@ -13,4 +13,5 @@ urlpatterns = [
     path('ranking/', views.ranking, name='ranking'),
     path('info/', views.info, name='info'),
     path('stamppush/', views.stamppush, name='stamppush'),
+    path('del_user/', views.del_user, name='del_user'),
 ]

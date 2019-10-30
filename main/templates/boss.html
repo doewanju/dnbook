@@ -20,7 +20,7 @@
     {% csrf_token %}
     {% if bsname %}
     <label for="inp" class="inp">
-    <input name="storename" type="text" value="  {{bsname}}" class="bsname" readonly/>
+    <input name="storename" type="text" value="{{bsname}}" class="bsname" readonly/>
     </label>
     {% else %}
     <a href="{% url 'bossbook' %}">내 책방 찾기</a>

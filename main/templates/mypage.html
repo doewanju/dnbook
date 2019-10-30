@@ -120,4 +120,15 @@
     {% endfor %}
     <br> {% endcomment %}
 </div>
+
+<button onclick="del_user();">탈퇴하기</button>
+<script type="text/javascript">
+    function del_user(){
+        let tf = confirm("정말로 탈퇴하시겠습니까?");
+        if (tf === true){
+            location.href="{%url 'del_user' %}";
+            alert("성공적으로 탈퇴되었습니다.");
+        };
+    };
+</script>
 {% endblock %}
