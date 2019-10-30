@@ -27,6 +27,25 @@ def sendMessage(request, user_id):
 
 def listMessage(request):
     messages = Message.objects.filter(Q(recipient=request.user) | Q(sender=request.user)).order_by('-sentAt')
+    testlist = []
+    for who in messages:
+        if who.recipient == request.user:
+            if who.sender not in testlist:
+                testlist.append(who.sender)
+        else:
+            if who.recipient not in testlist:
+                testlist.append(who.recipient)
+
+    test2 = []   
+    for i in testlist:
+        q = Q()
+        q.add(Q(recipient=request.user) & Q(sender=i), q.OR)
+        q.add(Q(recipient=i) & Q(sender=request.user), q.OR)
+        x = Message.objects.filter(q).order_by('-sentAt')[0]
+        test2.append(x)
+
+    
+    
 
     receivedList = Message.objects.filter(recipient=request.user) #나한테 보낸 쪽지
     
@@ -35,7 +54,7 @@ def listMessage(request):
     #    testlist.append(Message.objects.filter(recipient=request.user, sender=who).order_by('-sentAt')[0])
 
     sentList = Message.objects.filter(sender=request.user) #내가 보낸 쪽지
-    return render(request, 'listMessage.html', {'rlist':receivedList, 'slist':sentList, 'messages':messages})
+    return render(request, 'listMessage.html', {'test':test2, 'rlist':receivedList, 'slist':sentList, 'messages':messages})
 
 def viewMessage(request, message_id):
     if not request.user.is_authenticated:
