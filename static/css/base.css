@@ -4,7 +4,7 @@
 @font-face { font-family: 'SangSangFlowerRoad'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/SangSangFlowerRoad.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 header nav {
-  background-color: #DED2C0;
+  background-color: #EBDDCA;
   position: fixed;
   z-index:1000;
   top: 0;
@@ -32,12 +32,12 @@ header nav ul {
     list-style-type: none;
     position: absolute;
     z-index:999;
-    left: 40%;
+    left: 45%;
+    text-align:center;
     transition: all 0.5s ease-in-out;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
 }
-
 header nav ul li {
   -webkit-transform: translateY(50px);
           transform: translateY(50px);
@@ -51,20 +51,25 @@ header nav ul li a {
   color: #402719;
   transition: all 0.2s ease-in-out;
 }
+header nav ul li a:hover {
+  text-decoration: none;
+  color: #402719;
+  background-color: white;
+  border-radius: 200px;
+  width: 500px;
+  
+} 
 .signbox{
     list-style-type: none;
     position: absolute;
-    left: 40%;
+    left: 35%;
 }
 .signbox a{
     font-family: 'BBTreeGL';
     font-size: 30px;
     color: #402719;
 }
-/* header nav ul li a:hover {
-  text-decoration: none;
-  color: white;
-} */
+
 .toggle-btn {
   display: block;
   position: fixed;
@@ -89,7 +94,7 @@ header nav ul li a {
   z-index: 1;
 }
 #toggle:checked ~ nav ul.items {
-    top: 350px;
+    top: 250px;
 }
 #toggle:checked ~ nav ul li {
   -webkit-transform: translateY(0px);
@@ -100,11 +105,6 @@ header nav ul li a {
   width: 550px;
   padding-left:3rem;
 }
-/* #toggle:checked ~ nav ul li:hover {
-    width: 550px;
-    background-color: white;
-    border-radius: 100px;
-} */
 #toggle:checked ~ nav ul li:nth-child(1) {
   transition: all 0.3s cubic-bezier(0.6, 0, 0.8, 1.5) 0.1s;
 }
@@ -148,7 +148,7 @@ header nav ul li a {
 .nav.top-nav {
     /* width: 100%; */
     height: 130px;
-    background-color: #DED2C0;
+    background-color: #EBDDCA;
     color: #402719;
     text-align:center;
     margin-bottom: 10px;
