@@ -237,3 +237,8 @@ def ranking(request):
 
 def info(request):
     return render(request,'info.html')
+
+def del_user(request):
+    request.user.delete()
+    auth.logout(request)
+    return render(request,'home.html')
