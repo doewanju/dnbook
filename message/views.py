@@ -18,13 +18,15 @@ def listMessage(request):
         else:
             if who.recipient not in testlist:
                 testlist.append(who.recipient)
-    test2 = []   
+    
+    test2 = []  
     for i in testlist:
         q = Q()
         q.add(Q(recipient=request.user) & Q(sender=i), q.OR)
         q.add(Q(recipient=i) & Q(sender=request.user), q.OR)
         x = Message.objects.filter(q).order_by('-sentAt')[0]
         test2.append(x)
+
     return render(request, 'listMessage.html', {'test':test2})
 
 
