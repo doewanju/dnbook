@@ -126,7 +126,7 @@ def boss(request):
                 bossprofile = Bossprofile(user=user, nickname=nickname, email=email, introduce=introduce)
                 bossprofile.save()
                 #선택한 책방 이름에 맞는 책방모델에 >>>책방모델.add(bossprofile), >>>책방모델.save()
-                storename = request.POST['storename']
+                storename = request.POST['storename'].strip()
                 bookstore = BookStore.objects.get(name=storename)
                 bookstore.boss=User.objects.get(username=user)
                 bookstore.save()
