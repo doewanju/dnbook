@@ -14,6 +14,12 @@
 {% if key %}
 <a href="{% url 'boardcreate' %}">새글작성</a>
 {% endif %}
+
+<form action="{% url 'boardsearch' %}" method ="get">
+    <input type="search" name="query">
+    <input type="submit" name="" value="검색!">
+</form>
+
 <table class="table">
     <thead>
         <tr>

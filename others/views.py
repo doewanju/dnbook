@@ -7,16 +7,13 @@ from .forms import CommentForm, CultureForm
 def board(request):
     cultures=Culture.objects.order_by('-write_date')
     key = False
-    user = request.user
-    if user.is_authenticated:
+    if request.user.is_authenticated:
         try:
-            profile = Bossprofile.objects.get(user=request.user)
+            Bossprofile.objects.get(user=request.user)
             key = True
         except Bossprofile.DoesNotExist:
             key = False
-        return render(request, 'board.html', {'cultures':cultures, 'key':key})
-    else:
-        return render(request, 'board.html', {'cultures':cultures, 'key':key})
+    return render(request, 'board.html', {'cultures':cultures, 'key':key})
 
 def detail(request, culture_id):
     culture_detail = get_object_or_404(Culture, pk = culture_id)
@@ -71,3 +68,19 @@ def boardcreate(request):
         form = CultureForm()
         storename = BookStore.objects.get(boss=request.user)
         return render(request, 'boardnew.html', {'form':form, 'storename':storename})
+
+
+def boardsearch(request):
+    key = False
+    if request.user.is_authenticated:
+        try:
+            profile = Bossprofile.objects.get(user=request.user)
+            key = True
+        except Bossprofile.DoesNotExist:
+            key = False
+        
+    query = request.GET.get('query','')
+
+    if query:
+        culture = Culture.objects.filter(title__contains=query)
+    return render(request, 'board.html', {'cultures':culture, 'key':key})
