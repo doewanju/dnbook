@@ -1,76 +1,128 @@
-.mypage-body {
-    padding: 0 3rem;
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
+
+.title_mypage{
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 25px;
+    font-family: 'YiSunShinDotumM'
 }
-.mypage-header {
-    font-size: 2.5rem;
-    color: #402719;
-    font-weight: bold;
-    margin-bottom: 1rem;
+.ment{
+    margin-left: 40px;
+}
+.square{
+    float: left;
+    width: 10px;
+    height: 60px;
+    background-color: #615136;
+}
+.editprofile{
+    padding: 0 50px;
 }
 img.mypage-prof-img {
     border-radius: 50%;
     width: 200px;
-    margin: 30px 0;
+    margin: 30px 0px;
 }
 .mypage-userid {
+    font-family: 'YiSunShinDotumM';
     font-size: 2rem;
     color: #402719;
     text-align: center;
 }
+.infobody{
+    padding: 0 40px;
+}
 .mypage-profile-info {
     width: 100%;
     border-bottom: 1px solid #402719;
+    font-family: 'BBTreeGL';
     font-size: 2rem;
     color: #402719;
     margin-bottom: 1rem;
 }
 .mypage-profile-input {
     width: 100%;
-}
-.mypage-profile-input {
     outline: none;
 }
 .mypage-submit-btn {
     text-align: center;
     color: white;
     background-color: #615136;
-    padding: 1.2rem;
+    padding: 1rem;
     margin-top: 10px;
     border-radius: 200px;
     width: 100%;
+    font-family: 'BBTreeGL';
     font-size: 2.5rem;
-    letter-spacing: 1rem;
-    font-weight: lighter;
+    letter-spacing: 2rem;
 }
-.mypage-stamps {
-    text-align: center;
-    font-size: 4rem;
-    margin-bottom: 5rem;
+.stampbody{
+    padding: 0 50px;
+}
+.stampmember{
+    display: flex;
+    align-items: center;
+}
+.stampnum{
+    font-family: 'NanumSquareRound';
+    font-size: 2.5rem;
+    text-align:center;
+    padding: 50px 0;
+    border-right: 2px solid #402719;
+}
+.stamplevel{
+    font-family: 'NanumSquareRound';
+    font-size: 2.5rem;
+    text-align:center;
+    padding: 50px 0;
 }
 .mypage-tab {
     border: 1px solid #615136;
     border-radius: 40px;
     height: 40vh;
-    margin: 0 2rem;
+    margin: 3rem;
+    background-color: rgba(235,221,202,0.3);
+    
 }
 .nav-pills .nav-link{
+    font-family: 'YiSunShinDotumM';   
     color: #402719;
 }
 .nav-pills .nav-link.active{
     background-color:#402719;
 }
 .nav-item-bookmark a {
-    font-size: 2rem;
+    font-family: 'YiSunShinDotumM';
+    font-size: 2.5rem;
     border-top-left-radius: 200px !important;
     border-bottom-left-radius: 200px !important;
 }
 .nav-item-mypost a {
-    font-size: 2rem;
+    font-size: 2.5rem;
     border-radius: 0;
 }
 .nav-item-mycomment a {
-    font-size: 2rem;
+    font-size: 2.5rem;
     border-top-right-radius: 200px !important;
     border-bottom-right-radius: 200px !important;
 }
-
+.scraplist a{
+    font-family: 'BBTreeGL';
+    font-size: 2.7rem;
+    color: #402719;
+}
+.postlist table, .commentlist table{
+    padding: 0 50px;
+    width:90%;
+    margin-left:50px;
+    text-align: center;
+    vertical-align: center;
+}
+.postlist th, .postlist td, .commentlist th, .commentlist td{
+    font-family: 'BBTreeGL';
+    font-size: 2rem;
+    color: #402719;
+    border-bottom: 1px solid #402719;
+}
