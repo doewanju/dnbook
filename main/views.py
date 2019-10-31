@@ -251,7 +251,7 @@ def del_user(request):
 def user_change(request):
     if request.method == "POST":
         user = request.user
-        if request.FILES['img_file']:
+        try:
             new_img = request.FILES['img_file']
             try:
                 profile = Bossprofile.objects.get(user=user)
@@ -259,6 +259,8 @@ def user_change(request):
                 profile = Normalprofile.objects.get(user=user)
             profile.profileimg = new_img
             profile.save()
+        except:
+            pass
         new_pwd = request.POST.get("password1")
         pwd_confirm = request.POST.get("password2")
         if new_pwd == "":
