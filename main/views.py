@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Normalprofile, Bossprofile
@@ -248,9 +248,17 @@ def del_user(request):
     auth.logout(request)
     return render(request,'home.html')
 
-def change_pwd(request):
+def user_change(request):
     if request.method == "POST":
         user = request.user
+        if request.FILES['img_file']:
+            new_img = request.FILES['img_file']
+            try:
+                profile = Bossprofile.objects.get(user=user)
+            except:
+                profile = Normalprofile.objects.get(user=user)
+            profile.profileimg = new_img
+            profile.save()
         new_pwd = request.POST.get("password1")
         pwd_confirm = request.POST.get("password2")
         if new_pwd == "":
