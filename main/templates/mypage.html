@@ -8,7 +8,11 @@
     <div class='mypage-header'>• 프로필 편집</div>
     <div class="row">
         <div class="col-3">
-            <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
+            {% if profile.profileimg %}
+                <img src="{{profile.profileimg.url}}" alt="" class='mypage-prof-img'>
+            {% else %}
+                <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
+            {% endif %}
             {% if store_name %}
                 <div class='mypage-userid'>{{store_name}}</div>
             {% endif %}

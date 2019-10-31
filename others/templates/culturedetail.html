@@ -14,7 +14,7 @@
 <br>
 작성자
 <a href="{% url 'storedetail' culture.store.bookstore_id %}">{{culture.store.name}}</a>
-<a href="{% url 'sendMessage' culture.store.boss.id %}">쪽지보내기</a>
+<a href="{% url 'chat' culture.store.boss.id %}">쪽지보내기</a>
 <p> 시작 날짜: {{culture.start_time}}</p>
 <p> 종료 날짜: {{culture.finish_time}}</p>
 <p> 작성한 날짜: {{culture.write_date}}</p>
@@ -33,7 +33,7 @@
 {% endif %}
 
 {% for comment in comments %}
-    <p><strong>{{comment.user}}</strong> | <a href="{% url 'sendMessage' comment.user.id %}">쪽지</a> | {{ comment.content }} | {{ comment.created_at }}</p>
+    <p><strong>{{comment.user}}</strong> | {%if comment.user != request.user%}<a href="{% url 'chat' comment.user.id %}">쪽지보내기</a>{% endif %} | {{ comment.content }} | {{ comment.created_at }}</p>
     {% if comment.user == user %}<a href="{% url 'commentdelete' comment.id %}">삭제</a>{% endif %}
 {% endfor %}
 </div>
