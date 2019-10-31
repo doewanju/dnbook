@@ -59,13 +59,10 @@ def stamppush(request):
         user = User.objects.get(username=userid)
         profile = Normalprofile.objects.get(user=user)
     except:
-        url = "{%url 'mypage' %}"
-        msg = '<script type="text/javascript">alert("존재하지 않는 회원이거나 일반회원이 아닙니다."); window.open="abc";</script>'
+        url = "http://127.0.0.1:8000/"+"main/mypage/"
+        msg = '<script type="text/javascript">alert("존재하지 않는 회원이거나 일반회원이 아닙니다."); location.href="abc";</script>'
         msg2 = msg.replace('abc',url)
-        print(msg2)
         return HttpResponse(msg2)
-        '''error=True
-        return render(request,'result.html',{'error':error,})'''
     count = request.GET['count']
     store = BookStore.objects.get(boss=request.user)
     stamp = Stamp(user=user, store=store, count=count)
@@ -79,8 +76,10 @@ def stamppush(request):
         level = 1
     profile.level = level
     profile.save()
-    error=False
-    return render(request,'result.html',{'error':error,})
+    url = "http://127.0.0.1:8000/"+"main/mypage/"
+    msg = '<script type="text/javascript">alert("스탬프가 성공적으로 저장되었습니다."); location.href="abc";</script>'
+    msg2 = msg.replace('abc',url)
+    return HttpResponse(msg2)
 
 def signup(request):
     return render(request,'signup.html')
