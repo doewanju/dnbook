@@ -25,7 +25,8 @@
             <div class='mypage-userid'>{{user.username}}</div>
         </div>
         <div class="col infobody">
-            <form>
+            <form method="POST" action="{% url 'change_pwd' %}">
+                {% csrf_token %}
                 <div class='mypage-profile-info'>닉네임 {{profile.nickname}}</div>
                 <div class='mypage-profile-info'>이메일 {{profile.email}}</div>
                 <div class='mypage-profile-info'>
@@ -34,7 +35,7 @@
                 <div class='mypage-profile-info'>
                     <input class='mypage-profile-input' type='password' name='password2' placeholder='비밀번호 확인'/>
                 </div>
-                <input type='submit' class='mypage-submit-btn' value='SAVE' disabled/>
+                <input type='submit' class='mypage-submit-btn' value='SAVE'/>
             </form>
         </div>
     </div>
