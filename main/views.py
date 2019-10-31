@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Normalprofile, Bossprofile
@@ -59,8 +59,13 @@ def stamppush(request):
         user = User.objects.get(username=userid)
         profile = Normalprofile.objects.get(user=user)
     except:
-        error=True
-        return render(request,'result.html',{'error':error,})
+        url = "{%url 'mypage' %}"
+        msg = '<script type="text/javascript">alert("존재하지 않는 회원이거나 일반회원이 아닙니다."); window.open="abc";</script>'
+        msg2 = msg.replace('abc',url)
+        print(msg2)
+        return HttpResponse(msg2)
+        '''error=True
+        return render(request,'result.html',{'error':error,})'''
     count = request.GET['count']
     store = BookStore.objects.get(boss=request.user)
     stamp = Stamp(user=user, store=store, count=count)
