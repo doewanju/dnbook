@@ -15,7 +15,7 @@ table {
 
 .table tr{
     text-align: center;
-    font-size: 20px;
+    font-size: 30px;
     color: black;
 }
 
@@ -46,8 +46,7 @@ table {
     border: 0px;
     color:white;
     border-radius: 100px;
-    width: 90px;
-    height: 40px;
+    padding: 8px;
 }
 
 .table a:link { color:#615136; text-decoration: none;}
