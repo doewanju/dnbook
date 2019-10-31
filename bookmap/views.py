@@ -164,8 +164,8 @@ def csstest(request):
 def edit_save(request, bookstore_id):
     book = get_object_or_404(BookStore, pk = bookstore_id)
     intro = request.GET['introduce'] 
-    #if intro == "":
-    #    return redirect('storedetail', bookstore_id=bookstore_id)
+    if intro == "":
+        return redirect('storedetail', bookstore_id=bookstore_id)
     boss = book.boss
     b = Bossprofile.objects.get(user=boss)
     b.introduce = intro
