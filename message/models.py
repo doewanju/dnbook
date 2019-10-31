@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from main.models import Bossprofile, Normalprofile
 from django.utils import timezone
 
 class Message(models.Model):
@@ -24,3 +25,17 @@ class Message(models.Model):
     
     def summary(self):
         return self.content[:20]
+
+    def senderProfile(self):
+        try:
+            who = Bossprofile.objects.get(user = self.sender)
+        except Bossprofile.DoesNotExist:
+            who = Normalprofile.objects.get(user = self.sender)
+        return who
+    
+    def recipientProfile(self):
+        try:
+            who = Bossprofile.objects.get(user = self.recipient)
+        except Bossprofile.DoesNotExist:
+            who = Normalprofile.objects.get(user = self.recipient)
+        return who

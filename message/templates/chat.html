@@ -10,7 +10,7 @@
         {% else %}
             <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
         {% endif %}
-        <h3>{{ message.sender }}</h3>
+        <h3>{{ other.nickname }}</h3>
         <h3>{{ message.content }}</h3>
         <h5>{{ message.sentAt}}</h5>
     {% else %}
