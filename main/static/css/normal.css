@@ -3,13 +3,13 @@
 .s-up{
     width: 800px;
     border:none;
-    height: 180px;
+    height: 150px;
     font-size: 55px;
     background: #615136;
     border-radius: 80px;
     text-align: center;
     color: white;
-    line-height: 180px;
+    line-height: 150px;
     display: block;
     font-family: 'YiSunShinDotumM';
 }
@@ -36,7 +36,7 @@ h2{
     width: 100%;
     margin-bottom: 2rem;
 }
-.inp .label {
+/* .inp .label {
     position: absolute;
     top: 16px;
     left: 0;
@@ -45,7 +45,7 @@ h2{
     color: #615136;
     transform-origin: 0 0;
     transition: all 0.2s ease;
-}
+} */
 .inp .border {
     position: absolute;
     bottom: 0;
@@ -67,7 +67,7 @@ h2{
     height: 80px;
     font-family: 'YiSunShinDotumM';
     font-size: 50px;
-    border-bottom: 4px solid  #EBDDCA;
+    border-bottom: 4px solid #BAA687;
     background: none;
     border-radius: 0;
     color: #615136;
@@ -76,6 +76,29 @@ h2{
     font-weight: 70;
 }
 .inp input::placeholder{
-    color: rgb(224, 202, 171);
+    color: #BAA687;
     font-weight: 70;
+}
+
+.inp input:not(:placeholder-shown) + span {
+    color: #BAA687;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp input:focus {
+    background: none;
+    outline: none;
+}
+.inp input:focus + span {
+    color: #615136;
+    transform: translateY(-26px) scale(0.75);
+}
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus {
+    border-bottom: 4px solid #615136;
+}
+
+
+.inp input:focus + span + .border {
+    transform: scaleX(1);
 }
