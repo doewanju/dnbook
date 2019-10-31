@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load staticfiles %}
+
 
 <table class="table">
     <tbody>
@@ -7,12 +9,24 @@
         {% if message.sender == request.user %}
         <tr onClick="location.href='{%url 'chat' message.recipient.id %}'">
             <td>{{ message.recipient.username }}</td>
+            {% if message.recipientProfile.profileimg %}
+                <td><img src="{{message.recipientProfile.profileimg.url}}" alt="" class='mypage-prof-img'></td>
+            {% else %}
+                <td><img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'></td>
+            {% endif %}
+            <td>{{ message.recipientProfile.nickname }}</td>
             <td>{{message.summary}}</td>
             <td>{{message.sentAt}}</td>
         </tr>
         {% else %}
         <tr onClick="location.href='{%url 'chat' message.sender.id %}'">
             <td>{{ message.sender.username }}</td>
+            {% if message.senderProfile.profileimg %}
+                <td><img src="{{message.senderProfile.profileimg.url}}" alt="" class='mypage-prof-img'></td>
+            {% else %}
+                <td><img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'></td>
+            {% endif %}
+            <td>{{ message.senderProfile.nickname }}</td>
             <td>{% if message.isRead == False %}안읽음{% endif %}{{message.summary}}</td>
             <td>{{message.sentAt}}</td>
         </tr>
