@@ -22,6 +22,11 @@
     <br>
     <h1>책방 이름 : <span id='name'>{{store.name}}</span></h1>
     <h3>스크랩 <span class="badge badge-secondary">{{store.like_count}}</span></h3>
+    {% if store.boss %}
+        {% if store.boss != request.user %}
+        <a href="{% url 'chat' store.boss.id %}">쪽지보내기</a>
+        {% endif %}
+    {% endif %}
 
     {% if user.is_authenticated %}
         {% if scrap %}
@@ -46,7 +51,22 @@
     {% endif %}
 
     {% if store.openhour %}
-        <h2>{{store.openhour}}</a></h2>
+        <h2>{{store.openhour}}</h2>
+    {% endif %}
+
+    {% if introduce %}
+        <h2>책방소개 : {{introduce}}</h2>
+    {% endif %}
+    {% if edit %}
+    <div>
+        <details>
+            <summary>책방소개 수정하기</summary>
+            <form action="{% url 'edit_save' store.bookstore_id %}" method="GET">
+                <input name="introduce" type="text" value="">
+                <input type="submit" value="저장하기">
+            </form><br><br>
+        </details>
+    </div>
     {% endif %}
     <br>
   <!--해당서점 지도 표시-->

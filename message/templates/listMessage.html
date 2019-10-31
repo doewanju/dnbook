@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<table class="table">
+    <tbody>
+    {% for message in test %}
+    <tr>
+        {% if message.sender == request.user %}
+            <td><a href="{% url 'chat' message.recipient.id %}">{{ message.recipient.username }}</a></td>
+            <td>{{message.summary}}</td>
+            <td>{{message.sentAt}}</td>
+        {% else %}
+            <td><a href="{% url 'chat' message.sender.id %}">{{ message.sender.username }}</a></td>
+            <td>{% if message.isRead == False %}안읽음{% endif %}{{message.summary}}</td>
+            <td>{{message.sentAt}}</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>  
+{% endblock %}

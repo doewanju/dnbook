@@ -36,10 +36,13 @@
                          <li><a href="{% url 'ranking' %}">랭킹</a></li>
                          {% if user.is_authenticated %}
                               <li><a href="{% url 'mypage' %}">마이페이지</a></li>
-                              <li><a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a></li>
-                              <form id="logout" method="POST" action="{% url 'logout' %}">
-                              {% csrf_token %} <input type="hidden" />
-                              </form>
+                              <div class="signbox">
+                                   <br><br>
+                                   <a href="{% url 'listMessage' %}">쪽지함</a></li> &nbsp; &nbsp; &nbsp; 
+                                   <a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a></li>
+                                   <form id="logout" method="POST" action="{% url 'logout' %}">
+                                   {% csrf_token %} <input type="hidden" />
+                                   </form>
                          {% else %}
                               <div class="signbox">
                                    <br><br>

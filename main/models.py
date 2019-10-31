@@ -8,6 +8,8 @@ class Normalprofile(models.Model): #일반회원 모델
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=10) 
     email = models.EmailField()
+    level = models.IntegerField(default=1)
+    profileimg = models.ImageField(upload_to='profileimg/', blank=True, null=True)
 
     def __str__(self):
         return str(self.user)
@@ -23,16 +25,10 @@ class Bossprofile(models.Model): #책방 사장님 모델
     nickname = models.CharField(max_length=10)
     email = models.EmailField()
     introduce = models.TextField(max_length=200)
-    # stamp = models
+    profileimg = models.ImageField(upload_to='profileimg/', blank=True, null=True)
 
     def __str__(self):
         return str(self.user)
-
-    def stampcount(self):
-        mystamp = 0
-        for i in self.user.stamp_set.all():
-            mystamp += i.count
-        return mystamp
 
 
 """ 잠시 살려두는 코드

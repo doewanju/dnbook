@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bookmap.apps.BookmapConfig',
     'others.apps.OthersConfig',
     'bootstrap4',
+    'message.apps.MessageConfig',
 ]
 
 MIDDLEWARE = [
