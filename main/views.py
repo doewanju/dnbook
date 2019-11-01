@@ -5,7 +5,7 @@ from .models import Normalprofile, Bossprofile
 from bookmap.models import BookStore, Scrap, Stamp
 from others.models import Culture, Comment
 from datetime import datetime
-from django.contrib.auth.hashers import check_password 
+from django.contrib.auth.hashers import check_password
 
 # Create your views here.
 
