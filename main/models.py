@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User, UserManager
 from bookmap.models import BookStore, Stamp
-#import os
-#from django.conf import settings
 
 # Create your models here.
 
@@ -31,11 +29,6 @@ class Bossprofile(models.Model): #책방 사장님 모델
 
     def __str__(self):
         return str(self.user)
-
-    '''def delete(self, *args, **kargs):
-        os.remove(os.path.join(settings.MEDIA_ROOT, self.profileimg.path))
-        super(Normalprofile, self).delete(*args, **kargs) '''
-    #사진필요없어지면 삭제하는거 긁어온코드(곧 수정할 예정,,,,)
 
 
 """ 잠시 살려두는 코드

@@ -6,6 +6,7 @@ from bookmap.models import BookStore, Scrap, Stamp
 from others.models import Culture, Comment
 from datetime import datetime
 from django.contrib.auth.hashers import check_password
+import os
 
 # Create your views here.
 
@@ -240,7 +241,14 @@ def info(request):
     return render(request,'info.html')
 
 def del_user(request):
-    request.user.delete()
+    user = request.user
+    try:
+        profile = Bossprofile.objects.get(user=user)
+    except:
+        profile = Normalprofile.objects.get(user=user)
+    if profile.profileimg:
+        os.remove(profile.profileimg.path)
+    user.delete()
     auth.logout(request)
     return render(request,'home.html')
 
@@ -253,6 +261,8 @@ def user_change(request):
                 profile = Bossprofile.objects.get(user=user)
             except:
                 profile = Normalprofile.objects.get(user=user)
+            if profile.profileimg:
+                os.remove(profile.profileimg.path)
             profile.profileimg = new_img
             profile.save()
         except:
