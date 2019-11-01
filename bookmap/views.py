@@ -15,6 +15,7 @@ def bookstore(request):
     return render(request,'bookstore.html', {'bookstores' : bookstores})
 
 def detail(request, bookstore_id):
+    edit = None
     introduce = None
     store_detail = get_object_or_404(BookStore, pk = bookstore_id)
     scrap = Scrap.objects.filter(store=store_detail)
@@ -36,13 +37,13 @@ def detail(request, bookstore_id):
                 if login_user == boss:
                     edit = True
                 else:
-                    edit = None
+                    pass
             except:
-                edit = None
+                pass
         else:
-            edit = None
+            pass
     else:
-        edit = None
+        pass
     if request.user.is_authenticated:
         store_scrap = scrap.filter(user=request.user)
         form = ReviewForm()

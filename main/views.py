@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Normalprofile, Bossprofile
 from bookmap.models import BookStore, Scrap, Stamp
 from others.models import Culture, Comment
 from datetime import datetime
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import check_password 
 
 # Create your views here.
 
@@ -60,8 +60,8 @@ def stamppush(request):
         user = User.objects.get(username=userid)
         profile = Normalprofile.objects.get(user=user)
     except:
-        msg = '<script type="text/javascript">alert("존재하지 않는 회원이거나 일반회원이 아닙니다."); history.back();</script>'
-        return HttpResponse(msg)
+        message = "존재하지 않는 회원이거나 일반회원이 아닙니다."
+        return render(request,'popup.html',{'message':message})
     count = request.GET['count']
     store = BookStore.objects.get(boss=request.user)
     stamp = Stamp(user=user, store=store, count=count)
@@ -75,8 +75,8 @@ def stamppush(request):
         level = 1
     profile.level = level
     profile.save()
-    msg = '<script type="text/javascript">alert("스탬프가 성공적으로 저장되었습니다."); history.back();</script>'
-    return HttpResponse(msg)
+    message = "스탬프가 성공적으로 저장되었습니다."
+    return render(request,'popup.html',{'message':message})
 
 def signup(request):
     return render(request,'signup.html')
@@ -261,16 +261,16 @@ def user_change(request):
         pwd_confirm = request.POST.get("password2")
         if new_pwd == "":
             if (new_img):
-                msg = '<script type="text/javascript">alert("프로필 사진이 성공적으로 변경되었습니다."); history.back();</script>'
-                return HttpResponse(msg)
+                message = "프로필 사진이 성공적으로 변경되었습니다."
+                return render(request,'popup.html',{'message':message})
             else:
                 return redirect('mypage')
         if new_pwd == pwd_confirm:
             user.set_password(new_pwd)
             user.save()
-            auth.login(request,user)
-            msg = '<script type="text/javascript">alert("비밀번호가 성공적으로 변경되었습니다."); history.back();</script>'
-            return HttpResponse(msg)
+            auth.login(request, user)
+            message = "비밀번호가 성공적으로 변경되었습니다."
+            return render(request,'popup.html',{'message':message})
         else:
-            msg = '<script type="text/javascript">alert("비밀번호가 일치하지 않습니다."); history.back();</script>'
-            return HttpResponse(msg)
+            message = "비밀번호가 일치하지 않습니다."
+            return render(request,'popup.html',{'message':message})
