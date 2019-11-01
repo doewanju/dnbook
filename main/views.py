@@ -60,10 +60,8 @@ def stamppush(request):
         user = User.objects.get(username=userid)
         profile = Normalprofile.objects.get(user=user)
     except:
-        url = "http://127.0.0.1:8000/"+"main/mypage/"
-        msg = '<script type="text/javascript">alert("존재하지 않는 회원이거나 일반회원이 아닙니다."); location.href="abc";</script>'
-        msg2 = msg.replace('abc',url)
-        return HttpResponse(msg2)
+        msg = '<script type="text/javascript">alert("존재하지 않는 회원이거나 일반회원이 아닙니다."); history.back();</script>'
+        return HttpResponse(msg)
     count = request.GET['count']
     store = BookStore.objects.get(boss=request.user)
     stamp = Stamp(user=user, store=store, count=count)
@@ -77,10 +75,8 @@ def stamppush(request):
         level = 1
     profile.level = level
     profile.save()
-    url = "http://127.0.0.1:8000/"+"main/mypage/"
-    msg = '<script type="text/javascript">alert("스탬프가 성공적으로 저장되었습니다."); location.href="abc";</script>'
-    msg2 = msg.replace('abc',url)
-    return HttpResponse(msg2)
+    msg = '<script type="text/javascript">alert("스탬프가 성공적으로 저장되었습니다."); history.back();</script>'
+    return HttpResponse(msg)
 
 def signup(request):
     return render(request,'signup.html')
@@ -264,17 +260,17 @@ def user_change(request):
         new_pwd = request.POST.get("password1")
         pwd_confirm = request.POST.get("password2")
         if new_pwd == "":
-            return redirect('mypage')
+            if (new_img):
+                msg = '<script type="text/javascript">alert("프로필 사진이 성공적으로 변경되었습니다."); history.back();</script>'
+                return HttpResponse(msg)
+            else:
+                return redirect('mypage')
         if new_pwd == pwd_confirm:
             user.set_password(new_pwd)
             user.save()
             auth.login(request,user)
-            url = "http://127.0.0.1:8000/"+"main/mypage/"
-            msg = '<script type="text/javascript">alert("비밀번호가 성공적으로 변경되었습니다."); location.href="abc";</script>'
-            msg2 = msg.replace('abc',url)
-            return HttpResponse(msg2)
+            msg = '<script type="text/javascript">alert("비밀번호가 성공적으로 변경되었습니다."); history.back();</script>'
+            return HttpResponse(msg)
         else:
-            url = "http://127.0.0.1:8000/"+"main/mypage/"
-            msg = '<script type="text/javascript">alert("비밀번호가 일치하지 않습니다."); location.href="abc";</script>'
-            msg2 = msg.replace('abc',url)
-            return HttpResponse(msg2)
+            msg = '<script type="text/javascript">alert("비밀번호가 일치하지 않습니다."); history.back();</script>'
+            return HttpResponse(msg)
