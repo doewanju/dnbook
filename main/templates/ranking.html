@@ -4,55 +4,69 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/ranking.css' %}">
 </head>
-
 <body>
     <div class="ranking">
     <div class="square"></div>
     <h1 class="ment">랭킹</h1>
     <p class="ment">스탬프를 모아 칭호를 획득해 랭킹에 올라보세요!</p>
+    
     <div class="back-square">
         <div class="middle-ment">
         < 이달의 독서왕 >
-        <h1>Top1: <span>{{first.month_nickname}}</span>
-            {%if first.month_stamp != -1%}
-            <span>(스탬프 {{first.month_stamp}}개)</span>
-            {%endif%}
-        </h1>
-
-        <h1>Top2: <span>{{second.month_nickname}}</span>
-            {%if second.month_stamp != -1%}
-            <span>(스탬프 {{second.month_stamp}}개)</span>
-            {%endif%}
-        </h1>
-
-        <h1>Top3: <span>{{third.month_nickname}}</span>
-            {%if third.month_stamp != -1%}
-            <span>(스탬프 {{third.month_stamp}}개)</span>
-            {%endif%}
-        </h1>
+        <h3>한 달 동안 가장 많은 스탬프를 모은 사용자입니다.</h3>
+            <div class="rankmember row">
+                <div class="col-4">
+                    Top2<br>프사란<br>
+                    <span>{{second.month_nickname}}</span><br>
+                    {%if second.month_stamp != -1%}
+                        <span>(스탬프 {{second.month_stamp}}개)</span>
+                    {%endif%}
+                </div>
+                <div class="col-4">
+                    Top1<br>프사란<br>
+                    <span>{{first.month_nickname}}</span><br>
+                    {%if first.month_stamp != -1%}
+                        <span>(스탬프 {{first.month_stamp}}개)</span>
+                    {%endif%}
+                </div>
+                <div class="col-4">
+                    Top3<br>프사란<br>
+                    <span>{{third.month_nickname}}</span><br>
+                    {%if third.month_stamp != -1%}
+                        <span>(스탬프 {{third.month_stamp}}개)</span>
+                    {%endif%}
+                </div>
+            </div>
         </div>
-        <br> 
+        <br><br><br><br><br>
         <div class="middle-ment">
         < 동네북 마스터 >
-        <h1>Top1: <span>{{first.total_nickname}}</span>
-            {%if first.total_stamp != -1%}
-            <span>(스탬프 {{first.total_stamp}}개)</span>
-            {%endif%}
-        </h1>
-
-        <h1>Top2: <span>{{second.total_nickname}}</span>
-            {%if second.total_stamp != -1%}
-            <span>(스탬프 {{second.total_stamp}}개)</span>
-            {%endif%}
-        </h1>
-
-        <h1>Top3: <span>{{third.total_nickname}}</span>
-            {%if third.total_stamp != -1%}
-            <span>(스탬프 {{third.total_stamp}}개)</span>
-            {%endif%}
-        </h1>
+        <h3>전체 기간 중 가장 많은 스탬프를 모은 사용자입니다.</h3>
+            <div class="rankmember row">
+                <div class="col-4">
+                    Top2<br>프사란<br>
+                    <span>{{second.total_nickname}}</span><br>
+                    {%if second.total_stamp != -1%}
+                        <span>(스탬프 {{second.total_stamp}}개)</span>
+                    {%endif%}
+                </div>
+                <div class="col-4">
+                    Top1<br>프사란<br>
+                    <span>{{first.total_nickname}}</span><br>
+                    {%if first.total_stamp != -1%}
+                        <span>(스탬프 {{first.total_stamp}}개)</span>
+                    {%endif%}
+                </div>
+                <div class="col-4">
+                    Top3<br>프사란<br>
+                    <span>{{third.total_nickname}}</span><br>
+                    {%if third.total_stamp != -1%}
+                        <span>(스탬프 {{third.total_stamp}}개)</span>
+                    {%endif%}
+                </div>
+            </div>
         </div>
     </div>
-    </div>
+
 </body>   
 {% endblock %}

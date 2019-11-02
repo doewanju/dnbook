@@ -1,5 +1,6 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
 
 .ranking{
     padding-left: 40px;
@@ -18,15 +19,21 @@
 }
 .back-square{
     background-color: rgb(245, 241, 236);
-    width: 90%;
+    width: 95%;
     height: 1300px;
     border-radius: 4rem;
-    margin-top: 50px;
-    margin-left: 45px;
-    
+    margin: 50px auto;
+    padding: 120px 0;
 }
 .middle-ment{
     color: #615136;
-    font-size: 50px;
-    margin-left: 60px;
+    text-align: center;
+    font-size: 50px;    
+}
+
+.rankmember{
+    margin: 40px 0;
+    font-size: 40px;
+    align-content: center;
+    align-items: center;
 }
