@@ -25,6 +25,3 @@
 
 ## 관리자계정 만들기
 - $python manage.py createsuperuser
-
-## 나중에 배포하면 (호스트 주소 바뀌면)
-- main의 views.py의 stamppush, change_pwd 함수에서 ##url = "http://127.0.0.1:8000/"+"main/mypage/"## 이부분 주소 바꾸기 (총 4곳)

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Normalprofile, Bossprofile
@@ -6,6 +6,7 @@ from bookmap.models import BookStore, Scrap, Stamp
 from others.models import Culture, Comment
 from datetime import datetime
 from django.contrib.auth.hashers import check_password
+import os
 
 # Create your views here.
 
@@ -60,10 +61,8 @@ def stamppush(request):
         user = User.objects.get(username=userid)
         profile = Normalprofile.objects.get(user=user)
     except:
-        url = "http://127.0.0.1:8000/"+"main/mypage/"
-        msg = '<script type="text/javascript">alert("존재하지 않는 회원이거나 일반회원이 아닙니다."); location.href="abc";</script>'
-        msg2 = msg.replace('abc',url)
-        return HttpResponse(msg2)
+        message = "존재하지 않는 회원이거나 일반회원이 아닙니다."
+        return render(request,'popup.html',{'message':message})
     count = request.GET['count']
     store = BookStore.objects.get(boss=request.user)
     stamp = Stamp(user=user, store=store, count=count)
@@ -77,10 +76,8 @@ def stamppush(request):
         level = 1
     profile.level = level
     profile.save()
-    url = "http://127.0.0.1:8000/"+"main/mypage/"
-    msg = '<script type="text/javascript">alert("스탬프가 성공적으로 저장되었습니다."); location.href="abc";</script>'
-    msg2 = msg.replace('abc',url)
-    return HttpResponse(msg2)
+    message = "스탬프가 성공적으로 저장되었습니다."
+    return render(request,'popup.html',{'message':message})
 
 def signup(request):
     return render(request,'signup.html')
@@ -244,27 +241,46 @@ def info(request):
     return render(request,'info.html')
 
 def del_user(request):
-    request.user.delete()
+    user = request.user
+    try:
+        profile = Bossprofile.objects.get(user=user)
+    except:
+        profile = Normalprofile.objects.get(user=user)
+    if profile.profileimg:
+        os.remove(profile.profileimg.path)
+    user.delete()
     auth.logout(request)
     return render(request,'home.html')
 
-def change_pwd(request):
+def user_change(request):
     if request.method == "POST":
         user = request.user
+        try:
+            new_img = request.FILES['img_file']
+            try:
+                profile = Bossprofile.objects.get(user=user)
+            except:
+                profile = Normalprofile.objects.get(user=user)
+            if profile.profileimg:
+                os.remove(profile.profileimg.path)
+            profile.profileimg = new_img
+            profile.save()
+        except:
+            pass
         new_pwd = request.POST.get("password1")
         pwd_confirm = request.POST.get("password2")
         if new_pwd == "":
-            return redirect('mypage')
+            if (new_img):
+                message = "프로필 사진이 성공적으로 변경되었습니다."
+                return render(request,'popup.html',{'message':message})
+            else:
+                return redirect('mypage')
         if new_pwd == pwd_confirm:
             user.set_password(new_pwd)
             user.save()
-            auth.login(request,user)
-            url = "http://127.0.0.1:8000/"+"main/mypage/"
-            msg = '<script type="text/javascript">alert("비밀번호가 성공적으로 변경되었습니다."); location.href="abc";</script>'
-            msg2 = msg.replace('abc',url)
-            return HttpResponse(msg2)
+            auth.login(request, user)
+            message = "비밀번호가 성공적으로 변경되었습니다."
+            return render(request,'popup.html',{'message':message})
         else:
-            url = "http://127.0.0.1:8000/"+"main/mypage/"
-            msg = '<script type="text/javascript">alert("비밀번호가 일치하지 않습니다."); location.href="abc";</script>'
-            msg2 = msg.replace('abc',url)
-            return HttpResponse(msg2)
+            message = "비밀번호가 일치하지 않습니다."
+            return render(request,'popup.html',{'message':message})
