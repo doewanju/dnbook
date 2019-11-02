@@ -6,8 +6,8 @@ from main.models import *
 # Create your models here.
 
 class BookStore(models.Model):
-    bookstore_id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=20, default="storename")
+    bookstore_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20, default="storename", null=True)
     addr = models.TextField(unique=True)
     phone_number = models.CharField(blank=True, max_length=15, null=True)
     site = models.URLField(null=True)

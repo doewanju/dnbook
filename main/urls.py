@@ -15,4 +15,5 @@ urlpatterns = [
     path('stamppush/', views.stamppush, name='stamppush'),
     path('del_user/', views.del_user, name='del_user'),
     path('change_pwd/',views.change_pwd, name='change_pwd'),
+    path('addstore/', views.addstore, name='addstore'),
 ]
