@@ -286,20 +286,6 @@ def user_change(request):
             return render(request,'popup.html',{'message':message})
 
 def addstore(request):
-    if request.method=='POST':
-        form = BookStoreForm(request.POST, request.FILES)
-        if form.is_valid():
-            store = form.save(commit=False)
-            bsname=request.POST['bsname']
-            store.save()
-            return render(request, 'boss.html', {"bsname":bsname})
-        else:
-            return redirect('home')
-    else:
-        form = BookStoreForm
-        return render(request, 'addstore.html', {'form':form})
-
-def addstore(request):
     if request.method == 'POST':
         name=request.POST['name']
         addr=request.POST['addr']
