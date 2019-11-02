@@ -37,6 +37,8 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    
     def __str__(self):
         return '%s, %s' %(self.culture, self.content[:30])
+    def summary(self):
+        return self.content[:10]
