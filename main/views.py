@@ -284,3 +284,30 @@ def user_change(request):
         else:
             message = "비밀번호가 일치하지 않습니다."
             return render(request,'popup.html',{'message':message})
+
+def addstore(request):
+    if request.method=='POST':
+        form = BookStoreForm(request.POST, request.FILES)
+        if form.is_valid():
+            store = form.save(commit=False)
+            bsname=request.POST['bsname']
+            store.save()
+            return render(request, 'boss.html', {"bsname":bsname})
+        else:
+            return redirect('home')
+    else:
+        form = BookStoreForm
+        return render(request, 'addstore.html', {'form':form})
+
+def addstore(request):
+    if request.method == 'POST':
+        name=request.POST['name']
+        addr=request.POST['addr']
+        phone_number=request.POST['phone_number']
+        site=request.POST['site']
+        openhour=request.POST['openhour']
+        store = BookStore(name=name, addr=addr, phone_number=phone_number, site=site, openhour=openhour)
+        store.save()
+        return redirect('bossbook')
+    elif request.method == 'GET':
+        return render(request, 'addstore.html')
