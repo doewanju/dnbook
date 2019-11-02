@@ -1,0 +1,8 @@
+<!--알림창 띄우고 바로 마이페이지로 돌아가는 페이지-->
+<p id="pop_msg" style="display: none;">{{ message }}</p>
+<a href="{% url 'mypage' %}" style="display: none;" id="pop_url"></a>
+<script type="text/javascript">
+  let msg = document.getElementById("pop_msg").innerHTML;
+  alert(msg);
+  document.getElementById("pop_url").click();
+</script>
