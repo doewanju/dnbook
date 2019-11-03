@@ -1,11 +1,18 @@
+<!DOCTYPE html>
+<html>
 {% extends 'base.html' %}
 {% block content %}
 {% load staticfiles %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/info.css' %}">
 </head>
-
-<h1>about us</h1>
-
+<body class="info">
+<div class="aboutus">
+<img src="{% static 'images/aboutus.jpg' %}" width="100%" class="img1">
+</div>
+<!-- <img src="{% static 'images/developers.jpg' %}" width="100%"> -->
+<div class="txt"></div>
+</body>
 {% endblock %}
 
+</html>

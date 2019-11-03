@@ -5,12 +5,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/bossbook.css' %}">
 </head>
 
-<body>
-    <div class="bossbook"> <div class="square"></div>
+<body><div class="bossbook"> 
+    <div class="ment-box"><div class="square"></div>
     <h1 class="ment">내 책방 찾기</h1>
     <p class="ment">내 책방을 찾고 선택하기 버튼을 눌러주세요.</p>
-
-<a href="{% url 'addstore' %}">책방이 없으면 클릭!</a>
+    </div>
+    <a href="{% url 'addstore' %}" class="nobookstore">책방이 없으신가요?</a>
 
 <table class="table">
     <thead>

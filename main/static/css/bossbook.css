@@ -7,6 +7,17 @@
     padding-top: 50px;
     font-family: 'YiSunShinDotumM'
 }
+.ment-box{
+    float: left;
+}
+.nobookstore{
+    float: right;
+    background-color: #EBDDCA;
+    padding: 10px 10px 10px 10px;
+    font-size: 30px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 4px lightgrey;
+}
 table {
     width: 100%;
     border-top: 1px solid black;
@@ -34,11 +45,18 @@ table {
 .ment{
     margin-left: 40px;
 }
+p.ment{
+    font-size: 30px;
+}
+h1.ment{
+    font-size: 50px;
+}
 .square{
     float : left;
-    width: 10px;
-    height: 60px;
+    width: 15px;
+    height: 80px;
     background-color: #615136;
+    margin-top: 10px;
 }
 .sub-btn{
     font-family: 'YiSunShinDotumM';
@@ -49,6 +67,6 @@ table {
     padding: 8px;
 }
 
-.table a:link { color:#615136; text-decoration: none;}
-.table a:visited { color: #615136; text-decoration: none;}
-.table a:hover { color: #615136; text-decoration: none;}
+a:link { color:#615136; text-decoration: none;}
+a:visited { color: #615136; text-decoration: none;}
+a:hover { color: #615136; text-decoration: none;}

@@ -159,9 +159,6 @@ def mapsearch(request):
             'bsname' : namelist,
             'pklist' : pklist})
 
-def csstest(request):
-    return render(request,'csstest.html')
-
 def edit_save(request, bookstore_id):
     book = get_object_or_404(BookStore, pk = bookstore_id)
     intro = request.GET['introduce'] 
