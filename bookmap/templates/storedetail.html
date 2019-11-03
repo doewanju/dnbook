@@ -17,6 +17,8 @@
             {% else %}
                 <a href="{% url 'scrap' store.bookstore_id %}"><img src="{% static 'img/empty_heart.png' %}" style="width: 50px"></a>
             {% endif %}
+        {% else %}
+            <img src="{% static 'img/full_heart.png' %}" style="width: 50px">
         {% endif %}
         <span>{{store.like_count}}</span>
     </div>
