@@ -1,19 +1,11 @@
 <form method="POST" action="{% url 'addstore' %}">
   {% csrf_token %}
-  <input name="name" type="text" placeholder="  책방 이름" />
-  <input name="addr" type="text" placeholder="  책방 주소" />
-  <input name="phone_number" type="text" placeholder="  전화 번호" />
-  <input name="site" type="text" placeholder="  사이트" />
-  <input
-    name="open_tf"
-    type="radio"
-    value="영업시간"
-    id="1"
-    checked="checked"
-  /><label for="1">영업시간</label>
-  <input name="open_tf" type="radio" value="휴무일" id="2" /><label for="2"
-    >휴무일</label
-  >
-  <input name="openhour" type="text" placeholder="  영업 시간" />
-  <input type="submit" value="등록!" />
+  <input name="name" type="text" placeholder="  책방 이름">
+  <input name="addr" type="text" placeholder="  책방 주소">
+  <input name="phone_number" type="text" placeholder="  전화 번호">
+  <input name="site" type="text" placeholder="  사이트">
+  <input name="open_tf" type="radio" value="영업시간" id="1" checked="checked"><label for="1">영업시간</label>
+  <input name="open_tf" type="radio" value="휴무일" id="2"><label for="2">휴무일</label>
+  <input name="openhour" type="text" placeholder="  영업 시간">
+  <input type="submit" value="등록!">
 </form>
