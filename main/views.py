@@ -291,8 +291,13 @@ def addstore(request):
         addr=request.POST['addr']
         phone_number=request.POST['phone_number']
         site=request.POST['site']
-        openhour=request.POST['openhour']
-        store = BookStore(name=name, addr=addr, phone_number=phone_number, site=site, openhour=openhour)
+        openhour = request.POST['openhour']
+        open_tf = request.POST['open_tf']
+        if open_tf == '영업시간':
+            tf = True
+        else:
+            tf = False
+        store = BookStore(name=name, addr=addr, phone_number=phone_number, site=site, openhour=openhour, openhour_tf=tf)
         store.save()
         return redirect('bossbook')
     elif request.method == 'GET':

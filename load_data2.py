@@ -94,7 +94,7 @@ def loading():
                 res_addr.append('없음')
             try:
                 hour1=driver.find_element_by_class_name('fst').text
-                h=hour1.split(" ")[0]+" : "
+                h=hour1.split(" ")[0]+";"
                 hour2=driver.find_element_by_class_name('txt_operation').text
                 res_hour.append(h+hour2)
             except NoSuchElementException:
@@ -152,7 +152,12 @@ if __name__=='__main__':
     for j in range(len(temp[0])):
         b=BookStore.objects.get(bookstore_id=j+1)
         if temp[0][j] != '':
-            b.openhour=temp[0][j]
+            hour = temp[0][j].split(";")
+            if hour[0] == "영업시간":
+                b.openhour_tf = True
+            else:
+                b.openhour_tf = False
+            b.openhour=hour[1]
         if temp[1][j] != '':
             b.phone_number=temp[1][j]
         if temp[2][j] != '':

@@ -51,7 +51,11 @@
     {% endif %}
 
     {% if store.openhour %}
-        <h2>{{store.openhour}}</h2>
+        {% if store.openhour_tf == True %}
+            <h2>영업시간 : {{store.openhour}}</h2>
+        {% elif store.openhour_tf == False %}
+            <h2>휴무일 : {{store.openhour}}</h2>
+        {% endif %}
     {% endif %}
 
     {% if introduce %}
