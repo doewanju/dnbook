@@ -210,7 +210,7 @@ def ranking(request):
     res_first={}
     res_second={}
     res_third={}
-    key_arr=['total_nickname','month_nickname','total_stamp','month_stamp']
+    key_arr=['total_nickname','month_nickname','total_stamp','month_stamp','total_img','month_img']
 
     for idx,r in enumerate(rank):
         for i in r.keys():
@@ -228,13 +228,32 @@ def ranking(request):
                 third = second
                 second = [c,name[idx][i]]
             elif third[0] <= c:
-                third = [c,name[idx][i]]
+                third = [c, name[idx][i]]
+        
+        try:
+            first_img = Normalprofile.objects.get(nickname=first[1]).profileimg
+        except:
+            first_img = None
+        try:
+            second_img = Normalprofile.objects.get(nickname=second[1]).profileimg
+        except:
+            second_img = None
+        try:
+            third_img = Normalprofile.objects.get(nickname=third[1]).profileimg
+        except:
+            third_img = None
+
         res_first[key_arr[idx]]=first[1]
-        res_first[key_arr[idx+2]]=first[0]
+        res_first[key_arr[idx + 2]] = first[0]
+        res_first[key_arr[idx + 4]] = first_img
+        
         res_second[key_arr[idx]]=second[1]
-        res_second[key_arr[idx+2]]=second[0]
+        res_second[key_arr[idx + 2]] = second[0]
+        res_second[key_arr[idx+4]]=second_img
+
         res_third[key_arr[idx]]=third[1]
-        res_third[key_arr[idx+2]]=third[0]
+        res_third[key_arr[idx + 2]] = third[0]
+        res_third[key_arr[idx+4]]=third_img
     return render(request,'ranking.html', {'first':res_first, 'second':res_second, 'third':res_third})
 
 def info(request):
