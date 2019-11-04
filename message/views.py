@@ -32,11 +32,6 @@ def listMessage(request):
 
 def chat(request, user_id):
     friend = get_object_or_404(User, pk=user_id)
-    q = Q()
-    q.add(Q(recipient=request.user) & Q(sender=friend), q.OR)
-    q.add(Q(recipient=friend) & Q(sender=request.user), q.OR)
-    messages = Message.objects.filter(q).order_by('sentAt')
-
     if friend.is_superuser:
         return render(request, 'home.html')
     try:
@@ -53,9 +48,29 @@ def chat(request, user_id):
             message.content = form.cleaned_data.get("content")
             message.save()
             form = MessageForm
+
+            q = Q()
+            q.add(Q(recipient=request.user) & Q(sender=friend), q.OR)
+            q.add(Q(recipient=friend) & Q(sender=request.user), q.OR)
+            messages = Message.objects.filter(q).order_by('sentAt')
+
+            for i in messages:
+                if i.recipient == request.user:
+                    i.isRead = True
+                    i.save()
             return render(request, 'chat.html', {'form':form, 'messages':messages, 'other':other})
         else:
             return HttpResponse("해당하는 아이디가 존재하지 않습니다. 다시 확인해주세요.")
     else:
+        q = Q()
+        q.add(Q(recipient=request.user) & Q(sender=friend), q.OR)
+        q.add(Q(recipient=friend) & Q(sender=request.user), q.OR)
+        messages = Message.objects.filter(q).order_by('sentAt')
+
+        for i in messages:
+            if i.recipient == request.user:
+                i.isRead = True
+                i.save()
+
         form = MessageForm()
         return render(request, 'chat.html', {'form':form, 'messages':messages, 'other':other})
