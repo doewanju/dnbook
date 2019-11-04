@@ -8,11 +8,10 @@ body{
     background-position: center;
     background-position-y: 185px;
 }
-
-h2{
-    font-family: 'YiSunShinDotumM';
-    font-size: 50px;
-    letter-spacing: 0.5rem;
+.logoimg{
+    width:50%;
+    position: absolute;
+    left:28%; top:28%;
 }
 .loginbox{
     position: fixed;

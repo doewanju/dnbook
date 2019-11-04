@@ -7,12 +7,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
     </head>
     <body>
-    {% comment %} {% if error %}
-    {{ error }}
-    <br>
-    <br>
-    {% endif %} {% endcomment %}
-    <h2>• 로그인</h2>
+        <img src="{% static 'images/booklogo.png' %}" class="logoimg">
         <form action="{% url 'login' %}" method='POST'>
         {% csrf_token %}
         <div class="loginbox">
