@@ -161,83 +161,6 @@ def logout(request):
 def bossbook(request):
     bookstores = BookStore.objects
     return render(request,'bossbook.html', {'bookstores':bookstores})
-'''
-def get_nc(request,tf):
-    stamp = Stamp.objects.all()
-    stamp_month=[]
-    stamp_nc=[]
-    stamp_idx=[]
-    result={}
-    for s in stamp:
-        d = str(s.created_at)
-        d=d.split()[0]
-        date = datetime.strptime(d, "%Y-%m-%d")
-        stamp_month.append(date.month)
-        profile = Normalprofile.objects.get(user=s.user)
-        stamp_nc.append([str(profile.nickname),int(s.count)])
-    today = datetime.today().month
-    for i,m in enumerate(stamp_month):
-        if m == today:
-            stamp_idx.append(i)
-    if tf == True:
-        for i in stamp_idx:
-            name = stamp_nc[i][0]
-            count = stamp_nc[i][1]
-            if name in result:
-                result[name] += count
-            else:
-                result[name] = count
-    else:
-        for s in stamp_nc:
-            name = s[0]
-            count = s[1]
-            if name in result:
-                result[name] += count
-            else:
-                result[name] = count
-    return result
-
-def ranking(request):
-    total = get_nc(request,False)
-    month = get_nc(request,True)
-    total_n=[]
-    total_c=[]
-    month_n=[]
-    month_c=[]
-    rank=[total, month]
-    name=[total_n, month_n]
-    count=[total_c, month_c]
-    res_first={}
-    res_second={}
-    res_third={}
-    key_arr=['total_nickname','month_nickname','total_stamp','month_stamp']
-
-    for idx,r in enumerate(rank):
-        for i in r.keys():
-            name[idx].append(i)
-            count[idx].append(r.get(i))
-
-    for idx,cnt in enumerate(count):
-        first, second, third = [-1,'없음'], [-1,'없음'], [-1,'없음']
-        for i,c in enumerate(cnt):
-            if first[0] <= c:
-                third = second
-                second = first
-                first = [c,name[idx][i]]
-            elif second[0] <= c:
-                third = second
-                second = [c,name[idx][i]]
-            elif third[0] <= c:
-                third = [c,name[idx][i]]
-        res_first[key_arr[idx]]=first[1]
-        res_first[key_arr[idx+2]]=first[0]
-        res_second[key_arr[idx]]=second[1]
-        res_second[key_arr[idx+2]]=second[0]
-        res_third[key_arr[idx]]=third[1]
-        res_third[key_arr[idx+2]]=third[0]
-
-    return render(request,'ranking.html', {'first':res_first, 'second':res_second, 'third':res_third})
-'''
 
 def get_nc(request,tf):
     stamp = Stamp.objects.all()
@@ -312,7 +235,7 @@ def ranking(request):
         res_second[key_arr[idx+2]]=second[0]
         res_third[key_arr[idx]]=third[1]
         res_third[key_arr[idx+2]]=third[0]
-        
+
     return render(request,'ranking.html', {'first':res_first, 'second':res_second, 'third':res_third})
 
 def info(request):
