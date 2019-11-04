@@ -5,6 +5,7 @@
 {% load staticfiles %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/storedetail.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
 
 <body>
@@ -21,42 +22,16 @@
             <img src="{% static 'img/full_heart.png' %}" style="width: 50px">
         {% endif %}
         <span>{{store.like_count}}</span>
-    </div>
-    {% if store.boss %}
-        {% if store.boss != request.user %}
-        <a href="{% url 'chat' store.boss.id %}">쪽지보내기</a>
-        {% endif %}
-    {% endif %}
+    </div><br>
 
+<div class="contents">  
 
-    <br><br>
-    
-    <div class="contents">
-    <div>주소 : <span id='addr'>{{store.addr}}</span></div>
-    <div>전화번호 : {{store.phone_number}}</div>
-    
-    {% if store.site %}
-        {% if 'http' in store.site %}
-            <div>홈페이지 : <a href="{{store.site}}">{{store.site}}</a></div>
-        {% else %}
-            <div>홈페이지 : <a href="http://{{store.site}}">{{store.site}}</a></div>
-        {% endif %}
-    {% else %}
-        <div>홈페이지 : 없음</div>
-    {% endif %}
-
-    {% if store.openhour %}
-
-        {% if store.openhour_tf == True %}
-            <div>영업시간 : {{store.openhour}}</div>
-        {% elif store.openhour_tf == False %}
-            <div>휴무일 : {{store.openhour}}</div>
-        {% endif %}
-
-    {% endif %}
-
+    <div class="infotext">
     {% if introduce %}
-        <div>책방소개 : {{introduce}}</div>
+        <div class="introduce"><i class="fas fa-quote-left" style="display: inline-block; color: lightgray; font-size: 30px;"></i>
+            <span>{{introduce}}</span>
+            <i class="fas fa-quote-right" style="display: inline-block; color: lightgray; font-size: 30px;"></i>
+        </div>
     {% endif %}
     {% if edit %}
     <div>
@@ -69,16 +44,54 @@
         </details>
     </div>
     {% endif %}
+    <table>
+        <tr>
+            <td class="icon"><i class="fas fa-mobile-alt" style="color: #615136; font-size: 50px; align-content: center; margin-left: 7px;"></i> </td>
+            <td class="colname">연락처</td>
+            <td>{{store.phone_number}}</td>
+        </tr>
+        {% if store.site %}
+        <tr>
+            <td class="icon"><i class="fas fa-globe-asia" style="color: #615136; font-size: 50px;"></i></td>
+            <td class="colname">홈페이지</td>
+            <td>
+            {% if 'http' in store.site %}
+                <a href="{{store.site}}">{{store.site}}</a><i class="fas fa-external-link-alt" style="font-size: 30px; color: grey; margin-left: 10px;"></i>
+            {% else %}
+                <a href="http://{{store.site}}">{{store.site}}</a><i class="fas fa-external-link-alt"style="font-size: 30px; color: grey;margin-left: 10px;"></i>
+            {% endif %}
+        {% else %}
+            <p>없음</p>
+            </td>
+        {% endif %}
+        </tr>
+        {% if store.openhour %}
+        <tr>
+            <td class="icon"><i class="fas fa-clock" style="color: #615136; font-size: 50px;"></i></td>
+            {% if store.openhour_tf == True %}
+                <td class="colname">영업시간</td>
+            {% elif store.openhour_tf == False %}
+                <td class="colname">휴무일</td>
+            {% endif %}
+            <td>{{store.openhour}}</td>
+        {% endif %}
+        </tr>
+        <tr>
+            <td class="icon"><i class="fas fa-map-marker-alt" style="color: #615136; font-size: 50px; margin-left: 5px;"></i> </td>
+            <td class="colname">주소</td>
+            <td><span id='addr'>{{store.addr}}</span></td>
+        </tr>
+    </div></table>
     <br>
   <!--해당서점 지도 표시-->
-    <div id="map" style="width:50%;height:300px;position:relative;z-index:-1;"></div>
+    <div id="map" style="width:100%;height:300px;position:relative;z-index:-1;"></div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
     <script type="text/javascript">
     
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
         mapOption = {
             center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
-            level: 4, // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
+            level: 3, // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
             draggable: false
         };  
      
@@ -103,11 +116,12 @@
         });
     }
     addrStoN(addr,name);
-    
     </script>
     
 <br>
-    <div><b>리뷰</b> | 별점평균: {{star_avg}}</div>
+    <div class="review">REVIEW | 
+            <i class="fas fa-star" style="color: rgb(254,215,86); font-size: 30px;"></i> {{star_avg}}</div>
+    
     {% if user.is_authenticated %}
     <form method="POST" action="{% url 'reviewcreate' store.bookstore_id %}">
         {% csrf_token %}
@@ -116,7 +130,7 @@
             <input name="star" value="2" type='radio'>
             <input name="star" value="3" type='radio'>
             <input name="star" value="4" type='radio'>
-            <input name="star" value="5" type='radio'>
+            <input name="star" value="5" type='radio' checked>
         </span>
         <script>
         $('.starRev span').click(function(){
@@ -130,12 +144,24 @@
     </form>
     {% endif %}
 
+    <div class="user_review">
     {% for review in reviews %}
-        <p><strong>이름: {{review.user}}</strong> | 내용: {{ review.content }} | ★{{ review.star }}</p>
+        <div class="uname">{{review.user}}</div>
+        <div class="ucontent">{{ review.content }}</div>
+        <div class="ustar"><i class="fas fa-star" style="color: rgb(254,215,86); font-size: 25px;"></i>{{ review.star }}</p></div>
         {% if review.user == user %}<a href="{% url 'reviewdelete' review.id %}">삭제</a>{% endif %}
-    {% endfor %}
+        <hr>
+        {% endfor %}
+    </div>
     <br><br>
-    <div><a href="{% url 'crawling' store.bookstore_id %}">크롤링 리뷰보기 <i style="color: brown;">※주의※ 오래걸려요..!</i></a></div>
+
+
+    <a href="{% url 'crawling' store.bookstore_id %}" class="clawling">크롤링 리뷰보기</a>
+    {% if store.boss %}
+        {% if store.boss != request.user %}
+            <a href="{% url 'chat' store.boss.id %}" class="sendmessage">쪽지보내기</a>
+        {% endif %}
+    {% endif %} 
     <div class='review_hs'>
         {%for review in rev%}
         <div><a href={{review.link}}>{{review.title}}</a></div>
@@ -144,6 +170,9 @@
         <br><br>
         {%endfor%}
     </div>
+
 </div>
+
+
 </body>
 {% endblock %}
