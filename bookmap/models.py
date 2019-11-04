@@ -10,11 +10,12 @@ class BookStore(models.Model):
     name = models.CharField(max_length=20, default="storename", null=True)
     addr = models.TextField(unique=True)
     phone_number = models.CharField(blank=True, max_length=15, null=True)
-    site = models.URLField(null=True)
-    img = models.ImageField(upload_to='store/', null=True)
-    email = models.EmailField(null=True)
-    openhour = models.TextField(null=True)
-    boss = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    site = models.URLField(null=True, blank=True)
+    img = models.ImageField(upload_to='store/', null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    openhour = models.TextField(null=True, blank=True)
+    openhour_tf = models.BooleanField(null=True, blank=True) #true면 영업시간 false면 휴무일
+    boss = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     users = models.ManyToManyField(User,through='Scrap', related_name='%(app_label)s_%(class)s_related')
 
     def __str__(self):
