@@ -6,7 +6,7 @@
     padding-left: 40px;
     padding-right: 40px;
     margin-top: 25px;
-    font-family: 'YiSunShinDotumM'
+    font-family: 'YiSunShinDotumM';
 }
 .ment{
     margin-left: 40px;
@@ -59,7 +59,66 @@ img.mypage-prof-img {
     letter-spacing: 2rem;
 }
 .stampbody{
-    padding: 0 50px;
+    padding: 0px 50px;
+    margin-bottom: 50px;
+}
+.stampment{
+    font-family: 'BBTreeGL';
+    font-size: 20px;
+    margin-left: 30px;
+}
+
+.stampment input[type="radio"]{
+    align-items: center;
+    align-content: center;
+}
+.form-control-plaintext{
+    height: auto;
+    outline: none;
+    border-bottom: 2px solid #EBDDCA;
+}
+.form-control-plaintext::-webkit-input-placeholder{
+    text-align: center;
+    color: #CCCCCC;
+}
+.selectrow{
+    font-family: 'BBTreeGL';
+    font-size: 2rem;
+    align-items: center;
+    /* text-align: center; */
+    margin: 10px 0;
+}
+.radio_amount input[type='radio'] {
+    margin-left:50px;
+    -webkit-appearance:none;
+    width:20px;
+    height:20px;
+    border:1px solid #EBDDCA;
+    border-radius:50%;
+    outline:none;
+    background:#EBDDCA;
+}
+  .radio_amount input[type='radio']:before {
+    content:'';
+    display:block;
+    width:70%;
+    height:70%;
+    margin: 15% auto;  
+    border-radius:50%;  
+  }
+  .radio_amount input[type='radio']:checked:before {
+    background:#F2C60C;
+  }
+
+.btnstamp{
+    background-image:url("../images/stamp.png");
+    background-color:transparent;
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position: center;
+    width:120px; height: 120px;
+    border:5px solid #EBDDCA;
+    border-radius: 100%;
 }
 .stampmember{
     display: flex;
@@ -82,9 +141,8 @@ img.mypage-prof-img {
     border: 1px solid #615136;
     border-radius: 40px;
     height: 40vh;
-    margin: 3rem;
+    margin: 0 3rem; 
     background-color: rgba(235,221,202,0.3);
-    
 }
 .nav-pills .nav-link{
     font-family: 'YiSunShinDotumM';   
@@ -125,4 +183,16 @@ img.mypage-prof-img {
     font-size: 2rem;
     color: #402719;
     border-bottom: 1px solid #402719;
+}
+.quitwrapper{
+    text-align:center;
+    margin-top: 18px;
+}
+.quitbtn{
+    width: 12%;
+    font-family: 'BBTreeGL';
+    font-size: 18px;
+    background-color: rgba(235,221,202,0.6);
+    color: gray;
+    border-radius: 100px;
 }

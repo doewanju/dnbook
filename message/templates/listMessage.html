@@ -1,38 +1,46 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load staticfiles %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/listMessage.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
 
+<div class="title_messagelist">
+<div class="square"></div>
+<h1 class="ment">채팅 목록</h1>
+<p class="ment" style="font-family: 'BBTreeGL';font-size:20px;">책방지기와 사용자가 소통할 수 있는 공간입니다.</p>
 
-<table class="table">
-    <tbody>
-    {% for message in test %}
-        {% if message.sender == request.user %}
-        <tr onClick="location.href='{%url 'chat' message.recipient.id %}'">
-            <td>{{ message.recipient.username }}</td>
-            {% if message.recipientProfile.profileimg %}
-                <td><img src="{{message.recipientProfile.profileimg.url}}" alt="" class='mypage-prof-img'></td>
+<div class="mlist">
+    <table>
+        {% comment %} <thead>
+            <tr>
+                <th>보낸이</th>
+                <th>내용</th>
+                <th>날짜</th>
+            </tr>
+        </thead> {% endcomment %}
+        <tbody>
+        {% for message in test %}
+        <tr>
+            {% if message.sender == request.user %}
+                <td><a href="{% url 'chat' message.sender.id %}">{{message.summary}}</a></td>
+                <td class="sender_id"><a href="{% url 'chat' message.recipient.id %}">{{ message.recipient.username }}</a></td>
+                <td class="send_time">{{message.sentAt}}</td>
             {% else %}
-                <td><img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'></td>
+                <td><a href="{% url 'chat' message.sender.id %}">
+                    {% if message.isRead == False %}
+                    <i class="far fa-envelope"></i>
+                    {% else %}
+                    
+                    {% endif %}{{message.summary}}
+                </a></td>
+                <td class="sender_id"><b><a href="{% url 'chat' message.sender.id %}"></b>{{ message.sender.username }}</a></td>
+                <td class="send_time">{{message.sentAt}}</td>
             {% endif %}
-            <td>{{ message.recipientProfile.nickname }}</td>
-            <td>{{message.summary}}</td>
-            <td>{{message.sentAt}}</td>
         </tr>
-        {% else %}
-        <tr onClick="location.href='{%url 'chat' message.sender.id %}'">
-            <td>{{ message.sender.username }}</td>
-            {% if message.senderProfile.profileimg %}
-                <td><img src="{{message.senderProfile.profileimg.url}}" alt="" class='mypage-prof-img'></td>
-            {% else %}
-                <td><img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'></td>
-            {% endif %}
-            <td>{{ message.senderProfile.nickname }}</td>
-            <td>{% if message.isRead == False %}안읽음{% endif %}{{message.summary}}</td>
-            <td>{{message.sentAt}}</td>
-        </tr>
-        {% endif %}
-    
-    {% endfor %}
-    </tbody>
-</table>  
+        {% endfor %}
+        </tbody>
+    </table> 
+</div>
 {% endblock %}
