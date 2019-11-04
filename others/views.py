@@ -3,7 +3,9 @@ from .models import Culture, Comment
 from bookmap.models import BookStore
 from main.models import Bossprofile, Normalprofile
 from .forms import CommentForm, CultureForm
+from el_pagination.views import AjaxListView
 # Create your views here.
+
 def board(request):
     cultures=Culture.objects.order_by('-write_date')
     key = False
@@ -14,6 +16,12 @@ def board(request):
         except Bossprofile.DoesNotExist:
             key = False
     return render(request, 'board.html', {'cultures':cultures, 'key':key})
+
+def entry_index(reuqest, template='others/board.html'):
+    context = {
+        'cultures' : Culture.objects.all().order_by('-write_date'),
+    }
+    return render(request, template, context)
 
 def detail(request, culture_id):
     culture_detail = get_object_or_404(Culture, pk = culture_id)

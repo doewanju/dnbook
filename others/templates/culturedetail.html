@@ -25,7 +25,7 @@
 <img src="{{culture.picture.url}}" alt="" width="800px">
 {% endif %}
 <p>{{culture.content|linebreaks}}</p>
-
+<a href="{% url 'board' %}">목록으로</a>
 {% if user.is_authenticated %}
 <form method="POST" action="{% url 'commentcreate' culture.id %}">
     {% csrf_token %}

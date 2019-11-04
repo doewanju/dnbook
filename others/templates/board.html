@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load staticfiles %}
+{% load el_pagination_tags %}
 
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
@@ -11,6 +12,7 @@
 <div class="square"></div>
 <h1 class="ment">홍보 게시판</h1>
 <p class="ment">북콘서트, 전시회 등 문화행사를 홍보할 수 있는 게시판입니다.</p>
+
 {% if key %}
 <a href="{% url 'boardcreate' %}">새글작성</a>
 {% endif %}
@@ -19,7 +21,7 @@
     <input type="search" name="query">
     <input type="submit" name="" value="검색!">
 </form>
-
+{% paginate cultures %}
 <table class="table">
     <thead>
         <tr>
@@ -37,7 +39,12 @@
         </tr>
     {% endfor %}
     </tbody>
-</table>    
+</table>  
+{% get_pages %} 
+<h1>{{ pages.current_start_index }}-{{ pages.current_end_index }} of
+{{ pages.total_count }}.</h1><br>
+{# Just print pages to render the Digg-style pagination. #}
+<h1>{{ pages.get_rendered }} </h1>
 </div>
 </body>
 
