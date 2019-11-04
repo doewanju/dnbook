@@ -1,8 +1,9 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.keys import Keys
 import requests
 from webdrivermanager import ChromeDriverManager as ch
-from selenium.common.exceptions import NoSuchElementException
 import os
 
 def reviewFuc(name, addr):
@@ -29,9 +30,9 @@ def reviewFuc(name, addr):
     find_addr = addr
     f=find_name+" "+find_addr.split(" ")[0]
     tf=False
-    driver.find_element_by_class_name('input_text').clear()
+    #driver.find_element_by_class_name('input_text').clear()
     driver.find_element_by_class_name('input_text').send_keys(f)
-    driver.find_element_by_class_name('sch_smit').click()
+    driver.find_element_by_class_name('input_text').send_keys(Keys.ENTER)
     try:
         driver.find_element_by_class_name('review').click()
     except NoSuchElementException:
