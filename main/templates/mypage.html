@@ -9,7 +9,7 @@
     <div class="title_mypage">
     <div class="square"></div>
     <h1 class="ment">프로필 편집</h1>
-    <p class="ment">비밀번호는 변경을 원할 시에만 입력하세요.</p>
+    <p class="ment" style="font-family: 'BBTreeGL';font-size:20px;">비밀번호는 변경을 원할 시에만 입력하세요.</p>
 </div>
 <div class="editprofile">
     <div class="row">
@@ -67,14 +67,23 @@
 <div class="stampbody">
     {% if store_name %}
     <div class="stamp_boss">
-        <h3><div id="light" class="white_content">아이디를 입력해주세요 :) <br><br>
-            <form method="GET" action="{% url 'stamppush' %}">  
-                <input name="userid" class="form-control-plaintext"/>
-                <input type="radio" name="count" value="1" id="1"><label for="1">만원이상</label>
-                <input type="radio" name="count" value="2" id="2"><label for="2">2만원이상</label>
-                <input type="radio" name="count" value="3" id="3"><label for="3">3만원이상</label>
-                <input type="submit" value="찍어주기!">
+        <div id="light" class="stampment white_content">아이디를 입력해주세요 :) 구매 금액 1 만원 당 스탬프 하나가 지급됩니다.
+            <form method="GET" action="{% url 'stamppush' %}">
+            <div class="row row-equal-height selectrow">
+                <div class="col-5">
+                    <input name="userid" class="stamp_id form-control-plaintext" placeholder="아이디">
+                </div>
+                <div class="col-4 radio_amount">
+                    <input type="radio" name="count" value="1" id="1"><label for="1">&nbsp;1만원이상</label><br>
+                    <input type="radio" name="count" value="2" id="2"><label for="2">&nbsp;2만원이상</label><br>
+                    <input type="radio" name="count" value="3" id="3"><label for="3">&nbsp;3만원이상</label>
+                </div>
+                <div class="col">
+                    <input type="submit" class="btnstamp" value="">
+                </div>
+            </div>
             </form> 
+        </div>
     </div>
     {% else %}
 
@@ -147,7 +156,7 @@
                     {% for comment in comments %}
                     <tr onClick="location.href='{%url 'culturedetail' comment.culture.id%}'">
                         <td>{{comment.culture.title}}</td>
-                        <td>{{comment.content}}</td>
+                        <td>{{comment.summary}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -164,15 +173,16 @@
     {% endfor %}
     <br> {% endcomment %}
 </div>
-
-<button onclick="del_user();">탈퇴하기</button>
-<script type="text/javascript">
-    function del_user(){
-        let tf = confirm("정말로 탈퇴하시겠습니까?");
-        if (tf === true){
-            location.href="{%url 'del_user' %}";
-            alert("성공적으로 탈퇴되었습니다.");
-        };
-    };
-</script>
+<div class="quitwrapper">
+    <button onclick="del_user();" class="quitbtn">탈퇴하기</button>
+        <script type="text/javascript">
+            function del_user(){
+                let tf = confirm("정말로 탈퇴하시겠습니까?");
+                if (tf === true){
+                    location.href="{%url 'del_user' %}";
+                    alert("성공적으로 탈퇴되었습니다.");
+                };
+            };
+        </script>
+</div>
 {% endblock %}

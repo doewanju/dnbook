@@ -1,65 +1,62 @@
+<!DOCTYPE html>
 <html>
 {% extends 'base.html' %}
 {% block content %}
+{% load staticfiles %}
 <head>
-    <style>
-        .starR{
-            background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-            background-size: auto 100%;
-            width: 30px;
-            height: 30px;
-            display: inline-block;
-            text-indent: -9999px;
-            cursor: pointer;
-        }
-        .starR.on{
-            background-position:0 0;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/storedetail.css' %}">
 </head>
 
 <body>
-    <br>
-    <h1>책방 이름 : <span id='name'>{{store.name}}</span></h1>
-    <h3>스크랩 <span class="badge badge-secondary">{{store.like_count}}</span></h3>
+
+    <div class="storename"><span id='name'>{{store.name}}</span></div>
+    <div class="scrap_count">
+        {% if user.is_authenticated %}
+            {% if scrap %}
+                <a href="{% url 'scrap' store.bookstore_id %}"><img src="{% static 'img/full_heart.png' %}" style="width: 50px"></a>
+            {% else %}
+                <a href="{% url 'scrap' store.bookstore_id %}"><img src="{% static 'img/empty_heart.png' %}" style="width: 50px"></a>
+            {% endif %}
+        {% else %}
+            <img src="{% static 'img/full_heart.png' %}" style="width: 50px">
+        {% endif %}
+        <span>{{store.like_count}}</span>
+    </div>
     {% if store.boss %}
         {% if store.boss != request.user %}
         <a href="{% url 'chat' store.boss.id %}">쪽지보내기</a>
         {% endif %}
     {% endif %}
 
-    {% if user.is_authenticated %}
-        {% if scrap %}
-            <h3><a href="{% url 'scrap' store.bookstore_id %}">스크랩취소</a></h3>
-        {% else %}
-            <h3><a href="{% url 'scrap' store.bookstore_id %}">스크랩</a></h3>
-        {% endif %}
-    {% endif %}
+
     <br><br>
     
-    <h2>주소 : <span id='addr'>{{store.addr}}</span></h2>
-    <h2>전화번호 : {{store.phone_number}}</h2>
+    <div class="contents">
+    <div>주소 : <span id='addr'>{{store.addr}}</span></div>
+    <div>전화번호 : {{store.phone_number}}</div>
     
     {% if store.site %}
         {% if 'http' in store.site %}
-            <h2>홈페이지 : <a href="{{store.site}}">{{store.site}}</a></h2>
+            <div>홈페이지 : <a href="{{store.site}}">{{store.site}}</a></div>
         {% else %}
-            <h2>홈페이지 : <a href="http://{{store.site}}">{{store.site}}</a></h2>
+            <div>홈페이지 : <a href="http://{{store.site}}">{{store.site}}</a></div>
         {% endif %}
     {% else %}
-        <h2>홈페이지 : 없음</h2>
+        <div>홈페이지 : 없음</div>
     {% endif %}
 
     {% if store.openhour %}
+
         {% if store.openhour_tf == True %}
             <div>영업시간 : {{store.openhour}}</div>
         {% elif store.openhour_tf == False %}
             <div>휴무일 : {{store.openhour}}</div>
         {% endif %}
+
     {% endif %}
 
     {% if introduce %}
-        <h2>책방소개 : {{introduce}}</h2>
+        <div>책방소개 : {{introduce}}</div>
     {% endif %}
     {% if edit %}
     <div>
@@ -110,7 +107,7 @@
     </script>
     
 <br>
-    <h2><b>리뷰</b> | 별점평균: {{star_avg}}</h2>
+    <div><b>리뷰</b> | 별점평균: {{star_avg}}</div>
     {% if user.is_authenticated %}
     <form method="POST" action="{% url 'reviewcreate' store.bookstore_id %}">
         {% csrf_token %}
@@ -138,14 +135,15 @@
         {% if review.user == user %}<a href="{% url 'reviewdelete' review.id %}">삭제</a>{% endif %}
     {% endfor %}
     <br><br>
-    <h2><a href="{% url 'crawling' store.bookstore_id %}">크롤링 리뷰보기 <i style="color: brown;">※주의※ 오래걸려요..!</i></a></h2>
+    <div><a href="{% url 'crawling' store.bookstore_id %}">크롤링 리뷰보기 <i style="color: brown;">※주의※ 오래걸려요..!</i></a></div>
     <div class='review_hs'>
         {%for review in rev%}
-        <h2><a href={{review.link}}>{{review.title}}</a></h2>
+        <div><a href={{review.link}}>{{review.title}}</a></div>
         <br>
         <h4>{{review.content}}</h4>
         <br><br>
         {%endfor%}
     </div>
+</div>
 </body>
 {% endblock %}

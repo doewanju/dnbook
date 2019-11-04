@@ -1,0 +1,42 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+.storename{
+    text-align: center;
+    margin-top: 30px;
+}
+span#name{
+    font-size: 80px;
+    font-family: 'YiSunShinDotumM';
+}
+
+.scrap_count{
+    width: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.scrap_count span{
+    font-size: 40px;
+    float: right;
+    display: table-cell;
+    vertical-align: middle;
+}
+.contents{
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.starR{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR.on{
+    background-position:0 0;
+}
