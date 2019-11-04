@@ -119,9 +119,9 @@ table {
     /* border-top: 2px solid #615136; */
 }
 
-a:link { color:white; text-decoration: none;}
-a:visited { color: white; text-decoration: none;}
-a:hover { color: white; text-decoration: none;}
+tr a:link { color:white; text-decoration: none;}
+tr a:visited { color: white; text-decoration: none;}
+tr a:hover { color: white; text-decoration: none;}
 
 .sub-btn{
     font-family: 'YiSunShinDotumM';

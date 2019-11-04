@@ -1,5 +1,6 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'UhBeepuding'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeepuding.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 .storename{
     text-align: center;
@@ -24,9 +25,58 @@ span#name{
     vertical-align: middle;
 }
 .contents{
-    width: 85%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
+    display: block;
+}
+.sendmessage{
+    float: right;
+    background-color: #EBDDCA;
+    padding: 10px 10px 10px 10px;
+    font-size: 30px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 4px lightgrey;
+    font-family: 'YiSunShinDotumM';
+}
+.infotext{
+    display: block;
+}
+.introduce{
+    text-align: center;
+    font-size: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'UhBeepuding';
+}
+table{
+    display: block;
+    width: 100%;
+    margin-top: 50px;
+}
+td{
+    font-size: 40px;
+    font-family: 'YiSunShinDotumM';
+}
+.icon{
+    width: 60px;
+    vertical-align: top;
+    box-align: center;
+}
+.colname{
+    width: 150px;
+    vertical-align: top;
+}
+a:link { color:black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: black; text-decoration: none;}
+
+div.review{
+    font-size: 40px;
+    font-family: 'YiSunShinDotumM';
+}
+.user_review{
+    font-size: 30px;
 }
 .starR{
     background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
@@ -39,4 +89,27 @@ span#name{
 }
 .starR.on{
     background-position:0 0;
+}
+
+.uname, .ucontent, .ustar{
+    display: inline;
+    font-family: 'YiSunShinDotumM';
+}
+
+.uname{
+    font-weight: 900;
+    color: #615136
+}
+.ucontent{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.clawling{
+    background-color: #EBDDCA;
+    padding: 20px 15px 20px 15px;
+    font-size: 30px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 4px lightgrey;
+    font-family: 'YiSunShinDotumM';   
 }
