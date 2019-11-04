@@ -6,11 +6,10 @@ from main.models import *
 # Create your models here.
 
 class BookStore(models.Model):
-    bookstore_id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=20, default="storename")
+    bookstore_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20, default="storename", null=True)
     addr = models.TextField(unique=True)
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=15, null=True)
+    phone_number = models.CharField(blank=True, max_length=15, null=True)
     site = models.URLField(null=True)
     img = models.ImageField(upload_to='store/', null=True)
     email = models.EmailField(null=True)

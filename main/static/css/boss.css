@@ -3,13 +3,13 @@
 .s-up{
     width: 800px;
     border:none;
-    height: 180px;
+    height: 150px;
     font-size: 55px;
     background: #615136;
     border-radius: 80px;
     text-align: center;
     color: white;
-    line-height: 180px;
+    line-height: 150px;
     display: block;
     font-family: 'YiSunShinDotumM';
 }
@@ -89,3 +89,48 @@ h2{
 .inp .bsname{
     margin-top: 50px;
 }
+
+
+.inp input:not(:placeholder-shown) + span {
+    color: #EBDDCA;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp input:focus {
+    background: none;
+    outline: none;
+}
+.inp input:focus + span {
+    color: #615136;
+    transform: translateY(-26px) scale(0.75);
+}
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus {
+    border-bottom: 4px solid #615136;
+}
+
+
+.inp input:focus + span + .border {
+    transform: scaleX(1);
+}
+div.findbs{
+    width: 300px;
+    height: 80px;
+    background: #615136;
+    position: relative;
+    border-radius: 70px;
+    text-align: center;
+    color: white;
+    line-height: 80px;
+    display: block;
+    /* margin-top: 00px; */
+    font-family: 'YiSunShinDotumM';
+    margin-bottom: 50px;
+}
+a.findbs{
+    font-size: 40px;
+}
+
+a:link { color:white; text-decoration: none;}
+a:visited { color: white; text-decoration: none;}
+a:hover { color: #DED2C0; text-decoration: none;}

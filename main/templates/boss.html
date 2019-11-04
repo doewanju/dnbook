@@ -23,7 +23,9 @@
     <input name="storename" type="text" value="{{bsname}}" class="bsname" readonly/>
     </label>
     {% else %}
-    <a href="{% url 'bossbook' %}">내 책방 찾기</a>
+    <div class="findbs">
+    <a href="{% url 'bossbook' %}" class="findbs">내 책방 찾기</a>
+    </div>
     {% endif %}
 
 

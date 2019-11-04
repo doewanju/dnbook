@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Normalprofile, Bossprofile
 from bookmap.models import BookStore, Scrap, Stamp
 from others.models import Culture, Comment
 from datetime import datetime
+from django.contrib.auth.hashers import check_password
+import os
 
 # Create your views here.
 
@@ -15,7 +17,7 @@ def home(request):
 def mypage(request):
     user = request.user
     if user.is_superuser:
-        return render(request, 'home.html', {'error': 'superuser는 mypage가 없습니다!'})
+        return render(request, 'home.html')
     else:
         try:
             profile = Bossprofile.objects.get(user=request.user)
@@ -59,8 +61,8 @@ def stamppush(request):
         user = User.objects.get(username=userid)
         profile = Normalprofile.objects.get(user=user)
     except:
-        error=True
-        return render(request,'result.html',{'error':error,})
+        message = "존재하지 않는 회원이거나 일반회원이 아닙니다."
+        return render(request,'popup.html',{'message':message})
     count = request.GET['count']
     store = BookStore.objects.get(boss=request.user)
     stamp = Stamp(user=user, store=store, count=count)
@@ -74,8 +76,8 @@ def stamppush(request):
         level = 1
     profile.level = level
     profile.save()
-    error=False
-    return render(request,'result.html',{'error':error,})
+    message = "스탬프가 성공적으로 저장되었습니다."
+    return render(request,'popup.html',{'message':message})
 
 def signup(request):
     return render(request,'signup.html')
@@ -121,7 +123,7 @@ def boss(request):
                 bossprofile = Bossprofile(user=user, nickname=nickname, email=email, introduce=introduce)
                 bossprofile.save()
                 #선택한 책방 이름에 맞는 책방모델에 >>>책방모델.add(bossprofile), >>>책방모델.save()
-                storename = request.POST['storename']
+                storename = request.POST['storename'].strip()
                 bookstore = BookStore.objects.get(name=storename)
                 bookstore.boss=User.objects.get(username=user)
                 bookstore.save()
@@ -239,6 +241,59 @@ def info(request):
     return render(request,'info.html')
 
 def del_user(request):
-    request.user.delete()
+    user = request.user
+    try:
+        profile = Bossprofile.objects.get(user=user)
+    except:
+        profile = Normalprofile.objects.get(user=user)
+    if profile.profileimg:
+        os.remove(profile.profileimg.path)
+    user.delete()
     auth.logout(request)
     return render(request,'home.html')
+
+def user_change(request):
+    if request.method == "POST":
+        user = request.user
+        try:
+            new_img = request.FILES['img_file']
+            try:
+                profile = Bossprofile.objects.get(user=user)
+            except:
+                profile = Normalprofile.objects.get(user=user)
+            if profile.profileimg:
+                os.remove(profile.profileimg.path)
+            profile.profileimg = new_img
+            profile.save()
+        except:
+            pass
+        new_pwd = request.POST.get("password1")
+        pwd_confirm = request.POST.get("password2")
+        if new_pwd == "":
+            if (new_img):
+                message = "프로필 사진이 성공적으로 변경되었습니다."
+                return render(request,'popup.html',{'message':message})
+            else:
+                return redirect('mypage')
+        if new_pwd == pwd_confirm:
+            user.set_password(new_pwd)
+            user.save()
+            auth.login(request, user)
+            message = "비밀번호가 성공적으로 변경되었습니다."
+            return render(request,'popup.html',{'message':message})
+        else:
+            message = "비밀번호가 일치하지 않습니다."
+            return render(request,'popup.html',{'message':message})
+
+def addstore(request):
+    if request.method == 'POST':
+        name=request.POST['name']
+        addr=request.POST['addr']
+        phone_number=request.POST['phone_number']
+        site=request.POST['site']
+        openhour=request.POST['openhour']
+        store = BookStore(name=name, addr=addr, phone_number=phone_number, site=site, openhour=openhour)
+        store.save()
+        return redirect('bossbook')
+    elif request.method == 'GET':
+        return render(request, 'addstore.html')

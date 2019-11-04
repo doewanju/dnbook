@@ -42,3 +42,4 @@ class Comment(models.Model):
         return '%s, %s' %(self.culture, self.content[:30])
     def summary(self):
         return self.content[:10]
+

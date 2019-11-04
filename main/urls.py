@@ -14,4 +14,10 @@ urlpatterns = [
     path('info/', views.info, name='info'),
     path('stamppush/', views.stamppush, name='stamppush'),
     path('del_user/', views.del_user, name='del_user'),
+<<<<<<< HEAD
+    path('change_pwd/',views.change_pwd, name='change_pwd'),
+    path('addstore/', views.addstore, name='addstore'),
+=======
+    path('user_change/',views.user_change, name='user_change'),
+>>>>>>> d9be01e1c12f6a4c98b50b71b8a4e2c69ae301b8
 ]
