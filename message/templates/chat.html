@@ -1,35 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load staticfiles %}
-<h1>채팅방!</h1>
-
-{% for message in messages %}
-    {% if message.sender != request.user %}
-        {% if other.profileimg %}
-            <img src="{{other.profileimg.url}}" alt="" class='mypage-prof-img'>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
+<div class="chatbody">
+    {% for message in messages %}
+        {% if message.sender != request.user %}
+            {% if other.profileimg %}
+                <img src="{{other.profileimg.url}}" alt="" class='mypage-prof-img'>
+            {% else %}
+                <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
+            {% endif %}
+            &nbsp;{{ other.nickname }}<br>
+            <div class="chatcontent">{{ message.content }}</div>
+            <div class="chat_time">{{ message.sentAt}}</div>
         {% else %}
-            <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
+            <div class="sendchat">
+                {% if message.isRead == False %}
+                    <span style="font-size:20px"><i>읽지않음</i></span> <!--안읽은것 표시-->
+                {% endif %}
+                <div class="chatcontent_r" style="text-align:right;position:right">
+                {{ message.content }}</div>
+                <div class="chat_time" style="text-align:right">{{ message.sentAt}}</div>
+            </div>
         {% endif %}
-        <h3>{{ other.nickname }}</h3>
-        <h3>{{ message.content }}</h3>
-        <h5>{{ message.sentAt}}</h5>
-    {% else %}
-        <h3 style="text-align:right">{{ message.content|linebreaks }}</h3>
-        <h5 style="text-align:right">{{ message.sentAt}}</h5>
-        {% if message.isRead == False %}
-            <h5 style="text-align:right">*</h5> <!--안읽은것 표시-->
-        {% endif %}
-    {% endif %}
-{% endfor %}
+    {% endfor %}
+</div>
+<div class="chatform">
+    <form class="writechat" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ form.errors }}
+        {{ form.non_field_errors }}
+        <input type="submit" class="btnsend" value="보내기"/>
+    </form>
+</div><br>
+<a class="listlink" href="{% url 'listMessage' %}">목록</a>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    {{ form.errors }}
-    {{ form.non_field_errors }}
-    <br/>
-    <input type="submit" value="send"/>
-</form>
-
-<a href="{% url 'listMessage' %}">목록</a>
 {% endblock %}

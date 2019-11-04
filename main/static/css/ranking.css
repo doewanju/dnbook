@@ -18,22 +18,38 @@
     background-color: #615136;
 }
 .back-square{
-    background-color: rgb(245, 241, 236);
+    background-color: rgba(235, 221, 202, 0.3);
     width: 95%;
-    height: 1300px;
+    height: 1350px;
     border-radius: 4rem;
-    margin: 50px auto;
-    padding: 120px 0;
+    margin: 30px auto;
+    padding: 30px 0;
 }
 .middle-ment{
     color: #615136;
     text-align: center;
     font-size: 50px;    
 }
-
+h3{
+    font-family: 'BBTreeGL';
+    font-size:25px;
+    color: gray;
+}
 .rankmember{
     margin: 40px 0;
     font-size: 40px;
     align-content: center;
     align-items: center;
+}
+.rankerimg{
+    width: 180px;
+    height:180px;
+    border-radius: 100%;
+    border: 5px solid #E29140;
+}
+.toprankerimg{
+    width: 250px;
+    height:250px;
+    border-radius: 100%;
+    border: 7px solid #F2C60C;
 }
