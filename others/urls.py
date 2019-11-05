@@ -10,4 +10,6 @@ urlpatterns = [
     path('new/', views.new, name='new'),
     path('boardcreate/', views.boardcreate, name='boardcreate'),
     path('boardsearch/', views.boardsearch, name='boardsearch'),
+    path('boardclass/', views.boardclass, name='boardclass'),
+
 ]

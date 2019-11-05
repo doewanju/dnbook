@@ -18,6 +18,9 @@ class BookStore(models.Model):
     boss = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     users = models.ManyToManyField(User,through='Scrap', related_name='%(app_label)s_%(class)s_related')
 
+    class Meta:
+            ordering = ['name']
+
     def __str__(self):
         return self.name
 
@@ -27,6 +30,8 @@ class BookStore(models.Model):
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
         return reverse('storedetail', args=[str(self.pk)])
+    
+
 
 class Scrap(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
