@@ -11,11 +11,13 @@ class Culture(models.Model):
     finish_time = models.DateField('종료 날짜')
     write_date = models.DateTimeField('작성한 날짜',auto_now=True)
     content = models.TextField('내용')
+    
     ETC = 'ET'
     CONCERT = 'CO'
     ONEDAY = 'ON'
     CLUB = 'CL'
     MOVIE = 'MO'
+
     GROUP = [
         ('ET', '기타'),
         ('CO', '북콘서트'),
@@ -29,6 +31,7 @@ class Culture(models.Model):
         default = ETC,
     )
     store = models.ForeignKey(BookStore, null=True, on_delete=models.CASCADE)
+    
     def __str__(self):
         return self.title
 
