@@ -318,7 +318,10 @@ def user_change(request):
 def addstore(request):
     if request.method == 'POST':
         name=request.POST['name']
-        addr=request.POST['addr']
+        addr = request.POST['addr']
+        detail = request.POST['detail']
+        if detail.strip() != "":
+            addr = addr + " " + detail
         phone_number=request.POST['phone_number']
         site=request.POST['site']
         openhour = request.POST['openhour']
