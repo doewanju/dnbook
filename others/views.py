@@ -4,10 +4,11 @@ from bookmap.models import BookStore
 from main.models import Bossprofile, Normalprofile
 from .forms import CommentForm, CultureForm
 from el_pagination.views import AjaxListView
+from django.db.models import Q
 # Create your views here.
 
 def board(request):
-    cultures=Culture.objects.order_by('-write_date')
+    cultures = Culture.objects.order_by('-write_date')
     key = False
     if request.user.is_authenticated:
         try:
@@ -86,9 +87,45 @@ def boardsearch(request):
             key = True
         except Bossprofile.DoesNotExist:
             key = False
-        
+
+    cultures = Culture.objects.order_by('-write_date')  
+    
     query = request.GET.get('query','')
 
     if query:
-        culture = Culture.objects.filter(title__contains=query)
-    return render(request, 'board.html', {'cultures':culture, 'key':key})
+        result = request.GET.get('searchtype','')
+        if result == 'title':
+            cultures = Culture.objects.filter(title__contains=query).order_by('-write_date')
+        elif result == 'store':
+            stores = BookStore.objects.filter(name__contains=query)
+            q = Q()
+            for i in stores:
+                q.add(Q(store=i), q.OR)
+            cultures = Culture.objects.filter(q).order_by('-write_date')
+
+    return render(request, 'board.html', {'cultures':cultures, 'key':key})
+
+def boardclass(request):
+    key = False
+
+    result = request.GET.get('class','')
+    cultures = Culture.objects.order_by('-write_date')
+    if result == 'total':
+        cultures = Culture.objects.order_by('-write_date')
+    elif result == 'concert':
+        cultures = Culture.objects.filter(group='CO').order_by('-write_date')
+    elif result == 'oneday':
+        cultures = Culture.objects.filter(group='ON').order_by('-write_date')
+    elif result == 'club':
+        cultures = Culture.objects.filter(group='CL').order_by('-write_date')
+    elif result == 'movie':
+        cultures = Culture.objects.filter(group='MO').order_by('-write_date')
+
+    if request.user.is_authenticated:
+        try:
+            profile = Bossprofile.objects.get(user=request.user)
+            key = True
+        except Bossprofile.DoesNotExist:
+            key = False
+        
+    return render(request, 'board.html', {'cultures':cultures, 'key':key})
