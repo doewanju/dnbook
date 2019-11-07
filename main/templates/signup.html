@@ -7,9 +7,6 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
     </head>
     <body>
-        {% if error %}
-        {{ error }}
-        {% endif %}
         <div class="signupbox row">
             <div class="member col-6 justify-content-center">
                 <a href="{% url 'normal' %}">

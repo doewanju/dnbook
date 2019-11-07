@@ -9,6 +9,7 @@ from django.contrib.auth.hashers import check_password
 import os
 from .forms import AddstoreForm
 import requests
+import re
 
 # Create your views here.
 
@@ -88,21 +89,23 @@ def normal(request):
    if request.method == 'POST':
        # User has info and wants an account now! 즉 [signup!]버튼을 눌렀을 때 일어나는 일
        if request.POST['password1'] == request.POST['password2']:
-           try:
-               user = User.objects.get(username=request.POST['username'])
-               return render(request, 'normal.html', {'error': 'Username has already been taken'})
-           except User.DoesNotExist:
-               user = User.objects.create_user(
-                   username=request.POST['username'], 
-                   password=request.POST['password1'])
-               nickname=request.POST['nickname']
-               email=request.POST['email']
-               normalprofile = Normalprofile(user=user, nickname=nickname, email=email)
-               normalprofile.save()
-               auth.login(request, user)
-               return redirect('home')
+            try:
+                user = User.objects.get(username=request.POST['username'])
+                content="<script type='text/javascript'>alert('이미 존재하는 아이디입니다.');history.back();</script>"
+                return HttpResponse(content)
+            except User.DoesNotExist:
+                user = User.objects.create_user(
+                    username=request.POST['username'], 
+                    password=request.POST['password1'])
+                nickname=request.POST['nickname']
+                email=request.POST['email']
+                normalprofile = Normalprofile(user=user, nickname=nickname, email=email)
+                normalprofile.save()
+                auth.login(request, user)
+                return redirect('home')
        else:
-           return render(request, 'normal.html', {'error': 'Passwords must match'})
+            content="<script type='text/javascript'>alert('비밀번호가 일치하지 않습니다.');history.back();</script>"
+            return HttpResponse(content)
    else:
        # User wants to enter info --> 유저가 정보를 입력하고 있는 중임.
        return render(request, 'normal.html')
@@ -112,27 +115,42 @@ def boss(request):
        # User has info and wants an account now! 즉 [signup!]버튼을 눌렀을 때 일어나는 일
        if request.POST['password1'] == request.POST['password2']:
            try:
-               user = User.objects.get(username=request.POST['username'])
-               return render(request, 'boss.html', {'error': 'Username has already been taken'})
+                user = User.objects.get(username=request.POST['username'])
+                content="<script type='text/javascript'>alert('이미 존재하는 아이디입니다.');history.back();</script>"
+                return HttpResponse(content)
            except User.DoesNotExist:
+                storename = request.POST['storename'].strip()
+                bookstore = BookStore.objects.get(name=storename)
+                saup = request.POST['saup']
+                if not re.match('^\d{3}\-\d{2}\-\d{5}$', saup): #사업자 번호 형식이 안맞음
+                    content="<script type='text/javascript'>alert('사업자 등록번호의 형식을 맞추어 써주세요.');history.back();</script>"
+                    return HttpResponse(content)
+                check = saup_valid(request, saup)
+                if check == False: #사업자 번호가 존재하지 않음
+                    content="<script type='text/javascript'>alert('존재하지 않는 사업자 등록번호입니다.');history.back();</script>"
+                    return HttpResponse(content)
+                elif saup != bookstore.saup: #사업자 번호가 존재하지만 책방DB랑 다름
+                    content="<script type='text/javascript'>alert('사업자 등록번호가 일치하지 않습니다.');history.back();</script>"
+                    return HttpResponse(content)
+                else:
+                    pass
                 user = User.objects.create_user(
                    username=request.POST['username'], 
                    password=request.POST['password1'])
-                #storename = request.POST["storename"]
                 nickname=request.POST['nickname']
                 email=request.POST['email']
                 introduce=request.POST['introduce']
                 bossprofile = Bossprofile(user=user, nickname=nickname, email=email, introduce=introduce)
                 bossprofile.save()
                 #선택한 책방 이름에 맞는 책방모델에 >>>책방모델.add(bossprofile), >>>책방모델.save()
-                storename = request.POST['storename'].strip()
-                bookstore = BookStore.objects.get(name=storename)
+                
                 bookstore.boss=User.objects.get(username=user)
                 bookstore.save()
                 auth.login(request, user)
                 return redirect('home')
        else:
-           return render(request, 'boss.html', {'error': 'Passwords must match'})
+            content="<script type='text/javascript'>alert('비밀번호가 일치하지 않습니다.');history.back();</script>"
+            return HttpResponse(content)
    elif request.method == 'GET':
        bsname = request.GET.get("bsname", False)
        return render(request, 'boss.html', {"bsname":bsname})
@@ -141,17 +159,24 @@ def boss(request):
         return render(request, 'boss.html')
 
 def login(request):
-   if request.method == 'POST': #로그인 버튼을 눌렀을 때
-       username = request.POST['username']
-       password = request.POST['password']
-       user = auth.authenticate(request, username=username, password=password)
-       if user is not None: #사용자 정보를 알맞게 입력한 경우
-           auth.login(request, user)
-           return redirect('home')
-       else: #잘못 입력한경우
-           return render(request, 'login.html', {'error' : 'username or password is incorrect.'})
-   else:
-       return render(request, 'login.html')
+    if request.method == 'POST': #로그인 버튼을 눌렀을 때
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None: #사용자 정보를 알맞게 입력한 경우
+            auth.login(request, user)
+            return redirect('home')
+        else:  #잘못 입력한경우
+            try:
+                user = User.objects.get(username=username)
+                if not check_password(password, user.password):
+                    content="<script type='text/javascript'>alert('비밀번호가 일치하지 않습니다.');history.back();</script>"
+                    return HttpResponse(content)
+            except User.DoesNotExist:
+                content="<script type='text/javascript'>alert('아이디가 존재하지 않습니다.');history.back();</script>"
+                return HttpResponse(content)
+    else:
+        return render(request, 'login.html')
 
 
 def logout(request):
