@@ -60,6 +60,7 @@
 <div class="comments">
 {% for comment in comments %}
     <div class="comment1">
+    {{img}}
     {{comment.user}}  {{ comment.created_at }}
     <!-- {%if comment.user != request.user%} {% if request.user.is_authenticated %}
         <a href="{% url 'chat' comment.user.id %}">쪽지보내기</a>
