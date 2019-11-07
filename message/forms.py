@@ -3,8 +3,8 @@ from .models import Message
 from django.forms import ModelChoiceField
 from django.contrib.auth.models import User
 
-class MessageForm(forms.ModelForm):
-    content = forms.CharField(widget=forms.Textarea, label='')
+class MessageForm(forms.ModelForm,):
+    # content = forms.CharField(widget=forms.Textarea, label='')
 
     class Meta:
         model = Message

@@ -32,11 +32,12 @@ span#name{
 }
 .sendmessage{
     float: right;
-    background-color: #EBDDCA;
+    /* background-color: #EBDDCA; */
     padding: 10px 10px 10px 10px;
-    font-size: 30px;
+    font-size: 25px;
     border-radius: 10px;
-    box-shadow: 5px 5px 4px lightgrey;
+    border: 1px solid  black;
+    /* box-shadow: 5px 5px 4px lightgrey; */
     font-family: 'YiSunShinDotumM';
 }
 .infotext{
@@ -50,26 +51,27 @@ span#name{
     font-family: 'UhBeepuding';
 }
 table{
-    display: block;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 td{
     font-size: 40px;
     font-family: 'YiSunShinDotumM';
 }
-.icon{
-    width: 60px;
+td.icon{
+    /* width: 60px; */
     vertical-align: top;
     box-align: center;
 }
-.colname{
-    width: 150px;
+td.colname{
+    width: 200px;
     vertical-align: top;
 }
-a:link { color:black; text-decoration: none;}
-a:visited { color: black; text-decoration: none;}
-a:hover { color: black; text-decoration: none;}
+td.data{
+    width: 600px;
+    font-size: 30px;
+    overflow: hidden;
+}
 
 div.review{
     font-size: 40px;
@@ -113,3 +115,120 @@ div.review{
     box-shadow: 5px 5px 4px lightgrey;
     font-family: 'YiSunShinDotumM';   
 }
+
+.delete{
+    float: right;
+}
+.summary{
+    font-family: 'YiSunShinDotumM';   
+    font-size: 30px;
+    border-radius: 10px;
+}
+
+.inp_mod{
+    width: 200px;
+    height: 80px;
+    font-family: 'YiSunShinDotumM';
+    font-size: 25px;
+    margin-top: 10px;
+}
+.inp_save{
+        width:50px;
+        background-color: #615136;
+        border: none;
+        color:#fff;
+        padding: 10px 0;
+        text-align: center;
+        text-decoration: none;
+        /* display: inline-block; */
+        font-size: 15px;
+        margin: 4px;
+        cursor: pointer;
+        /* border-radius: 10px; */
+        float: right;
+        margin-top: 40px;
+        margin-right: 10px;
+}
+
+textarea#id_content{
+    width: 500px;
+    height: 100px;
+    outline: 2px solid #EBDDCA;
+    font-size: 30px;
+    font-family: 'YiSunShinDotumM';
+}
+.rev_write{
+    position: relative;
+}
+.rev_write button{
+    position: absolute;
+    margin: 58px 0px 0px 10px;
+    width:50px;
+    background-color: #615136;
+    border: none;
+    color:#fff;
+    padding: 10px 0;
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.delete{
+    font-family: 'YiSunShinDotumM';
+    font-size: 20px;
+    background-color: #615136;
+    border: 0px;
+    color:white;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+a.clawling:link { color:#615136; text-decoration: none;}
+a.clawling:visited { color: #615136; text-decoration: none;}
+a.clawling:hover { color: #615136; text-decoration: none;}
+
+.delete a:link { color:white; text-decoration: none;}
+.delete a:visited { color: white; text-decoration: none;}
+.delete a:hover { color: white; text-decoration: none;}
+
+/* .radio_star input[type='radio'] {
+    -webkit-appearance:none;
+    width:40px;
+    height: 40px;
+    border:1px solid black;
+    border-radius:50%;
+    outline:none;
+    background:white;
+}
+.radio_star input[type='radio']:before {
+    content:'';
+    display:block;
+    width:70%;
+    height:70%;
+    margin: 15% auto;  
+    border-radius:50%;  
+  }
+.radio_star input[type='radio']:checked:before {
+    background:rgb(254,215,86);
+  } */
+
+input[type="radio"]{
+    display:none;
+ }
+ 
+input[type="radio"] + label{
+     background-image:url(../img/gray_star.png);
+     background-size: 60px 60px;
+     height: 60px;
+     width: 60px;
+     display:inline-block;
+     padding: 0 0 0 0px;
+     cursor:pointer;
+ }
+ 
+input[type="radio"]:checked + label{
+     background-image:url(../img/full_star.png);
+     background-size: 60px 60px;
+ }
