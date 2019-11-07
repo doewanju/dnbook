@@ -22,7 +22,7 @@ header nav div.menuprofile {
     font-weight: lighter;
 }
 .openmenu{
-  position: absolute;
+  /* position: absolute; */
   z-index: 1001;
 }
 header nav ul {
@@ -143,8 +143,7 @@ header nav ul li a:hover {
           transform: translateY(-10px) rotate(-45deg);
 }
 .nav.top-nav {
-    /* width: 100%; */
-    /* height: 130px; */
+    width: 100%;
     background-color: #EBDDCA;
     color: #402719;
     text-align:center;
