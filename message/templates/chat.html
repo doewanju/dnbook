@@ -4,16 +4,21 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
-<div class="chatbody">
+
+<div class="receiver">
+    {% if other.profileimg %}
+        <img src="{{other.profileimg.url}}" alt="" class='mypage-prof-img'>
+    {% else %}
+        <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
+    {% endif %}
+        &nbsp;{{ other.nickname }}님과의 채팅<br>
+</div>
+<div class="chatbody" id="chatbody">
     {% for message in messages %}
         {% if message.sender != request.user %}
-            {% if other.profileimg %}
-                <img src="{{other.profileimg.url}}" alt="" class='mypage-prof-img'>
-            {% else %}
-                <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
-            {% endif %}
-            &nbsp;{{ other.nickname }}<br>
+            
             <div class="chatcontent">{{ message.content }}</div>
             <div class="chat_time">{{ message.sentAt}}</div>
         {% else %}
@@ -28,10 +33,13 @@
         {% endif %}
     {% endfor %}
 </div>
+<script>
+$("#chatbody").scrollTop($("#chatbody")[0].scrollHeight);
+</script>
 <div class="chatform">
     <form class="writechat" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_table }}
         {{ form.errors }}
         {{ form.non_field_errors }}
         <input type="submit" class="btnsend" value="보내기"/>

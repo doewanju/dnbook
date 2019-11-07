@@ -31,14 +31,19 @@
     height: 100px;
     border-bottom: 2px dashed #615136;
 }
+.send_content{
+    width:50%;
+}
 .sender_id{
-    width: 120px;
+    padding-right:10px;
+    text-align: right;
 }
 .mlist td a{
     color: #402719;
     text-decoration: none;
 }
 .send_time{
-    width:300px;
+    width:330px;
     color: gray;
+    text-align: center;
 }

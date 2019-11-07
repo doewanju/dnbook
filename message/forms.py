@@ -4,7 +4,7 @@ from django.forms import ModelChoiceField
 from django.contrib.auth.models import User
 
 class MessageForm(forms.ModelForm):
-    content = forms.CharField(widget=forms.Textarea, label='')
+    content = forms.CharField(widget=forms.Textarea(attrs={'placeholder':' 보낼 내용을 입력해주세요.'}), label='')
 
     class Meta:
         model = Message
@@ -12,8 +12,8 @@ class MessageForm(forms.ModelForm):
         widgets = {
             'content':forms.Textarea(
                 attrs = {
+                    'auto_id' : False,
                     'class':'form-control',
-                    'placeholder':'보낼 내용을 입력해주세요.',
-                }
+                }  
             )
         }

@@ -24,11 +24,11 @@
         {% for message in test %}
         <tr>
             {% if message.sender == request.user %}
-                <td><a href="{% url 'chat' message.recipient.id %}">{{message.summary}}</a></td>
+                <td class="send_content"><a href="{% url 'chat' message.recipient.id %}">{{message.summary}}</a></td>
                 <td class="sender_id"><a href="{% url 'chat' message.recipient.id %}">{{ message.recipient.username }}</a></td>
                 <td class="send_time">{{message.sentAt}}</td>
             {% else %}
-                <td><a href="{% url 'chat' message.sender.id %}">
+                <td class="send_content"><a href="{% url 'chat' message.sender.id %}">
                     {% if message.isRead == False %}
                     <i class="far fa-envelope"></i>
                     {% else %}
