@@ -33,10 +33,10 @@ span#name{
 .sendmessage{
     float: right;
     /* background-color: #EBDDCA; */
-    padding: 10px 10px 10px 10px;
+    padding: 10px 15px 10px 15px;
     font-size: 25px;
     border-radius: 10px;
-    border: 1px solid  black;
+    border: 1px solid gray;
     /* box-shadow: 5px 5px 4px lightgrey; */
     font-family: 'YiSunShinDotumM';
 }
@@ -115,6 +115,9 @@ div.review{
     box-shadow: 5px 5px 4px lightgrey;
     font-family: 'YiSunShinDotumM';   
 }
+a.clawling:link { color:#615136; text-decoration: none;}
+a.clawling:visited { color: #615136; text-decoration: none;}
+a.clawling:hover { color: #615136; text-decoration: none;}
 
 .delete{
     float: right;
@@ -151,8 +154,8 @@ div.review{
 }
 
 textarea#id_content{
-    width: 500px;
-    height: 100px;
+    width: 715px;
+    height: 60px;
     outline: 2px solid #EBDDCA;
     font-size: 30px;
     font-family: 'YiSunShinDotumM';
@@ -161,33 +164,21 @@ textarea#id_content{
     position: relative;
 }
 .rev_write button{
+    /* font-family: 'YiSunShinDotumM';
+    font-size: 30px; */
     position: absolute;
-    margin: 58px 0px 0px 10px;
-    width:50px;
-    background-color: #615136;
-    border: none;
-    color:#fff;
-    padding: 10px 0;
-    text-align: center;
-    text-decoration: none;
-    /* display: inline-block; */
-    font-size: 15px;
-    cursor: pointer;
+    margin: 5px 0px 0px 10px;
 }
 
-.delete{
+.delete, button{
     font-family: 'YiSunShinDotumM';
-    font-size: 20px;
+    font-size: 25px;
     background-color: #615136;
     border: 0px;
     color:white;
     border-radius: 10px;
     padding: 8px;
 }
-
-a.clawling:link { color:#615136; text-decoration: none;}
-a.clawling:visited { color: #615136; text-decoration: none;}
-a.clawling:hover { color: #615136; text-decoration: none;}
 
 .delete a:link { color:white; text-decoration: none;}
 .delete a:visited { color: white; text-decoration: none;}

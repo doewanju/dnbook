@@ -119,7 +119,7 @@
     </script>
     
 <br>
-    <div class="review">REVIEW  |  
+    <div class="review">REVIEW | 
             <i class="fas fa-star" style="color: rgb(254,215,86); font-size: 30px;"></i> {{star_avg}}</div>
     
     {% if user.is_authenticated %}
@@ -133,7 +133,7 @@
             <span class="starR" value="4"><input name="star" value="4" type="hidden"></span>
             <span class="starR" value="5"><input name="star" value="5" type="hidden"></span> 
             -->
-        <input type="radio" name="star" id="shipadd1" value="1" />
+        <input type="radio" name="star" id="shipadd1" value="1" checked/>
         <label for="shipadd1"></label>
         <input type="radio" name="star" id="shipadd2" value="2" />
         <label for="shipadd2"></label>
@@ -166,7 +166,7 @@
     
     {% for review in reviews %}
     <div class="user_review">
-        <div class="uname">{{review.user}}</div>
+        <div class="uname">{{review.user}} |</div>
         <div class="ustar">
         <i class="fas fa-star" style="color: rgb(254,215,86); font-size: 25px;"></i>
         {{ review.star }}</div>
@@ -189,10 +189,10 @@
     <a href="{% url 'crawling' store.bookstore_id %}" class="clawling">크롤링 리뷰보기</a>
     {% if store.boss %}
         {% if store.boss != request.user %}
-            <div class="sendmessage" style="float: right;">
+            <div class="sendmessage" style="float: right; text-align: center;">
             <a href="{% url 'chat' store.boss.id %}">
                 <img src="{% static 'img/logomsg.jpg' %}" style="width: 100px;">
-            </a> <p>쪽지 보내기</p> </div>
+            </a> <div style="text-align:center;">{{store.name}}에게<br>쪽지 보내기</div> </div>
         {% endif %}
     {% endif %} 
     <div class='review_hs'>

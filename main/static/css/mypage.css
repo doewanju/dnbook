@@ -99,17 +99,17 @@ img.mypage-prof-img {
     outline:none;
     background:#EBDDCA;
 }
-  .radio_amount input[type='radio']:before {
+.radio_amount input[type='radio']:before {
     content:'';
     display:block;
     width:70%;
     height:70%;
     margin: 15% auto;  
     border-radius:50%;  
-  }
-  .radio_amount input[type='radio']:checked:before {
+}
+.radio_amount input[type='radio']:checked:before {
     background:#F2C60C;
-  }
+}
 
 .btnstamp{
     background-image:url("../images/stamp.png");
