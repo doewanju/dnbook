@@ -2,8 +2,6 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 from main.models import *
-from django.core.exceptions import ValidationError
-import re
 
 # Create your models here.
 
