@@ -54,10 +54,6 @@ def chat(request, user_id):
             q.add(Q(recipient=friend) & Q(sender=request.user), q.OR)
             messages = Message.objects.filter(q).order_by('sentAt')
 
-            for i in messages:
-                if i.recipient == request.user:
-                    i.isRead = True
-                    i.save()
             return render(request, 'chat.html', {'form':form, 'messages':messages, 'other':other})
         else:
             return HttpResponse("해당하는 아이디가 존재하지 않습니다. 다시 확인해주세요.")
