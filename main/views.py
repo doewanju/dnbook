@@ -162,98 +162,109 @@ def bossbook(request):
     bookstores = BookStore.objects
     return render(request,'bossbook.html', {'bookstores':bookstores})
 
-def get_nc(request,tf):
+def get_stamp_info(request,tf):
     stamp = Stamp.objects.all()
-    stamp_month=[]
-    stamp_nc=[]
-    stamp_idx=[]
-    result={}
+    stamp_month = []
+    stamp_ic = []
+    stamp_idx = []
+    user_img = {}
+    user_nick = {}
+    user_count = {}
+    result = {}
     for s in stamp:
         d = str(s.created_at)
         d=d.split()[0]
         date = datetime.strptime(d, "%Y-%m-%d")
         stamp_month.append(date.month)
+        stamp_ic.append([str(s.user), int(s.count)])
         profile = Normalprofile.objects.get(user=s.user)
-        stamp_nc.append([str(profile.nickname),int(s.count)])
+        try:
+            user_img[str(s.user)] = profile.profileimg
+        except:
+            user_img[str(s.user)] = None
+        user_nick[str(s.user)]=profile.nickname
     today = datetime.today().month
     for i,m in enumerate(stamp_month):
         if m == today:
             stamp_idx.append(i)
     if tf == True:
         for i in stamp_idx:
-            name = stamp_nc[i][0]
-            count = stamp_nc[i][1]
-            if name in result:
-                result[name] += count
+            name = stamp_ic[i][0]
+            count = stamp_ic[i][1]
+            if name in user_count:
+                user_count[name] += count
             else:
-                result[name] = count
+                user_count[name] = count
     else:
-        for s in stamp_nc:
+        for i,s in enumerate(stamp_ic):
             name = s[0]
             count = s[1]
-            if name in result:
-                result[name] += count
+            if name in user_count:
+                user_count[name] += count
             else:
-                result[name] = count
+                user_count[name] = count
+    result = [user_nick, user_count, user_img]
     return result
 
 def ranking(request):
-    total = get_nc(request,False)
-    month = get_nc(request,True)
-    total_n=[]
-    total_c=[]
-    month_n=[]
-    month_c=[]
-    rank=[total, month]
-    name=[total_n, month_n]
-    count=[total_c, month_c]
-    res_first={}
-    res_second={}
-    res_third={}
-    key_arr=['total_nickname','month_nickname','total_stamp','month_stamp','total_img','month_img']
+    total = get_stamp_info(request,False)
+    month = get_stamp_info(request, True)
+    nickname = [total[0], month[0]]
+    count = [total[1], month[1]]
+    img = [total[2], month[2]]
+    res_first = {}
+    res_second = {}
+    res_third = {}
+    key_arr = ['total_nickname', 'month_nickname', 'total_stamp', 'month_stamp', 'total_img', 'month_img']
 
-    for idx,r in enumerate(rank):
-        for i in r.keys():
-            name[idx].append(i)
-            count[idx].append(r.get(i))
-
-    for idx,cnt in enumerate(count):
-        first, second, third = [-1,'없음'], [-1,'없음'], [-1,'없음']
-        for i,c in enumerate(cnt):
-            if first[0] <= c:
+    for idx,cnt in enumerate(count): #idx가 0이면 전체, 1이면 월별
+        first, second, third = [-1, '없음'], [-1, '없음'], [-1, '없음']
+        for k,v in cnt.items(): #k는 id, v는 갯수
+            if first[0] <= v:
                 third = second
                 second = first
-                first = [c,name[idx][i]]
-            elif second[0] <= c:
+                first = [v,k]
+            elif second[0] <= v:
                 third = second
-                second = [c,name[idx][i]]
-            elif third[0] <= c:
-                third = [c, name[idx][i]]
+                second = [v,k]
+            elif third[0] <= v:
+                third = [v, k]
+            else:
+                pass
         
-        try:
-            first_img = Normalprofile.objects.get(nickname=first[1]).profileimg
-        except:
-            first_img = None
-        try:
-            second_img = Normalprofile.objects.get(nickname=second[1]).profileimg
-        except:
-            second_img = None
-        try:
-            third_img = Normalprofile.objects.get(nickname=third[1]).profileimg
-        except:
-            third_img = None
+        if first != [-1, '없음']:
+            nick_f = nickname[idx][first[1]]
+            img_f = img[idx][first[1]]
+        else:
+            nick_f = first[1]
+            img_f = None
 
-        res_first[key_arr[idx]]=first[1]
+        if second != [-1, '없음']:
+            nick_s = nickname[idx][second[1]]
+            img_s = img[idx][second[1]]
+        else:
+            nick_s = second[1]
+            img_s = None
+
+        if third != [-1, '없음']:
+            nick_t = nickname[idx][third[1]]
+            img_t = img[idx][third[1]]
+        else:
+            nick_t = third[1]
+            img_t = None
+            
+        res_first[key_arr[idx]] = nick_f
         res_first[key_arr[idx + 2]] = first[0]
-        res_first[key_arr[idx + 4]] = first_img
+        res_first[key_arr[idx + 4]] = img_f
         
-        res_second[key_arr[idx]]=second[1]
+        res_second[key_arr[idx]] = nick_s
         res_second[key_arr[idx + 2]] = second[0]
-        res_second[key_arr[idx+4]]=second_img
+        res_second[key_arr[idx + 4]] = img_s
 
-        res_third[key_arr[idx]]=third[1]
+        res_third[key_arr[idx]] = nick_t
         res_third[key_arr[idx + 2]] = third[0]
-        res_third[key_arr[idx+4]]=third_img
+        res_third[key_arr[idx + 4]] = img_t
+
     return render(request,'ranking.html', {'first':res_first, 'second':res_second, 'third':res_third})
 
 def info(request):
@@ -307,7 +318,10 @@ def user_change(request):
 def addstore(request):
     if request.method == 'POST':
         name=request.POST['name']
-        addr=request.POST['addr']
+        addr = request.POST['addr']
+        detail = request.POST['detail']
+        if detail.strip() != "":
+            addr = addr + " " + detail
         phone_number=request.POST['phone_number']
         site=request.POST['site']
         openhour = request.POST['openhour']

@@ -5,9 +5,19 @@
     font-family: 'NanumSquareRound';
     font-size: 35px;
     color: #3c281b;
-    height: 1400px;
+    height: 1300px;
     overflow:auto;
     margin:0 30px;
+}
+.receiver{
+    position: sticky;
+    top: 0;
+    width:100%;
+    font-family: 'NanumSquareRound';
+    font-size: 35px;
+    text-align: center;
+    color: #3c281b;
+    margin: 20px 0;
 }
 img.mypage-prof-img {
     border-radius: 100%;
@@ -49,6 +59,7 @@ img.mypage-prof-img {
     height: 110px;
     float: left;
     box-shadow: 5px 5px 10px #EBDDCA;
+    margin-left:10px;
     border: 2px solid #EBDDCA;
     border-radius: 20px;
 }
