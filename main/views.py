@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Normalprofile, Bossprofile
@@ -7,6 +7,8 @@ from others.models import Culture, Comment
 from datetime import datetime
 from django.contrib.auth.hashers import check_password
 import os
+from .forms import AddstoreForm
+import requests
 
 # Create your views here.
 
@@ -317,21 +319,43 @@ def user_change(request):
 
 def addstore(request):
     if request.method == 'POST':
-        name=request.POST['name']
-        addr = request.POST['addr']
-        detail = request.POST['detail']
-        if detail.strip() != "":
-            addr = addr + " " + detail
-        phone_number=request.POST['phone_number']
-        site=request.POST['site']
-        openhour = request.POST['openhour']
-        open_tf = request.POST['open_tf']
-        if open_tf == '영업시간':
-            tf = True
+        form = AddstoreForm(request.POST)
+        if form.is_valid():
+            store = form.save(commit=False)
+            check = saup_valid(request, store.saup)
+            if check == False:
+                content="<script type='text/javascript'>alert('존재하지 않는 사업자 등록번호입니다.');history.back();</script>"
+                return HttpResponse(content)
+            else:
+                pass
+            store.name=request.POST['name']
+            addr = request.POST['addr']
+            detail = request.POST['detail']
+            if detail.strip() != "":
+                store.addr = addr + " " + detail
+            store.site=request.POST['site']
+            store.openhour = request.POST['openhour']
+            open_tf = request.POST['open_tf']
+            if open_tf == '영업시간':
+                store.openhour_tf = True
+            else:
+                store.openhour_tf = False
+            store.save()
+            return redirect('bossbook')
         else:
-            tf = False
-        store = BookStore(name=name, addr=addr, phone_number=phone_number, site=site, openhour=openhour, openhour_tf=tf)
-        store.save()
-        return redirect('bossbook')
+            content="<script type='text/javascript'>alert('형식에 맞게 입력하세요');history.back();</script>"
+            return HttpResponse(content)
     elif request.method == 'GET':
-        return render(request, 'addstore.html')
+        form = AddstoreForm()
+        return render(request, 'addstore.html', {'form': form})
+
+def saup_valid(request, saup):
+    saup = saup.replace("-", "")
+    headers = {'Authorization': 'Bearer 5MhIQ5Kb69hXPbCj2coo'}
+    url='https://business.api.friday24.com/closedown/'+saup
+    response = requests.get(url, headers=headers)
+    content = str(response.content)
+    if '"state":"normal"' in content:
+        return True
+    else:
+        return False
