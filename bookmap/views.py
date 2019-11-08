@@ -102,6 +102,8 @@ def reviewdelete(request, review_id):
     return redirect('storedetail', bookstore_id=review.store.pk)
 
 def crawling(request, bookstore_id):
+    edit = None
+    introduce = None
     store_detail = get_object_or_404(BookStore, pk = bookstore_id)
     rev=reviewFuc(store_detail.name,store_detail.addr)
     scrap = Scrap.objects.filter(store=store_detail)
@@ -114,13 +116,29 @@ def crawling(request, bookstore_id):
         star_avg = '%.1f' %(tot/(store_detail.review_set.all().count()))
     else:
         star_avg = 0
-    
+
+    if store_detail.boss:
+        boss = store_detail.boss
+        introduce = Bossprofile.objects.get(user=boss).introduce
+        if request.user.is_authenticated:
+            try:
+                login_user = Bossprofile.objects.get(user=request.user).user
+                if login_user == boss:
+                    edit = True
+                else:
+                    pass
+            except:
+                pass
+        else:
+            pass
+    else:
+        pass
     if request.user.is_authenticated:
         store_scrap = scrap.filter(user=request.user)
         form = ReviewForm()
-        return render(request, 'storedetail.html', {'rev' : rev, 'store' : store_detail, 'scrap' : store_scrap, 'count':scrap_count, 'form':form, 'star_avg':star_avg})
+        return render(request, 'storedetail.html', {'rev' : rev, 'store' : store_detail, 'scrap' : store_scrap, 'count':scrap_count, 'form':form, 'star_avg':star_avg, 'introduce':introduce, 'edit':edit,})
     else:
-        return render(request, 'storedetail.html', {'rev' : rev, 'store' : store_detail, 'count' : scrap_count, 'star_avg':star_avg})
+        return render(request, 'storedetail.html', {'rev' : rev, 'store' : store_detail, 'count' : scrap_count, 'star_avg':star_avg, 'introduce':introduce, 'edit':edit,})
 
 def listsearch(request):
     bookstores = BookStore.objects

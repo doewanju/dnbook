@@ -24,7 +24,7 @@ class Message(models.Model):
         return self.content
     
     def summary(self):
-        return self.content[:20]
+        return self.content[:17]
 
     def senderProfile(self):
         try:
