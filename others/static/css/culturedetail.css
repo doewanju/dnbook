@@ -1,5 +1,6 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
 
 .board-detail{
     padding-left: 40px;
@@ -17,8 +18,74 @@
     margin-left: 40px;
     margin-top: 5px;
 }
-
-
-.table a:link { color:#615136; text-decoration: none;}
-.table a:visited { color: #615136; text-decoration: none;}
-.table a:hover { color: #615136; text-decoration: none;}
+.content-info{
+    /* font-family: 'BBTreeGL'; */
+    font-family: 'NanumSquareRound';
+    font-size: 30px;
+    margin-left: 80px;
+}
+.content-info a{
+    text-decoration: none;
+    color: black;
+}
+.content-body{
+    font-family: 'NanumSquareRound';
+    font-size: 30px;
+    margin: 30px 70px;
+    border-bottom: 1px dashed #615136;
+}
+.content-comment{
+    font-family: 'NanumSquareRound';
+    font-size: 30px;
+    margin: 30px 80px;
+}
+.content-comment textarea{
+    width:88%;
+    height: 50px;
+    float: left;
+    padding: 0 10px;
+    border: 2px solid #615136;
+    border-radius: 20px;
+    align-items: center;
+}
+textarea:focus{
+    outline: none;
+}
+.commentbtn{
+    background-color: #615136;
+    padding: 5px 18px;
+    border-radius: 30px;
+    margin-left:5px;
+    color: white;
+    border: none;
+}
+.listlink{
+    width: 85%;
+    margin: 0 auto;
+    text-align:center;
+    border-top: 1px dashed #615136;
+    padding:20px 0;
+}
+.listlink a{
+    font-family: 'NanumSquareRound';
+    font-size: 25px;
+    color: #615136;
+    text-decoration: none;
+}
+.comment-body{
+    margin-top: 20px;
+}
+.comment-writer{
+    font-weight: bold;
+}
+.date_delete{
+    font-size: 20px;
+    color: rgba(97, 81, 54, 0.5);
+}
+.date_delete a{
+    font-family: 'NanumSquareRound';
+    font-size: 20px;
+    color: rgba(97, 81, 54, 0.5);
+    text-decoration: none;
+    text-align: center;
+}
