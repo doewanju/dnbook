@@ -1,6 +1,7 @@
 from django.db import models
 from bookmap.models import BookStore
 from django.contrib.auth.models import User
+from main.models import Bossprofile, Normalprofile
 
 #제목, 사진, 기간, 작성날짜, 내용
 # Create your models here.
@@ -45,4 +46,11 @@ class Comment(models.Model):
         return '%s, %s' %(self.culture, self.content[:30])
     def summary(self):
         return self.content[:10]
-
+    def img(self):
+        user = self.user
+        try:
+            prof = Bossprofile.objects.get(user=user)
+        except:
+            prof = Normalprofile.objects.get(user=user)
+        img = prof.profileimg
+        return img

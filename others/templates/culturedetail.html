@@ -37,8 +37,8 @@
   
 <div class="topinfo">
 <a href="{% url 'storedetail' culture.store.bookstore_id %}">
-    {% if profile.profileimg %}
-        <img src="{{profile.profileimg.url}}" alt="" class="myprofile_img">
+    {% if writer_img %}
+        <img src="{{writer_img.url}}" alt="" class="myprofile_img">
     {% else %}
         <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
     {% endif %} </a>
@@ -108,6 +108,11 @@
     {% for comment in comments %}
         <div class="comment-body row">
         <div class="col-3 my-auto">
+            {% if comment.img %} <!--댓글단사람 프사-->
+                <img src="{{comment.img.url}}" alt="" class="myprofile_img">
+            {% else %}
+                <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
+            {% endif %}
         <span class="comment-writer">{{comment.user}}</span>
         {%if comment.user != request.user%}
         {% if request.user.is_authenticated %}
