@@ -45,9 +45,7 @@
 <script type="text/javascript">
     function img_click(){
         document.getElementById("img_file").click();
-        alert("프로필 사진 등록을 마치려면 SAVE 버튼을 눌러 저장하세요.");
     };
-
     function readURL(input){
         if (input.files && input.files[0]){
             let reader = new FileReader();
@@ -59,6 +57,7 @@
     }
     $('#img_file').change(function(){
         readURL(this);
+        alert("프로필 사진 등록을 마치려면 SAVE 버튼을 눌러 저장하세요.");
     });
 </script>
 <div class="title_mypage">
@@ -68,7 +67,7 @@
 <div class="stampbody">
     {% if store_name %}
     <div class="stamp_boss">
-        <div id="light" class="stampment white_content">아이디를 입력해주세요 :) 구매 금액 1 만원 당 스탬프 하나가 지급됩니다.
+        <div class="stampment">아이디를 입력해주세요 :) 구매 금액 1 만원 당 스탬프 하나가 지급됩니다.
             <form method="GET" action="{% url 'stamppush' %}">
             <div class="row row-equal-height selectrow">
                 <div class="col-5">

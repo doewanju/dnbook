@@ -12,6 +12,9 @@
 <div class="square"></div>
 <h1 class="title">{{culture.title}}</h1>
 </div>
+
+
+<!--지윤언니꺼
 <div class="content-info">
     작성자:
     <a href="{% url 'storedetail' culture.store.bookstore_id %}">
@@ -30,7 +33,56 @@
     <img src="{{culture.picture.url}}" alt="" width="800px">
     {% endif %}
     <p>{{culture.content|linebreaks}}</p>
+</div>-->
+  
+<div class="topinfo">
+<a href="{% url 'storedetail' culture.store.bookstore_id %}">
+    {% if profile.profileimg %}
+        <img src="{{profile.profileimg.url}}" alt="" class="myprofile_img">
+    {% else %}
+        <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
+    {% endif %} </a>
+    <div class="postinfo">
+        <div class="writer">작성자
+            <a href="{% url 'storedetail' culture.store.bookstore_id %}">{{culture.store.name}}</a>
+        </div>
+
+        <div class="period">
+            <span class="span1">행사기간</span> 
+            <span class="span2">{{culture.start_time}} ~ {{culture.finish_time}}</span>
+        </div>
+    </div>
 </div>
+
+<!-- <p> 작성한 날짜: {{culture.write_date}}</p> -->
+
+    {% if request.user.is_authenticated %}
+    <div class="sendmessage" style="float: right; text-align: center;">
+    <a href="{% url 'chat' culture.store.boss.id %}">
+        <img src="{% static 'img/logomsg.jpg' %}" style="width: 80px;">
+    </a>
+        {% if culture.store.boss != request.user %}
+        <div style="text-align:center;">{{culture.store.name}}에게<br>쪽지 보내기</div>
+        {% else %}
+        <div style="text-align:center;">나의 쪽지함<br>확인하기</div>
+        {% endif %}
+    {% endif %}
+    </div>
+
+<div class="contents">
+{% if culture.picture %}
+<img src="{{culture.picture.url}}" alt="" class="center-img">
+{% endif %}
+
+<p>{{culture.content|linebreaks}}</p>
+
+<!--  
+<a href="{% url 'board' %}" class="golist-btn">목록</a>
+-->
+</div>
+
+  
+  
 <div class="content-comment">
     {% if user.is_authenticated %}
     <form method="POST" action="{% url 'commentcreate' culture.id %}">
@@ -65,7 +117,37 @@
         </div>
         </div>
     {% endfor %}
+
+
+<!--이화꺼
+<hr style="background-color: black;">
+<div class="comments">
+{% for comment in comments %}
+    <div class="comment1">
+    {{img}}
+    {{comment.user}}  {{ comment.created_at }}
+    <br>
+    {{ comment.content }}
+    
+    
+    {% if comment.user == user %}
+    <a href="{% url 'commentdelete' comment.id %}" class="delete">삭제</a>
+    {% endif %}
+    </div>
+    <hr>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<form method="POST" action="{% url 'commentcreate' culture.id %}">
+    {% csrf_token %}
+    {{form.as_table}}
+    <button type='submit'>등록</button>
+</form>
+{% endif %}
 </div>
+
+</div>-->
+ 
 <p class="listlink">
     <a href="{% url 'board' %}">목록</a>
 </p>
