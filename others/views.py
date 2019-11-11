@@ -5,6 +5,7 @@ from main.models import Bossprofile, Normalprofile
 from .forms import CommentForm, CultureForm
 from el_pagination.views import AjaxListView
 from django.db.models import Q
+import os
 # Create your views here.
 
 def board(request):
@@ -135,3 +136,27 @@ def boardclass(request):
             key = False
         
     return render(request, 'board.html', {'cultures':cultures, 'key':key})
+
+
+def boardupdate(request, culture_id):
+    culture = get_object_or_404(Culture, pk = culture_id)
+    if request.method == 'POST':
+        form = CultureForm(request.POST, request.FILES, instance=culture)
+        storename = request.POST['storename']
+        bookstore = BookStore.objects.get(name=storename)
+        if form.is_valid(): 
+            post = form.save(commit=False)
+            post.store = bookstore
+            post.save()
+            return redirect('culturedetail', culture_id=post.pk)
+    else:
+        form = CultureForm(instance=culture)
+        storename = BookStore.objects.get(boss=request.user)
+        return render(request, 'boardnew.html', {'form':form, 'storename':storename})
+
+def boarddelete(request, culture_id):
+    post = get_object_or_404(Culture, pk = culture_id)
+    if post.picture:
+        os.remove(post.picture.path)
+    post.delete()
+    return redirect('board')

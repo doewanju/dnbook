@@ -30,6 +30,10 @@
     </div>
 </div>
 
+
+
+
+
 <!-- <p> 작성한 날짜: {{culture.write_date}}</p> -->
 
     {% if request.user.is_authenticated %}
@@ -44,6 +48,11 @@
         {% endif %}
     {% endif %}
     </div>
+
+    {% if culture.store.boss == request.user %}
+        <a href="{% url 'boardupdate' culture.id %}">글수정</a>
+        <a href="{% url 'boarddelete' culture.id %}">글삭제</a>
+    {% endif %}
 
 <div class="contents">
 {% if culture.picture %}
