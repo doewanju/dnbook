@@ -17,14 +17,7 @@
 <a href="{% url 'boardcreate' %}" class="writebtn">글쓰기</a>
 {% endif %}
 
-<form action="{% url 'boardsearch' %}" method ="get">
-    <input type="radio" name="searchtype" value="title" checked="checked">제목으로 검색
-    <input type="radio" name="searchtype" value="store">책방 이름으로 검색
-    <input type="search" name="query">
-    <input type="submit" name="" value="검색!">
-</form>
-
-{% paginate 10 cultures %}
+{% paginate cultures %}
 <table class="table">
     <thead>
         <tr>
@@ -32,11 +25,11 @@
             <form action="{% url 'boardclass' %}" method ="get">
                 <select name="class" onchange="form.submit();">
                     {% comment %} <option value="">분류</option> {% endcomment %}
-                    <option value="total" {% if result == 'total' %} selected {% endif %}>전체</option>
-                    <option value="concert" {% if result == 'concert' %} selected {% endif %}>북콘서트</option>
-                    <option value="oneday" {% if result == 'oneday' %} selected {% endif %}>원데이 클래스</option>
-                    <option value="club" {% if result == 'club' %} selected {% endif %}>소모임</option>
-                    <option value="movie" {% if result == 'movie' %} selected {% endif %}>영화상영</option>
+                    <option value="total">전체</option>
+                    <option value="concert">북콘서트</option>
+                    <option value="oneday">원데이클래스</option>
+                    <option value="club">소모임</option>
+                    <option value="movie">영화상영</option>
                 </select>
             </form>
         </th>
@@ -71,11 +64,9 @@
 </table>  
 <div class="page">
 {% get_pages %} 
-{{pages.current_start_index}} - {{pages.current_end_index}}
 {{ pages.get_rendered }}
 </div>
 
-<!--
 <div class="search">
     <form action="{% url 'boardsearch' %}" method ="get">
         <input type="radio" name="searchtype" value="title" checked="checked">&nbsp;제목
@@ -83,7 +74,7 @@
         <input type="search" name="query">
         <input type="submit" name="" value="" class="searchicon">
     </form>
-</div>-->
+</div>
 
 
 
