@@ -37,6 +37,7 @@
                     <option value="oneday" {% if result == 'oneday' %} selected {% endif %}>원데이 클래스</option>
                     <option value="club" {% if result == 'club' %} selected {% endif %}>소모임</option>
                     <option value="movie" {% if result == 'movie' %} selected {% endif %}>영화상영</option>
+                    <option value="etc" {% if result == 'etc' %} selected {% endif %}>기타</option>
                 </select>
             </form>
         </th>
@@ -75,7 +76,7 @@
 {{ pages.get_rendered }}
 </div>
 
-<!--
+
 <div class="search">
     <form action="{% url 'boardsearch' %}" method ="get">
         <input type="radio" name="searchtype" value="title" checked="checked">&nbsp;제목
@@ -83,7 +84,7 @@
         <input type="search" name="query">
         <input type="submit" name="" value="" class="searchicon">
     </form>
-</div>-->
+</div>
 
 
 

@@ -130,6 +130,8 @@ def boardclass(request):
         cultures = Culture.objects.filter(group='CL').order_by('-write_date')
     elif result == 'movie':
         cultures = Culture.objects.filter(group='MO').order_by('-write_date')
+    elif result == 'etc':
+        cultures = Culture.objects.filter(group='ET').order_by('-write_date')
 
     if request.user.is_authenticated:
         try:
