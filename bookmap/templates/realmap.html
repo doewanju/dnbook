@@ -9,14 +9,14 @@
     <body>
         <form action="{% url 'mapsearch' %}" method="get" class="search-act">
         <div class="rbtn">
-            <div class="radio-wrap">
+            <!-- <div class="radio-wrap"> -->
                 <input type='radio' name="searchtype" value='searchname' id="f-option" checked>
                 <label for="f-option">이름검색</label>
-            </div>
-            <div class="radio-wrap">
+            <!-- </div> -->
+            <!-- <div class="radio-wrap"> -->
                 <input type='radio' name="searchtype" value='searchaddr' id="s-option">
                 <label for="s-option">주소검색</label>
-            </div>
+            <!-- </div> -->
         </div>
         <div class="sbox">
             <input type="search" class="search-box" name="query">

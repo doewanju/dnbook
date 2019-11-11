@@ -4,7 +4,6 @@
 input.search-box{
     width: 650px;  
     height: 100px;
-    /* display: block; */
     margin-right: 25px; 
     border: none;
     box-shadow: 5px 5px 10px lightgrey;
@@ -14,11 +13,12 @@ input.search-box{
     font-family: 'YiSunShinDotumM';
 }
 
-.rbtn{
+/*.rbtn{
     margin-left: 25px;
     float: left;
     margin-top: 23px;
-}
+} */
+
 .sbox{
     float: right;
 }
@@ -133,17 +133,15 @@ tr a:hover { color: white; text-decoration: none;}
     /* width: 90px;
     height: 30px; */
 }
-
+/* 
 div.radio-wrap {
     display: inline-flex;
-    /* 가운데 정렬 */
     align-items: center;
   }
   
   input[type='radio'],
   input[type='radio']:checked {
     appearance: none; 
-    /* 모든 스타일 제거, 밑에는 라디오버튼의 크키, 주고싶은 공통 스타일*/
     width: 40px;
     height: 40px;
     border-radius: 100;
@@ -152,17 +150,17 @@ div.radio-wrap {
   }
   
   input[type='radio'] {
-    /* 각각 원하는 색상, 테두리 근데 적용안되는 것 같음*/
     background-color: white;
     border: 2px solid red;
   }
   input[type='radio']:checked {
     background-color: blue;
-  }
-  label{
+  } */
+label{
     font-family: 'YiSunShinDotumM';
-    font-size: 23px;
-    margin-top: 10px;
+    font-size: 27px;
+    margin-left: 10px;
+    margin-right: 5px;
   }
 .smallinfo{
     white-space:nowrap;
@@ -185,4 +183,31 @@ div.radio-wrap {
     border-radius: 100px;
     padding: 8px;
     margin-top: 15px;
+}
+
+.rbtn{
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.rbtn input[type='radio'] {
+    margin-top: 20px;
+    -webkit-appearance:none;
+    width:30px;
+    height:30px;
+    border:1px solid #EBDDCA;
+    border-radius:50%;
+    outline:none;
+    background:#EBDDCA;
+}
+.rbtn input[type='radio']:before {
+    content:'';
+    display:block;
+    width:60%;
+    height:60%;
+    margin: 15% auto;  
+    border-radius:50%;  
+}
+.rbtn input[type='radio']:checked:before {
+    background:#615136;
 }

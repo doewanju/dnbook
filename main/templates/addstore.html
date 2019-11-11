@@ -4,13 +4,15 @@
   <input name="addr" type="text" id="address" placeholder="  책방 주소" readonly>
   <input name="detail" type="text" id="detail" placeholder="  상세 주소(선택사항)">
   <input type="button" onclick="sample3_execDaumPostcode()" value="주소 찾기"><br>
-  <input name="phone_number" type="text" placeholder="  전화 번호">
   <input name="site" type="text" placeholder="  사이트">
   <input name="open_tf" type="radio" value="영업시간" id="1" checked="checked"><label for="1">영업시간</label>
   <input name="open_tf" type="radio" value="휴무일" id="2"><label for="2">휴무일</label>
   <input name="openhour" type="text" placeholder="  영업 시간">
+  {{form}} <!--전화번호, 사업자등록번호-->
   <input type="submit" value="등록!">
 </form>
+
+
 
 <div id="wrap" style="display:none;border:1px solid;width:500px;height:450px;margin:5px 0;position:relative">
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">

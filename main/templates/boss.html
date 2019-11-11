@@ -7,12 +7,6 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/boss.css' %}">
     </head>    
     <body>
-        {% if error %}
-        {{ error }}
-        <br>
-        <br>
-        {% endif %}
-
     <div class="boss-all">
     <h2>• 회원가입 (책방 주인)</h2>
     <div class="boss-box">
@@ -51,6 +45,10 @@
     
     <label for="inp" class="inp">
     <input name="introduce" type="text" id="inp" placeholder="  책방소개">
+    </label>
+
+    <label for="inp" class="inp">
+    <input name="saup" type="text" id="inp" placeholder="  사업자 등록번호 (000-00-00000)">
     </label>
 
     <div class="s-up">
