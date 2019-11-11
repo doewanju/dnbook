@@ -5,6 +5,7 @@ from main.models import Bossprofile, Normalprofile
 from .forms import CommentForm, CultureForm
 from el_pagination.views import AjaxListView
 from django.db.models import Q
+import os
 # Create your views here.
 
 def board(request):
@@ -16,9 +17,12 @@ def board(request):
             key = True
         except Bossprofile.DoesNotExist:
             key = False
-    return render(request, 'board.html', {'cultures':cultures, 'key':key})
+    else:
+        pass
+    result = 'total'
+    return render(request, 'board.html', {'cultures':cultures, 'key':key, 'result':result})
 
-def entry_index(reuqest, template='others/board.html'):
+def entry_index(request, template='others/board.html'):
     context = {
         'cultures' : Culture.objects.all().order_by('-write_date'),
     }
@@ -108,8 +112,8 @@ def boardsearch(request):
             for i in stores:
                 q.add(Q(store=i), q.OR)
             cultures = Culture.objects.filter(q).order_by('-write_date')
-
-    return render(request, 'board.html', {'cultures':cultures, 'key':key})
+    result = 'total'
+    return render(request, 'board.html', {'cultures':cultures, 'key':key, 'result':result})
 
 def boardclass(request):
     key = False
@@ -134,4 +138,35 @@ def boardclass(request):
         except Bossprofile.DoesNotExist:
             key = False
         
-    return render(request, 'board.html', {'cultures':cultures, 'key':key})
+    return render(request, 'board.html', {'cultures':cultures, 'key':key, 'result':result})
+
+
+def boardupdate(request, culture_id):
+    culture = get_object_or_404(Culture, pk = culture_id)
+    if culture.picture:
+        pic=culture.picture.path
+    else:
+        pic=None
+    if request.method == 'POST':
+        form = CultureForm(request.POST, request.FILES, instance=culture)
+        if request.FILES and pic:
+            os.remove(pic)
+        storename = request.POST['storename']
+        bookstore = BookStore.objects.get(name=storename)
+        if form.is_valid(): 
+            post = form.save(commit=False)
+            post.store = bookstore
+            post.save()
+            return redirect('culturedetail', culture_id=post.pk)
+    else:
+        form = CultureForm(instance=culture)
+        storename = BookStore.objects.get(boss=request.user)
+
+        return render(request, 'boardnew.html', {'form':form, 'storename':storename})
+
+def boarddelete(request, culture_id):
+    post = get_object_or_404(Culture, pk = culture_id)
+    if post.picture:
+        os.remove(post.picture.path)
+    post.delete()
+    return redirect('board')

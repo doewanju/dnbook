@@ -54,11 +54,19 @@
     </div>
 </div>
 
+
+
+
+
 <!-- <p> 작성한 날짜: {{culture.write_date}}</p> -->
 
     {% if request.user.is_authenticated %}
     <div class="sendmessage" style="float: right; text-align: center;">
-    <a href="{% url 'chat' culture.store.boss.id %}">
+    {% if culture.store.boss != request.user %}
+        <a href="{% url 'chat' culture.store.boss.id %}">
+    {% else %}
+        <a href="{% url 'listMessage' %}">
+    {% endif %}
         <img src="{% static 'img/logomsg.jpg' %}" style="width: 80px;">
     </a>
         {% if culture.store.boss != request.user %}
@@ -68,6 +76,11 @@
         {% endif %}
     {% endif %}
     </div>
+
+    {% if culture.store.boss == request.user %}
+        <a href="{% url 'boardupdate' culture.id %}">글수정</a>
+        <a href="{% url 'boarddelete' culture.id %}">글삭제</a>
+    {% endif %}
 
 <div class="contents">
 {% if culture.picture %}

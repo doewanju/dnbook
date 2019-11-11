@@ -10,6 +10,7 @@
 <div class="newbody">
 <form method='POST' enctype="multipart/form-data">
     {% csrf_token %}
+    <input name="storename" type="text" value="{{storename}}" style="display:none">
     <p>책방 이름: &nbsp;&nbsp;&nbsp;<strong>{{storename}}</strong></p>
     <table>
         {{form.as_table}}
