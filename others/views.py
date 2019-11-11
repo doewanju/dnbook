@@ -27,6 +27,12 @@ def entry_index(reuqest, template='others/board.html'):
 def detail(request, culture_id):
     culture_detail = get_object_or_404(Culture, pk = culture_id)
     comments = culture_detail.comment_set.all().order_by('-created_at')
+    # try:
+    #     profile = Bossprofile.objects.get(user=comments.user)
+    # except:
+    #     profile = Normalprofile.objects.get(user=comments.user)
+    # if profile.profileimg:
+    #     img = profile.profileimg
     if request.user.is_authenticated:
         form = CommentForm()
         return render(request, 'culturedetail.html', {'comments':comments,'culture':culture_detail, 'form':form})

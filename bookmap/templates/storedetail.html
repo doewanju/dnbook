@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
 
-<body>
-
+<body class="storedetail">
     <div class="storename"><span id='name'>{{store.name}}</span></div>
     <div class="scrap_count">
         {% if user.is_authenticated %}
@@ -35,34 +34,35 @@
     {% endif %}
     {% if edit %}
     <div>
-        <details>
-            <summary>책방소개 수정하기</summary>
+        <details style="margin-left: 250px; background-color: #EBDDCA; width: 290px; padding-left:10px; box-shadow: 3px 3px 3px lightgrey;">
+            <summary class="summary"> 책방소개 수정하기</summary>
             <form action="{% url 'edit_save' store.bookstore_id %}" method="GET">
-                <input name="introduce" type="text" value="">
-                <input type="submit" value="저장하기">
-            </form><br><br>
+                <input class="inp_mod" name="introduce" type="text" value="">
+                <input class="inp_save" type="submit" value="저장">
+            </form><br>
         </details>
     </div>
     {% endif %}
-    <table>
+    <table class="table">
         <tr>
             <td class="icon"><i class="fas fa-mobile-alt" style="color: #615136; font-size: 50px; align-content: center; margin-left: 7px;"></i> </td>
             <td class="colname">연락처</td>
-            <td>{{store.phone_number}}</td>
+            <td class="data">{{store.phone_number}}</td>
         </tr>
         {% if store.site %}
         <tr>
             <td class="icon"><i class="fas fa-globe-asia" style="color: #615136; font-size: 50px;"></i></td>
             <td class="colname">홈페이지</td>
-            <td>
+            <td class="data">
             {% if 'http' in store.site %}
-                <a href="{{store.site}}">{{store.site}}</a><i class="fas fa-external-link-alt" style="font-size: 30px; color: grey; margin-left: 10px;"></i>
+                <a href="{{store.site}}"><i class="fas fa-external-link-alt" style="font-size: 30px; color: grey; margin-left: 10px;"></i></a>
             {% else %}
-                <a href="http://{{store.site}}">{{store.site}}</a><i class="fas fa-external-link-alt"style="font-size: 30px; color: grey;margin-left: 10px;"></i>
-            {% endif %}
+                <a href="http://{{store.site}}"><i class="fas fa-external-link-alt"style="font-size: 30px; color: grey;margin-left: 10px;"></i></a>
+            {% endif %}</td>
         {% else %}
-            <p>없음</p>
-            </td>
+            <td class="icon"><i class="fas fa-globe-asia" style="color: #615136; font-size: 50px;"></i></td>
+            <td class="colname">홈페이지</td>
+            <td class="data">없음</td>
         {% endif %}
         </tr>
         {% if store.openhour %}
@@ -73,15 +73,15 @@
             {% elif store.openhour_tf == False %}
                 <td class="colname">휴무일</td>
             {% endif %}
-            <td>{{store.openhour}}</td>
+            <td class="data">{{store.openhour}}</td>
         {% endif %}
         </tr>
         <tr>
             <td class="icon"><i class="fas fa-map-marker-alt" style="color: #615136; font-size: 50px; margin-left: 5px;"></i> </td>
             <td class="colname">주소</td>
-            <td><span id='addr'>{{store.addr}}</span></td>
+            <td class="data"><span id='addr'>{{store.addr}}</span></td>
         </tr>
-    </div></table>
+    </table></div>
     <br>
   <!--해당서점 지도 표시-->
     <div id="map" style="width:100%;height:300px;position:relative;z-index:-1;"></div>
@@ -123,43 +123,76 @@
             <i class="fas fa-star" style="color: rgb(254,215,86); font-size: 30px;"></i> {{star_avg}}</div>
     
     {% if user.is_authenticated %}
-    <form method="POST" action="{% url 'reviewcreate' store.bookstore_id %}">
+    <form method="POST" action="{% url 'reviewcreate' store.bookstore_id %}" style="display: block;">
         {% csrf_token %}
-        <span class="starRev form-group">
-            <input name="star" value="1" type='radio'>
-            <input name="star" value="2" type='radio'>
-            <input name="star" value="3" type='radio'>
-            <input name="star" value="4" type='radio'>
-            <input name="star" value="5" type='radio' checked>
-        </span>
-        <script>
+        <div class="radio_star">
+        <!--  class="radio_star" -->
+            <!-- <span class="starR on" value="1"><input name="star" value="1" type="hidden"></span>
+            <span class="starR" value="2"><input name="star" value="2" type="hidden"></span>
+            <span class="starR" value="3"><input name="star" value="3" type="hidden"></span>
+            <span class="starR" value="4"><input name="star" value="4" type="hidden"></span>
+            <span class="starR" value="5"><input name="star" value="5" type="hidden"></span> 
+            -->
+        <input type="radio" name="star" id="shipadd1" value="1" checked/>
+        <label for="shipadd1"></label>
+        <input type="radio" name="star" id="shipadd2" value="2" />
+        <label for="shipadd2"></label>
+        <input type="radio" name="star" id="shipadd3" value="3" />
+        <label for="shipadd3"></label>
+        <input type="radio" name="star" id="shipadd4" value="4" />
+        <label for="shipadd4"></label>
+        <input type="radio" name="star" id="shipadd5" value="5" />
+        <label for="shipadd5"></label>
+    </div>
+
+        <!-- <script>
         $('.starRev span').click(function(){
             $(this).parent().children('span').removeClass('on');
             $(this).addClass('on').prevAll('span').addClass('on');
             return false;
           });
-        </script>
-        {{form}}
-        <button type='submit'>등록!</button>
-    </form>
+        function starclick(){
+            document.getElementById("star3").click();
+        };
+        
+        </script> -->
+        <div class="rev_write">
+        {{form.as_table}}
+        <button type='submit'>등록</button>
+    </form> </div>
     {% endif %}
+    <hr>
 
-    <div class="user_review">
+    
     {% for review in reviews %}
-        <div class="uname">{{review.user}}</div>
+    <div class="user_review">
+        <div class="uname">{{review.user}} |</div>
+        <div class="ustar">
+        <i class="fas fa-star" style="color: rgb(254,215,86); font-size: 25px;"></i>
+        {{ review.star }}</div>
         <div class="ucontent">{{ review.content }}</div>
-        <div class="ustar"><i class="fas fa-star" style="color: rgb(254,215,86); font-size: 25px;"></i>{{ review.star }}</p></div>
-        {% if review.user == user %}<a href="{% url 'reviewdelete' review.id %}">삭제</a>{% endif %}
-        <hr>
-        {% endfor %}
+        
+        {% if review.user == user %}
+        <div class="delete">
+            <a href="{% url 'reviewdelete' review.id %}">삭제</a>
+        </div>
     </div>
+        {% endif %} 
+        <hr>
+    {% endfor %}
+    
+
+
     <br><br>
 
 
     <a href="{% url 'crawling' store.bookstore_id %}" class="clawling">크롤링 리뷰보기</a>
     {% if store.boss %}
         {% if store.boss != request.user %}
-            <a href="{% url 'chat' store.boss.id %}" class="sendmessage">쪽지보내기</a>
+            <div class="sendmessage" style="float: right; text-align: center;">
+            <a href="{% url 'chat' store.boss.id %}">
+                <img src="{% static 'img/logomsg.jpg' %}" style="width: 100px;">
+            </a> <div style="text-align:center;">{{store.name}}에게<br>쪽지 보내기</div> </div>
         {% endif %}
     {% endif %} 
     <div class='review_hs'>
@@ -173,6 +206,6 @@
 
 </div>
 
-
 </body>
 {% endblock %}
+</html>
