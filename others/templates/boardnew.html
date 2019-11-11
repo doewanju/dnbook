@@ -1,8 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load staticfiles %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/boardnew.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
+
+<div class="newbody">
 <form method='POST' enctype="multipart/form-data">
     {% csrf_token %}
-    <h4>책방 이름: <input name="storename" type="text" value="{{storename}}" readonly/></h4>
+    <p>책방 이름: &nbsp;&nbsp;&nbsp;<strong>{{storename}}</strong></p>
     <table>
         {{form.as_table}}
     </table>
-    <input type="submit" value="등록">
+    <input type="submit" value="등록" class="newbutton">
 </form>
+</div>
+{% endblock %}

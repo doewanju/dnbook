@@ -14,65 +14,70 @@
 <p class="ment">북콘서트, 전시회 등 문화행사를 홍보할 수 있는 게시판입니다.</p>
 
 {% if key %}
-<a href="{% url 'boardcreate' %}">새글작성</a>
+<a href="{% url 'boardcreate' %}" class="writebtn">글쓰기</a>
 {% endif %}
-
-<form action="{% url 'boardsearch' %}" method ="get">
-    <input type="radio" name="searchtype" value="title" checked="checked">제목으로 검색
-    <input type="radio" name="searchtype" value="store">책방 이름으로 검색
-    <input type="search" name="query">
-    <input type="submit" name="" value="검색!">
-</form>
 
 {% paginate cultures %}
 <table class="table">
     <thead>
         <tr>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>행사날짜</th>
-        <th>
+        <th class="category">
             <form action="{% url 'boardclass' %}" method ="get">
                 <select name="class" onchange="form.submit();">
-                    <option value="">분류</option>
+                    {% comment %} <option value="">분류</option> {% endcomment %}
                     <option value="total">전체</option>
                     <option value="concert">북콘서트</option>
-                    <option value="oneday">원데이 클래스</option>
+                    <option value="oneday">원데이클래스</option>
                     <option value="club">소모임</option>
                     <option value="movie">영화상영</option>
                 </select>
             </form>
         </th>
+        <th class="title">제목</th>
+        <th class="writer">작성자</th>
+        <th class="eventdate">행사날짜</th>
         </tr>
     </thead>
     <tbody>
     {% for cul in cultures.all %}
         <tr>
-        <td><a href="{%url 'culturedetail' cul.id%}">{{cul.title}}</a></td>
-        <td>{{cul.store}}</td>
-        <td>{{cul.start_time}}</td>
-        <td>
+        <td class="category">
             {% if cul.group == 'ET' %}
                 기타
             {% elif cul.group == 'CO' %}
                 북콘서트
             {% elif cul.group == 'ON' %}
-                원데이 클래스
+                원데이클래스
             {% elif cul.group == 'CL' %}
                 소모임
             {% else %}
                 영화상영
             {% endif %}
         </td>
+        <td class="title"><a href="{%url 'culturedetail' cul.id%}">{{cul.title}}</a></td>
+        <td class="writer">{{cul.store}}</td>
+        <td class="eventdate">{{cul.start_time}}</td>
+        
         </tr>
     {% endfor %}
     </tbody>
 </table>  
+<div class="page">
 {% get_pages %} 
-<h1>{{ pages.current_start_index }}-{{ pages.current_end_index }} of
-{{ pages.total_count }}.</h1><br>
-{# Just print pages to render the Digg-style pagination. #}
-<h1>{{ pages.get_rendered }} </h1>
+{{ pages.get_rendered }}
+</div>
+
+<div class="search">
+    <form action="{% url 'boardsearch' %}" method ="get">
+        <input type="radio" name="searchtype" value="title" checked="checked">&nbsp;제목
+        <input type="radio" name="searchtype" value="store">&nbsp;책방 이름
+        <input type="search" name="query">
+        <input type="submit" name="" value="" class="searchicon">
+    </form>
+</div>
+
+
+
 </div>
 </body>
 

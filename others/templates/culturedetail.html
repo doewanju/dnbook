@@ -4,13 +4,37 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/culturedetail.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
 
 <body>
 <div class="board-detail">
 <div class="square"></div>
 <h1 class="title">{{culture.title}}</h1>
+</div>
 
+
+<!--지윤언니꺼
+<div class="content-info">
+    작성자:
+    <a href="{% url 'storedetail' culture.store.bookstore_id %}">
+    <u>{{culture.store.name}}</u></a>&nbsp;
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'chat' culture.store.boss.id %}">
+    <span style="color:#615136;font-size:25px;"><i class="far fa-comments"></i>
+    쪽지보내기</a></span>
+    {% endif %}<br>
+    행사 날짜: {{culture.start_time}}<br>
+    종료 날짜: {{culture.finish_time}}<br>
+    작성일: {{culture.write_date}}<br>
+</div>
+<div class="content-body">
+    {% if culture.picture %}
+    <img src="{{culture.picture.url}}" alt="" width="800px">
+    {% endif %}
+    <p>{{culture.content|linebreaks}}</p>
+</div>-->
+  
 <div class="topinfo">
 <a href="{% url 'storedetail' culture.store.bookstore_id %}">
     {% if profile.profileimg %}
@@ -52,19 +76,56 @@
 
 <p>{{culture.content|linebreaks}}</p>
 
+<!--  
 <a href="{% url 'board' %}" class="golist-btn">목록</a>
-
+-->
 </div>
 
+  
+  
+<div class="content-comment">
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'commentcreate' culture.id %}">
+        {% csrf_token %}
+        {{form}}
+        <button type='submit' class="commentbtn">등록</button>
+    </form>
+    {% endif %}
+
+    {% for comment in comments %}
+        <div class="comment-body row">
+        <div class="col-3 my-auto">
+        <span class="comment-writer">{{comment.user}}</span>
+        {%if comment.user != request.user%}
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'chat' comment.user.id %}">
+        <span style="color:#F2C60C;font-size:25px;"><i class="far fa-comments"></i></span></a>
+        {% endif %}
+        {% endif %}
+        </div>
+        <div class="col my-auto">
+            <div class="row">
+                {{ comment.content }}
+            </div>
+            <div class="row date_delete">
+                {{ comment.created_at }}
+                {% if comment.user == user %}
+                    <a href="{% url 'commentdelete' comment.id %}">
+                    &nbsp;<i class="far fa-trash-alt"></i>&nbsp;삭제</a>
+                {% endif %}
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+
+
+<!--이화꺼
 <hr style="background-color: black;">
 <div class="comments">
 {% for comment in comments %}
     <div class="comment1">
     {{img}}
     {{comment.user}}  {{ comment.created_at }}
-    <!-- {%if comment.user != request.user%} {% if request.user.is_authenticated %}
-        <a href="{% url 'chat' comment.user.id %}">쪽지보내기</a>
-    {% endif %} {% endif %} -->
     <br>
     {{ comment.content }}
     
@@ -85,7 +146,11 @@
 {% endif %}
 </div>
 
-</div>
+</div>-->
+ 
+<p class="listlink">
+    <a href="{% url 'board' %}">목록</a>
+</p>
 </body>
 
 
