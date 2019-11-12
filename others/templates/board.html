@@ -17,14 +17,7 @@
 <a href="{% url 'boardcreate' %}" class="writebtn">글쓰기</a>
 {% endif %}
 
-<form action="{% url 'boardsearch' %}" method ="get">
-    <input type="radio" name="searchtype" value="title" checked="checked">제목으로 검색
-    <input type="radio" name="searchtype" value="store">책방 이름으로 검색
-    <input type="search" name="query">
-    <input type="submit" name="" value="검색!">
-</form>
-
-{% paginate 10 cultures %}
+{% paginate cultures %}
 <table class="table">
     <thead>
         <tr>
@@ -72,10 +65,8 @@
 </table>  
 <div class="page">
 {% get_pages %} 
-{{pages.current_start_index}} - {{pages.current_end_index}}
 {{ pages.get_rendered }}
 </div>
-
 
 <div class="search">
     <form action="{% url 'boardsearch' %}" method ="get">
