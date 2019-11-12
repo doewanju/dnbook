@@ -29,19 +29,19 @@ def entry_index(request, template='others/board.html'):
     return render(request, template, context)
 
 def detail(request, culture_id):
-    culture_detail = get_object_or_404(Culture, pk = culture_id)
+    culture_detail = get_object_or_404(Culture, pk=culture_id)
+    write_user = culture_detail.store.boss
+    writer = Bossprofile.objects.get(user=write_user)
+    if writer.profileimg:   #글쓴이 프로필사진
+        writer_img = writer.profileimg
+    else:
+        writer_img = None
     comments = culture_detail.comment_set.all().order_by('-created_at')
-    # try:
-    #     profile = Bossprofile.objects.get(user=comments.user)
-    # except:
-    #     profile = Normalprofile.objects.get(user=comments.user)
-    # if profile.profileimg:
-    #     img = profile.profileimg
     if request.user.is_authenticated:
         form = CommentForm()
-        return render(request, 'culturedetail.html', {'comments':comments,'culture':culture_detail, 'form':form})
+        return render(request, 'culturedetail.html', {'comments':comments,'culture':culture_detail, 'form':form, 'writer_img':writer_img,})
     else:
-        return render(request,'culturedetail.html', {'comments':comments,'culture' : culture_detail})
+        return render(request,'culturedetail.html', {'comments':comments,'culture' : culture_detail, 'writer_img':writer_img,})
     
 
 def guide(request):
@@ -60,8 +60,7 @@ def commentcreate(request, culture_id):
         else:
             redirect('board')
     else:
-        form = CommentForm()
-        return render(request, 'culturedetail.html', {'form':form, 'culture':culture})
+        pass
     
 def commentdelete(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
@@ -130,6 +129,8 @@ def boardclass(request):
         cultures = Culture.objects.filter(group='CL').order_by('-write_date')
     elif result == 'movie':
         cultures = Culture.objects.filter(group='MO').order_by('-write_date')
+    elif result == 'etc':
+        cultures = Culture.objects.filter(group='ET').order_by('-write_date')
 
     if request.user.is_authenticated:
         try:
