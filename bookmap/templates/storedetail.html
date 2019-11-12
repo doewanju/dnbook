@@ -186,7 +186,7 @@
     <br><br>
 
 
-    <a href="{% url 'crawling' store.bookstore_id %}" class="clawling">크롤링 리뷰보기</a>
+    
     {% if store.boss %}
         {% if store.boss != request.user %}
             <div class="sendmessage" style="float: right; text-align: center;">
@@ -195,12 +195,17 @@
             </a> <div style="text-align:center;">{{store.name}}에게<br>쪽지 보내기</div> </div>
         {% endif %}
     {% endif %} 
-    <div class='review_hs'>
+
+
+    <a href="{% url 'crawling' store.bookstore_id %}" class="clawling">크롤링 리뷰보기</a>
+    <br>
+    <div class="review_hs">
         {%for review in rev%}
-        <div><a href={{review.link}}>{{review.title}}</a></div>
-        <br>
+        <div class="cr_review_ct">
+        <h3><a href={{review.link}}>{{review.title}}</a></h3>
         <h4>{{review.content}}</h4>
-        <br><br>
+        </div>
+        <hr>
         {%endfor%}
     </div>
 
