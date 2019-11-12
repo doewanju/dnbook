@@ -72,7 +72,7 @@ header nav ul li a:hover {
 
 .toggle-btn {
   display: block;
-  position: fixed;
+  position: absolute;
   z-index: 10;
   right: 50px;
   top: 28px;
