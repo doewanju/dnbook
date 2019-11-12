@@ -12,29 +12,6 @@
 <div class="square"></div>
 <h1 class="title">{{culture.title}}</h1>
 </div>
-
-
-<!--지윤언니꺼
-<div class="content-info">
-    작성자:
-    <a href="{% url 'storedetail' culture.store.bookstore_id %}">
-    <u>{{culture.store.name}}</u></a>&nbsp;
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'chat' culture.store.boss.id %}">
-    <span style="color:#615136;font-size:25px;"><i class="far fa-comments"></i>
-    쪽지보내기</a></span>
-    {% endif %}<br>
-    행사 날짜: {{culture.start_time}}<br>
-    종료 날짜: {{culture.finish_time}}<br>
-    작성일: {{culture.write_date}}<br>
-</div>
-<div class="content-body">
-    {% if culture.picture %}
-    <img src="{{culture.picture.url}}" alt="" width="800px">
-    {% endif %}
-    <p>{{culture.content|linebreaks}}</p>
-</div>-->
-  
 <div class="topinfo">
 <a href="{% url 'storedetail' culture.store.bookstore_id %}">
     {% if writer_img %}
@@ -53,15 +30,10 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 <!-- <p> 작성한 날짜: {{culture.write_date}}</p> -->
 
     {% if request.user.is_authenticated %}
-    <div class="sendmessage" style="float: right; text-align: center;">
+    <div class="sendmessage" style="text-align: center;margin-right:80px;">
     {% if culture.store.boss != request.user %}
         <a href="{% url 'chat' culture.store.boss.id %}">
     {% else %}
@@ -77,21 +49,21 @@
     {% endif %}
     </div>
 
-    {% if culture.store.boss == request.user %}
-        <a href="{% url 'boardupdate' culture.id %}">글수정</a>
-        <a href="{% url 'boarddelete' culture.id %}">글삭제</a>
-    {% endif %}
-
 <div class="contents">
 {% if culture.picture %}
 <img src="{{culture.picture.url}}" alt="" class="center-img">
 {% endif %}
 
 <p>{{culture.content|linebreaks}}</p>
-
-<!--  
-<a href="{% url 'board' %}" class="golist-btn">목록</a>
--->
+<div class="update_delete">
+{% if culture.store.boss == request.user %}
+    <a href="{% url 'boardupdate' culture.id %}">
+    <i class="far fa-edit"></i> 수정</a>
+    &nbsp;&nbsp;
+    <a href="{% url 'boarddelete' culture.id %}">
+    <i class="far fa-trash-alt"></i> 삭제</a>
+{% endif %}
+</div>
 </div>
 
   
@@ -110,9 +82,9 @@
         <div class="col-3 my-auto">
         <!--댓글단사람 프사(우선 임시로 위에 글쓴사람프사의 클래스 가져왔어요..!바꿔도 됩니당)-->
             {% if comment.img %}
-                <img src="{{comment.img.url}}" alt="" class="myprofile_img">
+                <img src="{{comment.img.url}}" alt="" class="comment_img">
             {% else %}
-                <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
+                <img src="{% static 'images/basic-profile-img.png' %}" class="comment_img">
             {% endif %}
         <span class="comment-writer">{{comment.user}}</span>
         {%if comment.user != request.user%}

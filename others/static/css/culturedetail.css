@@ -19,34 +19,26 @@
     font-size: 55px;
     color: black;
 }
-
-/*
-.content-info{
-   // font-family: 'BBTreeGL';
-    font-family: 'NanumSquareRound';
-    font-size: 30px;
-    margin-left: 80px;
+.topinfo{
+    height: 140px;
+    margin: 0 20px;
 }
-.content-info a{
+
+.update_delete, .update_delete a{
+    font-family: 'NanumSquareRound';
+    font-size: 28px;
+    text-align: right;
     text-decoration: none;
-    color: black;
+    color: #615136;
 }
-.content-body{
-    font-family: 'NanumSquareRound';
-    font-size: 30px;
-    margin: 30px 70px;
-    border-bottom: 1px dashed #615136;
-}
-*/
-
-
 .content-comment{
     font-family: 'NanumSquareRound';
     font-size: 30px;
     margin: 30px 80px;
+    
 }
 .content-comment textarea{
-    width:88%;
+    width:89%;
     height: 50px;
     float: left;
     padding: 0 10px;
@@ -59,18 +51,19 @@ textarea:focus{
 }
 .commentbtn{
     background-color: #615136;
-    padding: 5px 18px;
-    border-radius: 30px;
+    padding: 5px 15px;
+    border-radius: 50px;
     margin-left:5px;
     color: white;
     border: none;
 }
 .listlink{
-    width: 85%;
+    width: 100%;
     margin: 0 auto;
     text-align:center;
     border-top: 1px dashed #615136;
-    padding:20px 0;
+    margin-top: 10px;
+    padding:10px 0;
 }
 .listlink a{
     font-family: 'NanumSquareRound';
@@ -80,6 +73,7 @@ textarea:focus{
 }
 .comment-body{
     margin-top: 20px;
+    text-align: center;
 }
 .comment-writer{
     font-weight: bold;
@@ -96,13 +90,18 @@ textarea:focus{
     text-align: center;
 }
 
-
 img.myprofile_img {
     border-radius: 100%;
     width: 110px;
     height: 110px;
     margin-left: 30px;
     margin-bottom: 50px;
+}
+img.comment_img{
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+    margin: 0 20px;
 }
 
 .postinfo{
@@ -147,66 +146,12 @@ div.writer a{
     display: block;
     margin-left: auto;
     margin-right: auto;
+    font-family: 'NanumSquareRound';
     font-size: 35px;
 }
-
 .center-img{
     width: 100%;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
-/*
-.golist-btn{
-    background-color: #EBDDCA;
-    padding: 15px 15px 15px 15px;
-    font-size: 30px;
-    border-radius: 10px;
-    // box-shadow: 5px 5px 4px lightgrey;
-    font-family: 'YiSunShinDotumM'; 
-    margin-left: 675px;
-}
-a.golist-btn:link { color:#615136; text-decoration: none;}
-a.golist-btn:visited { color: #615136; text-decoration: none;}
-a.golist-btn:hover { color: #615136; text-decoration: none;}
-
-.comments{
-    width: 90%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 30px;
-}
-textarea{
-    width: 700px;
-    height: 60px;
-    outline: 2px solid #EBDDCA;
-    font-size: 30px;
-    font-family: 'YiSunShinDotumM';
-    border-radius: 20px;
-    margin-left: auto;
-
-}
-button{
-    position: absolute;
-    margin: 5px 0px 0px 50px;
-    font-family: 'YiSunShinDotumM';
-    font-size: 25px;
-    background-color: #615136;
-    border: 0px;
-    color:white;
-    border-radius: 10px;
-    padding: 8px;
-}
-.delete{
-    font-family: 'YiSunShinDotumM';
-    font-size: 25px;
-    background-color: #615136;
-    border: 0px;
-    color:white;
-    border-radius: 10px;
-    padding: 8px;
-    float: right;
-    vertical-align: middle;
-}
-*/
