@@ -223,3 +223,15 @@ input[type="radio"]:checked + label{
      background-image:url(../img/full_star.png);
      background-size: 60px 60px;
  }
+.review_hs{
+    margin-top: 40px;
+}
+.cr_review_ct{
+    font-family: 'YiSunShinDotumM';
+}
+.cr_review_ct h3{
+    font-weight: 800;
+}
+.cr_review_ct h3 a:link { color:#615136; text-decoration: none;}
+.cr_review_ct h3 a:visited { color: #615136; text-decoration: none;}
+.cr_review_ct h3 a:hover { color: #615136; text-decoration: none;}
