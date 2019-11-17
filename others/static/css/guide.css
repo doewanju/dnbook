@@ -1,0 +1,15 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+body{
+    font-family: 'YiSunShinDotumM';
+}
+.square{
+    float: left;
+    width: 10px;
+    height: 60px;
+    background-color: #615136;
+}
+.ment{
+    margin-left: 40px;
+}

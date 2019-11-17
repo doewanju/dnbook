@@ -73,12 +73,12 @@ h2{
     height: 80px;
     font-family: 'YiSunShinDotumM';
     font-size: 50px;
-    border-bottom: 4px solid  #EBDDCA;
+    border-bottom: 4px solid #EBDDCA;
     background: none;
     border-radius: 0;
     color: #615136;
     transition: all 0.15s ease;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     font-weight: 70;
 }
 .inp input::placeholder{

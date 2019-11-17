@@ -67,7 +67,7 @@ h2{
     height: 80px;
     font-family: 'YiSunShinDotumM';
     font-size: 50px;
-    border-bottom: 4px solid #BAA687;
+    border-bottom: 4px solid #EBDDCA;
     background: none;
     border-radius: 0;
     color: #615136;
@@ -76,7 +76,7 @@ h2{
     font-weight: 70;
 }
 .inp input::placeholder{
-    color: #BAA687;
+    color: #EBDDCA;
     font-weight: 70;
 }
 

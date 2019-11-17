@@ -136,21 +136,21 @@ a.clawling:hover { color: #615136; text-decoration: none;}
     margin-top: 10px;
 }
 .inp_save{
-        width:50px;
-        background-color: #615136;
-        border: none;
-        color:#fff;
-        padding: 10px 0;
-        text-align: center;
-        text-decoration: none;
-        /* display: inline-block; */
-        font-size: 15px;
-        margin: 4px;
-        cursor: pointer;
-        /* border-radius: 10px; */
-        float: right;
-        margin-top: 40px;
-        margin-right: 10px;
+    width:50px;
+    background-color: #615136;
+    border: none;
+    color:#fff;
+    padding: 10px 0;
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+    font-size: 15px;
+    margin: 4px;
+    cursor: pointer;
+    /* border-radius: 10px; */
+    float: right;
+    margin-top: 40px;
+    margin-right: 10px;
 }
 
 textarea#id_content{
