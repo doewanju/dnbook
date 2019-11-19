@@ -13,13 +13,13 @@ class BookStore(models.Model):
     phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=13, null=True)
     site = models.URLField(null=True, blank=True)
     img = models.ImageField(upload_to='store/', null=True, blank=True)
+    insta = models.CharField(null=True, blank=True, max_length=50)
     email = models.EmailField(null=True, blank=True)
     openhour = models.TextField(null=True, blank=True)
-    openhour_tf = models.BooleanField(null=True, blank=True) #true면 영업시간 false면 휴무일
     boss = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     users = models.ManyToManyField(User, through='Scrap', related_name='%(app_label)s_%(class)s_related')
     saup_regex = RegexValidator(regex=r'^\d{3}\-\d{2}\-\d{5}$', message="000-00-00000 형식에 맞게 입력해주세요.")
-    saup = models.CharField(null=True, blank=True, validators=[saup_regex], max_length=12, unique=True)
+    saup = models.CharField(null=True, blank=True, validators=[saup_regex], max_length=12)
     #나중에 가게들 사업자번호 다 등록하면 널이랑 블랭크 지우기
 
     class Meta:
