@@ -4,18 +4,18 @@
     {% block content %}
     {% load staticfiles %}
     <head>
-        {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/guide.css' %}"> {% endcomment %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/guide.css' %}">
     </head>
-    <body>
+    <body><div class="guide">
     <div class="square"></div>
-    <h1 class="ment">홍보 게시판</h1>
-    <p class="ment">북콘서트, 전시회 등 문화행사를 홍보할 수 있는 게시판입니다.</p>
+    <h1 class="ment">출판물 제작 가이드</h1>
+    <p class="ment">나만의 책을 만들고 싶은 초보 작가들을 위한 게시판입니다.</p>
             
         <div class="title">
             1. 주제 정하기
         </div>
         <div class="content">
-            본인이 표현하고 싶은 주제를 선정합니다. 그리고 이 작업을 정말 꼭 해야하는지 스스로에게 물어 봐주세요. 독립출판을 하는 과정은 보람되지만 결코 간단하지만은 않습니다. 독립출판이 유행이니까, 사람들이 많이 한다고 하니까 나도 한번 해보자는 마음은 위험할 수 있습니다.
+            본인이 표현하고 싶은 주제를 선정합니다. 그리고 이 작업을 정말 꼭 해야하는지 스스로에게 물어봐주세요. 독립출판을 하는 과정은 보람되지만 결코 간단하지만은 않습니다. 독립출판이 유행이니까, 사람들이 많이 한다고 하니까 나도 한번 해보자는 마음은 위험할 수 있습니다.
         </div>
         <div class="title">
             2. 독립서점을 찾아가 다른 독립출판물들 살펴보기
@@ -48,9 +48,13 @@
         <div class="content">
                 첫 번째 방법은 독립서점에 연락하여 직접 책을 보내 유통하는 방법입니다. 내 책의 테마나 스타일이 비슷한 독립서점을 찾는 것이 중요할 수 있겠죠. 
                 두 번째는 국제표준도서번호(ISBN)를 받아 인터넷 서점에 유통하는 방법이 있습니다. 인터넷 서점에 입고하게 되면 더 많은 사람들에게 내 책을 소개할 수 있겠죠?
-                <a href="https://seoji.nl.go.kr:444/front/isbn/info/page2_1_1.jsp">ISBN 신청</a>
         </div>
+        <div class="isbn">
+        <a href="https://seoji.nl.go.kr:444/front/isbn/info/page2_1_1.jsp" class="isbn">ISBN 신청하기</a>
+        </div>
+    <br>
      출처: https://blog.hyundai-mnsoft.com/1436 [현대엠엔소프트 공식 기업 블로그]
+    </div>
     </body>
     {% endblock %}
 </html>

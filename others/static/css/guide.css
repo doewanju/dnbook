@@ -1,7 +1,13 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 
-body{
+/* body{
+    font-family: 'YiSunShinDotumM';
+} */
+.guide{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
     font-family: 'YiSunShinDotumM';
 }
 .square{
@@ -9,7 +15,28 @@ body{
     width: 10px;
     height: 60px;
     background-color: #615136;
+    margin-top: 10px;
 }
 .ment{
     margin-left: 40px;
+}
+.title{
+    font-size: 32px;
+    margin-top: 20px;
+    background-color: #EBDDCA;
+}
+.content{
+    font-size: 28px;
+    margin-top: 5px;
+}
+a.isbn{
+    font-size: 28px;
+    text-align: center;
+    background-color: #615136;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 100px;
+}
+div.isbn{
+    margin-top: 10px;
 }
