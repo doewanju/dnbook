@@ -360,11 +360,6 @@ def addstore(request):
                 store.addr = addr + " " + detail
             store.site=request.POST['site']
             store.openhour = request.POST['openhour']
-            open_tf = request.POST['open_tf']
-            if open_tf == '영업시간':
-                store.openhour_tf = True
-            else:
-                store.openhour_tf = False
             store.save()
             return redirect('bossbook')
         else:
