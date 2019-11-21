@@ -1,7 +1,6 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 
-
 .main-btn {
     width: 600px;
     height: 180px;
@@ -25,3 +24,21 @@
 .main-btn a:link { color:white; text-decoration: none;}
 .main-btn a:visited { color: white; text-decoration: none;}
 .main-btn a:hover { color: #DED2C0; text-decoration: none;}
+
+@media (min-width: 1025px){
+    img{
+        width: 35%;
+        display: block;
+        margin: 0 auto;
+    }
+    .main-btn{
+        width: 600px;
+        height: 100px;
+        line-height: 100px;
+    }
+    .main-btn a{
+        font-size: 45px;
+        letter-spacing: 5px;
+    }
+
+}
