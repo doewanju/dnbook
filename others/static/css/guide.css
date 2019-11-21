@@ -22,8 +22,10 @@
 }
 .title{
     font-size: 32px;
+    font-weight: 700;
     margin-top: 20px;
-    background-color: #EBDDCA;
+    border-bottom: 3px solid #615136;
+    color: #615136;
 }
 .content{
     font-size: 28px;

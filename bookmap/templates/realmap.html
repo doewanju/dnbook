@@ -7,68 +7,79 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/realmap.css' %}">
     </head>
     <body>
+        <div class="realmap">
+        {% if not request.PC %}
         <form action="{% url 'mapsearch' %}" method="get" class="search-act">
         <div class="rbtn">
-            <!-- <div class="radio-wrap"> -->
                 <input type='radio' name="searchtype" value='searchname' id="f-option" checked>
-                <label for="f-option">이름검색</label>
-            <!-- </div> -->
-            <!-- <div class="radio-wrap"> -->
+                <label for="f-option" class="label">이름검색</label>
                 <input type='radio' name="searchtype" value='searchaddr' id="s-option">
-                <label for="s-option">주소검색</label>
-            <!-- </div> -->
+                <label for="s-option" class="label">주소검색</label>
         </div>
         <div class="sbox">
-            <input type="search" class="search-box" name="query">
-            <img src="{% static 'img/search.png' %}" class="search-mark">   
+            <input type="search" class="search-box" name="query" placeholder="Search...">
+            <img src="{% static 'img/search.png' %}" class="search-mark">
         </div>
-        <!-- <input type="submit" name="" value="검색!">  -->
         </form>
         <script>
             $('img.search-mark').click(function(){
                 $('.search-act').submit();
             })
         </script>
-        
-        <div id="map" class="map"></div>
-        <div class="btn-container">
-        <div class="seeall"><a href="{%url 'realmap'%}">ALL</a></div><br>
-        <!-- <div class="seelist"><a href="{% url 'bookstore' %}">LIST</a></div>  -->
-        </div>
-        <div id="search-map">
-                <!-- style="position:absolute;top:900px;" -->
-        <!-- <div id="question"> <form action="{% url 'mapsearch' %}" method ="get">
-            <input type='radio' name='searchtype' value='searchname' checked>이름검색
-            <input type='radio' name='searchtype' value='searchaddr'>주소검색
-            <input type="search" name="query">
-            <input type="submit" name="" value="검색!">
-            <a href="{%url 'realmap'%}">전체</a>
-        </form></div> -->
+        {% endif %}
 
+        {% if request.PC %}
+        <form action="{% url 'mapsearch' %}" method="get" class="search-act-pc">
+        <div class="rbtn-pc">
+            <input type='radio' name="searchtype" value='searchname' id="f-option" checked>
+            <label for="f-option" class="label-pc">이름검색</label>
+            <input type='radio' name="searchtype" value='searchaddr' id="s-option">
+            <label for="s-option" class="label-pc">주소검색</label>
+        </div>
+        <div class="sbox-pc">
+            <input type="search" class="search-box-pc" name="query" placeholder="Search...">
+            <img src="{% static 'img/search.png' %}" class="search-mark-pc">
+        </div>
+        </form>
+        <script>
+            $('img.search-mark-pc').click(function(){
+                $('.search-act-pc').submit();
+            })
+        </script>
+        {% endif %}
+
+        
+    <div class="map-container">
+        <div id="map" class="map">
+        <!-- <div class="btn-container"> -->
+        <div class="seeall"><a href="{%url 'realmap'%}">ALL</a></div>
+        <br>
+        </div>
+        <!-- <div class="seelist"><a href="{% url 'bookstore' %}">LIST</a></div>  -->
+        <!-- </div> -->
 
         <div id="list" class="list">
         <table class="table">
             <thead>
                 <tr>
-                <th>이름</th>
+                <th class="table-sname">이름</th>
                 <th>주소</th>
-                <th>더보기</th>
+                <th class="table-seemore">더보기</th>
                 <!-- style="white-space:nowrap;" -->
                 </tr>
             </thead>
             <tbody>
                 {% for store in bs.all %}
                 <tr onclick="list_click('{{store.addr}}');">
-                    <td>{{store.name}}</td>
+                    <td class="table-sname">{{store.name}}</td>
                     <td>{{store.addr}}</td>
-                    <td><a class="sub-btn" href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
+                    <td class="table-seemore"><a class="sub-btn" href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    <!-- <div id="map" style="width:100%;height:550px;"></div> -->
-    </div>
+</div>
 
 
 
@@ -77,7 +88,7 @@
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
         mapOption = {
             center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
-            level: 8 // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
+            level: 8 // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대, 지금은 자동 설정됨
         };  
     
     var map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -160,10 +171,10 @@
     for(let i=0; i< addrArr.length;i++){
         addrStoN(addrArr[i],nameArr[i],pkArr[i]);
     };
-
-    
     </script>
     <br>
+    </div>
     </body>
+
     {% endblock %}
 </html>
