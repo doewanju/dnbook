@@ -87,6 +87,7 @@ li.items{
     list-style-type: none;
     position: absolute;
     left: 35%;
+    top: 110%;
 }
 .signbox a{
     font-family: 'BBTreeGL';

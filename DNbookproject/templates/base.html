@@ -39,7 +39,8 @@
                               <li><a href="{% url 'mypage' %}">마이페이지</a></li>
                               <div class="signbox">
                                    <br><br>
-                                   <a href="{% url 'listMessage' %}">쪽지함</a></li> &nbsp; &nbsp; &nbsp; 
+                                   <a href="{% url 'listMessage' %}">쪽지함</a></li>
+                                   <span style="font-size:30px"> &nbsp; &nbsp; / &nbsp; &nbsp;</span>
                                    <a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a></li>
                                    <form id="logout" method="POST" action="{% url 'logout' %}">
                                    {% csrf_token %} <input type="hidden" />
@@ -48,7 +49,7 @@
                               <div class="signbox">
                                    <br><br>
                                    <a href="{% url 'signup' %}">회원가입</a>
-                                   &nbsp; &nbsp; &nbsp;
+                                   <span style="font-size:30px"> &nbsp; &nbsp; / &nbsp; &nbsp;</span>
                                    <a href="{% url 'login' %}">로그인</a>
                               </div>
                          {% endif %}
