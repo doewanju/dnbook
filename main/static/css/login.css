@@ -10,21 +10,21 @@ body{
 }
 @media (min-width: 1025px){
     body{
+        background-image: none;
         height: 100%;
-        background-size: 25rem;
-        background-position-y: 90px;
     }
 }
 .logoimg{
     width:50%;
     position: absolute;
-    left:28%; top:28%;
+    left:38%; top:28%;
 }
 @media (min-width: 1025px){
     .logoimg{
         width:20%;
         position: absolute;
-        left:42%; top:32%;
+        top:20%;
+        left: 40%;
     }
 }
 .loginbox{
@@ -35,9 +35,9 @@ body{
 }
 @media (min-width: 1025px){
     .loginbox{
-        width: 17%;
-        top: 67%;
-        left: 44%;
+        width: 30%;
+        top: 40%;
+        left: 35%;
     }
 }
 .inp {
@@ -124,8 +124,11 @@ body{
 }
 @media (min-width: 1025px){
     .btn_login{
+        width: 60px; height: 120px;
+        background-color: #F2C60C;
         background-size: 60px;
-        top:61%; left:72%;
+        background-position: center;
+        top:55%; left:77%;
     }
 }
 .gotosignup{
@@ -143,7 +146,7 @@ body{
 @media (min-width: 1025px){
     .gotosignup{
         font-size: 16px;
-        top: 89%; left: 43%;
+        top: 63%; left: 38%;
     }
     .gotosignup a{
         font-size: 18px;
