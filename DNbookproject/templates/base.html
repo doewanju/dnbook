@@ -73,11 +73,9 @@
                                    {% csrf_token %} <input type="hidden" />
                               </form>
                          {% else %}
-                              <span style="float: right; color:gray;">
-                              <li><a href="{% url 'signup' %}" style="color:gray;">회원가입</a>
-                                   &nbsp; / &nbsp;
+                              <li style="float:right"><a href="{% url 'signup' %}" style="color:gray;">회원가입</a>
+                                   <span style="color:gray;">&nbsp; / &nbsp;</span>
                                    <a href="{% url 'login' %}" style="color:gray;">로그인</a></li>
-                              </span>
                          {% endif %}
                     </ul>
                     </nav>
