@@ -10,6 +10,7 @@ import os
 from .forms import AddstoreForm
 import requests
 import re
+from django.core.files.storage import default_storage
 
 # Create your views here.
 
@@ -344,30 +345,37 @@ def user_change(request):
 
 def addstore(request):
     if request.method == 'POST':
-        form = AddstoreForm(request.POST)
+        temp = request.POST['temp']
+        try:
+            os.remove(temp)
+        except:
+            pass
+        form = AddstoreForm(request.POST, request.FILES)
         if form.is_valid():
+            bizType = request.POST['bizType']
+            type_check = ['책', '출판', '서적', '서점', '도서']
+            biztf = False
+            for t in type_check:
+                if t in bizType:
+                    biztf = True
+                    break
+            if biztf == False:
+                content="<script type='text/javascript'>alert('사업자등록증의 업종을 확인하거나 dnbookinfo@gmail.com로 문의해주세요.');history.back();</script>"
+                return HttpResponse(content)
             store = form.save(commit=False)
             check = saup_valid(request, store.saup)
             if check == False:
                 content="<script type='text/javascript'>alert('존재하지 않는 사업자 등록번호입니다.');history.back();</script>"
                 return HttpResponse(content)
-            else:
-                pass
-            store.name=request.POST['name']
             addr = request.POST['addr']
             detail = request.POST['detail']
             if detail.strip() != "":
                 store.addr = addr + " " + detail
-            store.site=request.POST['site']
-            store.openhour = request.POST['openhour']
             store.save()
             return redirect('bossbook')
         else:
-            content="<script type='text/javascript'>alert('형식에 맞게 입력하세요');history.back();</script>"
+            content="<script type='text/javascript'>alert('형식에 맞게 입력하세요.');history.back();</script>"
             return HttpResponse(content)
-    elif request.method == 'GET':
-        form = AddstoreForm()
-        return render(request, 'addstore.html', {'form': form})
 
 def saup_valid(request, saup):
     saup = saup.replace("-", "")
@@ -379,3 +387,31 @@ def saup_valid(request, saup):
         return True
     else:
         return False
+
+def saup_check(request):
+    if request.method == 'POST' and request.FILES['biz']:
+        biz = request.FILES['biz']
+        biz_img = default_storage.save(biz.name, biz)
+        path = str(default_storage.open(biz_img))
+        headers = {'Authorization': 'Bearer 5MhIQ5Kb69hXPbCj2coo'}
+        files = {'file': open(path, 'rb')}
+        response = requests.post('https://ocr.api.friday24.com/business-license', headers=headers, files=files)
+        text = str(response.text)
+        t=text.split('document')
+        sep=t[0].split('\",')
+        #doc=t[1] #판독한 전체내용
+        arr=['bizNum','corpNum','corpName','ceoName','addr','bizClass','bizType','tel','email','birthday']
+        dic={}
+        for i,a in enumerate(arr):
+            temp=sep[i].split(a)[1]
+            temp=re.split('[{}:\'"]',temp)
+            temp=list(map(lambda x: x.strip(), temp))
+            temp=list(filter(lambda x: x != '',temp))
+            if len(temp)==0:
+                dic[a]=None
+            else:
+                dic[a] = temp[0]
+        saup = re.sub('(\d{3})(\d{2})(\d{5})', r'\1-\2-\3', dic['bizNum'])
+        #tel=re.sub('(\d{3})(\d{2})(\d{5})', r'\1-\2-\3', dic['tel'])
+        form = AddstoreForm(initial={'name':dic['corpName'],'phone_number': dic['tel'], 'email':dic['email'], 'saup': saup,'site':'http://'})
+        return render(request, 'addstore.html', {'form': form, 'path': path, 'biz':dic['bizClass']})
