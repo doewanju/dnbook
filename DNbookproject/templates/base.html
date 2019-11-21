@@ -26,6 +26,7 @@
                     <div class="bar"></div>
                     <div class="bar"></div>
                </label>
+               {% if not request.PC %}
                <nav class="openmenu">
                     <ul class='items'>
                          <li><a href="{% url 'home' %}">홈</a></li>
@@ -38,7 +39,8 @@
                               <li><a href="{% url 'mypage' %}">마이페이지</a></li>
                               <div class="signbox">
                                    <br><br>
-                                   <a href="{% url 'listMessage' %}">쪽지함</a></li> &nbsp; &nbsp; &nbsp; 
+                                   <a href="{% url 'listMessage' %}">쪽지함</a></li>
+                                   <span style="font-size:30px"> &nbsp; &nbsp; / &nbsp; &nbsp;</span>
                                    <a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a></li>
                                    <form id="logout" method="POST" action="{% url 'logout' %}">
                                    {% csrf_token %} <input type="hidden" />
@@ -47,15 +49,38 @@
                               <div class="signbox">
                                    <br><br>
                                    <a href="{% url 'signup' %}">회원가입</a>
-                                   &nbsp; &nbsp; &nbsp;
+                                   <span style="font-size:30px"> &nbsp; &nbsp; / &nbsp; &nbsp;</span>
                                    <a href="{% url 'login' %}">로그인</a>
                               </div>
                          {% endif %}
-                    </ul>
+                   </ul>
                </nav>
+               {% endif %}
+               {% if request.PC %}
+                    <nav class="openmenu-pc">
+                    <ul class='items-pc'>
+                         <li><a href="{% url 'home' %}">홈</a></li>
+                         <li><a href="{% url 'info' %}">About Us</a></li>
+                         <li><a href="{% url 'realmap' %}">책방 지도</a></li>
+                         <li><a href="{% url 'board' %}">문화 프로그램</a></li>
+                         <li><a href="{% url 'guide' %}">출판물 제작 가이드</a></li>
+                         <li><a href="{% url 'ranking' %}">랭킹</a></li>
+                         {% if user.is_authenticated %}
+                              <li><a href="{% url 'mypage' %}">마이페이지</a></li>
+                              <li><a href="{% url 'listMessage' %}">쪽지함</a></li>
+                              <li><a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a></li>
+                              <form id="logout" method="POST" action="{% url 'logout' %}">
+                                   {% csrf_token %} <input type="hidden" />
+                                   </form>
+                         {% else %}
+                              <li><a href="{% url 'signup' %}">회원가입</a>
+                                   &nbsp; / &nbsp;
+                                   <a href="{% url 'login' %}">로그인</a></li>
+                         {% endif %}
+                    </ul>
+                    </nav>
+               {% endif %}
           </header>
-          <!-- button here -->
-          {% comment %} <button> 🞬 </button> {% endcomment %}
      
 
      {% block content %}
