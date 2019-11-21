@@ -73,7 +73,7 @@ li.items{
   font-size: 20px;
   float: left;
   list-style-type: none;
-  margin: 0 35px;
+  margin: 0 25px;
 }
 .items-pc li a {
   display: inline-block;
