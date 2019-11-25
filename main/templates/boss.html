@@ -57,14 +57,14 @@
 </form>
 </div>
 </div>
-</body>
+
 {% if not saup %}
+<button onclick="valid();">사업자 등록증 인증하기</button>
 <form id="bizform" method="POST" action="{% url 'saup_check' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="file" name="biz" id="biz" style="display:none" accept=".jpg,.jpeg,.png,.gif"/>
     <input type='text' name='check' style="display:none" value="{{bsname}}">
 </form>
-<button onclick="valid();">사업자 등록증 인증하기</button>
 <script type="text/javascript">
     function valid(){
         let tf = confirm("사업자등록증 사진을 등록해주세요.\n(정보 입력시에만 사용되고 폐기됩니다.)");
@@ -77,6 +77,7 @@
     });
 </script>
 {%endif%}
+</body>
 {% endblock %}
 </html>
     <!--
