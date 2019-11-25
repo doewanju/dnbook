@@ -5,9 +5,6 @@
   <input type="button" onclick="sample3_execDaumPostcode()" value="주소 찾기"><br>
   {{form}}
   <input name="bizType" type="text" placeholder="  영업 종목(업종)" {% if biz %} value='{{biz}}' {% endif %}>
-  {% if path %} <!--사업자등록증 사진 경로(지우려고 넘겨줌)-->
-  <input name="temp" type="text" style="display: none;" value="{{path}}">
-  {% endif %}
   <input type="submit" value="등록!">
 </form>
 
