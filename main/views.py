@@ -114,7 +114,7 @@ def normal(request):
 def boss(request):
    if request.method == 'POST':
        # User has info and wants an account now! 즉 [signup!]버튼을 눌렀을 때 일어나는 일
-       if request.POST['password1'] == request.POST['password2']:
+        if request.POST['password1'] == request.POST['password2']:
            try:
                 user = User.objects.get(username=request.POST['username'])
                 content="<script type='text/javascript'>alert('이미 존재하는 아이디입니다.');history.back();</script>"
@@ -129,6 +129,9 @@ def boss(request):
                 check = saup_valid(request, saup)
                 if check == False: #사업자 번호가 존재하지 않음
                     content="<script type='text/javascript'>alert('존재하지 않는 사업자 등록번호입니다.');history.back();</script>"
+                    return HttpResponse(content)
+                elif not bookstore.saup:  #DB에 사업자번호가 없을 경우
+                    content="<script type='text/javascript'>alert('사업자 등록증 인증을 먼저 진행해주세요.');history.back();</script>"
                     return HttpResponse(content)
                 elif saup != bookstore.saup: #사업자 번호가 존재하지만 책방DB랑 다름
                     content="<script type='text/javascript'>alert('사업자 등록번호가 일치하지 않습니다.');history.back();</script>"
@@ -149,15 +152,17 @@ def boss(request):
                 bookstore.save()
                 auth.login(request, user)
                 return redirect('home')
-       else:
+        else:
             content="<script type='text/javascript'>alert('비밀번호가 일치하지 않습니다.');history.back();</script>"
             return HttpResponse(content)
-   elif request.method == 'GET':
-       bsname = request.GET.get("bsname", False)
-       return render(request, 'boss.html', {"bsname":bsname})
    else:
-       # User wants to enter info --> 유저가 정보를 입력하고 있는 중임.
-        return render(request, 'boss.html')
+        bsname = request.GET.get("bsname", False)
+        bookstore = BookStore.objects.get(name=bsname)
+        if bookstore.saup:
+            saup = bookstore.saup
+        else:
+            saup = None
+        return render(request, 'boss.html', {"bsname": bsname, "saup": saup})
 
 def login(request):
     if request.method == 'POST': #로그인 버튼을 눌렀을 때
@@ -345,11 +350,6 @@ def user_change(request):
 
 def addstore(request):
     if request.method == 'POST':
-        temp = request.POST['temp']
-        try:
-            os.remove(temp)
-        except:
-            pass
         form = AddstoreForm(request.POST, request.FILES)
         if form.is_valid():
             bizType = request.POST['bizType']
@@ -391,17 +391,20 @@ def saup_valid(request, saup):
 def saup_check(request):
     if request.method == 'POST' and request.FILES['biz']:
         biz = request.FILES['biz']
+        check = request.POST['check']
         biz_img = default_storage.save(biz.name, biz)
         path = str(default_storage.open(biz_img))
         headers = {'Authorization': 'Bearer 5MhIQ5Kb69hXPbCj2coo'}
-        files = {'file': open(path, 'rb')}
-        response = requests.post('https://ocr.api.friday24.com/business-license', headers=headers, files=files)
-        text = str(response.text)
+        with open(path, 'rb') as f:
+            files = {'file': f}
+            response = requests.post('https://ocr.api.friday24.com/business-license', headers=headers, files=files)
+            text = str(response.text)
         t=text.split('document')
         sep=t[0].split('\",')
         #doc=t[1] #판독한 전체내용
         arr=['bizNum','corpNum','corpName','ceoName','addr','bizClass','bizType','tel','email','birthday']
-        dic={}
+        dic = {}
+        os.remove(path)
         for i,a in enumerate(arr):
             temp=sep[i].split(a)[1]
             temp=re.split('[{}:\'"]',temp)
@@ -412,6 +415,14 @@ def saup_check(request):
             else:
                 dic[a] = temp[0]
         saup = re.sub('(\d{3})(\d{2})(\d{5})', r'\1-\2-\3', dic['bizNum'])
-        #tel=re.sub('(\d{3})(\d{2})(\d{5})', r'\1-\2-\3', dic['tel'])
-        form = AddstoreForm(initial={'name':dic['corpName'],'phone_number': dic['tel'], 'email':dic['email'], 'saup': saup,'site':'http://'})
-        return render(request, 'addstore.html', {'form': form, 'path': path, 'biz':dic['bizClass']})
+        if check == 'bossbook':
+            #tel=re.sub('(\d{3})(\d{2})(\d{5})', r'\1-\2-\3', dic['tel'])
+            form = AddstoreForm(initial={'name':dic['corpName'],'phone_number': dic['tel'], 'email':dic['email'], 'saup': saup,'site':'http://'})
+            return render(request, 'addstore.html', {'form': form, 'biz': dic['bizClass']})
+        else:
+            bookstore = BookStore.objects.get(name=check)
+            bookstore.saup = saup
+            bookstore.save()
+            content="<script type='text/javascript'>alert('인증되었습니다.');history.back();</script>"
+            return HttpResponse(content)
+

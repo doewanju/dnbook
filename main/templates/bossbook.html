@@ -14,6 +14,7 @@
     <form id="bizform" method="POST" action="{% url 'saup_check' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="file" name="biz" id="biz" style="display:none" accept=".jpg,.jpeg,.png,.gif"/>
+        <input type='text' name="check" style="display:none" value="bossbook">
     </form>
     <script type="text/javascript">
         function add_store(){
