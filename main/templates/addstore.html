@@ -1,12 +1,13 @@
-<form method="POST" action="{% url 'addstore' %}">
+<form method="POST" action="{% url 'addstore' %}" enctype="multipart/form-data">
   {% csrf_token %}
-  <input name="name" type="text" placeholder="  책방 이름">
   <input name="addr" type="text" id="address" placeholder="  책방 주소" readonly>
   <input name="detail" type="text" id="detail" placeholder="  상세 주소(선택사항)">
   <input type="button" onclick="sample3_execDaumPostcode()" value="주소 찾기"><br>
-  <input name="site" type="text" placeholder="  사이트">
-  <input name="openhour" type="text" placeholder="  영업 시간">
-  {{form}} <!--전화번호, 사업자등록번호-->
+  {{form}}
+  <input name="bizType" type="text" placeholder="  영업 종목(업종)" {% if biz %} value='{{biz}}' {% endif %}>
+  {% if path %} <!--사업자등록증 사진 경로(지우려고 넘겨줌)-->
+  <input name="temp" type="text" style="display: none;" value="{{path}}">
+  {% endif %}
   <input type="submit" value="등록!">
 </form>
 

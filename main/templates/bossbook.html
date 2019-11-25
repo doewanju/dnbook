@@ -10,7 +10,22 @@
     <h1 class="ment">내 책방 찾기</h1>
     <p class="ment">내 책방을 찾고 선택하기 버튼을 눌러주세요.</p>
     </div>
-    <a href="{% url 'addstore' %}" class="nobookstore">책방이 없으신가요?</a>
+    <a onclick="add_store();" class="nobookstore" id="add_store">책방이 없으신가요?</a>
+    <form id="bizform" method="POST" action="{% url 'saup_check' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="biz" id="biz" style="display:none" accept=".jpg,.jpeg,.png,.gif"/>
+    </form>
+    <script type="text/javascript">
+        function add_store(){
+            let tf = confirm("사업자등록증 사진을 등록해주세요.\n(정보 입력시에만 사용되고 폐기됩니다.)");
+                if (tf === true){
+                    document.getElementById("biz").click();
+                };
+        };
+        $('#biz').change(function(){
+            document.getElementById("bizform").submit();
+        });
+    </script>
 
 <table class="table">
     <thead>
