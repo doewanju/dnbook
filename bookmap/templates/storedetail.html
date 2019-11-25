@@ -32,17 +32,7 @@
             <i class="fas fa-quote-right" style="display: inline-block; color: lightgray; font-size: 30px;"></i>
         </div>
     {% endif %}
-    {% if edit %}
-    <div>
-        <details style="margin-left: 250px; background-color: #EBDDCA; width: 290px; padding-left:10px; box-shadow: 3px 3px 3px lightgrey;">
-            <summary class="summary"> 책방소개 수정하기</summary>
-            <form action="{% url 'edit_save' store.bookstore_id %}" method="GET">
-                <input class="inp_mod" name="introduce" type="text" value="">
-                <input class="inp_save" type="submit" value="저장">
-            </form><br>
-        </details>
-    </div>
-    {% endif %}
+
     <table class="table">
         <tr>
             <td class="icon"><i class="fas fa-mobile-alt" style="color: #615136; font-size: 50px; align-content: center; margin-left: 7px;"></i> </td>
@@ -92,6 +82,12 @@
         </tr>
         {% endif %}
     </table></div>
+
+    {% if edit %}
+    <!--책방정보 수정하기-->
+        <a href="{% url 'store_edit' store.bookstore_id %}">정보수정</a>
+    {% endif %}
+    
     <br>
     {% if store.img %}
         <img src='{{store.img.url}}'>
