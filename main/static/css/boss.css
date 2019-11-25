@@ -25,10 +25,34 @@
     margin-left: auto;
     margin-right: auto;
 }
-h2{
+h2{ 
     font-family: 'YiSunShinDotumM';
     font-size: 40px;
     letter-spacing: 0.2rem;
+}
+@media (min-width: 1025px){
+    .s-up{
+        width: 90%;
+        height: 60px;
+        font-size: 1.2rem;
+        text-align: center;
+        margin: 0 auto;
+        line-height: normal;
+        letter-spacing: 0.5rem;
+        margin-top: 10px;
+    }
+    .boss-all{
+        width: 90%;
+        margin-top: 15px;
+    }
+    .boss-box{
+        width: 40%;
+        margin: 0 auto;
+    }
+    h2{
+        display: none;
+        font-size: 1.5rem;
+    }
 }
 .form{
     width: 800px;
@@ -89,8 +113,6 @@ h2{
 .inp .bsname{
     margin-top: 50px;
 }
-
-
 .inp input:not(:placeholder-shown) + span {
     color: #EBDDCA;
     transform: translateY(-26px) scale(0.75);
@@ -108,7 +130,38 @@ input[type=email]:focus,
 input[type=password]:focus {
     border-bottom: 4px solid #615136;
 }
-
+@media (min-width: 1025px){
+    .form{
+        margin-top: 10px;
+    }
+    .inp {
+        margin-bottom: 0.5rem;
+    }
+    .inp .label {
+        font-size: 1.2rem;
+    }
+    .inp .border {
+        height: 3px;
+    }
+    .inp input {
+        height: 45px;
+        font-size: 1.2rem;
+        border-bottom: 2px solid #EBDDCA;
+        margin-bottom: 10px;
+    }
+    .inp input::placeholder{
+        color: rgb(224, 202, 171);
+        font-weight: 1.2rem;
+    }
+    .inp .bsname{
+        margin-top: 10px;
+    }
+    input[type=text]:focus,
+    input[type=email]:focus,
+    input[type=password]:focus {
+        border-bottom: 2px solid #615136;
+    }
+}
 
 .inp input:focus + span + .border {
     transform: scaleX(1);
