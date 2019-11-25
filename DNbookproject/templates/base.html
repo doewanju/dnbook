@@ -68,14 +68,14 @@
                          {% if user.is_authenticated %}
                               <li><a href="{% url 'mypage' %}">마이페이지</a></li>
                               <li><a href="{% url 'listMessage' %}">쪽지함</a></li>
-                              <li><a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a></li>
+                              <li style="float:right"><a href="javascript:{document.getElementById('logout').submit()}" style="color:gray;">로그아웃</a></li>
                               <form id="logout" method="POST" action="{% url 'logout' %}">
                                    {% csrf_token %} <input type="hidden" />
-                                   </form>
+                              </form>
                          {% else %}
-                              <li><a href="{% url 'signup' %}">회원가입</a>
-                                   &nbsp; / &nbsp;
-                                   <a href="{% url 'login' %}">로그인</a></li>
+                              <li style="float:right"><a href="{% url 'signup' %}" style="color:gray;">회원가입</a>
+                                   <span style="color:gray;">&nbsp; / &nbsp;</span>
+                                   <a href="{% url 'login' %}" style="color:gray;">로그인</a></li>
                          {% endif %}
                     </ul>
                     </nav>

@@ -5,8 +5,9 @@ from main.models import Bossprofile
 from django.core import serializers
 from .review import reviewFuc
 import simplejson
-from .forms import ReviewForm
+from .forms import ReviewForm, StoreEditForm
 from django.db.models import Avg
+import os
 
 # Create your views here.
 
@@ -177,13 +178,30 @@ def mapsearch(request):
             'bsname' : namelist,
             'pklist' : pklist})
 
-def edit_save(request, bookstore_id):
-    book = get_object_or_404(BookStore, pk = bookstore_id)
-    intro = request.GET['introduce'] 
-    if intro == "":
-        return redirect('storedetail', bookstore_id=bookstore_id)
-    boss = book.boss
-    b = Bossprofile.objects.get(user=boss)
-    b.introduce = intro
-    b.save()
-    return redirect('storedetail', bookstore_id=bookstore_id)
+def store_edit(request, bookstore_id):
+    store = get_object_or_404(BookStore, pk=bookstore_id)
+    if store.img:
+        pic=store.img.path
+    else:
+        pic=None
+
+    if request.method=='POST':
+        form = StoreEditForm(request.POST, request.FILES, instance=store)
+        if request.FILES and pic:
+            os.remove(pic)
+        if form.is_valid():
+            intro = request.POST['introduce'] 
+            b = Bossprofile.objects.get(user=store.boss)
+            b.introduce = intro
+            b.save()
+
+            editing = form.save(commit=False)
+            editing.save()
+            return redirect('storedetail', bookstore_id=bookstore_id)
+        else:
+            return redirect('bookstore') #폼이 유효하지 않은 경우 처리하기
+    else:
+        form = StoreEditForm(instance=store)
+        b = Bossprofile.objects.get(user=store.boss)
+        introduce = b.introduce
+        return render(request,'store_edit.html', {'form' : form, 'store' : store, 'introduce':introduce})

@@ -8,16 +8,37 @@ body{
     background-position: center;
     background-position-y: 185px;
 }
+@media (min-width: 1025px){
+    body{
+        background-image: none;
+        height: 100%;
+    }
+}
 .logoimg{
     width:50%;
     position: absolute;
-    left:28%; top:28%;
+    left:38%; top:28%;
+}
+@media (min-width: 1025px){
+    .logoimg{
+        width:20%;
+        position: absolute;
+        top:20%;
+        left: 40%;
+    }
 }
 .loginbox{
     position: fixed;
     width: 450px;
     top: 1080px;
     left: 320px;
+}
+@media (min-width: 1025px){
+    .loginbox{
+        width: 30%;
+        top: 40%;
+        left: 35%;
+    }
 }
 .inp {
     position: relative;
@@ -62,7 +83,19 @@ body{
     color: #615136;
     transition: all 0.15s ease;
 }
-
+@media (min-width: 1025px){
+    .inp input{
+        padding: 10px;
+        font-size: 25px;
+    }
+    .inp .label {
+        font-size: 20px;
+    }
+    .inp .border {
+        height:4px;
+        outline: none;
+    }
+}
 .inp input:not(:placeholder-shown) + span {
     color: #BAA687;
     transform: translateY(-26px) scale(0.75);
@@ -89,15 +122,33 @@ body{
     top:50%; left:98%;
     margin-top:-100px; margin-left:-100px; 
 }
+@media (min-width: 1025px){
+    .btn_login{
+        width: 60px; height: 120px;
+        background-color: #F2C60C;
+        background-size: 60px;
+        background-position: center;
+        top:55%; left:75%;
+    }
+}
 .gotosignup{
     font-family: 'BBTreeGL';
     font-size: 30px;
     color: #615136;
     position: absolute;
-    top: 83%; left:33%;
+    top: 83%; left:32%;
 }
 .gotosignup a{
     font-family: 'BBTreeGL';
     font-size: 30px;
     color: #402719;
+}
+@media (min-width: 1025px){
+    .gotosignup{
+        font-size: 16px;
+        top: 63%; left: 38%;
+    }
+    .gotosignup a{
+        font-size: 18px;
+    }
 }

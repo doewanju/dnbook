@@ -1,0 +1,13 @@
+<!--정보 수정 폼-->
+
+<div>
+    <form action="{% url 'store_edit' store.bookstore_id %}" method='POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>책방 이름: <strong>{{store.name}}</strong></p>
+        <p>책방 소개: <input class="inp_mod" name="introduce" type="text" value={{introduce}}></p>
+        <table>
+            {{form}}
+        </table>
+        <input type="submit" value="SAVE" class="inp_save">
+    </form>
+</div>
