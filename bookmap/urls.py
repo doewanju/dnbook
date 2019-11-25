@@ -12,4 +12,6 @@ urlpatterns = [
     path('listsearch/', views.listsearch, name='listsearch'),
     path('mapsearch/', views.mapsearch, name='mapsearch'),
     path('store_edit/<int:bookstore_id>', views.store_edit, name='store_edit'),
+    path('themamap/', views.themamap, name='themamap'),
+    path('themadetail/<int:tag_id>', views.themadetail, name='themadetail'),
 ]
