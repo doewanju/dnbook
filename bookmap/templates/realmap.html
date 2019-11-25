@@ -8,7 +8,9 @@
     </head>
     <body>
         <div class="realmap">
+        <!-- 아이폰678기준 검색바 -->
         {% if not request.PC %}
+        <div class="topbar">
         <form action="{% url 'mapsearch' %}" method="get" class="search-act">
         <div class="rbtn">
                 <input type='radio' name="searchtype" value='searchname' id="f-option" checked>
@@ -26,9 +28,11 @@
                 $('.search-act').submit();
             })
         </script>
+        </div>
         {% endif %}
-
+        <!-- PC로 접속했을 때 검색바 -->
         {% if request.PC %}
+        <div class="topbar-pc">
         <form action="{% url 'mapsearch' %}" method="get" class="search-act-pc">
         <div class="rbtn-pc">
             <input type='radio' name="searchtype" value='searchname' id="f-option" checked>
@@ -46,6 +50,7 @@
                 $('.search-act-pc').submit();
             })
         </script>
+        </div>
         {% endif %}
 
         

@@ -2,6 +2,9 @@
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'UhBeepuding'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeepuding.woff') format('woff'); font-weight: normal; font-style: normal; }
 
+div#map{
+    width:100%;height:300px;position:relative;z-index:-1;
+}
 .storename{
     text-align: center;
     margin-top: 30px;
@@ -12,18 +15,12 @@ span#name{
 }
 
 .scrap_count{
-    width: 90px;
+    width: 97px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
 }
 
-.scrap_count span{
-    font-size: 40px;
-    float: right;
-    display: table-cell;
-    vertical-align: middle;
-}
 .contents{
     width: 80%;
     margin-left: auto;
@@ -31,8 +28,7 @@ span#name{
     display: block;
 }
 .sendmessage{
-    float: right;
-    /* background-color: #EBDDCA; */
+    width: fit-content;
     padding: 10px 15px 10px 15px;
     font-size: 25px;
     border-radius: 10px;
@@ -50,27 +46,41 @@ span#name{
     margin-right: auto;
     font-family: 'UhBeepuding';
 }
+.modify{
+    text-align:center;
+    border-radius: 100px;
+    background-color: rgba(235,221,202,0.6);
+    width: 100%;
+}
+.modify-btn{
+    font-family: 'BBTreeGL';
+    font-size: 18px;
+    color: gray;
+}
 table{
     width: 100%;
     margin-top: 20px;
 }
+tr{
+    height: fit-content;
+}
 td{
-    font-size: 40px;
+    font-size: 35px;
     font-family: 'YiSunShinDotumM';
 }
 td.icon{
-    /* width: 60px; */
     vertical-align: top;
-    box-align: center;
+    text-align: center;
 }
 td.colname{
-    width: 200px;
+    width: 215px;
     vertical-align: top;
 }
 td.data{
     width: 600px;
     font-size: 30px;
     overflow: hidden;
+    vertical-align: middle;
 }
 
 div.review{
@@ -79,18 +89,6 @@ div.review{
 }
 .user_review{
     font-size: 30px;
-}
-.starR{
-    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-    background-size: auto 100%;
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    text-indent: -9999px;
-    cursor: pointer;
-}
-.starR.on{
-    background-position:0 0;
 }
 
 .uname, .ucontent, .ustar{
@@ -106,7 +104,7 @@ div.review{
     margin-left: 15px;
     margin-right: 15px;
 }
-
+/* 
 .clawling{
     background-color: #EBDDCA;
     padding: 20px 15px 20px 15px;
@@ -114,6 +112,17 @@ div.review{
     border-radius: 10px;
     box-shadow: 5px 5px 4px lightgrey;
     font-family: 'YiSunShinDotumM';   
+} */
+.clawling-container{
+    text-align:center;
+    border-radius: 100px;
+    background-color: rgba(235,221,202,0.6);
+    width: 100%;
+}
+.clawling{
+    font-family: 'BBTreeGL';
+    font-size: 25px;
+    color: gray;
 }
 a.clawling:link { color:#615136; text-decoration: none;}
 a.clawling:visited { color: #615136; text-decoration: none;}
@@ -184,27 +193,6 @@ textarea#id_content{
 .delete a:visited { color: white; text-decoration: none;}
 .delete a:hover { color: white; text-decoration: none;}
 
-/* .radio_star input[type='radio'] {
-    -webkit-appearance:none;
-    width:40px;
-    height: 40px;
-    border:1px solid black;
-    border-radius:50%;
-    outline:none;
-    background:white;
-}
-.radio_star input[type='radio']:before {
-    content:'';
-    display:block;
-    width:70%;
-    height:70%;
-    margin: 15% auto;  
-    border-radius:50%;  
-  }
-.radio_star input[type='radio']:checked:before {
-    background:rgb(254,215,86);
-  } */
-
 input[type="radio"]{
     display:none;
  }
@@ -235,3 +223,144 @@ input[type="radio"]:checked + label{
 .cr_review_ct h3 a:link { color:#615136; text-decoration: none;}
 .cr_review_ct h3 a:visited { color: #615136; text-decoration: none;}
 .cr_review_ct h3 a:hover { color: #615136; text-decoration: none;}
+
+.heart{
+    width: 50px;
+}
+.count-num{
+    font-family: 'YiSunShinDotumM';
+    display: inline-flex;
+    font-size: 42px;
+    margin-left: 10px;
+    vertical-align: middle;
+    font-size: 40px;
+    float: right;
+    display: table-cell;
+}
+i.fas.fa-quote-left, i.fas.fa-quote-right{
+    display: inline-block; color: lightgray; font-size: 30px;
+}
+i.fas.fa-globe-asia,i.fas.fa-mobile-alt,i.fas.fa-clock,
+i.fas.fa-map-marker-alt,i.fas.fa-envelope,i.fab.fa-instagram
+{
+    color: #615136; font-size: 50px; align-content: center; 
+}
+i.fas.fa-star{
+    color: rgb(254,215,86); font-size: 30px;
+}
+
+.storeimg{
+    width: 100%;
+}
+@media(min-width:1025px){
+    div#map{
+        width: 80%;
+        height: 200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .storeimg{
+        width: 80%;
+    }
+    .img-container{
+        text-align: center;
+    }
+    .square{
+        float: left;
+        width: 10px;
+        height: 40px;
+        background-color: #615136;
+        margin-right: 1rem;
+        margin-top: 0.5rem;
+    }
+    span#name{
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+    .heart{
+        width: 30px;
+    }
+    .scrap_count{
+        width: 65px;
+        margin-top: 5px;
+        margin-left: 13%;
+    }
+    .count-num{
+        font-size: 1.5rem;
+    }
+    .storename{
+        margin-top: 10px;
+        text-align: left;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .introduce{
+        font-size: 1.5rem;
+        display: inline-block;
+        margin-left: 10%;
+    }
+    i.fas.fa-quote-left, i.fas.fa-quote-right{
+        display: inline-block; color: lightgray; font-size: 1.5rem;
+    }
+    table{
+        margin-top: 1px;
+    }
+    td{
+        font-size: 1.5rem;
+        font-family: 'YiSunShinDotumM';
+    }
+    .table td{
+        padding: 0.4rem;
+    }
+    td.icon{
+        width: 10%;
+    }
+    td.data{
+       font-size: 1.5rem;
+    }
+    i.fas.fa-globe-asia,i.fas.fa-mobile-alt,i.fas.fa-clock,
+    i.fas.fa-map-marker-alt,i.fas.fa-envelope,i.fab.fa-instagram
+    {
+        color: #615136; font-size: 1.7rem; align-content: center; 
+    }
+    .modify, .clawling-container{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .review-container{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    div.review{
+        font-size: 1.5rem;
+    }
+    .user_review{
+        font-size: 1rem
+    }
+    input[type="radio"] + label{
+        background-size: 40px 40px;
+        height: 40px;
+        width: 40px;
+    }
+    
+   input[type="radio"]:checked + label{
+        background-size: 40px 40px;
+    }
+    
+    textarea#id_content{
+        width: 80%;
+        font-size: 1.5rem;
+    }
+    textarea::placeholder{
+        font-size: 1.5rem;
+    }
+    .delete{
+        font-size: 1rem;
+        padding: 4px;
+    }
+
+
+}
