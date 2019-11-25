@@ -75,6 +75,7 @@ img.mypage-prof-img {
 @media (min-width: 1025px){
     .editprofile{
         padding: 0 100px;
+        /* margin-left: 4rem; */
         text-align:center;
         align-content: center;
         align-items: center;
@@ -90,22 +91,27 @@ img.mypage-prof-img {
     }
     .infobody{
         padding: 0px;
+        text-align: left;
+        margin-left: 2rem;
     }
     .mypage-profile-info {
-        width: 60%;
+        width: 70%;
         text-align: left;
         font-size: 1rem;
-        margin: 0 auto;
-        margin-bottom: 0.8rem;
+        margin-bottom: 1.7rem;
     }
     .mypage-submit-btn {
-        padding: 0.5rem;
-        margin-top: 10px;
-        border-radius: 200px;
-        width: 60%;
-        font-family: 'BBTreeGL';
-        font-size: 1.5rem;
-        letter-spacing: 2rem;
+        font-family: 'YiSunShinDotumM';
+        width: 100px; height: 100px;
+        background-color: #F2C60C;
+        margin: auto 0;
+        font-size: 1rem;
+        letter-spacing: 0.2rem;
+        padding: 0;
+        position: absolute;
+        top:23%; left:75%;
+        border-radius: 100%;
+        border: none;
     }
 }
 .stampbody{
@@ -159,7 +165,6 @@ img.mypage-prof-img {
 .radio_amount input[type='radio']:checked:before {
     background:#F2C60C;
 }
-
 .btnstamp{
     background-image:url("../images/stamp.png");
     background-color:transparent;
@@ -260,7 +265,7 @@ img.mypage-prof-img {
         width: 80%;
         height: 60vh;
         margin: 0px 80px;
-        overflow: scroll;
+        overflow: auto;
     }
     .nav-item-bookmark a, .nav-item-mypost a, .nav-item-mycomment a{
         font-size: 1.5rem;

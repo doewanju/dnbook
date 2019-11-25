@@ -10,12 +10,30 @@
 .ment{
     margin-left: 40px;
 }
-
+@media (min-width: 1025px){
+    .ment{
+        font-size: 1.5em;
+        margin-bottom: 0;
+    }
+    p.ment{
+        font-size: 1em;
+        color: gray;
+    }
+    .square{
+        height: 50px
+    }
+}
 .board{
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 50px;
     font-family: 'YiSunShinDotumM'
+}
+@media (min-width: 1025px){
+    .board{
+        width: 100%;
+        padding-top: 15px;
+    }
 }
 table {
     width: 100%;
@@ -49,6 +67,21 @@ th.category, td.category{
     font-size:25px;
     padding: 10px 0px;
 }
+@media (min-width: 1025px){
+    table {
+        width: 90% !important;
+        margin: 0 auto;
+        line-height: 90%;
+    }
+    .table tr{
+        font-size: 1rem;
+    }
+    th.category, td.category{
+        width:15%;
+        font-size:1rem;
+        padding: 10px 0px;
+    }
+}
 select{
     font-size: 28px;
     color: #615136;
@@ -80,7 +113,19 @@ td.eventdate{
     text-align:right;
     padding: 10px 0px;
 }
-
+@media (min-width: 1025px){
+    select{
+        font-size: 1rem;
+        padding: 0;
+        text-align-last: center;
+    }
+    .writer{
+        width: 150px;
+    }
+    th.eventdate, td.eventdate{
+        width: 100px;
+    }
+}
 .page{
     font-family: 'NanumSquareRound';
     font-size: 30px;
@@ -104,7 +149,12 @@ td.eventdate{
     color: #615136;
     line-height: 1.5;
 }
-
+@media (min-width: 1025px){
+    .page{
+        font-size: 1.5rem;
+        margin-top: 10px;
+    }
+}
 .search{
     font-family: 'NanumSquareRound';
     font-size: 30px;
@@ -137,6 +187,34 @@ input:focus{
     position: absolute;
     margin-left:10px;
 }
+@media (min-width: 1025px){
+    .search{
+        font-size: 1.3rem;
+        margin-top: 20px;
+    }
+    .search input[type="radio"]{
+        width: 20px;
+        height:20px;
+    }
+    .search input[type="radio"]:checked{
+        appearance: none;
+        background-color: #F2C60C;
+    }
+    .search input[type="search"]{
+        width: 50%;
+        border: none;
+        border-bottom: 1px solid #615136;
+        margin: 0 10px;
+        padding: 0 10px;
+    }
+    input:focus{
+        outline: none;
+    }
+    .searchicon{
+        background-size: 25px;
+        width:30px; height: 30px;
+    }
+}
 a.writebtn{
     font-family: 'NanumSquareRound';
     float: right;
@@ -148,4 +226,15 @@ a.writebtn{
     /* margin-top: 30px; */
     color: white;
     border-radius: 50px;
+}
+@media (min-width: 1025px){
+    a.writebtn{
+        position: absolute;
+        top: 13%;
+        right: 7%;
+        font-size: 1.3rem;
+        letter-spacing: .2rem;
+        background-color: #F2C60C;
+        padding: 7px 15px;
+    }
 }
