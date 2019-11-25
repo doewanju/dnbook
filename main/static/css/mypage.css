@@ -17,6 +17,18 @@
     height: 60px;
     background-color: #615136;
 }
+@media (min-width: 1025px){
+    .title_mypage{
+        margin-top: 15px;
+    }   
+    .ment{
+        font-size: 2rem;
+        margin-left: 30px;
+    }
+    .square{
+        height: 50px;
+    }
+}
 .editprofile{
     padding: 0 50px;
 }
@@ -46,6 +58,7 @@ img.mypage-prof-img {
 .mypage-profile-input {
     width: 100%;
     outline: none;
+    border: none;
 }
 .mypage-submit-btn {
     text-align: center;
@@ -58,6 +71,42 @@ img.mypage-prof-img {
     font-family: 'BBTreeGL';
     font-size: 2.5rem;
     letter-spacing: 2rem;
+}
+@media (min-width: 1025px){
+    .editprofile{
+        padding: 0 100px;
+        text-align:center;
+        align-content: center;
+        align-items: center;
+    }
+    img.mypage-prof-img {
+        width: 120px;
+        height:120px;
+        margin: 10px 0px;
+    }
+    .mypage-userid {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    .infobody{
+        padding: 0px;
+    }
+    .mypage-profile-info {
+        width: 60%;
+        text-align: left;
+        font-size: 1rem;
+        margin: 0 auto;
+        margin-bottom: 0.8rem;
+    }
+    .mypage-submit-btn {
+        padding: 0.5rem;
+        margin-top: 10px;
+        border-radius: 200px;
+        width: 60%;
+        font-family: 'BBTreeGL';
+        font-size: 1.5rem;
+        letter-spacing: 2rem;
+    }
 }
 .stampbody{
     padding: 0px 50px;
@@ -138,6 +187,27 @@ img.mypage-prof-img {
     text-align:center;
     padding: 50px 0;
 }
+@media (min-width: 1025px){
+    .stampbody{
+        padding: 0px 100px;
+        margin: 30px 0;
+        margin-right: 100px;
+    }
+    .selectrow{
+        font-size: 1.5rem;
+    }
+    .btnstamp{
+        background-size: 60%;
+        background-position: center;
+        width:100px; height: 100px;
+        border:3px solid #EBDDCA;
+    }
+    .stampnum, .stamplevel{
+        font-size: 1.5rem;
+        height: 100px;
+        padding: 20px 0;
+    }
+}
 .mypage-tab {
     border: 1px solid #615136;
     border-radius: 40px;
@@ -185,6 +255,31 @@ img.mypage-prof-img {
     color: #402719;
     border-bottom: 1px solid #402719;
 }
+@media (min-width: 1025px){
+    .mypage-tab {
+        width: 80%;
+        height: 60vh;
+        margin: 0px 80px;
+        overflow: scroll;
+    }
+    .nav-item-bookmark a, .nav-item-mypost a, .nav-item-mycomment a{
+        font-size: 1.5rem;
+        letter-spacing: 0.2rem;
+    }
+    .scraplist a{
+        font-size: 1.8rem;
+    }
+    .postlist table, .commentlist table{
+        /* padding: 0 50px;
+        width:90%;
+        margin-left:50px;
+        text-align: center;
+        vertical-align: center; */
+    }
+    .postlist th, .postlist td, .commentlist th, .commentlist td{
+        font-size: 1.5rem;
+    }
+}
 .quitwrapper{
     text-align:center;
     margin-top: 18px;
@@ -196,4 +291,17 @@ img.mypage-prof-img {
     background-color: rgba(235,221,202,0.6);
     color: gray;
     border-radius: 100px;
+}
+@media (min-width: 1025px){
+    .quitwrapper{
+        margin: 20px 0;
+    }
+    .quitbtn{
+        width: 12%;
+        font-family: 'BBTreeGL';
+        font-size: 18px;
+        background-color: rgba(235,221,202,0.6);
+        color: gray;
+        border-radius: 100px;
+    }
 }

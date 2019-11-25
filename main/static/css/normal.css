@@ -13,16 +13,43 @@
     display: block;
     font-family: 'YiSunShinDotumM';
 }
+@media (min-width: 1025px){
+    .s-up{
+        width: 500px;
+        border:none;
+        height: 80px;
+        font-size: 30px;
+        background: #615136;
+        border-radius: 80px;
+        text-align: center;
+        color: white;
+        line-height: 0px;
+        margin: 20px auto;
+    }
+}
 .normal-all{
     width: 90%;
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
 }
+@media (min-width: 1025px){
+    .normal-all{
+        width: 100%;
+        height: 650px;
+        margin-top: 10px;
+    }
+}
 h2{
     font-family: 'YiSunShinDotumM';
     font-size: 40px;
     letter-spacing: 0.2rem;
+}
+@media (min-width: 1025px){
+    h2{
+        font-size: 20px;
+        margin-left: 20px;
+    }
 }
 .form{
     width: 800px;
@@ -79,7 +106,21 @@ h2{
     color: #EBDDCA;
     font-weight: 70;
 }
-
+@media (min-width: 1025px){
+    .form{
+        width: 600px;
+        margin-top: 20px;
+    }
+    .inp input{
+        height: 50px;
+        font-size: 25px;
+        margin-bottom: 0;
+        border-bottom: 2px solid #EBDDCA;
+    }
+    .inp input::placeholder{
+        color: #EBDDCA;
+    }
+}
 .inp input:not(:placeholder-shown) + span {
     color: #BAA687;
     transform: translateY(-26px) scale(0.75);

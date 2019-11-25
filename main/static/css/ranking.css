@@ -8,6 +8,12 @@
     padding-top: 50px;
     font-family: 'YiSunShinDotumM'
 }
+@media (min-width: 1025px){
+    .ranking{
+        padding-top: 20px;
+        height: 500px;
+    }
+}
 .ment{
     margin-left: 40px;
 }
@@ -35,6 +41,27 @@ h3{
     font-size:25px;
     color: gray;
 }
+@media (min-width: 1025px){
+    .ment{
+        font-size: 2em;
+        margin-bottom: 0;
+    }
+    p.ment{
+        font-size: 1em;
+        color: gray;
+    }
+    .back-square{
+        height: 112%;
+        margin: 10px auto;
+        padding:10px 0;
+    }
+    .middle-ment{
+        font-size: 25px;
+    }
+    h3{
+        font-size: 15px;
+    }
+}
 .rankmember{
     margin: 40px 0;
     font-size: 40px;
@@ -52,4 +79,20 @@ h3{
     height:250px;
     border-radius: 100%;
     border: 7px solid #F2C60C;
+}
+@media (min-width: 1025px){
+    .rankmember{
+        margin: 0px 70px;
+        font-size: 20px;
+    }
+    .rankerimg{
+        width: 25%;
+        height: 25%;
+        border-width: 3px;
+    }
+    .toprankerimg{
+        width: 35%;
+        height: 35%;
+        border-width: 5px;
+    }
 }
