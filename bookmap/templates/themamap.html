@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load staticfiles %}
+<body>
+
+{% for i in thema %}
+
+{% if i.img %}
+<img src='{{i.img.url}}'>
+{% endif %}
+
+<a href="{% url 'themadetail' i.id %}">{{i.title}}</a>
+<br>
+
+{% endfor %}
+
+</body>
+{% endblock %}

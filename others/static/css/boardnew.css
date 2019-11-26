@@ -7,19 +7,24 @@
     font-size: 28px;
     margin: 70px;
 }
+@media (min-width: 1025px){
+    .newbody{
+        font-size: 1rem;
+        margin: 25px auto;
+        width: 60%;
+    }
+}
 .newbody table{
     width: 100%;
 }
 .newbody tr,td,th{
     margin-bottom: 20px;
 }
-
 .newbody input{
     width: 100%;
     border: none;
     outline: none;
 }
-
 .newbody input[type="text"]{
     border-bottom: 1px solid #615136;
 }
@@ -33,6 +38,17 @@
     margin-top: 20px;
     align-items: center;
     outline: none;
+}
+@media (min-width: 1025px){
+    .newbody table{
+        width: 90%;
+    }
+    .newbody textarea{
+        height: 50%;
+    }
+    .newbody input{
+        width: 100%;
+    }
 }
 select{
     text-align: center;
@@ -60,4 +76,22 @@ select{
     background-color: white;
     border: 4px solid #615136;
     color: #615136;
+}
+@media (min-width: 1025px){
+    strong{
+        margin-left:55px;
+    }
+    select{
+        min-width:53px;
+        background: url('../images/arrow.jpg') no-repeat 95% 50%;
+    }
+    .newbutton{
+        width: 90% !important;
+        font-size: 1.5rem;
+        padding: 7px 15px;
+        margin-top: 30px;
+    }
+    .newbutton:hover{
+        border: 2px solid #615136;
+    }
 }

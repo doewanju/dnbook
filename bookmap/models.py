@@ -21,6 +21,7 @@ class BookStore(models.Model):
     saup_regex = RegexValidator(regex=r'^\d{3}\-\d{2}\-\d{5}$', message="000-00-00000 형식에 맞게 입력해주세요.")
     saup = models.CharField(null=True, blank=True, validators=[saup_regex], max_length=12)
     #나중에 가게들 사업자번호 다 등록하면 널이랑 블랭크 지우기
+    tag_set = models.ManyToManyField('Tag', blank=True)
 
     class Meta:
             ordering = ['name']
@@ -35,7 +36,13 @@ class BookStore(models.Model):
         """Returns the url to access a detail record for this book."""
         return reverse('storedetail', args=[str(self.pk)])
     
+class Tag(models.Model):
+    title = models.CharField(max_length=30, unique=True)
+    description = models.TextField()
+    img = models.ImageField(upload_to='thema/', null=True, blank=True)
 
+    def __str__(self):
+        return self.title
 
 class Scrap(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -57,7 +64,6 @@ class Review(models.Model):
         return '%s, %s' %(self.store, self.content[:30])
 
     
-
 class Stamp(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     store = models.ForeignKey(BookStore, on_delete=models.CASCADE)

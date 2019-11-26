@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
 from django.contrib.auth.models import User
-from .models import BookStore, Scrap, Review
+from .models import BookStore, Scrap, Review, Tag
 from main.models import Bossprofile
 from django.core import serializers
 from .review import reviewFuc
@@ -8,6 +8,7 @@ import simplejson
 from .forms import ReviewForm, StoreEditForm
 from django.db.models import Avg
 import os
+
 
 # Create your views here.
 
@@ -69,6 +70,31 @@ def realmap(request):
         'bsaddr' : addrlist, 
         'bsname' : namelist,
         'pklist' : pklist})
+
+def themamap(request):
+    thema = Tag.objects.all()
+    return render(request, 'themamap.html',{'thema':thema})
+
+def themadetail(request, tag_id):
+    thema = get_object_or_404(Tag, pk=tag_id)
+    stores = BookStore.objects.filter(tag_set=thema)
+    addr = []
+    name = []
+    storepk = []
+    for a in stores:
+        addr.append(a.addr)
+        name.append(a.name)
+        storepk.append(a.bookstore_id)
+    addrlist = simplejson.dumps(addr)
+    namelist = simplejson.dumps(name)
+    pklist = simplejson.dumps(storepk)
+    content = {'thema':thema,
+            'stores':stores,
+            'bsaddr':addrlist,
+            'bsname':namelist,
+            'pklist':pklist}
+
+    return render(request, 'themadetail.html', content)
 
 def scrap(request, bookstore_id):
     store = get_object_or_404(BookStore, pk=bookstore_id)
