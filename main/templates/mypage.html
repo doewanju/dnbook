@@ -20,8 +20,8 @@
             {% else %}
                 <img src="{% static 'images/basic-profile-img.png' %}" id="img_show" class='mypage-prof-img' onclick="img_click();">
             {% endif %}
-            {% if store_name %}
-                <div class='mypage-userid'>{{store_name}}</div>
+            {% if store %}
+                <div class='mypage-userid'><a href="{%url 'storedetail' store.bookstore_id%}" style="color:#402719">{{store.name}}</a></div>
             {% endif %}
             <div class='mypage-userid'>{{user.username}}</div>
         </div>
@@ -65,7 +65,7 @@
     <h1 class="ment">나의 스탬프</h1>
 </div>
 <div class="stampbody">
-    {% if store_name %}
+    {% if store %}
     <div class="stamp_boss">
         <div class="stampment">아이디를 입력해주세요 :) 구매 금액 1 만원 당 스탬프 하나가 지급됩니다.
             <form method="GET" action="{% url 'stamppush' %}">
@@ -108,7 +108,7 @@
         <li class="nav-item nav-item-bookmark">
         <a class="nav-link active" id="pills-bookmark-tab" data-toggle="pill" href="#pills-bookmark" role="tab" aria-controls="pills-bookmark" aria-selected="true">즐겨찾기</a>
         </li>
-        {% if store_name %}
+        {% if store %}
             <li class="nav-item nav-item-mypost">
                 <a class="nav-link" id="pills-mypost-tab" data-toggle="pill" href="#pills-mypost" role="tab" aria-controls="pills-mypost" aria-selected="false">내가 쓴 글</a>
             </li>
