@@ -17,7 +17,27 @@
     height: 60px;
     background-color: #615136;
 }
-
+@media (min-width: 1025px){
+    .ment{
+        font-size: 2em;
+        margin-bottom: 0;
+    }
+    p{
+        font-size: 1em;
+        color: gray;
+    }
+    .back-square{
+        height: 112%;
+        margin: 10px auto;
+        padding:10px 0;
+    }
+    .middle-ment{
+        font-size: 25px;
+    }
+    h3{
+        font-size: 15px;
+    }
+}
 .mlist table{
     font-family: 'NanumSquareRound';
     font-size:28px;
@@ -46,4 +66,16 @@
     width:330px;
     color: gray;
     text-align: center;
+}
+@media (min-width: 1025px){
+    .mlist{
+        margin: 0 3rem;
+    }
+    .mlist table{
+        font-size:1.2rem;
+    }
+    .mlist td{
+        height: 70px;
+        border-bottom: 2px dashed #615136;
+    }
 }
