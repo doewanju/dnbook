@@ -44,7 +44,7 @@ $("#chatbody").scrollTop($("#chatbody")[0].scrollHeight);
         {{ form.non_field_errors }}
         <input type="submit" class="btnsend" value="보내기"/>
     </form>
-</div><br>
+</div>{% if not request.PC %}<br>{% endif %}
 <a class="listlink" href="{% url 'listMessage' %}">목록</a>
 
 {% endblock %}

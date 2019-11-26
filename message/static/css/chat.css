@@ -24,6 +24,21 @@ img.mypage-prof-img {
     width: 50px;
     height:50px;
 }
+@media (min-width: 1025px){
+    .chatbody{
+        font-size: 1rem;
+        height: 400px;
+        margin:0 40px;
+    }
+    .receiver{
+        font-size: 1.5rem;
+        margin: 10px 0;
+    }
+    img.mypage-prof-img{
+        width: 40px;
+        height: 40px;
+    }
+}
 .chatcontent{
     font-size: 25px;
     display: inline-block;
@@ -88,4 +103,41 @@ textarea:focus{
     color: #3c281b;
     text-decoration: none;
     margin:0 430px;
+}
+@media (min-width: 1025px){
+    .chatcontent, .chatcontent_r{
+        font-size: 1.3rem;
+        padding: 10px 25px;
+    }
+    .chat_time{
+        font-size: 0.8rem;
+        color: gray;
+        margin: 0 30px;
+    }
+    .chatform{
+        height: 100px;
+        margin: 0 40px;
+    }
+    .writechat textarea{
+        font-family: 'NanumSquareRound';
+        font-size: 1.2rem;
+        width:88%;
+        height: 90px;
+        padding-left:10px;
+        outline:none;
+    }
+    .btnsend{
+        background-size: 80px;
+        width: 90px;
+        height:90px;
+        font-size: 1.5rem;
+        padding-top: 60px;
+        margin-right: 20px;
+    }
+    .listlink{
+        font-size: 1.2rem;
+        margin: 0;
+        position:absolute;
+        left: 48%;
+    }
 }
