@@ -1,26 +1,28 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
-
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
 input.search-box{
     width: 650px;  
-    height: 100px;
+    height: 90px;
     margin-right: 25px; 
     border: none;
     box-shadow: 5px 5px 10px lightgrey;
     border-radius: 10px;
     position: relative;
-    font-size: 50px;
+    font-size: 40px;
     font-family: 'YiSunShinDotumM';
+    margin-bottom: 15px;
 }
 
-/*.rbtn{
-    margin-left: 25px;
-    float: left;
-    margin-top: 23px;
-} */
-
-.sbox{
+.sbox, .sbox-pc{
     float: right;
+}
+.sbox-pc{
+    margin-bottom: 20px;
+    margin-right: 1%;
+}
+form.search-act-pc{
+    display: inline;
 }
 
 input.search-box:not(:placeholder-shown) + span {
@@ -39,8 +41,8 @@ input.search-box:focus + span {
 .search-mark{
     height: 60px;
     position: absolute;
-    top: 163px;
-    left: 860px;
+    top: 155px;
+    left: 865px;
 }
 
 .seeall{
@@ -52,49 +54,37 @@ input.search-box:focus + span {
     color: white;
     line-height: 80px;
     display: block;
-    /* margin-top: 00px; */
-    /* margin-left: 190px; */
     font-family: 'YiSunShinDotumM';
+    position: absolute;
+    z-index: 2;
+    margin: 15px 0px 0px 15px;
 }
 .seeall a{
     font-size: 27px;
-}
-.seelist{
-    width: 80px;
-    height: 80px;
-    background: #615136;
-    border-radius: 100px;
-    text-align: center;
-    color: white;
-    line-height: 80px;
-    display: block;
-    /* margin-top: 00px; */
-    /* margin-left: 190px; */
-    font-family: 'YiSunShinDotumM';
+    z-index: 2;
 }
 
-.btn-container a:link { color:white; text-decoration: none;}
-.btn-container a:visited { color: white; text-decoration: none;}
-.btn-container a:hover { color: #DED2C0; text-decoration: none;}
+.seeall a:link { color:white; text-decoration: none;}
+.seeall a:visited { color: white; text-decoration: none;}
+.seeall a:hover { color: #DED2C0; text-decoration: none;}
 
 .map{
     width:100%;
     height:1000px;
     position:relative;
     z-index:0;
-    margin-top:130px;
     margin-bottom: 10px;
 }
-.btn-container{
+/* .btn-container{
     position: absolute;
     top:290px;
     left:30px;
-}
+} */
 .list{
     overflow:auto;
     width:100%;
-    height:400px;
-    font-family: 'YiSunShinDotumM';
+    height:450px;
+    font-family: 'NanumSquareRound';
     padding-left: 40px;
     padding-right: 40px;
 }
@@ -102,6 +92,14 @@ table {
     border-top: 1px solid #615136;
     border-collapse: collapse;
     font-size: 25px;
+    table-layout: fixed;
+    word-break: break-all;
+}
+.table-seemore{
+    width: 20%;
+}
+.table-sname{
+    width: 30%;
 }
 .table tr{
     text-align: center;
@@ -129,34 +127,10 @@ tr a:hover { color: white; text-decoration: none;}
     border: 0px;
     color:white;
     border-radius: 100px;
-    padding: 8px;
-    /* width: 90px;
-    height: 30px; */
+    padding: 7px;
 }
-/* 
-div.radio-wrap {
-    display: inline-flex;
-    align-items: center;
-  }
-  
-  input[type='radio'],
-  input[type='radio']:checked {
-    appearance: none; 
-    width: 40px;
-    height: 40px;
-    border-radius: 100;
-    margin-right: 5px;
-    margin-left: 5px;
-  }
-  
-  input[type='radio'] {
-    background-color: white;
-    border: 2px solid red;
-  }
-  input[type='radio']:checked {
-    background-color: blue;
-  } */
-label{
+
+.label{
     font-family: 'YiSunShinDotumM';
     font-size: 27px;
     margin-left: 10px;
@@ -188,10 +162,11 @@ label{
 .rbtn{
     float: left;
     margin-left: 10px;
-    margin-top: 10px;
+    margin-top: 23px;
 }
 .rbtn input[type='radio'] {
-    margin-top: 20px;
+    margin-top: -3px;
+    vertical-align: middle;
     -webkit-appearance:none;
     width:30px;
     height:30px;
@@ -203,11 +178,127 @@ label{
 .rbtn input[type='radio']:before {
     content:'';
     display:block;
-    width:60%;
-    height:60%;
+    width:70%;
+    height:70%;
     margin: 15% auto;  
     border-radius:50%;  
 }
 .rbtn input[type='radio']:checked:before {
     background:#615136;
+}
+
+/* 검색창 pc버전 */
+.search-box-pc{
+    height: 40px;
+    border: none;
+    box-shadow: 4px 4px 8px lightgrey;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'YiSunShinDotumM';
+}
+
+.search-mark-pc{
+    width: 40px;
+}
+
+input.search-box-pc:not(:placeholder-shown) + span {
+    color: #EBDDCA;
+    transform: translateY(-26px) scale(0.75);
+}
+input.search-box-pc:focus {
+    background: none;
+    outline: none;
+}
+input.search-box-pc:focus + span {
+    color: #615136;
+    transform: translateY(-26px) scale(0.75);
+}
+.topbar-pc{
+    height: 5%;
+    margin: 2%;
+}
+
+/* 라디오버튼 PC버전 */
+.rbtn-pc{
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 55%;
+    z-index: -1;
+}
+.rbtn-pc input[type='radio'] {
+    margin-top: -1px;
+    vertical-align: middle;
+    -webkit-appearance:none;
+    width:20px;
+    height:20px;
+    border:1px solid #EBDDCA;
+    border-radius:50%;
+    outline:none;
+    background:#EBDDCA;
+}
+.rbtn-pc input[type='radio']:before {
+    content:'';
+    display:block;
+    width:70%;
+    height:70%;
+    margin: 15% auto;  
+    border-radius:50%;  
+}
+.rbtn-pc input[type='radio']:checked:before {
+    background:#615136;
+}
+.label-pc{
+    font-family: 'YiSunShinDotumM';
+}
+
+
+@media(min-width:1025px){
+    .realmap{
+        padding: 0px 100px;
+    }
+    .map-container{
+        display: inline;
+        min-width: 100%;
+    }
+    .map{
+        display: inline;
+        float: left;
+        width: 50%;
+        height: 410px;
+    }
+    .list{
+        display: inline;
+        float: left;
+        width: 50%;
+        height: 400px;
+        padding-left: 10px;
+        padding-right: 0px;
+    }
+    .table{
+        font-size: 1rem;
+    }
+    .seeall{
+        width: 60px;
+        height: 60px;   
+        line-height: 60px;     
+    }
+    .seeall a{
+        font-size: 20px;
+    }
+    .smallinfo{
+        white-space:nowrap;
+        width: 300px;
+        height: 100px;
+        font-family: 'YiSunShinDotumM';
+        font-size: 15px;
+        text-align: center;
+        color: #615136;
+    }
+    .title{
+        font-size: 20px;
+        color: black;
+    }
+    .det-btn{
+        margin-top: 30px;
+    }
 }
