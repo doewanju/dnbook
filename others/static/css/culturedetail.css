@@ -21,9 +21,27 @@
 }
 .topinfo{
     height: 140px;
-    margin: 0 20px;
+    margin-top: 30px;
+    width: 700px;
+    display: inline-block;
 }
-
+@media (min-width: 1025px){
+    .board-detail{
+        padding-top: 15px;
+    }
+    .square{
+        height: 50px;
+    }
+    .title{
+        margin-left: 40px;
+        font-size: 2.2rem;
+        color: black;
+    }
+    .topinfo{
+        height: 100%;
+        margin: 20px 100px;
+    }
+}
 .update_delete, .update_delete a{
     font-family: 'NanumSquareRound';
     font-size: 28px;
@@ -31,11 +49,16 @@
     text-decoration: none;
     color: #615136;
 }
+@media (min-width: 1025px){
+    .update_delete, .update_delete a{
+        margin-right: 20px;
+        font-size: 1.3rem;
+    }
+}
 .content-comment{
     font-family: 'NanumSquareRound';
     font-size: 30px;
     margin: 30px 80px;
-    
 }
 .content-comment textarea{
     width:89%;
@@ -110,11 +133,6 @@ img.comment_img{
     margin-left: 20px;
     color: #615136;
 }
-.topinfo{
-    margin-top: 30px;
-    width: 700px;
-    display: inline-block;
-}
 .sendmessage{
     float: right;
     padding: 10px 15px 10px 15px;
@@ -137,6 +155,51 @@ div.writer a{
 .period .span2{
     font-weight: normal;
 }
+@media (min-width: 1025px){
+    .content-comment{
+        font-size: 1.5rem;
+        margin: 30px 100px;
+    }
+    .content-comment textarea{
+        padding: 5px 10px;
+    }
+    .my-auto{
+        text-align: left;
+        font-size: 1.2rem;
+    }
+    i{
+        font-size: 1.2rem;
+    }
+    .comment-writer{
+        font-size: 1rem;
+    }
+    img.myprofile_img {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+    }
+    img.comment_img{
+        border-radius: 100%;
+        width: 60px;
+        height: 60px;
+        margin: 0 10px;
+    }
+    .writer, .period{
+        font-family: 'NanumSquareRound';
+        font-size: 1.5rem;
+    }
+    .postinfo{
+        vertical-align: middle;
+    }
+    .sendmessage{
+    float: right;
+    padding: 10px 15px 10px 15px;
+    font-size: 1rem;
+    position: absolute;
+    top: 16%;
+    right: 5%;
+    }
+}
 .postinfo a:link { color:#615136; text-decoration: none;}
 .postinfo a:visited { color: #615136; text-decoration: none;}
 .postinfo a:hover { color: #615136; text-decoration: none;}
@@ -154,4 +217,20 @@ div.writer a{
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+@media (min-width: 1025px){
+    .contents{
+        font-size: 1.5rem;
+    }
+    .contents p{
+        padding: 0.5rem 2rem;
+        margin: 0;
+    }
+    .center-img{
+        display: block;
+        max-width:1000px;
+        max-height:600px;
+        width: auto;
+        height: auto;
+    }
 }
