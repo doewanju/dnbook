@@ -112,14 +112,14 @@ def normal(request):
        return render(request, 'normal.html')
 
 def boss(request):
-   if request.method == 'POST':
-       # User has info and wants an account now! 즉 [signup!]버튼을 눌렀을 때 일어나는 일
+    if request.method == 'POST':
+        # User has info and wants an account now! 즉 [signup!]버튼을 눌렀을 때 일어나는 일
         if request.POST['password1'] == request.POST['password2']:
-           try:
+            try:
                 user = User.objects.get(username=request.POST['username'])
                 content="<script type='text/javascript'>alert('이미 존재하는 아이디입니다.');history.back();</script>"
                 return HttpResponse(content)
-           except User.DoesNotExist:
+            except User.DoesNotExist:
                 storename = request.POST['storename'].strip()
                 bookstore = BookStore.objects.get(name=storename)
                 saup = request.POST['saup']
@@ -155,7 +155,7 @@ def boss(request):
         else:
             content="<script type='text/javascript'>alert('비밀번호가 일치하지 않습니다.');history.back();</script>"
             return HttpResponse(content)
-   else:
+    else:
         bsname = request.GET.get("bsname", False)
         bookstore = BookStore.objects.get(name=bsname)
         if bookstore.saup:
@@ -372,7 +372,7 @@ def addstore(request):
             if detail.strip() != "":
                 store.addr = addr + " " + detail
             store.save()
-            return redirect('bossbook')
+            return render(request, 'boss.html', {"bsname": store.name, "saup": store.saup})
         else:
             content="<script type='text/javascript'>alert('형식에 맞게 입력하세요.');history.back();</script>"
             return HttpResponse(content)
@@ -399,27 +399,28 @@ def saup_check(request):
             files = {'file': f}
             response = requests.post('https://ocr.api.friday24.com/business-license', headers=headers, files=files)
             text = str(response.text)
+        os.remove(path)
         t=text.split('document')
         sep=t[0].split('\",')
         #doc=t[1] #판독한 전체내용
-        arr=['bizNum','corpNum','corpName','ceoName','addr','bizClass','bizType','tel','email','birthday']
-        dic = {}
-        os.remove(path)
-        for i,a in enumerate(arr):
-            temp=sep[i].split(a)[1]
-            temp=re.split('[{}:\'"]',temp)
-            temp=list(map(lambda x: x.strip(), temp))
-            temp=list(filter(lambda x: x != '',temp))
-            if len(temp)==0:
-                dic[a]=None
-            else:
-                dic[a] = temp[0]
-        saup = re.sub('(\d{3})(\d{2})(\d{5})', r'\1-\2-\3', dic['bizNum'])
-        if check == 'bossbook':
+        if check == 'bossbook': #책방없는경우
+            arr=['bizNum','corpNum','corpName','ceoName','addr','bizClass','bizType','tel','email','birthday']
+            dic = {}
+            for i,a in enumerate(arr):
+                temp=sep[i].split(a)[1]
+                temp=re.split('[{}:\'"]',temp)
+                temp=list(map(lambda x: x.strip(), temp))
+                temp=list(filter(lambda x: x != '',temp))
+                if len(temp)==0:
+                    dic[a]=None
+                else:
+                    dic[a] = temp[0]
+            saup = re.sub('(\d{3})(\d{2})(\d{5})', r'\1-\2-\3', dic['bizNum'])
             #tel=re.sub('(\d{3})(\d{2})(\d{5})', r'\1-\2-\3', dic['tel'])
             form = AddstoreForm(initial={'name':dic['corpName'],'phone_number': dic['tel'], 'email':dic['email'], 'saup': saup,'site':'http://'})
             return render(request, 'addstore.html', {'form': form, 'biz': dic['bizClass']})
-        else:
+        else: #책방있는데 사업자번호가 DB에 없는경우
+            saup = re.sub('(\d{3})(\d{2})(\d{5})', r'\1-\2-\3', sep[0][22:32])
             bookstore = BookStore.objects.get(name=check)
             bookstore.saup = saup
             bookstore.save()
