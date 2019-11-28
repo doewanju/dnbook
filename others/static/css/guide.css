@@ -41,6 +41,10 @@ a.isbn{
 div.isbn{
     margin-top: 10px;
 }
+a.sitelink{
+    text-decoration: none;
+    color: #F2C60C;
+}
 @media (min-width: 1025px){
     .guide{
         padding: 20px 80px;

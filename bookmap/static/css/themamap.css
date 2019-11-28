@@ -1,0 +1,43 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
+
+body{
+    overflow: auto;
+}
+.themawrap {
+    width: 95%;
+    margin: 0 auto;
+    position: relative;
+}
+.thema-img img {
+    width: 100%;
+    vertical-align: middle;
+    opacity: 0.5;
+}
+.thema-title {
+    width: 70%;
+    padding: 5px 10px;
+    text-align: center;
+    position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+}
+.thema-title a{
+    text-decoration: none;
+    color: #3c281b;
+    font-family: 'YiSunShinDotumM';
+    font-size: 6rem;
+}
+@media (min-width: 1025px){
+    .thema-img{
+        margin: 10px 50px;
+    }
+    .themawrap, .thema-img img {
+        max-height:50vh;
+    }
+    .thema-title a{
+        font-size: 4rem;
+    }
+}
