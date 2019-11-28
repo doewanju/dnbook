@@ -26,7 +26,6 @@ def mypage(request):
         try:
             profile = Bossprofile.objects.get(user=request.user)
             store = BookStore.objects.get(boss=request.user)
-            store_name = store.name
             mystamp = None
             level = None
             next_level = None
@@ -34,7 +33,7 @@ def mypage(request):
             cultures = Culture.objects.filter(store=store)
         except Bossprofile.DoesNotExist:
             profile = Normalprofile.objects.get(user=request.user)
-            store_name = None
+            store = None
             cultures = None
             mystamp = profile.stampcount()
             level = profile.level
@@ -55,7 +54,7 @@ def mypage(request):
                         'comments':comments,
                         'user':user,
                         'profile':profile, 
-                        'store_name':store_name,
+                        'store':store,
                         'comments':comments,
                         })
 

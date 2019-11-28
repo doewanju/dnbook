@@ -42,9 +42,18 @@ $("#chatbody").scrollTop($("#chatbody")[0].scrollHeight);
         {{ form.as_table }}
         {{ form.errors }}
         {{ form.non_field_errors }}
-        <input type="submit" class="btnsend" value="보내기"/>
+        <input type="submit" id='send' class="btnsend" value="보내기"/>
     </form>
-</div><br>
+</div>{% if not request.PC %}<br>{% endif %}
 <a class="listlink" href="{% url 'listMessage' %}">목록</a>
+<script type="text/javascript">
+    function enter() { 
+        if (window.event.keyCode == 13) {
+            document.getElementById('send').click();
+        }
+    }
+    
+    
+</script>
 
 {% endblock %}
