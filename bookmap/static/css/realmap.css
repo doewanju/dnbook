@@ -69,8 +69,8 @@ input.search-box:focus + span {
 .seeall a:hover { color: #DED2C0; text-decoration: none;}
 
 .map{
-    width:100%;
-    height:1000px;
+    width:100%;lh;
+    height:900px;
     position:relative;
     z-index:0;
     margin-bottom: 10px;

@@ -213,6 +213,7 @@ input[type="radio"]:checked + label{
      background-size: 60px 60px;
  }
 .review_hs{
+    width: 80%;
     margin-top: 40px;
 }
 .cr_review_ct{
