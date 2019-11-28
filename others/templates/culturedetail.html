@@ -80,12 +80,12 @@
     {% for comment in comments %}
         <div class="comment-body row">
         <div class="col-3 my-auto">
-        <!--댓글단사람 프사(우선 임시로 위에 글쓴사람프사의 클래스 가져왔어요..!바꿔도 됩니당)-->
             {% if comment.img %}
                 <img src="{{comment.img.url}}" alt="" class="comment_img">
             {% else %}
                 <img src="{% static 'images/basic-profile-img.png' %}" class="comment_img">
             {% endif %}
+        <br>
         <span class="comment-writer">{{comment.user}}</span>
         {%if comment.user != request.user%}
         {% if request.user.is_authenticated %}
