@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'l)_=05l01nmfun^$ymr=+fq!4zda-qim2@*6tnmss_26kh!04*'
-SECREET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'l)_=05l01nmfun^$ymr=+fq!4zda-qim2@*6tnmss_26kh!04*')
+SECRET_KEY = 'l)_=05l01nmfun^$ymr=+fq!4zda-qim2@*6tnmss_26kh!04*'
+#SECREET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'l)_=05l01nmfun^$ymr=+fq!4zda-qim2@*6tnmss_26kh!04*')
 
-# SECURITY WARNING: don't run with debug turned on in production!
+#SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 ALLOWED_HOSTS = []
@@ -128,12 +128,17 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+ROOT_DIR = os.path.dirname(BASE_DIR)
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(ROOT_DIR, '.static_root')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [STATIC_DIR,]
+'''
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-]
+]'''
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
