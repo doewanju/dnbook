@@ -1,6 +1,20 @@
-<!--정보 수정 폼-->
+{% extends 'base.html' %}
+{% block content %}
+{% load staticfiles %}
 
-<div>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/store_edit.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
+
+
+<!--정보 수정 폼-->
+<body>
+<div class="newbody">
+    <div class="square"></div>
+        <h1 class="ment">책방 정보 수정하기</h1>
+
+
     <form action="{% url 'store_edit' store.bookstore_id %}" method='POST' enctype="multipart/form-data">
         {% csrf_token %}
         <p>책방 이름: <strong>{{store.name}}</strong></p>
@@ -8,6 +22,8 @@
         <table>
             {{form}}
         </table>
-        <input type="submit" value="SAVE" class="inp_save">
+        <input type="submit" value="SAVE" class="newbutton">
     </form>
 </div>
+</body>
+{% endblock %}
