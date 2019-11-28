@@ -10,7 +10,7 @@ class BookStore(models.Model):
     name = models.CharField(max_length=20, default="storename", null=True)
     addr = models.TextField(unique=True)
     phone_regex = RegexValidator(regex=r'^\d{2,3}\-\d{3,4}\-\d{4}$', message="000-0000-0000과 같은 형식으로 입력해주세요.")
-    phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=13, null=True)
+    phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=15, null=True)
     site = models.URLField(null=True, blank=True)
     img = models.ImageField('외관사진 등록',upload_to='store/', null=True, blank=True)
     insta = models.CharField(null=True, blank=True, max_length=50)
