@@ -1,0 +1,106 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
+
+.bossbook{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 50px;
+    font-family: 'YiSunShinDotumM'
+}
+.ment-box{
+    float: left;
+}
+.nobookstore{
+    float: right;
+    background-color: #EBDDCA;
+    padding: 10px 10px 10px 10px;
+    font-size: 30px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 4px lightgrey;
+}
+table {
+    width: 100%;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+.table tr{
+    text-align: center;
+    font-size: 30px;
+    color: black;
+}
+.table td {
+    border-top: 1px solid #615136;
+    border-bottom: 1px solid #615136;
+    vertical-align: middle;
+}
+.table td input{
+    text-align: center;
+}
+.table thead th{
+    border-bottom: 2px solid #615136;
+    border-top: 1px solid #ffffff;
+}
+.ment{
+    margin-left: 40px;
+}
+p.ment{
+    font-size: 30px;
+}
+h1.ment{
+    font-size: 50px;
+}
+.square{
+    float : left;
+    width: 15px;
+    height: 80px;
+    background-color: #615136;
+    margin-top: 10px;
+}
+.sub-btn{
+    font-family: 'YiSunShinDotumM';
+    background-color: #615136;
+    border: 0px;
+    color:white;
+    border-radius: 100px;
+    padding: 8px;
+}
+
+a:link { color:#615136; text-decoration: none;}
+a:visited { color: #615136; text-decoration: none;}
+a:hover { color: #615136; text-decoration: none;}
+
+@media (min-width: 1025px){
+    .bossbook{
+        padding: 0 80px;
+        padding-top: 15px;
+    }
+    .nobookstore{
+        font-size: 25px;
+    }
+    .ment{
+        margin-left: 30px;
+    }
+    p.ment{
+        font-size: 1rem;
+    }
+    h1.ment{
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+    .square{
+        margin-top: 0;
+        height: 50px;
+    }
+    table {
+        width: 90% !important;
+        margin: 0 auto;
+        font-family: 'NanumSquareRound';
+    }
+    .table tr{
+        font-size: 1rem;
+    }
+    .table td{
+        padding: 5px;
+    }
+}

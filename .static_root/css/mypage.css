@@ -1,0 +1,312 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
+
+.title_mypage{
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 25px;
+    font-family: 'YiSunShinDotumM';
+}
+.ment{
+    margin-left: 40px;
+}
+.square{
+    float: left;
+    width: 10px;
+    height: 60px;
+    background-color: #615136;
+}
+@media (min-width: 1025px){
+    .title_mypage{
+        margin-top: 15px;
+    }   
+    .ment{
+        font-size: 2rem;
+        margin-left: 30px;
+    }
+    .square{
+        height: 50px;
+    }
+}
+.editprofile{
+    padding: 0 50px;
+}
+img.mypage-prof-img {
+    border-radius: 100%;
+    width: 200px;
+    height:200px;
+    margin: 30px 0px;
+}
+.mypage-userid {
+    font-family: 'YiSunShinDotumM';
+    font-size: 2rem;
+    color: #402719;
+    text-align: center;
+}
+.infobody{
+    padding: 0 40px;
+}
+.mypage-profile-info {
+    width: 100%;
+    border-bottom: 1px solid #402719;
+    font-family: 'BBTreeGL';
+    font-size: 2rem;
+    color: #402719;
+    margin-bottom: 1rem;
+}
+.mypage-profile-input {
+    width: 100%;
+    outline: none;
+    border: none;
+}
+.mypage-submit-btn {
+    text-align: center;
+    color: white;
+    background-color: #615136;
+    padding: 1rem;
+    margin-top: 10px;
+    border-radius: 200px;
+    width: 100%;
+    font-family: 'BBTreeGL';
+    font-size: 2.5rem;
+    letter-spacing: 2rem;
+}
+@media (min-width: 1025px){
+    .editprofile{
+        padding: 0 100px;
+        /* margin-left: 4rem; */
+        text-align:center;
+        align-content: center;
+        align-items: center;
+    }
+    img.mypage-prof-img {
+        width: 120px;
+        height:120px;
+        margin: 10px 0px;
+    }
+    .mypage-userid {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    .infobody{
+        padding: 0px;
+        text-align: left;
+        margin-left: 2rem;
+    }
+    .mypage-profile-info {
+        width: 70%;
+        text-align: left;
+        font-size: 1rem;
+        margin-bottom: 1.7rem;
+    }
+    .mypage-submit-btn {
+        font-family: 'YiSunShinDotumM';
+        width: 100px; height: 100px;
+        background-color: #F2C60C;
+        margin: auto 0;
+        font-size: 1rem;
+        letter-spacing: 0.2rem;
+        padding: 0;
+        position: absolute;
+        top:23%; left:75%;
+        border-radius: 100%;
+        border: none;
+    }
+}
+.stampbody{
+    padding: 0px 50px;
+    margin-bottom: 50px;
+}
+.stampment{
+    font-family: 'BBTreeGL';
+    font-size: 20px;
+    margin-left: 30px;
+}
+
+.stampment input[type="radio"]{
+    align-items: center;
+    align-content: center;
+}
+.form-control-plaintext{
+    height: auto;
+    outline: none;
+    border-bottom: 2px solid #EBDDCA;
+}
+.form-control-plaintext::-webkit-input-placeholder{
+    text-align: center;
+    color: #CCCCCC;
+}
+.selectrow{
+    font-family: 'BBTreeGL';
+    font-size: 2rem;
+    align-items: center;
+    /* text-align: center; */
+    margin: 10px 0;
+}
+.radio_amount input[type='radio'] {
+    margin-left:50px;
+    -webkit-appearance:none;
+    width:20px;
+    height:20px;
+    border:1px solid #EBDDCA;
+    border-radius:50%;
+    outline:none;
+    background:#EBDDCA;
+}
+.radio_amount input[type='radio']:before {
+    content:'';
+    display:block;
+    width:70%;
+    height:70%;
+    margin: 15% auto;  
+    border-radius:50%;  
+}
+.radio_amount input[type='radio']:checked:before {
+    background:#F2C60C;
+}
+.btnstamp{
+    background-image:url("../images/stamp.png");
+    background-color:transparent;
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position: center;
+    width:120px; height: 120px;
+    border:5px solid #EBDDCA;
+    border-radius: 100%;
+}
+.stampmember{
+    display: flex;
+    align-items: center;
+}
+.stampnum{
+    font-family: 'NanumSquareRound';
+    font-size: 2.5rem;
+    text-align:center;
+    padding: 50px 0;
+    border-right: 2px solid #402719;
+}
+.stamplevel{
+    font-family: 'NanumSquareRound';
+    font-size: 2.5rem;
+    text-align:center;
+    padding: 50px 0;
+}
+@media (min-width: 1025px){
+    .stampbody{
+        padding: 0px 100px;
+        margin: 30px 0;
+        margin-right: 100px;
+    }
+    .selectrow{
+        font-size: 1.5rem;
+    }
+    .btnstamp{
+        background-size: 60%;
+        background-position: center;
+        width:100px; height: 100px;
+        border:3px solid #EBDDCA;
+    }
+    .stampnum, .stamplevel{
+        font-size: 1.5rem;
+        height: 100px;
+        padding: 20px 0;
+    }
+}
+.mypage-tab {
+    border: 1px solid #615136;
+    border-radius: 40px;
+    height: 40vh;
+    margin: 0 3rem; 
+    background-color: rgba(235,221,202,0.3);
+}
+.nav-pills .nav-link{
+    font-family: 'YiSunShinDotumM';   
+    color: #402719;
+}
+.nav-pills .nav-link.active{
+    background-color:#402719;
+}
+.nav-item-bookmark a {
+    font-family: 'YiSunShinDotumM';
+    font-size: 2.5rem;
+    border-top-left-radius: 200px !important;
+    border-bottom-left-radius: 200px !important;
+}
+.nav-item-mypost a {
+    font-size: 2.5rem;
+    border-radius: 0;
+}
+.nav-item-mycomment a {
+    font-size: 2.5rem;
+    border-top-right-radius: 200px !important;
+    border-bottom-right-radius: 200px !important;
+}
+.scraplist a{
+    font-family: 'BBTreeGL';
+    font-size: 2.7rem;
+    color: #402719;
+}
+.postlist table, .commentlist table{
+    padding: 0 50px;
+    width:90%;
+    margin-left:50px;
+    text-align: center;
+    vertical-align: center;
+}
+.postlist th, .postlist td, .commentlist th, .commentlist td{
+    font-family: 'BBTreeGL';
+    font-size: 2rem;
+    color: #402719;
+    border-bottom: 1px solid #402719;
+}
+@media (min-width: 1025px){
+    .mypage-tab {
+        width: 80%;
+        height: 60vh;
+        margin: 0px 80px;
+        overflow: auto;
+    }
+    .nav-item-bookmark a, .nav-item-mypost a, .nav-item-mycomment a{
+        font-size: 1.5rem;
+        letter-spacing: 0.2rem;
+    }
+    .scraplist a{
+        font-size: 1.8rem;
+    }
+    .postlist table, .commentlist table{
+        /* padding: 0 50px;
+        width:90%;
+        margin-left:50px;
+        text-align: center;
+        vertical-align: center; */
+    }
+    .postlist th, .postlist td, .commentlist th, .commentlist td{
+        font-size: 1.5rem;
+    }
+}
+.quitwrapper{
+    text-align:center;
+    margin-top: 18px;
+}
+.quitbtn{
+    width: 12%;
+    font-family: 'BBTreeGL';
+    font-size: 18px;
+    background-color: rgba(235,221,202,0.6);
+    color: gray;
+    border-radius: 100px;
+}
+@media (min-width: 1025px){
+    .quitwrapper{
+        margin: 20px 0;
+    }
+    .quitbtn{
+        width: 12%;
+        font-family: 'BBTreeGL';
+        font-size: 18px;
+        background-color: rgba(235,221,202,0.6);
+        color: gray;
+        border-radius: 100px;
+    }
+}

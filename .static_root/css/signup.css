@@ -1,0 +1,44 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+
+.signupbox {
+    margin-top:20vh;
+    width: 980px;
+}
+.signupbox a{
+    color: black;
+    text-decoration: none;
+
+}
+.member .icons{
+    background-image: url("../images/member.png");
+    background-size: contain;
+    width: 330px;
+    height: 330px;
+}
+.boss .icons{
+    background-image: url("../images/boss.png");
+    background-size: contain;
+    width: 330px;
+    height: 330px;
+}
+.row .text{
+    font-family: 'YiSunShinDotumM';
+    font-size: 45px;
+    text-align: center;
+    padding-top: 50px;
+}
+@media (min-width: 1025px){
+    .signupbox {
+        width: 100%;
+        margin-top:10vh;
+    }
+    .boss .icons, .member .icons{
+        width: 300px;
+        height: 300px;
+    }
+    .row .text{
+        font-size: 40px;
+    }
+}

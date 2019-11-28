@@ -1,0 +1,154 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+body{
+    background-image: url("../images/background_login.png");
+    background-repeat: no-repeat;
+    background-size: 850px 1400px;
+    background-position: center;
+    background-position-y: 185px;
+}
+@media (min-width: 1025px){
+    body{
+        background-image: none;
+        height: 100%;
+    }
+}
+.logoimg{
+    width:50%;
+    position: absolute;
+    left:38%; top:28%;
+}
+@media (min-width: 1025px){
+    .logoimg{
+        width:20%;
+        position: absolute;
+        top:20%;
+        left: 40%;
+    }
+}
+.loginbox{
+    position: fixed;
+    width: 450px;
+    top: 1080px;
+    left: 320px;
+}
+@media (min-width: 1025px){
+    .loginbox{
+        width: 30%;
+        top: 40%;
+        left: 35%;
+    }
+}
+.inp {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.inp .label {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    font-family: 'BBTreeGL';
+    font-size: 40px;
+    color:  #EBDDCA;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+.inp .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    background: #615136;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+.inp input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    height: 48px;
+    font-family: 'YiSunShinDotumM';
+    font-size: 40px;
+    border-bottom: 2px solid #BAA687;
+    background: none;
+    border-radius: 0;
+    color: #615136;
+    transition: all 0.15s ease;
+}
+@media (min-width: 1025px){
+    .inp input{
+        padding: 10px;
+        font-size: 25px;
+    }
+    .inp .label {
+        font-size: 20px;
+    }
+    .inp .border {
+        height:4px;
+        outline: none;
+    }
+}
+.inp input:not(:placeholder-shown) + span {
+    color: #BAA687;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp input:focus {
+    background: none;
+    outline: none;
+}
+.inp input:focus + span {
+    color: #615136;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp input:focus + span + .border {
+    transform: scaleX(1);
+}
+.btn_login{
+    background-image: url("../images/btn_login.png");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+    border: none;
+    position:absolute; 
+    top:50%; left:98%;
+    margin-top:-100px; margin-left:-100px; 
+}
+@media (min-width: 1025px){
+    .btn_login{
+        width: 60px; height: 120px;
+        background-color: #F2C60C;
+        background-size: 60px;
+        background-position: center;
+        top:55%; left:75%;
+    }
+}
+.gotosignup{
+    font-family: 'BBTreeGL';
+    font-size: 30px;
+    color: #615136;
+    position: absolute;
+    top: 83%; left:32%;
+}
+.gotosignup a{
+    font-family: 'BBTreeGL';
+    font-size: 30px;
+    color: #402719;
+}
+@media (min-width: 1025px){
+    .gotosignup{
+        font-size: 16px;
+        top: 63%; left: 38%;
+    }
+    .gotosignup a{
+        font-size: 18px;
+    }
+}

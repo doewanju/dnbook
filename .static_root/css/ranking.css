@@ -1,0 +1,98 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
+
+.ranking{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 50px;
+    font-family: 'YiSunShinDotumM'
+}
+@media (min-width: 1025px){
+    .ranking{
+        padding-top: 20px;
+        height: 500px;
+    }
+}
+.ment{
+    margin-left: 40px;
+}
+.square{
+    float: left;
+    width: 10px;
+    height: 60px;
+    background-color: #615136;
+}
+.back-square{
+    background-color: rgba(235, 221, 202, 0.3);
+    width: 95%;
+    height: 1350px;
+    border-radius: 4rem;
+    margin: 30px auto;
+    padding: 30px 0;
+}
+.middle-ment{
+    color: #615136;
+    text-align: center;
+    font-size: 50px;    
+}
+h3{
+    font-family: 'BBTreeGL';
+    font-size:25px;
+    color: gray;
+}
+@media (min-width: 1025px){
+    .ment{
+        font-size: 2em;
+        margin-bottom: 0;
+    }
+    p.ment{
+        font-size: 1em;
+        color: gray;
+    }
+    .back-square{
+        height: 112%;
+        margin: 10px auto;
+        padding:10px 0;
+    }
+    .middle-ment{
+        font-size: 25px;
+    }
+    h3{
+        font-size: 15px;
+    }
+}
+.rankmember{
+    margin: 40px 0;
+    font-size: 40px;
+    align-content: center;
+    align-items: center;
+}
+.rankerimg{
+    width: 180px;
+    height:180px;
+    border-radius: 100%;
+    border: 5px solid #E29140;
+}
+.toprankerimg{
+    width: 250px;
+    height:250px;
+    border-radius: 100%;
+    border: 7px solid #F2C60C;
+}
+@media (min-width: 1025px){
+    .rankmember{
+        margin: 0px 70px;
+        font-size: 20px;
+    }
+    .rankerimg{
+        width: 25%;
+        height: 25%;
+        border-width: 3px;
+    }
+    .toprankerimg{
+        width: 35%;
+        height: 35%;
+        border-width: 5px;
+    }
+}
