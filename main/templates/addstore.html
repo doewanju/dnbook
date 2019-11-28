@@ -1,12 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load staticfiles %}
 
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/addstore.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
+
+<body>
+<div class="newbody">
 <form method="POST" action="{% url 'addstore' %}" enctype="multipart/form-data">
   {% csrf_token %}
-  <input name="addr" type="text" id="address" placeholder="  책방 주소" readonly>
-  <input name="detail" type="text" id="detail" placeholder="  상세 주소(선택사항)">
-  <input type="button" onclick="sample3_execDaumPostcode()" value="주소 찾기"><br>
+  <input class="newbutton" type="button" onclick="sample3_execDaumPostcode()" value="주소찾기"><br>
+    <div id="wrap" style="display:none;border:1px solid;width:500px;height:450px;margin:5px 0;position:relative">
+    <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+    </div>
+    <input name="addr" type="text" id="address" placeholder="버튼을 눌러주세요" readonly><br>
+    <input name="detail" type="text" id="detail" placeholder="상세 주소(선택사항)">
+  <br>
+  <table>
   {{form}}
-  <input name="bizType" type="text" placeholder="  영업 종목(업종)" {% if biz %} value='{{biz}}' {% endif %}>
-  <input type="submit" value="등록!">
+  </table>
+  업종: 
+  <input name="bizType" type="text" placeholder="영업 종목(업종)" {% if biz %} value='{{biz}}' {% endif %}>
+  <br>
+  <input type="submit" class="newbutton" value="등록하기">
 </form>
 
 <div id="wrap" style="display:none;border:1px solid;width:500px;height:450px;margin:5px 0;position:relative">
@@ -59,3 +77,7 @@
     element_wrap.style.display = 'block';
   }
 </script>
+</div>
+</body>
+
+{% endblock %}

@@ -3,7 +3,7 @@
 @font-face { font-family: 'UhBeepuding'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeepuding.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 div#map{
-    width:100%;height:300px;position:relative;z-index:-1;
+    width:100%;height:300px;position:relative;z-index:0;
 }
 .storename{
     text-align: center;
@@ -53,6 +53,7 @@ span#name{
     width: 100%;
 }
 .modify-btn{
+    letter-spacing: 2rem;
     font-family: 'BBTreeGL';
     font-size: 18px;
     color: gray;
@@ -65,7 +66,7 @@ tr{
     height: fit-content;
 }
 td{
-    font-size: 35px;
+    font-size: 30px;
     font-family: 'YiSunShinDotumM';
 }
 td.icon{
@@ -73,11 +74,11 @@ td.icon{
     text-align: center;
 }
 td.colname{
-    width: 215px;
+    width: 225px;
     vertical-align: top;
 }
 td.data{
-    width: 600px;
+    width: 550px;
     font-size: 30px;
     overflow: hidden;
     vertical-align: middle;
@@ -124,9 +125,9 @@ div.review{
     font-size: 25px;
     color: gray;
 }
-a.clawling:link { color:#615136; text-decoration: none;}
-a.clawling:visited { color: #615136; text-decoration: none;}
-a.clawling:hover { color: #615136; text-decoration: none;}
+a.clawling:link,a.modify-btn:link { color:#615136; text-decoration: none;}
+a.clawling:visited,a.modify-btn:visited { color: #615136; text-decoration: none;}
+a.clawling:hover,,a.modify-btn:hover { color: #615136; text-decoration: none;}
 
 .delete{
     float: right;
@@ -245,6 +246,11 @@ i.fas.fa-map-marker-alt,i.fas.fa-envelope,i.fab.fa-instagram
 {
     color: #615136; font-size: 50px; align-content: center; 
 }
+i.fas.fa-external-link-alt{
+    font-size: 30px;
+    color: grey;
+    margin-left: 10px;
+}
 i.fas.fa-star{
     color: rgb(254,215,86); font-size: 30px;
 }
@@ -258,9 +264,6 @@ i.fas.fa-star{
         height: 200px;
         margin-left: auto;
         margin-right: auto;
-    }
-    .storeimg{
-        width: 80%;
     }
     .img-container{
         text-align: center;
@@ -307,7 +310,7 @@ i.fas.fa-star{
         margin-top: 1px;
     }
     td{
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-family: 'YiSunShinDotumM';
     }
     .table td{
@@ -317,12 +320,17 @@ i.fas.fa-star{
         width: 10%;
     }
     td.data{
-       font-size: 1.5rem;
+       font-size: 1rem;
     }
     i.fas.fa-globe-asia,i.fas.fa-mobile-alt,i.fas.fa-clock,
     i.fas.fa-map-marker-alt,i.fas.fa-envelope,i.fab.fa-instagram
     {
         color: #615136; font-size: 1.7rem; align-content: center; 
+    }
+    i.fas.fa-external-link-alt{
+        font-size: 20px;
+        color: grey;
+        margin-left: 10px;
     }
     .modify, .clawling-container{
         width: 80%;

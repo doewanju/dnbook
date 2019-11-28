@@ -1,0 +1,46 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
+
+.newbody{
+    font-family: 'NanumSquareRound';
+    font-size: 28px;
+    margin: 70px;
+}
+.newbody table{
+    width: 100%;
+}
+.newbody td,th{
+    margin-bottom: 20px;
+}
+tr{
+    margin-bottom: 30px;
+}
+input{
+    margin-bottom: 1rem;
+}
+input.newbutton{
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 1rem;
+    background-color: rgba(97, 81, 54, 0.9);
+    padding: 5px 5px;
+    margin-bottom: 30px;
+    color: white;
+    border-radius: 40px;
+}
+input.newbutton:hover{
+    font-weight: bold;
+    background-color: #EBDDCA;
+    color: #615136;
+}
+
+.newbody input[type="text"],input[type="url"],input[type="email"]{
+    border-bottom: 1px solid grey;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+.newbody input[type="text"],input[type="url"],input[type="email"]:hover{
+    border-bottom: 2px solid #615136;
+}

@@ -46,7 +46,9 @@
         </div>
     {% endif %}
     {% endif %}
-
+    
+<div class="row">
+    <div class="col-lg-6">
     <table class="table">
         <tr>
             <td class="icon"><i class="fas fa-mobile-alt"></i> </td>
@@ -59,9 +61,9 @@
             <td class="colname">홈페이지</td>
             <td class="data">
             {% if 'http' in store.site %}
-                <a href="{{store.site}}"><i class="fas fa-external-link-alt" style="font-size: 30px; color: grey; margin-left: 10px;"></i></a>
+                <a href="{{store.site}}"><i class="fas fa-external-link-alt"></i></a>
             {% else %}
-                <a href="http://{{store.site}}"><i class="fas fa-external-link-alt"style="font-size: 30px; color: grey;margin-left: 10px;"></i></a>
+                <a href="http://{{store.site}}"><i class="fas fa-external-link-alt"></i></a>
             {% endif %}</td>
         {% else %}
             <td class="icon"><i class="fas fa-globe-asia"></i></td>
@@ -86,7 +88,7 @@
             <td class="icon"><i class="fab fa-instagram"></i></td>
             <td class="colname">인스타그램</td>
             <td><a href="https://www.instagram.com/{{store.insta}}">
-            <i class="fas fa-external-link-alt"style="font-size: 30px; color: grey;margin-left: 10px;"></i></a></td>
+            <i class="fas fa-external-link-alt"></i></a></td>
         </tr>
         {% endif %}
         {% if store.email %}
@@ -96,7 +98,22 @@
             <td class="data"><span id='addr'>{{store.email}}</span></td>
         </tr>
         {% endif %}
-    </table></div>
+    </table>
+</div>
+
+
+<div class="col-lg-6">
+    {% if request.PC %}
+    <div class="img-container">
+    {% if store.img %}
+        <img src='{{store.img.url}}' class="storeimg">
+    {% endif %}
+    </div>
+    <br>
+    {% endif %}
+</div>
+</div>
+</div>
 
     <!--책방정보 수정하기-->
     {% if edit %}
@@ -115,7 +132,7 @@
         mapOption = {
             center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
             level: 3, // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
-            draggable: false
+            //draggable: false
         };  
      
     var map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -142,12 +159,14 @@
     </script>
     
     <br>
+    {% if not request.PC %}
     <div class="img-container">
     {% if store.img %}
         <img src='{{store.img.url}}' class="storeimg">
     {% endif %}
     </div>
     <br>
+    {% endif %}
 
     <div class="review-container">
     <div class="review">REVIEW | 
