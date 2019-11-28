@@ -36,6 +36,15 @@ class BookStore(models.Model):
         """Returns the url to access a detail record for this book."""
         return reverse('storedetail', args=[str(self.pk)])
     
+class Crawling(models.Model):
+    store = models.ForeignKey(BookStore, on_delete=models.CASCADE)
+    title = models.TextField()
+    content = models.TextField()
+    link = models.URLField()
+    
+    def __str__(self):
+        return '%s, %s' %(self.store, self.title)
+
 class Tag(models.Model):
     title = models.CharField(max_length=30, unique=True)
     description = models.TextField()
