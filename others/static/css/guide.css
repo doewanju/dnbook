@@ -1,9 +1,8 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
 
-/* body{
-    font-family: 'YiSunShinDotumM';
-} */
+
 .guide{
     padding-left: 50px;
     padding-right: 50px;
@@ -42,19 +41,44 @@ a.isbn{
 div.isbn{
     margin-top: 10px;
 }
+a.sitelink{
+    text-decoration: none;
+    color: #F2C60C;
+}
 @media (min-width: 1025px){
     .guide{
-        padding-left: 80px;
-        padding-right: 80px;
-        padding-top: 50px;   
+        padding: 20px 80px;
+    }
+    .ment{
+        font-size: 1.7em;
+        margin-left: 30px;
+        margin-bottom: 0;
+    }
+    p.ment{
+        font-size: 1em;
+        color: gray;
+    }
+    .square{
+        height: 50px;
+        margin-top: 0px;
+    }
+    .title, .content{
+        width: 95%;
+        font-size: 1rem;
+        margin: 10px auto;
     }
     .title{
-        font-size: 1.5rem;
+        font-size:1.3rem;
     }
     .content{
-        font-size: 1rem;
+        font-family: 'NanumSquareRound';
+        padding: 0 10px;
     }
     a.isbn{
-        font-size: 1.5rem;
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    div.isbn{
+        margin-top: 10px;
     }
 }

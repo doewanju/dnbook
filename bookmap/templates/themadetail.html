@@ -4,35 +4,34 @@
 {% load staticfiles %}
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/realmap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/themadetail.css' %}">
 </head>
-
 <body>
-<h1>{{thema.title}}</h1>
-<h4>{{thema.description|linebreaks}}</h4>
+    <div class="description">
+        <h1>{{thema.title}}</h1>
+        <h3>{{thema.description|linebreaks}}</h3>
+    </div>
+    <div id="map" class="map"></div>
 
-<div id="map" class="map"></div>
-
-
-<table class="table">
-    <thead>
-        <tr>
-        <th>이름</th>
-        <th>주소</th>
-        <th>더보기</th>
-        <!-- style="white-space:nowrap;" -->
-        </tr>
-    </thead>
-    <tbody>
-        {% for store in stores %}
-        <tr onclick="list_click('{{store.addr}}');">
-            <td>{{store.name}}</td>
-            <td>{{store.addr}}</td>
-            <td><a class="sub-btn" href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <table class="table">
+        <thead>
+            <tr>
+            <th style="width:12em">이름</th>
+            <th>주소</th>
+            <th style="width:10rem">더보기</th>
+            <!-- style="white-space:nowrap;" -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for store in stores %}
+            <tr onclick="list_click('{{store.addr}}');">
+                <td>{{store.name}}</td>
+                <td>{{store.addr}}</td>
+                <td><a class="sub-btn" href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 
 

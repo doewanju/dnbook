@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load staticfiles %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/themamap.css' %}">
+</head>
 <body>
-
-{% for i in thema %}
-
-{% if i.img %}
-<img src='{{i.img.url}}'>
-{% endif %}
-
-<a href="{% url 'themadetail' i.id %}">{{i.title}}</a>
-<br>
-
-{% endfor %}
-
+    {% for i in thema %}
+    <div class="themawrap">
+        {% if i.img %}
+            <div class="thema-img"><img src='{{i.img.url}}'></div>
+        {% endif %}
+            <div class="thema-title"><a href="{% url 'themadetail' i.id %}">{{i.title}}</a></div>
+    </div>
+    {% endfor %}
 </body>
 {% endblock %}

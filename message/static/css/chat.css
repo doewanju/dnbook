@@ -27,7 +27,7 @@ img.mypage-prof-img {
 @media (min-width: 1025px){
     .chatbody{
         font-size: 1rem;
-        height: 400px;
+        height: 300px;
         margin:0 40px;
     }
     .receiver{
