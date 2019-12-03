@@ -20,7 +20,6 @@ class BookStore(models.Model):
     users = models.ManyToManyField(User, through='Scrap', related_name='%(app_label)s_%(class)s_related')
     saup_regex = RegexValidator(regex=r'^\d{3}\-\d{2}\-\d{5}$', message="000-00-00000 형식에 맞게 입력해주세요.")
     saup = models.CharField(null=True, blank=True, validators=[saup_regex], max_length=12)
-    #나중에 가게들 사업자번호 다 등록하면 널이랑 블랭크 지우기
     tag_set = models.ManyToManyField('Tag', blank=True)
 
     class Meta:

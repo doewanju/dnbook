@@ -164,6 +164,8 @@ def mapsearch(request):
             'bsaddr' : addrlist, 
             'bsname' : namelist,
             'pklist' : pklist})
+    else:
+        return redirect('realmap')
 
 def store_edit(request, bookstore_id):
     store = get_object_or_404(BookStore, pk=bookstore_id)
