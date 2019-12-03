@@ -218,8 +218,9 @@
 
     <br><br>
 
+    {% if rev %}
     <div class="clawling-container">
-    <a href="{% url 'crawling' store.bookstore_id %}" class="clawling">크롤링 리뷰보기</a>
+        <span>블로그 리뷰</span>
     </div>
     <br>
     <div class="review_hs">
@@ -231,6 +232,7 @@
         <hr>
         {%endfor%}
     </div>
+    {% endif %}
 
 {% if store.boss %}
     {% if store.boss != request.user %}

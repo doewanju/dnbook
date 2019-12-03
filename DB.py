@@ -2,7 +2,7 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE","DNbookproject.settings")
 import django
 django.setup()
-from bookmap.models import BookStore
+from bookmap.models import BookStore, Crawling
 
 if __name__ == '__main__':
     name=[]
@@ -42,4 +42,29 @@ if __name__ == '__main__':
         phone_number=phone_number[i],
         openhour=openhour[i],
         saup=saup[i],
-        img='store/'+img[i])
+        img='store/' + img[i])
+        
+    store = []
+    title = []
+    content = []
+    link = []
+
+    with open('crawling.txt',"r",encoding='UTF8') as f:
+        while True:
+            line=f.readline()
+            if not line : break
+            line=line[:-1]
+            a = line.split('\t')
+            store.append(a[0])
+            title.append(a[1])
+            content.append(a[2])
+            link.append(a[3])
+
+    for i in range(len(link)):
+        s = BookStore.objects.get(name=store[i])
+        Crawling.objects.create(
+            store=s,
+            title=title[i],
+            content=content[i],
+            link=link[i]
+        )
