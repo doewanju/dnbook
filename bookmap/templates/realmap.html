@@ -41,7 +41,7 @@
             <label for="s-option" class="label-pc">주소검색</label>
         </div>
         <div class="sbox-pc">
-            <input type="search" class="search-box-pc" name="query" placeholder="Search...">
+            <input type="search" class="search-box-pc" name="query" placeholder=" Search...">
             <img src="{% static 'img/search.png' %}" class="search-mark-pc">
         </div>
         </form>
@@ -56,12 +56,9 @@
         
     <div class="map-container">
         <div id="map" class="map">
-        <!-- <div class="btn-container"> -->
-        <div class="seeall"><a href="{%url 'realmap'%}">ALL</a></div>
-        <br>
+            <div class="seeall"><a href="{%url 'realmap'%}">ALL</a></div>
+            <div class="seetheme"><a href="{% url 'themamap' %}">테마</a></div>
         </div>
-        <!-- <div class="seelist"><a href="{% url 'bookstore' %}">LIST</a></div>  -->
-        <!-- </div> -->
 
         <div id="list" class="list">
         <table class="table">

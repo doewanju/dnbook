@@ -1,43 +1,51 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 
-.main-btn {
+img{
+    width: 45%;
+    display: block;
+    margin: 15rem auto;
+}
+.main-btn, .theme-btn{
     width: 600px;
-    height: 180px;
-    font-size: 55px;
+    height: 130px;
+    font-size: 45px;
     background: #615136;
     position: relative;
     border-radius: 100px;
     text-align: center;
     color: white;
-    line-height: 180px;
+    line-height: 130px;
     display: block;
     /* margin-top: 00px; */
     margin-left: auto;
     margin-right: auto;
     font-family: 'YiSunShinDotumM';
 }
-.main-btn a{
+.theme-btn{
+    background-color:#F2C60C;
+}
+.main-btn a, .theme-btn a{
     font-size: 55px;
 }
 
-.main-btn a:link { color:white; text-decoration: none;}
-.main-btn a:visited { color: white; text-decoration: none;}
-.main-btn a:hover { color: #DED2C0; text-decoration: none;}
+.main-btn a:link, .theme-btn a:link { color:white; text-decoration: none;}
+.main-btn a:visited, .theme-btn a:visited { color: white; text-decoration: none;}
+.main-btn a:hover,.theme-btn a:hover { color: #DED2C0; text-decoration: none;}
 
 @media (min-width: 1025px){
     img{
-        width: 35%;
+        width: 15%;
         display: block;
-        margin: 0 auto;
+        margin: 4rem auto;
     }
-    .main-btn{
+    .main-btn, .theme-btn{
         width: 600px;
-        height: 100px;
-        line-height: 100px;
+        height: 90px;
+        line-height: 90px;
     }
-    .main-btn a{
-        font-size: 45px;
+    .main-btn a, .theme-btn a{
+        font-size: 40px;
         letter-spacing: 5px;
     }
 }
