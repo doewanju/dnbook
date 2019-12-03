@@ -5,6 +5,7 @@ input.search-box{
     width: 650px;  
     height: 90px;
     margin-right: 25px; 
+    padding: 0 10px;
     border: none;
     box-shadow: 5px 5px 10px lightgrey;
     border-radius: 10px;
@@ -63,10 +64,29 @@ input.search-box:focus + span {
     font-size: 27px;
     z-index: 2;
 }
-
-.seeall a:link { color:white; text-decoration: none;}
-.seeall a:visited { color: white; text-decoration: none;}
+.seeall a:link, .seetheme a:link { color:white; text-decoration: none;}
+.seeall a:visited, .seetheme a:visited { color: white; text-decoration: none;}
 .seeall a:hover { color: #DED2C0; text-decoration: none;}
+.seetheme a:hover{ color: #615136; text-decoration: none;}
+
+.seetheme{
+    width: 80px;
+    height: 80px;
+    background: #F2C60C;
+    border-radius: 100px;
+    text-align: center;
+    line-height: 80px;
+    display: block;
+    font-family: 'YiSunShinDotumM';
+    position: absolute;
+    z-index: 3;
+    margin: 105px 0px 0px 15px;
+}
+.seetheme a{
+    color: white;
+    font-size: 27px;
+    z-index: 3;
+}
 
 .map{
     width:100%;
@@ -277,13 +297,16 @@ input.search-box-pc:focus + span {
     .table{
         font-size: 1rem;
     }
-    .seeall{
+    .seeall, .seetheme{
         width: 60px;
         height: 60px;   
         line-height: 60px;     
     }
-    .seeall a{
+    .seeall a, .seetheme a{
         font-size: 20px;
+    }
+    .seetheme{
+        margin-top: 85px;
     }
     .smallinfo{
         white-space:nowrap;

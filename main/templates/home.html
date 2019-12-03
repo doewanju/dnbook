@@ -4,9 +4,13 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 </head>
-<img src="{% static 'images/dnblogo.jpg' %}" width="100%">
+<img src="{% static 'images/dnblogo.png' %}">
 
 <div class="main-btn">
     <a href="{%url 'realmap' %}">책방지도 보러가기</a>
+</div>
+<br>
+<div class="theme-btn">
+    <a href="{%url 'themamap' %}">테마지도 보러가기</a>
 </div>
 {% endblock %}
