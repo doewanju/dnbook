@@ -232,7 +232,7 @@ a.writebtn{
 @media (min-width: 1025px){
     a.writebtn{
         position: absolute;
-        top: 13%;
+        top: 15%;
         right: 7%;
         font-size: 1.3rem;
         letter-spacing: .2rem;
