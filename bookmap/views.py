@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from .models import BookStore, Scrap, Review, Tag, Crawling
 from main.models import Bossprofile
 from django.core import serializers
-from .review import reviewFuc
 import simplejson
 from .forms import ReviewForm, StoreEditForm
 from django.db.models import Avg
