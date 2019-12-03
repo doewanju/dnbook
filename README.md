@@ -12,7 +12,6 @@
 - pillow
 - requests
 - selenium
-- webdrivermanager
 - django-el-pagination
 - django-detect
 
@@ -20,8 +19,8 @@
 - $python manage.py migrate
 
 ## 책방 DB 불러오기
-- bookDB.py 있는 위치에서 $python bookDB.py 입력!
-- 외관사진들 다 media/store/폴더에 넣고 $python imageLoad.py 입력!
+- 외관사진들 다 media/store/폴더에 넣고 bookDB.txt, crawling.txt파일 있는지 확인
+- DB.py 있는 위치에서 $python DB.py 입력!
 
 ## 관리자계정 만들기
 - $python manage.py createsuperuser

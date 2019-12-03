@@ -37,7 +37,7 @@ B-Platform	서울 마포구 독막로2길 22 3층	bplatform	http://bplatform.cre
 땡스북스	서울 마포구 양화로6길 57-6	thanksbooks	http://www.thanksbooks.com	staff.thanksbooks@gmail.com	02-325-0321	매일 12:00 ~ 21:00		마포구_땡스북스.png
 베로니카이펙트	서울 마포구 어울마당로2길 10 1층	veronicaeffect	http://www.veronicaeffect.com/	veronicaeffect00@gmail.com	02-6273-2748	주인장 마음대로	782-07-00697	마포구_베로니카이펙트.png
 북스피리언스	서울 마포구 연남로11길 34 지하1층	booksperience		booksperience@gmail.com	02-324-2399	월~목 13:00 ~ 17:00;금~토 19:00 ~		마포구_북스피리언스.png
-gaga77page	서울 마포구 와우산로15길 50 2층		https://smartstore.naver.com/gaga77page	gaga77page@naver.com	070-4197-3477	매일 14:00 ~ 22:00	109-14-36495	마포구_gaga77page.JPG
+gaga77page	서울 마포구 와우산로15길 50 2층	gaga77page	https://smartstore.naver.com/gaga77page	gaga77page@naver.com	070-4197-3477	매일 14:00 ~ 21:00	109-14-36495	마포구_gaga77page.JPG
 책방연희	서울 마포구 와우산로35길 3 지하 1층	chaegbangyeonhui	https://smartstore.naver.com/chaegbangyeonhui/profile	chaegbangyeonhui@naver.com	010-8411-5501	수~토 12:00 ~ 19:00		마포구_책방연희.png
 어쩌다책방	서울 마포구 월드컵로19길 74	uhjjuhdah.bookshop			070-5121-5629	월~토 13:00 ~ 21:00		마포구_어쩌다책방.png
 유어마인드	서울 서대문구 연희로11라길 10-6 2층	your_mind_com	http://your-mind.com/	ym@your-mind.com	070-8821-8990	매일 13:00 ~ 20:00	129-34-83307	서대문구_유어마인드.png
