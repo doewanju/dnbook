@@ -3,6 +3,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE","DNbookproject.settings")
 import django
 django.setup()
 from bookmap.models import BookStore
+from io import BytesIO
 
 if __name__ == '__main__':
     name=[]
@@ -14,6 +15,7 @@ if __name__ == '__main__':
     openhour=[]
     saup=[]
     with open('1st_bookDB.txt',"r",encoding='UTF8') as f:
+        
         while True:
             line=f.readline()
             if not line : break

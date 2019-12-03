@@ -9,8 +9,8 @@ class BookStore(models.Model):
     bookstore_id = models.AutoField(primary_key=True)
     name = models.CharField('책방이름',max_length=20, default="storename", null=True)
     addr = models.TextField('책방주소',unique=True)
-    phone_regex = RegexValidator(regex=r'^\d{2,3}\-\d{3,4}\-\d{4}$', message="000-0000-0000과 같은 형식으로 입력해주세요.")
-    phone_number = models.CharField('전화번호',validators=[phone_regex], blank=True, max_length=13, null=True)
+    phone_regex = RegexValidator(regex=r'^\d{2,4}\-\d{3,4}\-\d{4}$', message="000-0000-0000과 같은 형식으로 입력해주세요.")
+    phone_number = models.CharField('전화번호',validators=[phone_regex], blank=True, max_length=15, null=True)
     site = models.URLField('웹사이트',null=True, blank=True)
     img = models.ImageField('외관사진',upload_to='store/', null=True, blank=True)
     insta = models.CharField('인스타그램',null=True, blank=True, max_length=50)
@@ -36,6 +36,15 @@ class BookStore(models.Model):
         """Returns the url to access a detail record for this book."""
         return reverse('storedetail', args=[str(self.pk)])
     
+class Crawling(models.Model):
+    store = models.ForeignKey(BookStore, on_delete=models.CASCADE)
+    title = models.TextField()
+    content = models.TextField()
+    link = models.URLField()
+    
+    def __str__(self):
+        return '%s, %s' %(self.store, self.title)
+
 class Tag(models.Model):
     title = models.CharField(max_length=30, unique=True)
     description = models.TextField()

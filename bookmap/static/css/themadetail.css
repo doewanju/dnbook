@@ -1,0 +1,182 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
+.description{
+    font-family: 'YiSunShinDotumM';
+    padding: 1.5rem;
+}
+.description h1{
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.description h3{
+    font-family: 'NanumSquareRound';
+}
+p{
+    margin: 0;
+}
+.map{
+    width:100%;
+    height: 40vh;
+    position:relative;
+    z-index:0;
+}
+.list{
+    overflow:auto;
+    width:100%;
+    height:450px;
+    font-family: 'NanumSquareRound';
+    padding-left: 40px;
+    padding-right: 40px;
+}
+table {
+    border-top: 1px solid #615136;
+    border-collapse: collapse;
+    font-size: 25px;
+    table-layout: fixed;
+    word-break: break-all;
+}
+.table-seemore{
+    width: 20%;
+}
+.table-sname{
+    width: 30%;
+}
+.table th{
+    background-color: rgba(235, 221, 202, 0.4);;
+}
+.table tr{
+    text-align: center;
+    /* font-size: 30px; */
+    color: #615136;
+}
+.table td {
+    font-family: 'NanumSquareRound';
+    border-top: 1px solid #615136;
+    border-bottom: 1px solid #615136;
+    padding: 10px;
+    vertical-align: middle;
+}
+.table thead th{
+    border-bottom: 2px solid #615136;
+    /* border-top: 2px solid #615136; */
+}
+
+tr a:link { color:white; text-decoration: none;}
+tr a:visited { color: white; text-decoration: none;}
+tr a:hover { color: white; text-decoration: none;}
+
+.sub-btn{
+    font-family: 'YiSunShinDotumM';
+    background-color: #615136;
+    border: 0px;
+    color:white;
+    border-radius: 100px;
+    padding: 7px;
+}
+
+.label{
+    font-family: 'YiSunShinDotumM';
+    font-size: 27px;
+    margin-left: 10px;
+    margin-right: 5px;
+  }
+.smallinfo{
+    white-space:nowrap;
+    width: 450px;
+    height: 160px;
+    font-family: 'YiSunShinDotumM';
+    font-size: 27px;
+    text-align: center;
+    color: #615136;
+}
+.title{
+    font-size: 40px;
+    color: black;
+}
+.det-btn{
+    font-family: 'YiSunShinDotumM';
+    background-color: #615136;
+    border: 0px;
+    color:white;
+    border-radius: 100px;
+    padding: 8px;
+    margin-top: 15px;
+}
+
+.rbtn{
+    float: left;
+    margin-left: 10px;
+    margin-top: 23px;
+}
+.rbtn input[type='radio'] {
+    margin-top: -3px;
+    vertical-align: middle;
+    -webkit-appearance:none;
+    width:30px;
+    height:30px;
+    border:1px solid #EBDDCA;
+    border-radius:50%;
+    outline:none;
+    background:#EBDDCA;
+}
+.rbtn input[type='radio']:before {
+    content:'';
+    display:block;
+    width:70%;
+    height:70%;
+    margin: 15% auto;  
+    border-radius:50%;  
+}
+.rbtn input[type='radio']:checked:before {
+    background:#615136;
+}
+@media(min-width:1025px){
+    .description{
+        padding: 1rem;
+    }
+    .description h1{
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    .description h3{
+        font-size: 1.2rem;
+    }
+    .realmap{
+        padding: 0px 100px;
+    }
+    .map-container{
+        margin: 0 40px;
+    }
+    .map{
+
+    }
+    .list{
+        display: inline;
+        float: left;
+        width: 50%;
+        height: 400px;
+        padding-left: 10px;
+        padding-right: 0px;
+    }
+    .table{
+        font-size: 1rem;
+    }
+    .smallinfo{
+        white-space:nowrap;
+        width: 300px;
+        height: 100px;
+        font-family: 'YiSunShinDotumM';
+        font-size: 15px;
+        text-align: center;
+        color: #615136;
+    }
+    .title{
+        font-size: 20px;
+        color: black;
+    }
+    .det-btn{
+        margin-top: 30px;
+    }
+}
