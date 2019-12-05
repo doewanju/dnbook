@@ -29,7 +29,7 @@ B-Platform	서울 마포구 독막로2길 22 3층	bplatform	http://bplatform.cre
 헬로인디북스	서울 마포구 동교로46길 33	helloindiebooks	http://www.hello-indiebooks.com	helloindiebooks@gmail.com	010-4563-7830	매일 15:00 ~ 21:00		마포구_헬로인디북스.jpg
 스튜디오썸띵	서울 마포구 와우산로 29-18	studio.something	https://www.stsomething.com/	art@somethingin.co.kr	02-337-0100	월, 수~금 10:00 ~ 22:00;토~일 13:00 ~ 22:00	195-88-00776	마포구_스튜디오썸띵.jpg
 이후북스	서울 마포구 서강로11길 18 1층	now_afterbooks	https://smartstore.naver.com/now_afterbooks	now.after.who@gmail.com	010-4448-7991	일~화 14:00 ~ 18:00;수~토 13:00 ~ 20:00	412-55-00125	마포구_이후북스.png
-라이너노트	서울 마포구 성미산로29길 4 1층	linernote.kr	https://linktr.ee/linernote.kr		02-337-9966	월~금 12:00 ~ 19:00;토 12:00 ~ 20:00		마포구_라이너노트.jpg
+라이너노트	서울 마포구 양화로15안길 6	linernote.kr	https://smartstore.naver.com/linernote	lay@pageturner.kr	02-337-9966	화~금 12:00 ~ 20:00;토 12:00 ~ 18:00	452-88-00140	마포구_라이너노트.jpg
 사이에	서울 마포구 성미산로31길 13 2층	saiebook	https://www.saie.co.kr/	saiebook@naver.com	02-325-6563	월~금 10:00 ~ 20:00;토 14:00 ~ 19:00	119-14-88971	마포구_사이에.png
 안도북스	서울 마포구 성미산로6길 21 1층	ando_books	https://blog.naver.com/ando78	ando78@naver.com	010-9156-5437	화~토 12:00 ~ 20:00		마포구_안도북스.png
 초원서점	서울 마포구 숭문16나길 9	pampaspaspas	https://blog.naver.com/pampaspaspas		02-702-5001	금~일 13:00 ~ 19:00		마포구_초원서점.png
@@ -37,7 +37,7 @@ B-Platform	서울 마포구 독막로2길 22 3층	bplatform	http://bplatform.cre
 땡스북스	서울 마포구 양화로6길 57-6	thanksbooks	http://www.thanksbooks.com	staff.thanksbooks@gmail.com	02-325-0321	매일 12:00 ~ 21:00		마포구_땡스북스.png
 베로니카이펙트	서울 마포구 어울마당로2길 10 1층	veronicaeffect	http://www.veronicaeffect.com/	veronicaeffect00@gmail.com	02-6273-2748	주인장 마음대로	782-07-00697	마포구_베로니카이펙트.png
 북스피리언스	서울 마포구 연남로11길 34 지하1층	booksperience		booksperience@gmail.com	02-324-2399	월~목 13:00 ~ 17:00;금~토 19:00 ~		마포구_북스피리언스.png
-gaga77page	서울 마포구 와우산로15길 50 2층		https://smartstore.naver.com/gaga77page	gaga77page@naver.com	070-4197-3477	매일 14:00 ~ 22:00	109-14-36495	마포구_gaga77page.JPG
+gaga77page	서울 마포구 와우산로15길 50 2층	gaga77page	https://smartstore.naver.com/gaga77page	gaga77page@naver.com	070-4197-3477	매일 14:00 ~ 21:00	109-14-36495	마포구_gaga77page.JPG
 책방연희	서울 마포구 와우산로35길 3 지하 1층	chaegbangyeonhui	https://smartstore.naver.com/chaegbangyeonhui/profile	chaegbangyeonhui@naver.com	010-8411-5501	수~토 12:00 ~ 19:00		마포구_책방연희.png
 어쩌다책방	서울 마포구 월드컵로19길 74	uhjjuhdah.bookshop			070-5121-5629	월~토 13:00 ~ 21:00		마포구_어쩌다책방.png
 유어마인드	서울 서대문구 연희로11라길 10-6 2층	your_mind_com	http://your-mind.com/	ym@your-mind.com	070-8821-8990	매일 13:00 ~ 20:00	129-34-83307	서대문구_유어마인드.png
@@ -58,7 +58,7 @@ gaga77page	서울 마포구 와우산로15길 50 2층		https://smartstore.naver.
 껌북바나나	서울 종로구 북촌로4길 6	gumbooklove	http://www.gumbook.co.kr		070-7773-7040	월~토 12:30 ~ 18:30	211-87-06357	종로구_껌북바나나.png
 더북소사이어티	서울 종로구 자하문로10길 22 2층	tbs_book_society	http://www.thebooksociety.org/	tbs.jungaram@gmail.com	070-8621-5676	화~일 13:00 ~ 21:00	110-16-11810	종로구_더북소사이어티.png
 off to alone	서울 종로구 자하문로15길 26-4	off_to_alone	http://nakwhee.com/	offtoalone@gmail.com		화~토 사장마음대로		종로구_off to alone.jpg
-보안서점	서울 종로구 효자로 33 2층	boan1942	http://b1942.com/	boan1942@gmail.com	02-720-8409	화~금 12:00 ~ 20:00;토~일 12:00 ~ 19:00		종로구_보안서점.jpg
+보안서점	서울 종로구 효자로 33 2층	boanbooks	http://b1942.com/	boan1942@gmail.com	02-720-8409	화~금 12:00 ~ 20:00;토~일 12:00 ~ 19:00		종로구_보안서점.jpg
 PIT A PAT	서울 종로구 혜화로3길 5 아남아파트 상가 301동 108호	pitapat_coffee_			010-2382-5362	매일 10:00 ~ 22:00		종로구_pit a pat.jpg
 이라선	서울 종로구 효자로7길 5 1층	irasun_official	https://www.irasun.co.kr/	irasunbookshop@gmail.com	010-5420-0908	화~일 12:00 ~ 20:00		종로구_이라선.jpg
 더북소사이어티(2호점)	서울 중구 덕수궁길 61 서울시립미술관 3층	tbs_book_society	http://www.thebooksociety.org/	tbs.jungaram@gmail.com	02-2124-8800	평일 10:00 ~ 20:00;주말 10:00 ~ 18:00	110-16-11810	중구_더북소사이어티(2호점).png
