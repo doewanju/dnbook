@@ -3,13 +3,13 @@
 .s-up{
     width: 800px;
     border:none;
-    height: 150px;
+    height: 120px;
     font-size: 55px;
     background: #615136;
     border-radius: 80px;
     text-align: center;
     color: white;
-    line-height: 150px;
+    line-height: 120px;
     display: block;
     font-family: 'YiSunShinDotumM';
 }
@@ -29,6 +29,17 @@ h2{
     font-family: 'YiSunShinDotumM';
     font-size: 40px;
     letter-spacing: 0.2rem;
+}
+button.saup-vf{
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 1rem;
+    background-color: #F2C60C;
+    width: 100%;
+    margin-bottom: 30px;
+    color: white;
+    border-radius: 40px;
+    border: none;
 }
 @media (min-width: 1025px){
     .s-up{
@@ -102,7 +113,7 @@ h2{
     border-radius: 0;
     color: #615136;
     transition: all 0.15s ease;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-weight: 70;
 }
 .inp input::placeholder{

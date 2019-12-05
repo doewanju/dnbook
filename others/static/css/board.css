@@ -67,6 +67,7 @@ th.category, td.category{
     font-size:25px;
     padding: 10px 0px;
 }
+
 @media (min-width: 1025px){
     table {
         width: 90% !important;
@@ -87,7 +88,8 @@ select{
     color: #615136;
     text-align: center;
     width: 150px;
-    padding: 0 1.5em;
+    padding: 0 0 0 0em;
+    margin-left: 1rem;
     border: none;
     background: url('../images/arrow.jpg') no-repeat 95% 50%;
     border-radius: 0px;
@@ -96,7 +98,7 @@ select{
     appearance: none;
 }
 .title{
-    width:359px;
+    width:350px;
     text-align: center;
 }
 .writer{
@@ -230,7 +232,7 @@ a.writebtn{
 @media (min-width: 1025px){
     a.writebtn{
         position: absolute;
-        top: 13%;
+        top: 15%;
         right: 7%;
         font-size: 1.3rem;
         letter-spacing: .2rem;

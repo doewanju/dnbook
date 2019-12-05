@@ -15,14 +15,13 @@
     <div id="wrap" style="display:none;border:1px solid;width:500px;height:450px;margin:5px 0;position:relative">
     <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
     </div>
-    <input name="addr" type="text" id="address" placeholder="버튼을 눌러주세요" readonly><br>
+    <input name="addr" type="text" id="address" placeholder="주소찾기 버튼을 눌러주세요" readonly><br>
     <input name="detail" type="text" id="detail" placeholder="상세 주소(선택사항)">
   <br>
   <table>
   {{form}}
   </table>
-  업종: 
-  <input name="bizType" type="text" placeholder="영업 종목(업종)" {% if biz %} value='{{biz}}' {% endif %}>
+  업종: <input name="bizType" type="text" placeholder="영업 종목(업종)" {% if biz %} value='{{biz}}' {% endif %}>
   <br>
   <input type="submit" class="newbutton" value="등록하기">
 </form>
